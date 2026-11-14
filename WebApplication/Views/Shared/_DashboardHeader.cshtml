@@ -14,6 +14,10 @@
         </div>
     </a>
 
+    <button class="nb-icon-btn nb-kebab-btn" type="button" data-nb-actions aria-label="Show search and account options" aria-expanded="false" aria-controls="nb-header-search nb-header-actions">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>
+    </button>
+
     <nav class="nb-topnav" aria-label="Primary">
         <a class="@(page == "Dashboard/Index" ? "active" : null)" asp-controller="Dashboard" asp-action="Index"><span class="nb-icon" style="--nb-icon:url('/assets/neetbee/dashboard.svg')" aria-hidden="true"></span>Home</a>
         <a class="@(page == "Study/Courses" ? "active" : null)" asp-controller="Study" asp-action="Courses"><span class="nb-icon" style="--nb-icon:url('/assets/neetbee/book.svg')" aria-hidden="true"></span>Courses</a>
@@ -24,16 +28,17 @@
             <div class="nb-tools-list">
                 <a asp-controller="Study" asp-action="PreviousYearPapers">Previous Year Papers</a>
                 <a asp-controller="Study" asp-action="AudioLearning">Audio Learning</a>
+                <a asp-controller="Study" asp-action="VoiceQa">Voice Q&amp;A</a>
             </div>
         </details>
     </nav>
 
-    <div class="nb-search" role="search">
+    <div class="nb-search" id="nb-header-search" role="search">
         <span class="nb-icon" style="--nb-icon:url('/assets/neetbee/search.svg')" aria-hidden="true"></span>
         <input id="site-search" class="nb-search-input" type="search" placeholder="Search courses, topics, MCQs..." aria-label="Search courses, topics and MCQs">
     </div>
 
-    <div class="nb-header-actions">
+    <div class="nb-header-actions" id="nb-header-actions">
         <div class="nb-notify-wrap">
             <button class="nb-icon-btn" id="nb-notify-btn" type="button" aria-label="Notifications" aria-expanded="false" aria-controls="nb-notify-panel">
                 <span class="nb-icon" style="--nb-icon:url('/assets/neetbee/bell.svg')" aria-hidden="true"></span>
@@ -48,9 +53,9 @@
             <span class="nb-icon" style="--nb-icon:url('/assets/neetbee/sun-moon.svg')" aria-hidden="true"></span>
         </button>
 
-        <span class="nb-profile">
+        <span class="nb-profile" tabindex="0">
             <span class="nb-avatar"><span class="nb-icon" style="--nb-icon:url('/assets/neetbee/user.svg')" aria-hidden="true"></span></span>
-            <span>Hi, @User.Identity?.Name</span>
+            <span class="nb-profile-name">Hi, @User.Identity?.Name</span>
         </span>
 
         <a class="nb-icon-btn nb-settings-btn@(page == "Study/Settings" ? " active" : "")" asp-controller="Study" asp-action="Settings" aria-label="Settings" title="Settings"><span class="nb-icon" style="--nb-icon:url('/assets/neetbee/settings.svg')" aria-hidden="true"></span></a>

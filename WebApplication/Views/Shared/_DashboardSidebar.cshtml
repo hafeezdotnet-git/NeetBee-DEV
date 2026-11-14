@@ -2,6 +2,36 @@
     var controller = ViewContext.RouteData.Values["controller"]?.ToString();
     var action = ViewContext.RouteData.Values["action"]?.ToString();
     var page = controller + "/" + action;
+
+    // Sidebar menu: group heading (null = none), controller, action, icon file, name, one-line description.
+    var groups = new (string? Heading, (string Controller, string Action, string Icon, string Name, string Description)[] Items)[]
+    {
+        (null, new[]
+        {
+            ("Dashboard", "Index", "dashboard", "Dashboard", "Your progress at a glance"),
+        }),
+        ("Learning", new[]
+        {
+            ("Study", "Courses", "book", "Courses", "Subject-wise lessons"),
+            ("Study", "PreviousYearPapers", "file", "Previous Year Papers", "Practise past NEET papers"),
+            ("Study", "McqPractice", "target", "MCQ Practice", "Quick topic-wise questions"),
+            ("Study", "MockTests", "clipboard", "Mock Tests", "Full-length timed exams"),
+            ("Study", "AudioLearning", "headphones", "Audio Learning", "Listen to lessons on the go"),
+            ("Study", "VoiceQa", "headphones", "Voice Q&A", "Questions read aloud to you"),
+        }),
+        ("My Progress", new[]
+        {
+            ("Study", "Performance", "chart", "Performance", "Scores and weak areas"),
+            ("Study", "SavedQuestions", "bookmark", "Saved Questions", "Questions you bookmarked"),
+            ("Study", "Achievements", "trophy", "Achievements", "Badges and milestones"),
+        }),
+        ("Account", new[]
+        {
+            ("Study", "Pricing", "crown", "Plans & Pricing", "Upgrade your plan"),
+            ("Study", "Settings", "settings", "Settings", "Profile and preferences"),
+            ("Study", "HelpSupport", "help", "Help & Support", "FAQs and contact us"),
+        }),
+    };
 }
 <aside id="nb-sidebar" class="nb-sidebar" aria-label="Dashboard navigation">
     <div class="nb-sidebar-head">
@@ -9,23 +39,23 @@
         <button class="nb-icon-btn" type="button" data-nb-close aria-label="Close menu">&times;</button>
     </div>
     <nav class="nb-nav">
-        <a class="@(page == "Dashboard/Index" ? "active" : null)" asp-controller="Dashboard" asp-action="Index"><span class="nb-icon" style="--nb-icon:url('/assets/neetbee/dashboard.svg')" aria-hidden="true"></span>Dashboard</a>
-
-        <div class="nb-nav-group">Learning</div>
-        <a class="@(page == "Study/Courses" ? "active" : null)" asp-controller="Study" asp-action="Courses"><span class="nb-icon" style="--nb-icon:url('/assets/neetbee/book.svg')" aria-hidden="true"></span>Courses</a>
-        <a class="@(page == "Study/PreviousYearPapers" ? "active" : null)" asp-controller="Study" asp-action="PreviousYearPapers"><span class="nb-icon" style="--nb-icon:url('/assets/neetbee/file.svg')" aria-hidden="true"></span>Previous Year Papers</a>
-        <a class="@(page == "Study/McqPractice" ? "active" : null)" asp-controller="Study" asp-action="McqPractice"><span class="nb-icon" style="--nb-icon:url('/assets/neetbee/target.svg')" aria-hidden="true"></span>MCQ Practice</a>
-        <a class="@(page == "Study/MockTests" ? "active" : null)" asp-controller="Study" asp-action="MockTests"><span class="nb-icon" style="--nb-icon:url('/assets/neetbee/clipboard.svg')" aria-hidden="true"></span>Mock Tests</a>
-        <a class="@(page == "Study/AudioLearning" ? "active" : null)" asp-controller="Study" asp-action="AudioLearning"><span class="nb-icon" style="--nb-icon:url('/assets/neetbee/headphones.svg')" aria-hidden="true"></span>Audio Learning</a>
-
-        <div class="nb-nav-group">My Progress</div>
-        <a class="@(page == "Study/Performance" ? "active" : null)" asp-controller="Study" asp-action="Performance"><span class="nb-icon" style="--nb-icon:url('/assets/neetbee/chart.svg')" aria-hidden="true"></span>Performance</a>
-        <a class="@(page == "Study/SavedQuestions" ? "active" : null)" asp-controller="Study" asp-action="SavedQuestions"><span class="nb-icon" style="--nb-icon:url('/assets/neetbee/bookmark.svg')" aria-hidden="true"></span>Saved Questions</a>
-        <a class="@(page == "Study/Achievements" ? "active" : null)" asp-controller="Study" asp-action="Achievements"><span class="nb-icon" style="--nb-icon:url('/assets/neetbee/trophy.svg')" aria-hidden="true"></span>Achievements</a>
-
-        <div class="nb-nav-group">Account</div>
-        <a class="@(page == "Study/Pricing" ? "active" : null)" asp-controller="Study" asp-action="Pricing"><span class="nb-icon" style="--nb-icon:url('/assets/neetbee/crown.svg')" aria-hidden="true"></span>Plans &amp; Pricing</a>
-        <a class="@(page == "Study/Settings" ? "active" : null)" asp-controller="Study" asp-action="Settings"><span class="nb-icon" style="--nb-icon:url('/assets/neetbee/settings.svg')" aria-hidden="true"></span>Settings</a>
-        <a class="@(page == "Study/HelpSupport" ? "active" : null)" asp-controller="Study" asp-action="HelpSupport"><span class="nb-icon" style="--nb-icon:url('/assets/neetbee/help.svg')" aria-hidden="true"></span>Help &amp; Support</a>
+        @foreach (var group in groups)
+        {
+            if (group.Heading is not null)
+            {
+                <div class="nb-nav-group">@group.Heading</div>
+            }
+            foreach (var item in group.Items)
+            {
+                var isActive = page == $"{item.Controller}/{item.Action}";
+                <a class="nb-nav-item@(isActive ? " active" : null)" asp-controller="@item.Controller" asp-action="@item.Action" aria-current="@(isActive ? "page" : null)">
+                    <span class="nb-icon" style="--nb-icon:url('/assets/neetbee/@(item.Icon).svg')" aria-hidden="true"></span>
+                    <span class="nb-nav-text">
+                        <span class="nb-nav-name">@item.Name</span>
+                        <span class="nb-nav-desc">@item.Description</span>
+                    </span>
+                </a>
+            }
+        }
     </nav>
 </aside>

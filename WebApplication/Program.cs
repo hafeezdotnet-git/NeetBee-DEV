@@ -47,6 +47,11 @@ builder.Services.AddTransient<CorrelationIdHandler>();
 // Learning progress for the dashboard. Returns empty progress until a progress store is connected.
 builder.Services.AddScoped<IStudentProgressService, StudentProgressService>();
 
+// Voice Q&A: questions from SQL Server (dbo.Questions), and Azure AI Speech (optional; the page falls back to browser speech without a key).
+builder.Services.AddScoped<IVoiceQuestionService, SqlVoiceQuestionService>();
+builder.Services.AddMemoryCache();
+builder.Services.AddHttpClient<AzureSpeechService>(client => client.Timeout = TimeSpan.FromSeconds(15));
+
 // Server-to-server calls to the gateway. The browser never talks to the gateway directly.
 // CorrelationIdHandler passes this request's correlation ID on, so the gateway and service logs match it.
 builder.Services.AddHttpClient<GatewayClient>(client =>

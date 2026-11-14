@@ -8,9 +8,10 @@
 <head>
     <partial name="_Head" />
     <link rel="stylesheet" href="/css/neetbee-dashboard.css?v=3">
-    <link rel="stylesheet" href="/css/neetbee-dashboard-overrides.css?v=6">
+    <link rel="stylesheet" href="/css/neetbee-dashboard-overrides.css?v=10">
     <link id="nb-light-css" rel="stylesheet" href="/css/neetbee-dashboard-light.css?v=6" disabled>
     <link rel="stylesheet" href="/css/neetbee-ai-assistant.css?v=1">
+    @await RenderSectionAsync("Styles", required: false)
 </head>
 <body class="dashboard-body neetbee-theme">
     <a class="skip-link" href="#dashboard-content">Skip to main content</a>
@@ -40,7 +41,7 @@
 
     <partial name="_AiAssistant" />
 
-    <script src="/js/dashboard.js?v=6"></script>
+    <script src="/js/dashboard.js?v=7"></script>
     <script src="/js/ai-assistant.js?v=1"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

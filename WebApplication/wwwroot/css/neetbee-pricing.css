@@ -1,0 +1,258 @@
+/* NEET BEE – Study/Pricing rate card. Every rule is scoped to .nb-pricing so other pages are unaffected.
+   Light mode is the default; dark mode follows body.dark set by dashboard.js (key "neetbee-theme"). */
+
+.nb-pricing {
+    /* Light theme tokens (matches the NEET 2027 rate card reference) */
+    --pr-panel-bg: linear-gradient(135deg, #0b2f7a, #1e5fd0);
+    --pr-panel-border: transparent;
+    --pr-panel-shadow: 0 14px 34px rgba(11, 47, 122, .22);
+    --pr-head-text: #ffffff;
+    --pr-head-muted: #dbeafe;
+    --pr-card-bg: #ffffff;
+    --pr-card-border: transparent;
+    --pr-card-shadow: 0 6px 18px rgba(4, 22, 60, .18);
+    --pr-text: #0b2545;
+    --pr-muted: #4a6280;
+    --pr-line: #dcebf6;
+    --pr-accent: #0284c7;
+    --pr-accent-hover-bg: #f0f9ff;
+    --pr-grad: linear-gradient(90deg, #0369a1, #0ea5e9);
+    --pr-grad-hover: linear-gradient(90deg, #075985, #0284c7);
+    --pr-gold: #f59e0b;
+    --pr-gold-text: #3b2600;
+    --pr-strike: #dc2626;
+    --pr-focus: #f59e0b;
+
+    container-type: inline-size;
+    width: 100%;
+    margin: 0;
+    padding: 24px 22px 18px;
+    border-radius: 22px;
+    border: 1px solid var(--pr-panel-border);
+    background: var(--pr-panel-bg);
+    box-shadow: var(--pr-panel-shadow);
+    color: var(--pr-text);
+    font-family: inherit;
+    line-height: 1.4;
+}
+
+/* Dark theme tokens: navy surfaces that match the dashboard palette, not an inversion of light. */
+body.neetbee-theme.dark .nb-pricing {
+    --pr-panel-bg: linear-gradient(145deg, #0b2a55, #0a1f44 60%, #13235f);
+    --pr-panel-border: rgba(116, 169, 235, .28);
+    --pr-panel-shadow: 0 12px 32px rgba(0, 0, 0, .28);
+    --pr-head-text: #f3f7ff;
+    --pr-head-muted: #b9cbe8;
+    --pr-card-bg: linear-gradient(160deg, #13305c, #0e2549);
+    --pr-card-border: rgba(116, 169, 235, .26);
+    --pr-card-shadow: 0 8px 22px rgba(0, 0, 0, .3);
+    --pr-text: var(--nb-text);
+    --pr-muted: var(--nb-muted);
+    --pr-line: rgba(116, 169, 235, .2);
+    --pr-accent: #38bdf8;
+    --pr-accent-hover-bg: rgba(56, 189, 248, .12);
+    --pr-grad: linear-gradient(90deg, #0369a1, #0ea5e9);
+    --pr-grad-hover: linear-gradient(90deg, #0284c7, #38bdf8);
+    --pr-gold: #fbbf24;
+    --pr-gold-text: #3b2600;
+    --pr-strike: #f87171;
+    --pr-focus: #fbbf24;
+}
+
+.nb-pricing *,
+.nb-pricing *::before,
+.nb-pricing *::after { box-sizing: border-box; }
+
+/* Header */
+.nb-pricing-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 14px;
+    margin-bottom: 20px;
+    color: var(--pr-head-text);
+}
+.nb-pricing-tag {
+    background: var(--pr-gold);
+    color: var(--pr-gold-text);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .05em;
+    padding: 3px 10px;
+    border-radius: 99px;
+}
+.nb-pricing-head h2 {
+    margin: 0;
+    flex: 1 1 220px;
+    font-size: clamp(18px, 2.4vw, 22px);
+    font-weight: 700;
+    color: var(--pr-head-text);
+}
+
+/* Cards grid: 3 columns when the panel is wide enough, otherwise stacked (no horizontal scroll). */
+.nb-pricing-grid {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr;
+}
+@container (min-width: 720px) {
+    .nb-pricing-grid { grid-template-columns: repeat(3, 1fr); }
+}
+@container (min-width: 520px) and (max-width: 719.98px) {
+    .nb-pricing-grid { grid-template-columns: repeat(2, 1fr); }
+    .nb-pricing-grid .nb-plan:last-child { grid-column: 1 / -1; }
+}
+
+.nb-plan {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    padding: 22px 21px 21px;
+    border-radius: 20px;
+    border: 1px solid var(--pr-card-border);
+    background: var(--pr-card-bg);
+    box-shadow: var(--pr-card-shadow);
+    color: var(--pr-text);
+    transition: transform .18s ease, box-shadow .18s ease;
+}
+.nb-plan:hover { transform: translateY(-2px); }
+.nb-plan.is-popular { outline: 3px solid var(--pr-gold); outline-offset: -1px; }
+
+
+.nb-plan-badge {
+    position: absolute;
+    top: -10px;
+    right: 12px;
+    background: var(--pr-gold);
+    color: var(--pr-gold-text);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .04em;
+    padding: 3px 11px;
+    border-radius: 99px;
+}
+
+.nb-plan-top { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.nb-plan-icon {
+    flex: none;
+    width: 42px;
+    height: 42px;
+    display: grid;
+    place-items: center;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #0369a1, #0ea5e9);
+    color: #ffffff;
+}
+.nb-plan-icon svg { width: 22px; height: 22px; }
+.nb-plan h2 { margin: 0; font-size: 22px; font-weight: 700; line-height: 1.15; color: var(--pr-text); }
+.nb-plan-sub { margin-top: 2px; font-size: 13px; font-weight: 600; color: var(--pr-muted); }
+
+.nb-plan-price {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 2px 6px;
+    margin: 8px 0 14px;
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--pr-text);
+}
+.nb-plan-old {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--pr-muted);
+    text-decoration: line-through;
+    text-decoration-thickness: 2px;
+    text-decoration-color: var(--pr-strike);
+}
+.nb-plan-just { font-size: 11px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; color: var(--pr-muted); }
+.nb-plan-new {
+    background: var(--pr-gold);
+    color: var(--pr-gold-text);
+    padding: 2px 11px;
+    border-radius: 11px;
+    box-shadow: 0 2px 0 rgba(0, 0, 0, .15);
+}
+.nb-plan-price small { font-size: 12px; font-weight: 700; color: var(--pr-muted); }
+
+.nb-plan-features { list-style: none; padding: 0; margin: 0 0 18px; flex: 1; }
+.nb-plan-features li {
+    display: flex;
+    gap: 10px;
+    padding: 8px 0;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--pr-text);
+    border-top: 1px dashed var(--pr-line);
+}
+.nb-plan-features li:first-child { border-top: 0; }
+.nb-plan-check { flex: none; font-weight: 800; color: var(--pr-accent); }
+
+/* Buttons: outline for Starter, gradient for Premium and Advance. */
+.nb-plan-btn {
+    display: block;
+    width: 100%;
+    padding: 12px 14px;
+    border-radius: 11px;
+    border: 2px solid var(--pr-accent);
+    background: transparent;
+    color: var(--pr-accent);
+    font: inherit;
+    font-size: 14px;
+    font-weight: 800;
+    text-align: center;
+    cursor: pointer;
+    transition: background .15s ease, color .15s ease, transform .1s ease;
+}
+.nb-plan-btn:hover { background: var(--pr-accent-hover-bg); }
+.nb-plan.is-featured .nb-plan-btn {
+    border-color: transparent;
+    background: var(--pr-grad);
+    color: #ffffff;
+}
+.nb-plan.is-featured .nb-plan-btn:hover { background: var(--pr-grad-hover); }
+.nb-plan-btn:active { transform: translateY(1px); }
+.nb-plan-btn:focus-visible { outline: 3px solid var(--pr-focus); outline-offset: 2px; }
+.nb-plan-btn:disabled { opacity: .55; cursor: not-allowed; transform: none; }
+
+.nb-pricing-foot {
+    margin: 18px 0 0;
+    text-align: center;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--pr-head-muted);
+}
+
+.nb-pricing .visually-hidden {
+    position: absolute !important;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0);
+    white-space: nowrap; border: 0;
+}
+
+@media (max-width: 640px) {
+    .nb-pricing { padding: 18px 13px 14px; border-radius: 18px; }
+    .nb-pricing-grid { gap: 14px; }
+    .nb-plan { padding: 18px 17px; }
+    .nb-plan-price { font-size: 30px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .nb-plan, .nb-plan-btn { transition: none; }
+    .nb-plan:hover { transform: none; }
+}
+
+/* Page heading: style.css gives .page-hero a condensed 900-weight look; use the dashboard's font and weights here. */
+.nb-pricing-hero,
+.nb-pricing-hero h1,
+.nb-pricing-hero p { font-family: inherit; }
+.nb-pricing-hero .eyebrow { font-weight: 800; }
+.nb-pricing-hero h1 {
+    font-size: clamp(24px, 3vw, 36px);
+    font-weight: 700;
+    letter-spacing: normal;
+}
+.nb-pricing-hero p { font-weight: 600; }

@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "D:\\Website\\NEET_BEE_App_v1.0\\backend\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{6A1E5B3C-7D2F-4E8A-9B1C-2F3D4E5A6B02}|ApiGateway\\ApiGateway.csproj|d:\\website\\neet_bee_app_v1.0\\backend\\apigateway\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{6A1E5B3C-7D2F-4E8A-9B1C-2F3D4E5A6B02}|ApiGateway\\ApiGateway.csproj|solutionrelative:apigateway\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{6A1E5B3C-7D2F-4E8A-9B1C-2F3D4E5A6B02}|ApiGateway\\ApiGateway.csproj|d:\\website\\neet_bee_app_v1.0\\backend\\apigateway\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6A1E5B3C-7D2F-4E8A-9B1C-2F3D4E5A6B02}|ApiGateway\\ApiGateway.csproj|solutionrelative:apigateway\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -25,10 +29,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{6A1E5B3C-7D2F-4E8A-9B1C-2F3D4E5A6B03}|WebApplication\\WebApplication.csproj|d:\\website\\neet_bee_app_v1.0\\backend\\webapplication\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{6A1E5B3C-7D2F-4E8A-9B1C-2F3D4E5A6B03}|WebApplication\\WebApplication.csproj|solutionrelative:webapplication\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{6A1E5B3C-7D2F-4E8A-9B1C-2F3D4E5A6B02}|ApiGateway\\ApiGateway.csproj|d:\\website\\neet_bee_app_v1.0\\backend\\apigateway\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{6A1E5B3C-7D2F-4E8A-9B1C-2F3D4E5A6B02}|ApiGateway\\ApiGateway.csproj|solutionrelative:apigateway\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{6A1E5B3C-7D2F-4E8A-9B1C-2F3D4E5A6B01}|AuthenticationService\\AuthenticationService.csproj|d:\\website\\neet_bee_app_v1.0\\backend\\authenticationservice\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
@@ -54,11 +54,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 6,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "_DashboardLayout.cshtml",
               "DocumentMoniker": "D:\\Website\\NEET_BEE_App_v1.0\\backend\\WebApplication\\Views\\Shared\\_DashboardLayout.cshtml",
               "RelativeDocumentMoniker": "WebApplication\\Views\\Shared\\_DashboardLayout.cshtml",
@@ -66,12 +66,11 @@
               "RelativeToolTip": "WebApplication\\Views\\Shared\\_DashboardLayout.cshtml",
               "ViewState": "AgIAAAYAAAAAAAAAAAAwwA8AAABLAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-11-10T14:57:17.8Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-10T14:57:17.8Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "AuthService.cs",
               "DocumentMoniker": "D:\\Website\\NEET_BEE_App_v1.0\\backend\\AuthenticationService\\Services\\AuthService.cs",
               "RelativeDocumentMoniker": "AuthenticationService\\Services\\AuthService.cs",
@@ -83,7 +82,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "AccountController.cs",
               "DocumentMoniker": "D:\\Website\\NEET_BEE_App_v1.0\\backend\\WebApplication\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "WebApplication\\Controllers\\AccountController.cs",
@@ -95,15 +94,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 0,
               "Title": "appsettings.json",
               "DocumentMoniker": "D:\\Website\\NEET_BEE_App_v1.0\\backend\\ApiGateway\\appsettings.json",
               "RelativeDocumentMoniker": "ApiGateway\\appsettings.json",
               "ToolTip": "D:\\Website\\NEET_BEE_App_v1.0\\backend\\ApiGateway\\appsettings.json",
               "RelativeToolTip": "ApiGateway\\appsettings.json",
-              "ViewState": "AgIAABUAAAAAAAAAAAAqwB4AAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAACEAAAAAAAAAAAAowCwAAAAWAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-11-10T09:33:02.415Z"
+              "WhenOpened": "2026-11-10T09:33:02.415Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -119,7 +119,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Website\\NEET_BEE_App_v1.0\\backend\\WebApplication\\Program.cs",
               "RelativeDocumentMoniker": "WebApplication\\Program.cs",
@@ -131,20 +131,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "Program.cs",
               "DocumentMoniker": "D:\\Website\\NEET_BEE_App_v1.0\\backend\\ApiGateway\\Program.cs",
               "RelativeDocumentMoniker": "ApiGateway\\Program.cs",
               "ToolTip": "D:\\Website\\NEET_BEE_App_v1.0\\backend\\ApiGateway\\Program.cs",
               "RelativeToolTip": "ApiGateway\\Program.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAAAHwAAAAVAAAAAAAAAA==",
+              "ViewState": "AgIAACkAAAAAAAAAAAAwwDQAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-10T06:37:36.221Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-11-10T06:37:36.221Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "AuthController.cs",
               "DocumentMoniker": "D:\\Website\\NEET_BEE_App_v1.0\\backend\\AuthenticationService\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "AuthenticationService\\Controllers\\AuthController.cs",

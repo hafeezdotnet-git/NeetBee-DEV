@@ -431,8 +431,57 @@ body.neetbee-theme:not(.dark) .nb-bottom-nav a.active { color: #0d2a55; backgrou
     .nb-chat { right: 12px; bottom: 88px; }
 }
 
+/* Mobile: the name is hidden in the pill and shown as a tooltip on hover, tap or keyboard focus. */
 @media (max-width: 760px) {
-    .nb-profile > span:last-child { display: none; }
+    .nb-header-actions { position: relative; z-index: 3; }
+    .nb-profile { position: relative; cursor: pointer; }
+    .nb-profile:focus { outline: none; }
+    .nb-profile:focus-visible { outline: 2px solid #168bff; outline-offset: 2px; }
+    .nb-profile > .nb-profile-name {
+        position: absolute;
+        top: calc(100% + 8px);
+        left: 50%;
+        z-index: 130;
+        width: max-content;
+        max-width: 70vw;
+        white-space: normal;
+        overflow-wrap: anywhere;
+        text-align: center;
+        padding: 6px 12px;
+        border: 0;
+        border-radius: 10px;
+        background: linear-gradient(100deg, #0a7ae6, #168bff);
+        color: #ffffff;
+        font-size: 13px;
+        font-weight: 700;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translate(-50%, -4px);
+        transition: opacity 0.15s ease, transform 0.15s ease, visibility 0.15s;
+    }
+    .nb-profile:hover > .nb-profile-name,
+    .nb-profile:focus > .nb-profile-name,
+    .nb-profile:focus-within > .nb-profile-name {
+        opacity: 1;
+        visibility: visible;
+        transform: translate(-50%, 0);
+    }
+    .nb-profile > .nb-profile-name::before {
+        content: "";
+        position: absolute;
+        top: -5px;
+        left: 50%;
+        width: 10px;
+        height: 10px;
+        background: #0f82f0;
+        transform: translateX(-50%) rotate(45deg);
+    }
+    body.neetbee-theme:not(.dark) .nb-profile > .nb-profile-name { box-shadow: 0 8px 20px rgba(18, 43, 80, 0.18); }
+}
+@media (max-width: 760px) and (prefers-reduced-motion: reduce) {
+    .nb-profile > .nb-profile-name { transition: none; }
 }
 
 /* ---------- Floating NEET Bee chat: small bee, expands on click, then shows a message ---------- */
@@ -539,3 +588,44 @@ body.neetbee-theme.dark .nb-chat-msg { background: #10294f; color: #f3f7ff; bord
 @media (prefers-reduced-motion: reduce) {
     .nb-chat, .nb-chat-label, .nb-chat-msg, .nb-chat-avatar { transition: none; animation: none; }
 }
+
+/* ---------- Mobile header: search and account actions hide behind the kebab (⋮) button ---------- */
+.nb-kebab-btn { display: none; }
+
+@media (max-width: 760px) {
+    .nb-kebab-btn {
+        display: inline-grid;
+        place-items: center;
+        order: 5;
+        margin-left: auto;
+        color: var(--nb-text);
+    }
+    .nb-topbar.nb-actions-open .nb-kebab-btn {
+        background: rgba(22, 139, 255, 0.18);
+        border-color: #168bff;
+    }
+    .nb-header-actions { order: 9; }
+    .nb-search { order: 10; }
+    .nb-topbar:not(.nb-actions-open) .nb-header-actions,
+    .nb-topbar:not(.nb-actions-open) .nb-search { display: none; }
+    .nb-topbar.nb-actions-open .nb-header-actions,
+    .nb-topbar.nb-actions-open .nb-search { animation: nb-drop-in 0.18s ease-out; }
+}
+@keyframes nb-drop-in {
+    from { opacity: 0; transform: translateY(-6px); }
+    to { opacity: 1; transform: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .nb-topbar.nb-actions-open .nb-header-actions,
+    .nb-topbar.nb-actions-open .nb-search { animation: none; }
+}
+
+/* ---------- Sidebar items: name with its icon, a one-line description underneath ---------- */
+.nb-nav a.nb-nav-item { align-items: flex-start; gap: 12px; padding: 10px 12px; }
+.nb-nav-item .nb-icon { flex: none; margin-top: 1px; }   /* 19px icon centred on the 20px name line */
+.nb-nav-text { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.nb-nav-name { font-size: 14px; line-height: 20px; }
+.nb-nav-desc { font-size: 12px; font-weight: 500; line-height: 16px; color: var(--nb-muted); }
+.nb-nav a.active .nb-nav-desc { color: rgba(255, 255, 255, 0.82); }
+body.neetbee-theme:not(.dark) .nb-nav-desc { color: #64748b; }
+body.neetbee-theme:not(.dark) .nb-nav a.active .nb-nav-desc { color: rgba(255, 255, 255, 0.85); }

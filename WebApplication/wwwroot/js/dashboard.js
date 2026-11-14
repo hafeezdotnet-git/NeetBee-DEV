@@ -114,10 +114,31 @@
         backdrop.addEventListener("click", function () { setMenu(false); });
     }
 
-    // Escape closes any open popover or the mobile menu.
+    // Mobile header: the kebab button shows or hides the search box and account actions.
+    var actionsBtn = document.querySelector("[data-nb-actions]");
+    var topbar = actionsBtn ? actionsBtn.closest(".nb-topbar") : null;
+    function setActions(open) {
+        if (!topbar) return;
+        topbar.classList.toggle("nb-actions-open", open);
+        actionsBtn.setAttribute("aria-expanded", open ? "true" : "false");
+        if (!open) setNotify(false);
+    }
+    if (actionsBtn && topbar) {
+        actionsBtn.addEventListener("click", function (event) {
+            event.stopPropagation();
+            setActions(!topbar.classList.contains("nb-actions-open"));
+        });
+        // A tap outside the header closes the options.
+        document.addEventListener("click", function (event) {
+            if (!topbar.contains(event.target)) setActions(false);
+        });
+    }
+
+    // Escape closes any open popover, the header options or the mobile menu.
     document.addEventListener("keydown", function (event) {
         if (event.key !== "Escape") return;
         setNotify(false);
+        setActions(false);
         setMenu(false);
     });
 
