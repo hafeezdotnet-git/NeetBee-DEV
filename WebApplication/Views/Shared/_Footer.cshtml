@@ -1,0 +1,106 @@
+@* NEET BEE site footer, shared by the public and dashboard layouts. Styles: css/neetbee-footer.css *@
+<footer class="nb-footer">
+    <div class="nb-footer-main">
+        <div class="nb-footer-col nb-footer-brand">
+            <a href="/" class="nb-footer-logo-link"><img class="nb-footer-logo" src="/img/neetbee-logo.png" alt="NEET BEE" width="259" height="132"></a>
+            <p class="nb-footer-tagline">Learn smarter. Practise better. Crack NEET.</p>
+            <p class="nb-footer-desc">Your trusted companion for NEET preparation.</p>
+        </div>
+
+        <nav class="nb-footer-col" aria-labelledby="nb-footer-quick">
+            <h3 id="nb-footer-quick">Quick Links</h3>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a asp-controller="Study" asp-action="Courses">Courses</a></li>
+                <li><a asp-controller="Study" asp-action="Courses" asp-fragment="biology">Biology</a></li>
+                <li><a asp-controller="Study" asp-action="Courses" asp-fragment="chemistry">Chemistry</a></li>
+                <li><a asp-controller="Study" asp-action="Courses" asp-fragment="physics">Physics</a></li>
+                <li><a asp-controller="Study" asp-action="PreviousYearPapers">Previous Year Papers</a></li>
+                <li><a asp-controller="Study" asp-action="McqPractice">MCQ Practice</a></li>
+                <li><a asp-controller="Study" asp-action="MockTests">Mock Tests</a></li>
+                <li><a asp-controller="Study" asp-action="Pricing">Plans &amp; Pricing</a></li>
+            </ul>
+        </nav>
+
+        <nav class="nb-footer-col" aria-labelledby="nb-footer-support">
+            <h3 id="nb-footer-support">Support &amp; Information</h3>
+            <ul>
+                <li><a href="/about.html">About Us</a></li>
+                <li><a asp-controller="Study" asp-action="HelpSupport">Contact Us</a></li>
+                <li><a asp-controller="Study" asp-action="HelpSupport">Help &amp; Support</a></li>
+                <li><a asp-controller="Study" asp-action="HelpSupport" asp-fragment="faqs">FAQs</a></li>
+                <li><a asp-controller="Study" asp-action="HelpSupport" asp-fragment="privacy">Privacy Policy</a></li>
+                <li><a asp-controller="Study" asp-action="HelpSupport" asp-fragment="terms" data-nb-terms>Terms &amp; Conditions</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div class="nb-footer-bottom">
+        <p class="nb-footer-copy">© @DateTime.UtcNow.Year NEET BEE. All rights reserved.</p>
+        <nav class="nb-footer-legal" aria-label="Legal">
+            <a asp-controller="Study" asp-action="HelpSupport" asp-fragment="terms" data-nb-terms>Terms &amp; Conditions</a>
+            <a asp-controller="Study" asp-action="HelpSupport" asp-fragment="privacy">Privacy Policy</a>
+        </nav>
+    </div>
+</footer>
+
+<div class="nb-terms" id="nb-terms" hidden role="dialog" aria-modal="true" aria-labelledby="nb-terms-title">
+    <div class="nb-terms-backdrop" data-nb-terms-close></div>
+    <div class="nb-terms-dialog">
+        <div class="nb-terms-head">
+            <h2 id="nb-terms-title">NEET Bee - Terms and conditions</h2>
+            <button type="button" class="nb-terms-close" data-nb-terms-close aria-label="Close">&times;</button>
+        </div>
+        <div class="nb-terms-body">
+            <h3>1. Acceptance of terms</h3>
+            <p>By accessing or using NEET Bee, you agree to be bound by these terms and conditions. If you do not agree, please do not use the platform.</p>
+            <h3>2. Account responsibility</h3>
+            <p>You are responsible for keeping your login details confidential and for all activity that happens under your account. Please notify us promptly of any unauthorised use.</p>
+            <h3>3. Use of content</h3>
+            <p>Study material, questions, mock tests and notes provided on NEET Bee are for your personal, non-commercial learning. Copying, redistributing or reselling content without permission is not allowed.</p>
+            <h3>4. Subscriptions and payments</h3>
+            <p>Paid plans give access to premium features for the period selected at purchase. Fees, renewal dates and refund conditions will be shown before you confirm any payment.</p>
+            <h3>5. Acceptable conduct</h3>
+            <p>You agree not to misuse the platform, attempt to disrupt its services, or share content that is abusive, misleading or harmful to other learners.</p>
+            <h3>6. Accuracy of information</h3>
+            <p>We work to keep study material accurate and up to date, but we do not guarantee that every item is error-free or suited to every exam pattern. Please verify important details against official sources.</p>
+            <h3>7. Limitation of liability</h3>
+            <p>NEET Bee is provided on an as-is basis. To the extent permitted by law, we are not liable for indirect or consequential losses arising from the use of the platform.</p>
+            <h3>8. Changes to these terms</h3>
+            <p>We may update these terms from time to time. Continued use of the platform after changes are posted means you accept the revised terms.</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+        var modal = document.getElementById('nb-terms');
+        if (!modal) return;
+        var lastFocus = null;
+
+        function openTerms(e) {
+            if (e) e.preventDefault();
+            lastFocus = document.activeElement;
+            modal.hidden = false;
+            document.body.classList.add('nb-terms-open');
+            var closeBtn = modal.querySelector('.nb-terms-close');
+            if (closeBtn) closeBtn.focus();
+        }
+
+        function closeTerms() {
+            modal.hidden = true;
+            document.body.classList.remove('nb-terms-open');
+            if (lastFocus && lastFocus.focus) lastFocus.focus();
+        }
+
+        document.querySelectorAll('[data-nb-terms]').forEach(function (link) {
+            link.addEventListener('click', openTerms);
+        });
+        modal.querySelectorAll('[data-nb-terms-close]').forEach(function (el) {
+            el.addEventListener('click', closeTerms);
+        });
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && !modal.hidden) closeTerms();
+        });
+    })();
+</script>

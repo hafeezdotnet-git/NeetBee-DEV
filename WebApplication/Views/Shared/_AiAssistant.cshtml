@@ -1,0 +1,44 @@
+@* Reusable floating AI Study Assistant (bottom-right). Styles: css/neetbee-ai-assistant.css. Behaviour: js/ai-assistant.js. No backend is connected yet. *@
+<div class="nb-ai" id="nb-ai">
+    <section class="nb-ai-panel" id="nb-ai-panel" role="dialog" aria-labelledby="nb-ai-title" hidden>
+        <header class="nb-ai-head">
+            <img class="nb-ai-avatar" src="/img/neetbee-bee.png" alt="" width="40" height="40">
+            <div class="nb-ai-head-text">
+                <h2 id="nb-ai-title">AI Study Assistant</h2>
+                <p>Ask any subject question</p>
+            </div>
+            <button type="button" class="nb-ai-close" data-nb-ai-close aria-label="Close AI Study Assistant">&times;</button>
+        </header>
+
+        <div class="nb-ai-subjects" role="group" aria-label="Choose a subject">
+            <button type="button" class="nb-ai-subject" data-subject="Biology" aria-pressed="true">Biology</button>
+            <button type="button" class="nb-ai-subject" data-subject="Chemistry" aria-pressed="false">Chemistry</button>
+            <button type="button" class="nb-ai-subject" data-subject="Physics" aria-pressed="false">Physics</button>
+        </div>
+
+        <div class="nb-ai-messages" id="nb-ai-messages" aria-live="polite">
+            <div class="nb-ai-msg bot">Hi! I'm NEET Bee. Choose a subject and ask your question.</div>
+        </div>
+
+        <form class="nb-ai-form" id="nb-ai-form" autocomplete="off">
+            <input id="nb-ai-input" type="text" maxlength="300" placeholder="Ask a Biology question..." aria-label="Your question">
+            <button type="submit" class="nb-ai-send" aria-label="Send question">
+                <span class="nb-icon" style="--nb-icon:url('/assets/neetbee/play.svg')" aria-hidden="true"></span>
+            </button>
+        </form>
+        <div class="nb-ai-team">
+            <button type="button" class="nb-ai-team-btn" id="nb-ai-team-btn">
+                <span class="nb-icon" style="--nb-icon:url('/assets/neetbee/chat.svg')" aria-hidden="true"></span>
+                Need Help, Chat with NEET Bee Helpdesk
+            </button>
+        </div>
+    </section>
+
+    <button type="button" class="nb-ai-fab" id="nb-ai-fab" aria-expanded="false" aria-controls="nb-ai-panel">
+        <img class="nb-ai-mascot" src="/img/neetbee-bee.png" alt="" width="52" height="52">
+        <span class="nb-ai-label">
+            <strong>AI Study Assistant</strong>
+            <small>Ask any subject question</small>
+        </span>
+    </button>
+</div>

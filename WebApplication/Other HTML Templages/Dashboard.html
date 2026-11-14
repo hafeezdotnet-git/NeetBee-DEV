@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="common.css">
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ExamPro - Dashboard</title>
+
+
+
+</head>
+
+
+<body class="dashboard-page">
+
+
+<!-- =====================================================
+     OFFER
+===================================================== -->
+
+<div class="offer-banner">
+
+    🎁 <strong>LIMITED OFFER</strong>
+
+    Get 50% OFF on Premium Mock Tests
+
+    <button
+        class="offer-btn"
+        onclick="openCourse()">
+
+        Explore Now
+
+    </button>
+
+</div>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+    <div class="header-left">
+
+        <div
+            class="hamburger"
+            onclick="openDrawer()">
+
+            ☰
+
+        </div>
+
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            ExamPro
+
+        </div>
+
+    </div>
+
+
+    <div class="header-actions">
+
+        <button class="notification">
+
+            🔔
+
+        </button>
+
+
+        <div class="profile">
+
+            <div class="profile-avatar">
+                HP
+            </div>
+
+            <div class="profile-info">
+
+                <strong>
+                    Hafeez
+                </strong>
+
+                <span>
+                    Student
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =====================================================
+     DRAWER
+===================================================== -->
+
+<div
+    class="overlay"
+    id="overlay"
+    onclick="closeDrawer()">
+</div>
+
+
+<div
+    class="drawer"
+    id="drawer">
+
+
+    <div class="drawer-header">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            ExamPro
+
+        </div>
+
+
+        <div
+            class="close"
+            onclick="closeDrawer()">
+
+            ×
+
+        </div>
+
+    </div>
+
+
+    <div class="drawer-menu">
+
+        <button>
+            🏠 Dashboard
+        </button>
+
+        <button>
+            📝 Exams
+        </button>
+
+        <button>
+            📚 Courses
+        </button>
+
+        <button>
+            📊 My Progress
+        </button>
+
+        <button>
+            📖 Questions & Answers
+        </button>
+
+        <button>
+            🎤 Voice Questions
+        </button>
+
+        <button>
+            🏆 Leaderboard
+        </button>
+
+        <button>
+            📑 Results
+        </button>
+
+        <button>
+            ⚙️ Settings
+        </button>
+
+        <button>
+            🚪 Logout
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="container">
+
+
+    <!-- WELCOME -->
+
+    <section class="welcome">
+
+        <div class="welcome-text">
+
+            <span class="eyebrow">
+                STUDENT DASHBOARD
+            </span>
+
+            <h1>
+                Welcome back, Hafeez! 👋
+            </h1>
+
+            <p>
+                Continue your preparation and achieve
+                your next milestone.
+            </p>
+
+        </div>
+
+
+        <div class="streak">
+
+            <div class="streak-top">
+
+                🔥
+
+                <span>
+                    7 Day Streak
+                </span>
+
+            </div>
+
+            <p>
+                Keep learning every day!
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         STATS
+    ================================================== -->
+
+    <section class="stats">
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📚
+            </div>
+
+            <strong>
+                5
+            </strong>
+
+            <span>
+                Available Courses
+            </span>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                📝
+            </div>
+
+            <strong>
+                24
+            </strong>
+
+            <span>
+                Tests Completed
+            </span>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                🎯
+            </div>
+
+            <strong>
+                82%
+            </strong>
+
+            <span>
+                Average Score
+            </span>
+
+        </div>
+
+
+        <div class="stat-card">
+
+            <div class="stat-icon">
+                ⏱️
+            </div>
+
+            <strong>
+                18h
+            </strong>
+
+            <span>
+                Study Time
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         COURSES
+    ================================================== -->
+
+    <section>
+
+
+        <div class="section-header">
+
+            <div>
+
+                <h2>
+                    Available Courses
+                </h2>
+
+                <p>
+                    Choose a subject and start learning
+                </p>
+
+            </div>
+
+
+            <span
+                class="view-all"
+                onclick="viewAllCourses()">
+
+                View All →
+
+            </span>
+
+        </div>
+
+
+        <div class="course-grid">
+
+
+            <!-- MATHEMATICS -->
+
+            <article
+                class="course-card math">
+
+                <div class="course-icon">
+                    ➗
+                </div>
+
+                <h3>
+                    Mathematics
+                </h3>
+
+                <p>
+                    Master concepts, formulas and
+                    problem-solving techniques.
+                </p>
+
+
+                <div class="course-meta">
+
+                    <span>
+                        📖 24 Chapters
+                    </span>
+
+                    <span>
+                        📝 120 Tests
+                    </span>
+
+                </div>
+
+
+                <div class="progress-label">
+
+                    <span>
+                        Progress
+                    </span>
+
+                    <span>
+                        68%
+                    </span>
+
+                </div>
+
+
+                <div class="progress">
+
+                    <div class="progress-bar dashboard-page-inline-1">
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="course-btn"
+                    onclick="openCourse('Mathematics')">
+
+                    Continue Course →
+
+                </button>
+
+            </article>
+
+
+            <!-- PHYSICS -->
+
+            <article
+                class="course-card physics">
+
+                <div class="course-icon">
+                    ⚡
+                </div>
+
+                <h3>
+                    Physics
+                </h3>
+
+                <p>
+                    Build strong fundamentals with
+                    concepts and numerical practice.
+                </p>
+
+
+                <div class="course-meta">
+
+                    <span>
+                        📖 22 Chapters
+                    </span>
+
+                    <span>
+                        📝 110 Tests
+                    </span>
+
+                </div>
+
+
+                <div class="progress-label">
+
+                    <span>
+                        Progress
+                    </span>
+
+                    <span>
+                        52%
+                    </span>
+
+                </div>
+
+
+                <div class="progress">
+
+                    <div class="progress-bar dashboard-page-inline-2">
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="course-btn"
+                    onclick="openCourse('Physics')">
+
+                    Continue Course →
+
+                </button>
+
+            </article>
+
+
+            <!-- CHEMISTRY -->
+
+            <article
+                class="course-card chemistry">
+
+                <div class="course-icon">
+                    🧪
+                </div>
+
+                <h3>
+                    Chemistry
+                </h3>
+
+                <p>
+                    Learn organic, inorganic and
+                    physical chemistry.
+                </p>
+
+
+                <div class="course-meta">
+
+                    <span>
+                        📖 20 Chapters
+                    </span>
+
+                    <span>
+                        📝 100 Tests
+                    </span>
+
+                </div>
+
+
+                <div class="progress-label">
+
+                    <span>
+                        Progress
+                    </span>
+
+                    <span>
+                        45%
+                    </span>
+
+                </div>
+
+
+                <div class="progress">
+
+                    <div class="progress-bar dashboard-page-inline-3">
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="course-btn"
+                    onclick="openCourse('Chemistry')">
+
+                    Continue Course →
+
+                </button>
+
+            </article>
+
+
+            <!-- BIOLOGY -->
+
+            <article
+                class="course-card biology">
+
+                <span class="popular">
+                    POPULAR
+                </span>
+
+
+                <div class="course-icon">
+                    🧬
+                </div>
+
+                <h3>
+                    Biology
+                </h3>
+
+                <p>
+                    Explore human biology, genetics,
+                    ecology and more.
+                </p>
+
+
+                <div class="course-meta">
+
+                    <span>
+                        📖 28 Chapters
+                    </span>
+
+                    <span>
+                        📝 140 Tests
+                    </span>
+
+                </div>
+
+
+                <div class="progress-label">
+
+                    <span>
+                        Progress
+                    </span>
+
+                    <span>
+                        76%
+                    </span>
+
+                </div>
+
+
+                <div class="progress">
+
+                    <div class="progress-bar dashboard-page-inline-4">
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="course-btn"
+                    onclick="openCourse('Biology')">
+
+                    Continue Course →
+
+                </button>
+
+            </article>
+
+
+            <!-- ZOOLOGY -->
+
+            <article
+                class="course-card zoology">
+
+                <div class="course-icon">
+                    🦎
+                </div>
+
+                <h3>
+                    Zoology
+                </h3>
+
+                <p>
+                    Study animal diversity, physiology,
+                    evolution and biology.
+                </p>
+
+
+                <div class="course-meta">
+
+                    <span>
+                        📖 18 Chapters
+                    </span>
+
+                    <span>
+                        📝 90 Tests
+                    </span>
+
+                </div>
+
+
+                <div class="progress-label">
+
+                    <span>
+                        Progress
+                    </span>
+
+                    <span>
+                        34%
+                    </span>
+
+                </div>
+
+
+                <div class="progress">
+
+                    <div class="progress-bar dashboard-page-inline-5">
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="course-btn"
+                    onclick="openCourse('Zoology')">
+
+                    Start Course →
+
+                </button>
+
+            </article>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         LOWER CONTENT
+    ================================================== -->
+
+    <section class="lower-grid">
+
+
+        <!-- RECENT TESTS -->
+
+        <div class="panel">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        Recent Tests
+                    </h2>
+
+                    <p>
+                        Your latest examination activity
+                    </p>
+
+                </div>
+
+                <span class="view-all">
+                    View All →
+                </span>
+
+            </div>
+
+
+            <div class="test">
+
+                <div class="test-icon">
+                    ➗
+                </div>
+
+                <div class="test-info">
+
+                    <strong>
+                        Mathematics Mock Test 08
+                    </strong>
+
+                    <span>
+                        25 Questions • 30 Minutes
+                    </span>
+
+                </div>
+
+                <div class="test-score">
+                    88%
+                </div>
+
+            </div>
+
+
+            <div class="test">
+
+                <div class="test-icon">
+                    🧬
+                </div>
+
+                <div class="test-info">
+
+                    <strong>
+                        Biology Chapter Test
+                    </strong>
+
+                    <span>
+                        30 Questions • 35 Minutes
+                    </span>
+
+                </div>
+
+                <div class="test-score">
+                    92%
+                </div>
+
+            </div>
+
+
+            <div class="test">
+
+                <div class="test-icon">
+                    ⚡
+                </div>
+
+                <div class="test-info">
+
+                    <strong>
+                        Physics Practice Test
+                    </strong>
+
+                    <span>
+                        20 Questions • 25 Minutes
+                    </span>
+
+                </div>
+
+                <div class="test-score">
+                    76%
+                </div>
+
+            </div>
+
+
+            <div class="test">
+
+                <div class="test-icon">
+                    🧪
+                </div>
+
+                <div class="test-info">
+
+                    <strong>
+                        Chemistry Mock Test
+                    </strong>
+
+                    <span>
+                        25 Questions • 30 Minutes
+                    </span>
+
+                </div>
+
+                <div class="test-score">
+                    84%
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- DAILY GOAL -->
+
+        <div class="panel goal">
+
+            <div class="section-header">
+
+                <div>
+
+                    <h2>
+                        Daily Goal
+                    </h2>
+
+                    <p>
+                        Keep your preparation on track
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="goal-circle">
+
+                <strong>
+                    72%
+                </strong>
+
+                <span>
+                    Completed
+                </span>
+
+            </div>
+
+
+            <p>
+
+                You're doing great!
+                Complete 28 more minutes to
+                reach today's goal.
+
+            </p>
+
+
+            <button
+                class="goal-btn"
+                onclick="startStudy()">
+
+                ▶ Continue Studying
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<!-- =====================================================
+     BOTTOM NAV
+===================================================== -->
+
+<nav class="bottom-nav">
+
+
+    <button class="active">
+
+        <span class="bottom-icon">
+            🏠
+        </span>
+
+        Home
+
+    </button>
+
+
+    <button>
+
+        <span class="bottom-icon">
+            📚
+        </span>
+
+        Courses
+
+    </button>
+
+
+    <button>
+
+        <span class="bottom-icon">
+            📝
+        </span>
+
+        Exams
+
+    </button>
+
+
+    <button>
+
+        <span class="bottom-icon">
+            📊
+        </span>
+
+        Progress
+
+    </button>
+
+
+    <button onclick="openDrawer()">
+
+        <span class="bottom-icon">
+            ☰
+        </span>
+
+        Menu
+
+    </button>
+
+
+</nav>
+
+
+<script>
+
+/* =====================================================
+   DRAWER
+===================================================== */
+
+function openDrawer(){
+
+    document
+        .getElementById("drawer")
+        .classList.add("open");
+
+    document
+        .getElementById("overlay")
+        .classList.add("show");
+
+}
+
+
+function closeDrawer(){
+
+    document
+        .getElementById("drawer")
+        .classList.remove("open");
+
+    document
+        .getElementById("overlay")
+        .classList.remove("show");
+
+}
+
+
+/* =====================================================
+   COURSE
+===================================================== */
+
+function openCourse(course){
+
+    if(!course){
+
+        course = "Courses";
+
+    }
+
+    alert(
+        "Opening " +
+        course +
+        " course..."
+    );
+
+    /*
+        Example:
+
+        window.location.href =
+            "course.html?subject=" +
+            encodeURIComponent(course);
+    */
+
+}
+
+
+/* =====================================================
+   VIEW ALL
+===================================================== */
+
+function viewAllCourses(){
+
+    alert(
+        "Opening all available courses..."
+    );
+
+}
+
+
+/* =====================================================
+   STUDY
+===================================================== */
+
+function startStudy(){
+
+    alert(
+        "Opening your next study session..."
+    );
+
+}
+
+</script>
+
+</body>
+</html>

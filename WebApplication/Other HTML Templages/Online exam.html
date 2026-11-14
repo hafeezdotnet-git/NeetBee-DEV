@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="common.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ExamPro - Online Exam</title>
+
+
+</head>
+
+<body class="online-exam-page">
+
+<!-- OFFER -->
+<div class="offer-banner">
+    🎁 <strong>LIMITED OFFER</strong>
+    <span>Register today & get 50% OFF on Premium Mock Tests</span>
+    <button class="offer-btn">Register Now</button>
+</div>
+
+
+<!-- HEADER -->
+
+<header class="header">
+
+    <div class="header-left">
+
+        <div class="hamburger" onclick="openDrawer()">
+            ☰
+        </div>
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            ExamPro
+
+        </div>
+
+    </div>
+
+    <button class="register">
+        Register
+    </button>
+
+</header>
+
+
+<!-- DRAWER -->
+
+<div class="overlay" id="overlay" onclick="closeDrawer()"></div>
+
+<div class="drawer" id="drawer">
+
+    <div class="drawer-header">
+
+        <div class="logo">
+            <div class="logo-icon">🎓</div>
+            ExamPro
+        </div>
+
+        <div class="close" onclick="closeDrawer()">
+            ×
+        </div>
+
+    </div>
+
+    <div class="drawer-menu">
+
+        <button>🏠 Dashboard</button>
+
+        <button>📝 My Exams</button>
+
+        <button>📊 Results</button>
+
+        <button>🏆 Leaderboard</button>
+
+        <button>📚 Study Material</button>
+
+        <button>⚙️ Settings</button>
+
+    </div>
+
+</div>
+
+
+<!-- MAIN -->
+
+<main class="container">
+
+    <div class="exam-header">
+
+        <div class="exam-title">
+
+            <h1>General Knowledge Test</h1>
+
+            <p>Practice Exam • 20 Questions</p>
+
+        </div>
+
+        <div class="timer" id="timer">
+            ⏱ 29:59
+        </div>
+
+    </div>
+
+
+    <div class="exam-grid">
+
+        <!-- QUESTION -->
+
+        <section class="question-card">
+
+            <div class="question-top">
+
+                <div class="question-number" id="questionNumber">
+                    QUESTION 1 OF 20
+                </div>
+
+                <button class="voice-btn" onclick="speakQuestion()">
+                    🎙️ Read Aloud
+                </button>
+
+            </div>
+
+
+            <div class="question" id="question">
+
+                Which planet is known as the Red Planet?
+
+            </div>
+
+
+            <div class="options" id="options">
+
+                <label class="option">
+
+                    <input type="radio" name="answer" value="A">
+
+                    <span class="option-letter">A</span>
+
+                    <span>Earth</span>
+
+                </label>
+
+
+                <label class="option">
+
+                    <input type="radio" name="answer" value="B">
+
+                    <span class="option-letter">B</span>
+
+                    <span>Mars</span>
+
+                </label>
+
+
+                <label class="option">
+
+                    <input type="radio" name="answer" value="C">
+
+                    <span class="option-letter">C</span>
+
+                    <span>Jupiter</span>
+
+                </label>
+
+
+                <label class="option">
+
+                    <input type="radio" name="answer" value="D">
+
+                    <span class="option-letter">D</span>
+
+                    <span>Venus</span>
+
+                </label>
+
+            </div>
+
+
+            <div class="navigation">
+
+                <button
+                    class="nav-btn previous"
+                    onclick="previousQuestion()">
+                    ← Previous
+                </button>
+
+                <button
+                    class="nav-btn next"
+                    onclick="nextQuestion()">
+                    Next →
+                </button>
+
+                <button
+                    class="nav-btn submit"
+                    onclick="submitExam()">
+                    Submit
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <h3>Exam Progress</h3>
+
+            <div class="progress">
+
+                <div
+                    class="progress-bar"
+                    id="progressBar">
+                </div>
+
+            </div>
+
+            <p class="online-exam-page-inline-1">
+                Questions
+            </p>
+
+            <div class="question-grid" id="questionGrid">
+
+                <button class="q-number active">1</button>
+                <button class="q-number">2</button>
+                <button class="q-number">3</button>
+                <button class="q-number">4</button>
+                <button class="q-number">5</button>
+                <button class="q-number">6</button>
+                <button class="q-number">7</button>
+                <button class="q-number">8</button>
+                <button class="q-number">9</button>
+                <button class="q-number">10</button>
+                <button class="q-number">11</button>
+                <button class="q-number">12</button>
+                <button class="q-number">13</button>
+                <button class="q-number">14</button>
+                <button class="q-number">15</button>
+                <button class="q-number">16</button>
+                <button class="q-number">17</button>
+                <button class="q-number">18</button>
+                <button class="q-number">19</button>
+                <button class="q-number">20</button>
+
+            </div>
+
+        </aside>
+
+    </div>
+
+</main>
+
+
+<!-- MOBILE BOTTOM MENU -->
+
+<nav class="bottom-nav">
+
+    <button class="active">
+        <span class="bottom-icon">📝</span>
+        Exam
+    </button>
+
+    <button>
+        <span class="bottom-icon">📊</span>
+        Progress
+    </button>
+
+    <button onclick="speakQuestion()">
+        <span class="bottom-icon">🎙️</span>
+        Voice
+    </button>
+
+    <button onclick="openDrawer()">
+        <span class="bottom-icon">☰</span>
+        Menu
+    </button>
+
+</nav>
+
+
+<script>
+
+/* =========================
+   QUESTIONS
+========================= */
+
+const questions = [
+
+{
+    question:"Which planet is known as the Red Planet?",
+    options:["Earth","Mars","Jupiter","Venus"]
+},
+
+{
+    question:"What is the capital city of India?",
+    options:["Mumbai","Hyderabad","New Delhi","Bangalore"]
+},
+
+{
+    question:"Which is the largest ocean in the world?",
+    options:["Atlantic Ocean","Indian Ocean","Arctic Ocean","Pacific Ocean"]
+},
+
+{
+    question:"Who invented the telephone?",
+    options:["Thomas Edison","Alexander Graham Bell","Isaac Newton","Albert Einstein"]
+},
+
+{
+    question:"What is the chemical symbol for water?",
+    options:["CO2","H2O","O2","NaCl"]
+}
+
+];
+
+
+/* =========================
+   STATE
+========================= */
+
+let currentQuestion = 0;
+
+let answers = {};
+
+let time = 30 * 60;
+
+
+/* =========================
+   LOAD QUESTION
+========================= */
+
+function loadQuestion(){
+
+    const q = questions[currentQuestion];
+
+    document.getElementById("question").innerText =
+        q.question;
+
+    document.getElementById("questionNumber").innerText =
+        `QUESTION ${currentQuestion + 1} OF 20`;
+
+    const options =
+        document.getElementById("options");
+
+    options.innerHTML = "";
+
+    const letters = ["A","B","C","D"];
+
+    q.options.forEach((option,index)=>{
+
+        const label =
+            document.createElement("label");
+
+        label.className = "option";
+
+        if(answers[currentQuestion] === index){
+            label.classList.add("selected");
+        }
+
+        label.innerHTML = `
+
+            <input
+                type="radio"
+                name="answer"
+                value="${index}"
+                ${answers[currentQuestion] === index ? "checked" : ""}
+            >
+
+            <span class="option-letter">
+                ${letters[index]}
+            </span>
+
+            <span>
+                ${option}
+            </span>
+
+        `;
+
+        label.onclick = function(){
+
+            answers[currentQuestion] = index;
+
+            document
+                .querySelectorAll(".option")
+                .forEach(o =>
+                    o.classList.remove("selected")
+                );
+
+            label.classList.add("selected");
+
+            updateProgress();
+
+        };
+
+        options.appendChild(label);
+
+    });
+
+    updateQuestionNumbers();
+
+}
+
+
+/* =========================
+   NEXT
+========================= */
+
+function nextQuestion(){
+
+    if(currentQuestion < questions.length - 1){
+
+        currentQuestion++;
+
+        loadQuestion();
+
+    }
+
+}
+
+
+/* =========================
+   PREVIOUS
+========================= */
+
+function previousQuestion(){
+
+    if(currentQuestion > 0){
+
+        currentQuestion--;
+
+        loadQuestion();
+
+    }
+
+}
+
+
+/* =========================
+   PROGRESS
+========================= */
+
+function updateProgress(){
+
+    const percentage =
+        ((currentQuestion + 1) / 20) * 100;
+
+    document.getElementById("progressBar")
+        .style.width = percentage + "%";
+
+    updateQuestionNumbers();
+
+}
+
+
+function updateQuestionNumbers(){
+
+    const buttons =
+        document.querySelectorAll(".q-number");
+
+    buttons.forEach((button,index)=>{
+
+        button.classList.remove("active");
+
+        if(index === currentQuestion){
+
+            button.classList.add("active");
+
+        }
+
+        if(answers[index] !== undefined){
+
+            button.classList.add("answered");
+
+        }
+
+    });
+
+}
+
+
+/* =========================
+   QUESTION NUMBER CLICK
+========================= */
+
+document.querySelectorAll(".q-number")
+.forEach((button,index)=>{
+
+    button.onclick = function(){
+
+        if(index < questions.length){
+
+            currentQuestion = index;
+
+            loadQuestion();
+
+        }
+
+    };
+
+});
+
+
+/* =========================
+   VOICE
+========================= */
+
+function speakQuestion(){
+
+    if(!("speechSynthesis" in window)){
+
+        alert("Voice reading is not supported in this browser.");
+
+        return;
+
+    }
+
+    const q = questions[currentQuestion];
+
+    const text =
+        q.question +
+        ". Options are: " +
+        q.options.join(", ");
+
+    window.speechSynthesis.cancel();
+
+    const speech =
+        new SpeechSynthesisUtterance(text);
+
+    speech.rate = .9;
+
+    speech.pitch = 1;
+
+    speech.volume = 1;
+
+    window.speechSynthesis.speak(speech);
+
+}
+
+
+/* =========================
+   TIMER
+========================= */
+
+function startTimer(){
+
+    const timer =
+        document.getElementById("timer");
+
+    const interval =
+        setInterval(()=>{
+
+            if(time <= 0){
+
+                clearInterval(interval);
+
+                submitExam();
+
+                return;
+
+            }
+
+            time--;
+
+            const minutes =
+                Math.floor(time / 60);
+
+            const seconds =
+                time % 60;
+
+            timer.innerText =
+                `⏱ ${String(minutes).padStart(2,"0")}:${String(seconds).padStart(2,"0")}`;
+
+        },1000);
+
+}
+
+
+function submitExam(){
+
+    const answered =
+        Object.keys(answers).length;
+
+    alert(
+        `Exam Submitted!\n\nAnswered: ${answered} / 20`
+    );
+
+}
+
+
+/* =========================
+   DRAWER
+========================= */
+
+function openDrawer(){
+
+    document
+        .getElementById("drawer")
+        .classList.add("open");
+
+    document
+        .getElementById("overlay")
+        .classList.add("show");
+
+}
+
+
+function closeDrawer(){
+
+    document
+        .getElementById("drawer")
+        .classList.remove("open");
+
+    document
+        .getElementById("overlay")
+        .classList.remove("show");
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+loadQuestion();
+
+startTimer();
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,73 @@
+@model RegisterViewModel
+@{
+    ViewData["Title"] = "Create account";
+}
+
+<section class="auth-card" aria-labelledby="register-title">
+    <h1 id="register-title">Create your account</h1>
+    <p class="sub">Start preparing for NEET with NEET BEE.</p>
+
+    <div asp-validation-summary="ModelOnly" class="alert alert-error" role="alert"></div>
+
+    <form asp-action="Register" method="post" novalidate>
+        <div class="field">
+            <label asp-for="UserName"></label>
+            <input asp-for="UserName" autocomplete="username" autofocus />
+            <span asp-validation-for="UserName" class="field-error"></span>
+        </div>
+
+        <div class="field">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" type="email" autocomplete="email" />
+            <span asp-validation-for="Email" class="field-error"></span>
+        </div>
+
+        <div class="field">
+            <label asp-for="Password"></label>
+            <div class="pw-wrap">
+                <input asp-for="Password" type="password" autocomplete="new-password" />
+                <button type="button" class="pw-toggle" data-target="Password" aria-label="Show password" aria-pressed="false">
+                    <svg class="icon-show" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    <svg class="icon-hide" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/><line x1="3" y1="3" x2="21" y2="21"/></svg>
+                </button>
+            </div>
+            <span asp-validation-for="Password" class="field-error"></span>
+        </div>
+
+        <div class="field">
+            <label asp-for="ConfirmPassword"></label>
+            <div class="pw-wrap">
+                <input asp-for="ConfirmPassword" type="password" autocomplete="new-password" />
+                <button type="button" class="pw-toggle" data-target="ConfirmPassword" aria-label="Show password" aria-pressed="false">
+                    <svg class="icon-show" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    <svg class="icon-hide" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/><line x1="3" y1="3" x2="21" y2="21"/></svg>
+                </button>
+            </div>
+            <span asp-validation-for="ConfirmPassword" class="field-error"></span>
+        </div>
+
+        <button type="submit" class="btn-primary">Create account</button>
+    </form>
+
+    <div class="divider"><span>or</span></div>
+    <a class="btn-google" asp-action="GoogleLogin">
+        <span class="g-mark" aria-hidden="true">G</span>
+        Register with Gmail
+    </a>
+
+    <p class="auth-alt"><a asp-action="EmailCode">Use an email code instead</a></p>
+
+    <p class="auth-switch">Already have an account? <a asp-action="Login">Sign in</a></p>
+</section>
+
+<script>
+    document.querySelectorAll('.pw-toggle').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            var input = document.getElementById(btn.getAttribute('data-target'));
+            var showing = input.type === 'password';
+            input.type = showing ? 'text' : 'password';
+            btn.setAttribute('aria-pressed', showing ? 'true' : 'false');
+            btn.setAttribute('aria-label', showing ? 'Hide password' : 'Show password');
+        });
+    });
+</script>

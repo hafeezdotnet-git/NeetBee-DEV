@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="common.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ExamPro - Payment Reminder</title>
+
+
+</head>
+
+<body class="paymentscreen-page">
+
+
+<!-- =====================================================
+     OFFER BANNER
+===================================================== -->
+
+<div class="offer-banner">
+
+    🎁 <strong>LIMITED OFFER</strong>
+
+    Complete payment today & get 50% OFF
+
+    <button
+        class="offer-btn"
+        onclick="payNow()">
+
+        Pay Now
+
+    </button>
+
+</div>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+    <div class="header-left">
+
+        <div
+            class="hamburger"
+            onclick="openDrawer()">
+
+            ☰
+
+        </div>
+
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            ExamPro
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="header-btn"
+        onclick="goDashboard()">
+
+        Dashboard
+
+    </button>
+
+</header>
+
+
+<!-- =====================================================
+     DRAWER
+===================================================== -->
+
+<div
+    class="overlay"
+    id="overlay"
+    onclick="closeDrawer()">
+</div>
+
+
+<div
+    class="drawer"
+    id="drawer">
+
+
+    <div class="drawer-header">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            ExamPro
+
+        </div>
+
+
+        <div
+            class="close"
+            onclick="closeDrawer()">
+
+            ×
+
+        </div>
+
+    </div>
+
+
+    <div class="drawer-menu">
+
+        <button>🏠 Dashboard</button>
+
+        <button>📚 Courses</button>
+
+        <button>📝 Exams</button>
+
+        <button>📊 My Progress</button>
+
+        <button>💳 Payments</button>
+
+        <button>📖 Questions & Answers</button>
+
+        <button>🏆 Leaderboard</button>
+
+        <button>⚙️ Settings</button>
+
+        <button>🚪 Logout</button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="container">
+
+
+    <!-- HEADER -->
+
+    <section class="page-header">
+
+        <div class="icon">
+            💳
+        </div>
+
+        <h1>
+            Complete Your Payment
+        </h1>
+
+        <p>
+            Your selected course is waiting for you.
+        </p>
+
+    </section>
+
+
+    <!-- REMINDER -->
+
+    <div class="reminder">
+
+        <div class="reminder-icon">
+            ⏰
+        </div>
+
+        <div>
+
+            <strong>
+                Payment Pending
+            </strong>
+
+            <span>
+                Complete your payment before the offer expires
+                to secure your discounted price.
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- PAYMENT -->
+
+    <section class="payment-layout">
+
+
+        <!-- COURSE CARD -->
+
+        <div class="card">
+
+
+            <div class="course-top">
+
+                <div class="course-icon">
+                    🧬
+                </div>
+
+
+                <div class="course-info">
+
+                    <h2>
+                        NEET Biology
+                    </h2>
+
+                    <p>
+                        Complete Preparation Course
+                    </p>
+
+                    <span class="badge">
+                        PREMIUM COURSE
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="features">
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        📚
+                    </div>
+
+                    28 Complete Chapters
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        📝
+                    </div>
+
+                    140+ Mock Tests
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🎤
+                    </div>
+
+                    Voice-enabled Questions
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        📊
+                    </div>
+
+                    Detailed Progress Tracking
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        🏆
+                    </div>
+
+                    Performance Analysis
+
+                </div>
+
+
+                <div class="feature">
+
+                    <div class="feature-icon">
+                        ♾️
+                    </div>
+
+                    Lifetime Course Access
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PRICE CARD -->
+
+        <div class="card">
+
+
+            <div class="price-title">
+
+                <h2>
+                    Payment Summary
+                </h2>
+
+                <span class="pending">
+                    PENDING
+                </span>
+
+            </div>
+
+
+            <div class="price-row">
+
+                <span>
+                    Course Price
+                </span>
+
+                <span class="amount">
+                    ₹4,999
+                </span>
+
+            </div>
+
+
+            <div class="price-row">
+
+                <span>
+                    GST
+                </span>
+
+                <span class="amount">
+                    ₹900
+                </span>
+
+            </div>
+
+
+            <div class="price-row discount">
+
+                <span>
+                    🎁 Offer Discount
+                </span>
+
+                <span class="amount">
+                    − ₹1,500
+                </span>
+
+            </div>
+
+
+            <div class="offer-box">
+
+                <span>
+                    LIMITED TIME OFFER
+                </span>
+
+                <strong>
+                    SAVE ₹1,500
+                </strong>
+
+            </div>
+
+
+            <div class="price-row total">
+
+                <span>
+                    Total Payable
+                </span>
+
+                <span class="amount">
+                    ₹4,399
+                </span>
+
+            </div>
+
+
+            <!-- EXPIRY -->
+
+            <div class="expiry">
+
+                <span>
+                    ⏰ Offer expires in
+                </span>
+
+                <div
+                    class="countdown"
+                    id="countdown">
+
+                    14:59:59
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="pay-btn"
+                onclick="payNow()">
+
+                💳 Pay ₹4,399 Now
+
+            </button>
+
+
+            <div class="secure">
+
+                🔒 Secure payment • 100% encrypted
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <div class="support">
+
+        Need help with payment?
+
+        <a href="#">
+            Contact ExamPro Support
+        </a>
+
+    </div>
+
+
+</main>
+
+
+<!-- =====================================================
+     BOTTOM NAV
+===================================================== -->
+
+<nav class="bottom-nav">
+
+    <button onclick="goDashboard()">
+
+        <span class="bottom-icon">
+            🏠
+        </span>
+
+        Home
+
+    </button>
+
+
+    <button>
+
+        <span class="bottom-icon">
+            📚
+        </span>
+
+        Courses
+
+    </button>
+
+
+    <button class="active">
+
+        <span class="bottom-icon">
+            💳
+        </span>
+
+        Payment
+
+    </button>
+
+
+    <button>
+
+        <span class="bottom-icon">
+            📊
+        </span>
+
+        Progress
+
+    </button>
+
+
+    <button onclick="openDrawer()">
+
+        <span class="bottom-icon">
+            ☰
+        </span>
+
+        Menu
+
+    </button>
+
+</nav>
+
+
+<script>
+
+/* =====================================================
+   COUNTDOWN
+===================================================== */
+
+let remainingSeconds =
+    (14 * 60 * 60) +
+    (59 * 60) +
+    59;
+
+
+function updateCountdown(){
+
+    const hours =
+        Math.floor(
+            remainingSeconds / 3600
+        );
+
+    const minutes =
+        Math.floor(
+            (remainingSeconds % 3600) / 60
+        );
+
+    const seconds =
+        remainingSeconds % 60;
+
+
+    document
+        .getElementById("countdown")
+        .textContent =
+
+        String(hours).padStart(2,"0") +
+        ":" +
+
+        String(minutes).padStart(2,"0") +
+        ":" +
+
+        String(seconds).padStart(2,"0");
+
+
+    if(remainingSeconds > 0){
+
+        remainingSeconds--;
+
+    }
+
+}
+
+
+updateCountdown();
+
+setInterval(
+    updateCountdown,
+    1000
+);
+
+
+/* =====================================================
+   PAYMENT
+===================================================== */
+
+function payNow(){
+
+    /*
+       Connect this button to your
+       payment gateway.
+
+       Example flow:
+
+       Payment Reminder
+              ↓
+       Create Order
+              ↓
+       Payment Gateway
+              ↓
+       Processing
+              ↓
+       Success / Failed
+    */
+
+    alert(
+        "Opening secure payment..."
+    );
+
+}
+
+
+/* =====================================================
+   DASHBOARD
+===================================================== */
+
+function goDashboard(){
+
+    alert(
+        "Opening Dashboard..."
+    );
+
+    // window.location.href =
+    //     "dashboard.html";
+
+}
+
+
+/* =====================================================
+   DRAWER
+===================================================== */
+
+function openDrawer(){
+
+    document
+        .getElementById("drawer")
+        .classList.add("open");
+
+    document
+        .getElementById("overlay")
+        .classList.add("show");
+
+}
+
+
+function closeDrawer(){
+
+    document
+        .getElementById("drawer")
+        .classList.remove("open");
+
+    document
+        .getElementById("overlay")
+        .classList.remove("show");
+
+}
+
+</script>
+
+</body>
+</html>

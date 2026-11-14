@@ -1,0 +1,1478 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="common.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ExamPro - Settings</title>
+
+
+
+</head>
+
+
+<body class="settings-page">
+
+
+<!-- =========================================
+     TOP BANNER
+========================================= -->
+
+<div class="top-banner">
+
+    🎓 ExamPro Student Portal
+
+    <span>
+        SETTINGS
+    </span>
+
+</div>
+
+
+<!-- =========================================
+     HEADER
+========================================= -->
+
+<header class="header">
+
+    <div class="header-left">
+
+        <div
+            class="hamburger"
+            onclick="openDrawer()">
+
+            ☰
+
+        </div>
+
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            ExamPro
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="notification"
+        onclick="showMessage('Notifications')">
+
+        🔔
+
+        <span class="notification-dot">
+        </span>
+
+    </button>
+
+</header>
+
+
+<!-- =========================================
+     DRAWER
+========================================= -->
+
+<div
+    class="overlay"
+    id="overlay"
+    onclick="closeDrawer()">
+</div>
+
+
+<div
+    class="drawer"
+    id="drawer">
+
+
+    <div class="drawer-header">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            ExamPro
+
+        </div>
+
+
+        <div
+            class="close"
+            onclick="closeDrawer()">
+
+            ×
+
+        </div>
+
+    </div>
+
+
+    <div class="drawer-menu">
+
+        <button>🏠 Dashboard</button>
+
+        <button>📚 Courses</button>
+
+        <button>📝 Mock Tests</button>
+
+        <button>📊 Progress</button>
+
+        <button>📖 Questions & Answers</button>
+
+        <button>🎤 Voice Study</button>
+
+        <button>💬 Messages</button>
+
+        <button>🎁 Refer & Earn</button>
+
+        <button>💳 Payments</button>
+
+        <button>👤 My Profile</button>
+
+        <button>⚙️ Settings</button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================
+     MAIN
+========================================= -->
+
+<main class="container">
+
+
+    <!-- PAGE HEADER -->
+
+    <div class="page-header">
+
+        <div class="page-title">
+
+            <div class="page-title-icon">
+                ⚙️
+            </div>
+
+            <div>
+
+                <h1>
+                    Settings
+                </h1>
+
+                <p>
+                    Manage your ExamPro account and preferences
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="save-btn"
+            onclick="saveSettings()">
+
+            ✓ Save Changes
+
+        </button>
+
+    </div>
+
+
+    <!-- SETTINGS -->
+
+    <div class="settings-layout">
+
+
+        <!-- =================================
+             SIDE NAV
+        ================================== -->
+
+        <aside class="settings-nav">
+
+            <button
+                class="nav-item active"
+                onclick="selectSection(this)">
+
+                <span class="nav-icon">⚙️</span>
+
+                General
+
+            </button>
+
+
+            <button
+                class="nav-item"
+                onclick="selectSection(this)">
+
+                <span class="nav-icon">🔔</span>
+
+                Notifications
+
+            </button>
+
+
+            <button
+                class="nav-item"
+                onclick="selectSection(this)">
+
+                <span class="nav-icon">🎤</span>
+
+                Voice & Audio
+
+            </button>
+
+
+            <button
+                class="nav-item"
+                onclick="selectSection(this)">
+
+                <span class="nav-icon">🎯</span>
+
+                Exam Preferences
+
+            </button>
+
+
+            <button
+                class="nav-item"
+                onclick="selectSection(this)">
+
+                <span class="nav-icon">🔐</span>
+
+                Security
+
+            </button>
+
+
+            <button
+                class="nav-item"
+                onclick="selectSection(this)">
+
+                <span class="nav-icon">💳</span>
+
+                Payments
+
+            </button>
+
+
+            <button
+                class="nav-item"
+                onclick="selectSection(this)">
+
+                <span class="nav-icon">🛡️</span>
+
+                Privacy
+
+            </button>
+
+
+            <button
+                class="nav-item"
+                onclick="selectSection(this)">
+
+                <span class="nav-icon">💬</span>
+
+                Help & Support
+
+            </button>
+
+        </aside>
+
+
+        <!-- =================================
+             CONTENT
+        ================================== -->
+
+        <div class="settings-content">
+
+
+            <!-- PROFILE -->
+
+            <section class="settings-section">
+
+                <div class="section-heading">
+
+                    <div class="section-heading-icon">
+                        👤
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Profile & Account
+                        </h2>
+
+                        <p>
+                            Manage your personal information
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="profile-mini">
+
+                    <div class="profile-avatar">
+                        👨‍🎓
+                    </div>
+
+                    <div class="profile-mini-info">
+
+                        <strong>
+                            Armaan Khan
+                        </strong>
+
+                        <span>
+                            armaan@example.com
+                            • Student ID: EXM20260025
+                        </span>
+
+                    </div>
+
+
+                    <button
+                        class="action-btn"
+                        onclick="showMessage('Edit Profile')">
+
+                        Edit
+
+                    </button>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-icon">
+                        🌐
+                    </div>
+
+                    <div class="setting-info">
+
+                        <strong>
+                            Language
+                        </strong>
+
+                        <span>
+                            Choose your preferred language
+                        </span>
+
+                    </div>
+
+                    <select class="select">
+
+                        <option>English</option>
+                        <option>Hindi</option>
+                        <option>Telugu</option>
+                        <option>Kannada</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-icon">
+                        🎨
+                    </div>
+
+                    <div class="setting-info">
+
+                        <strong>
+                            Theme
+                        </strong>
+
+                        <span>
+                            Choose how ExamPro looks
+                        </span>
+
+                    </div>
+
+                    <select class="select">
+
+                        <option>Dark</option>
+                        <option>Light</option>
+                        <option>System Default</option>
+
+                    </select>
+
+                </div>
+
+            </section>
+
+
+            <!-- NOTIFICATIONS -->
+
+            <section class="settings-section">
+
+                <div class="section-heading">
+
+                    <div class="section-heading-icon">
+                        🔔
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Notifications
+                        </h2>
+
+                        <p>
+                            Control your learning reminders
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-icon">
+                        📚
+                    </div>
+
+                    <div class="setting-info">
+
+                        <strong>
+                            Study Reminders
+                        </strong>
+
+                        <span>
+                            Get reminders when it is time to study
+                        </span>
+
+                    </div>
+
+                    <button
+                        class="toggle active"
+                        onclick="toggleSetting(this)">
+                    </button>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-icon">
+                        ⏰
+                    </div>
+
+                    <div class="setting-info">
+
+                        <strong>
+                            Exam Reminders
+                        </strong>
+
+                        <span>
+                            Receive alerts as your exam approaches
+                        </span>
+
+                    </div>
+
+                    <button
+                        class="toggle active"
+                        onclick="toggleSetting(this)">
+                    </button>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-icon">
+                        📊
+                    </div>
+
+                    <div class="setting-info">
+
+                        <strong>
+                            Weekly Progress Email
+                        </strong>
+
+                        <span>
+                            Receive your weekly performance report
+                        </span>
+
+                    </div>
+
+                    <button
+                        class="toggle active"
+                        onclick="toggleSetting(this)">
+                    </button>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-icon">
+                        🎁
+                    </div>
+
+                    <div class="setting-info">
+
+                        <strong>
+                            Offers & Promotions
+                        </strong>
+
+                        <span>
+                            Receive course offers and referral updates
+                        </span>
+
+                    </div>
+
+                    <button
+                        class="toggle"
+                        onclick="toggleSetting(this)">
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- VOICE -->
+
+            <section class="settings-section">
+
+                <div class="section-heading">
+
+                    <div class="section-heading-icon">
+                        🎤
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Voice & Audio
+                        </h2>
+
+                        <p>
+                            Configure question and answer voice playback
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-icon">
+                        🔊
+                    </div>
+
+                    <div class="setting-info">
+
+                        <strong>
+                            Voice Questions & Answers
+                        </strong>
+
+                        <span>
+                            Enable voice playback while studying
+                        </span>
+
+                    </div>
+
+                    <button
+                        class="toggle active"
+                        onclick="toggleSetting(this)">
+                    </button>
+
+                </div>
+
+
+                <div class="voice-card">
+
+                    <div class="voice-title">
+
+                        <strong>
+                            Preferred Voice
+                        </strong>
+
+                        <span>
+                            🎤 Preview
+                        </span>
+
+                    </div>
+
+
+                    <div class="voice-options">
+
+                        <button
+                            class="voice-option selected"
+                            onclick="selectVoice(this)">
+
+                            <strong>
+                                👩 Female Voice
+                            </strong>
+
+                            <span>
+                                Clear and natural voice
+                            </span>
+
+                        </button>
+
+
+                        <button
+                            class="voice-option"
+                            onclick="selectVoice(this)">
+
+                            <strong>
+                                👨 Male Voice
+                            </strong>
+
+                            <span>
+                                Clear and natural voice
+                            </span>
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-icon">
+                        🔁
+                    </div>
+
+                    <div class="setting-info">
+
+                        <strong>
+                            Repeat Question & Answer
+                        </strong>
+
+                        <span>
+                            Number of times voice content should repeat
+                        </span>
+
+                    </div>
+
+                    <select class="select">
+
+                        <option>1 Time</option>
+                        <option>2 Times</option>
+                        <option>3 Times</option>
+                        <option>5 Times</option>
+                        <option>10 Times</option>
+
+                    </select>
+
+                </div>
+
+            </section>
+
+
+            <!-- EXAM PREFERENCES -->
+
+            <section class="settings-section">
+
+                <div class="section-heading">
+
+                    <div class="section-heading-icon">
+                        🎯
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Exam Preferences
+                        </h2>
+
+                        <p>
+                            Customize your preparation experience
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-icon">
+                        🎓
+                    </div>
+
+                    <div class="setting-info">
+
+                        <strong>
+                            Target Exam
+                        </strong>
+
+                        <span>
+                            Your primary examination
+                        </span>
+
+                    </div>
+
+                    <select class="select">
+
+                        <option>NEET</option>
+                        <option>JEE</option>
+                        <option>Other</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-icon">
+                        📚
+                    </div>
+
+                    <div class="setting-info">
+
+                        <strong>
+                            Default Subject
+                        </strong>
+
+                        <span>
+                            Subject shown when opening questions
+                        </span>
+
+                    </div>
+
+                    <select class="select">
+
+                        <option>All Subjects</option>
+                        <option>Physics</option>
+                        <option>Chemistry</option>
+                        <option>Biology</option>
+                        <option>Zoology</option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-icon">
+                        📝
+                    </div>
+
+                    <div class="setting-info">
+
+                        <strong>
+                            Show Explanations
+                        </strong>
+
+                        <span>
+                            Automatically show explanations after answering
+                        </span>
+
+                    </div>
+
+                    <button
+                        class="toggle active"
+                        onclick="toggleSetting(this)">
+                    </button>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-icon">
+                        ⏱️
+                    </div>
+
+                    <div class="setting-info">
+
+                        <strong>
+                            Exam Timer
+                        </strong>
+
+                        <span>
+                            Show countdown during mock tests
+                        </span>
+
+                    </div>
+
+                    <button
+                        class="toggle active"
+                        onclick="toggleSetting(this)">
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- SECURITY -->
+
+            <section class="settings-section">
+
+                <div class="section-heading">
+
+                    <div class="section-heading-icon">
+                        🔐
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Security
+                        </h2>
+
+                        <p>
+                            Keep your account protected
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-icon">
+                        🔑
+                    </div>
+
+                    <div class="setting-info">
+
+                        <strong>
+                            Password
+                        </strong>
+
+                        <span>
+                            Last changed 30 days ago
+                        </span>
+
+                    </div>
+
+                    <button
+                        class="action-btn"
+                        onclick="showMessage('Change Password')">
+
+                        Change
+
+                    </button>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-icon">
+                        📱
+                    </div>
+
+                    <div class="setting-info">
+
+                        <strong>
+                            Two-Step Verification
+                        </strong>
+
+                        <span>
+                            Add an additional layer of security
+                        </span>
+
+                    </div>
+
+                    <button
+                        class="toggle"
+                        onclick="toggleSetting(this)">
+                    </button>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-icon">
+                        💻
+                    </div>
+
+                    <div class="setting-info">
+
+                        <strong>
+                            Active Sessions
+                        </strong>
+
+                        <span>
+                            Manage devices currently signed in
+                        </span>
+
+                    </div>
+
+                    <button
+                        class="action-btn"
+                        onclick="showMessage('Active Sessions')">
+
+                        Manage
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- PAYMENTS -->
+
+            <section class="settings-section">
+
+                <div class="section-heading">
+
+                    <div class="section-heading-icon">
+                        💳
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Payments & Billing
+                        </h2>
+
+                        <p>
+                            Manage purchases and payment information
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-icon">
+                        🧾
+                    </div>
+
+                    <div class="setting-info">
+
+                        <strong>
+                            Payment History
+                        </strong>
+
+                        <span>
+                            View your previous transactions
+                        </span>
+
+                    </div>
+
+                    <button
+                        class="action-btn"
+                        onclick="showMessage('Payment History')">
+
+                        View
+
+                    </button>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-icon">
+                        📄
+                    </div>
+
+                    <div class="setting-info">
+
+                        <strong>
+                            Invoices
+                        </strong>
+
+                        <span>
+                            Download course payment invoices
+                        </span>
+
+                    </div>
+
+                    <button
+                        class="action-btn"
+                        onclick="showMessage('Invoices')">
+
+                        View
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- PRIVACY -->
+
+            <section class="settings-section">
+
+                <div class="section-heading">
+
+                    <div class="section-heading-icon">
+                        🛡️
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Privacy
+                        </h2>
+
+                        <p>
+                            Control your data and privacy
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-icon">
+                        📊
+                    </div>
+
+                    <div class="setting-info">
+
+                        <strong>
+                            Performance Analytics
+                        </strong>
+
+                        <span>
+                            Allow ExamPro to analyze your learning performance
+                        </span>
+
+                    </div>
+
+                    <button
+                        class="toggle active"
+                        onclick="toggleSetting(this)">
+                    </button>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-icon">
+                        📥
+                    </div>
+
+                    <div class="setting-info">
+
+                        <strong>
+                            Download My Data
+                        </strong>
+
+                        <span>
+                            Request a copy of your account data
+                        </span>
+
+                    </div>
+
+                    <button
+                        class="action-btn"
+                        onclick="showMessage('Data Request Submitted')">
+
+                        Request
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- SUPPORT -->
+
+            <section class="settings-section">
+
+                <div class="section-heading">
+
+                    <div class="section-heading-icon">
+                        💬
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Help & Support
+                        </h2>
+
+                        <p>
+                            Need help? We're here for you
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-icon">
+                        💬
+                    </div>
+
+                    <div class="setting-info">
+
+                        <strong>
+                            Contact Support
+                        </strong>
+
+                        <span>
+                            Get help from the ExamPro support team
+                        </span>
+
+                    </div>
+
+                    <button
+                        class="action-btn"
+                        onclick="showMessage('Support')">
+
+                        Contact
+
+                    </button>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-icon">
+                        ❓
+                    </div>
+
+                    <div class="setting-info">
+
+                        <strong>
+                            Frequently Asked Questions
+                        </strong>
+
+                        <span>
+                            Find answers to common questions
+                        </span>
+
+                    </div>
+
+                    <button
+                        class="action-btn"
+                        onclick="showMessage('FAQ')">
+
+                        Open
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+            <!-- DANGER ZONE -->
+
+            <section class="settings-section danger-section">
+
+                <div class="section-heading">
+
+                    <div class="section-heading-icon">
+                        ⚠️
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Account Actions
+                        </h2>
+
+                        <p>
+                            Actions that affect your account
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-icon">
+                        🚪
+                    </div>
+
+                    <div class="setting-info">
+
+                        <strong>
+                            Logout
+                        </strong>
+
+                        <span>
+                            Sign out from this device
+                        </span>
+
+                    </div>
+
+                    <button
+                        class="action-btn"
+                        onclick="logout()">
+
+                        Logout
+
+                    </button>
+
+                </div>
+
+
+                <div class="setting-row">
+
+                    <div class="setting-icon">
+                        🗑️
+                    </div>
+
+                    <div class="setting-info">
+
+                        <strong>
+                            Delete Account
+                        </strong>
+
+                        <span>
+                            Permanently delete your ExamPro account
+                        </span>
+
+                    </div>
+
+                    <button
+                        class="action-btn danger"
+                        onclick="deleteAccount()">
+
+                        Delete
+
+                    </button>
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<!-- =========================================
+     MOBILE BOTTOM NAV
+========================================= -->
+
+<nav class="bottom-nav">
+
+    <button onclick="showMessage('Dashboard')">
+
+        <span class="bottom-icon">🏠</span>
+
+        Home
+
+    </button>
+
+
+    <button onclick="showMessage('Courses')">
+
+        <span class="bottom-icon">📚</span>
+
+        Courses
+
+    </button>
+
+
+    <button onclick="showMessage('Progress')">
+
+        <span class="bottom-icon">📊</span>
+
+        Progress
+
+    </button>
+
+
+    <button onclick="showMessage('Profile')">
+
+        <span class="bottom-icon">👤</span>
+
+        Profile
+
+    </button>
+
+
+    <button class="active">
+
+        <span class="bottom-icon">⚙️</span>
+
+        Settings
+
+    </button>
+
+</nav>
+
+
+<script>
+
+
+/* =========================================
+   DRAWER
+========================================= */
+
+function openDrawer(){
+
+    document
+        .getElementById("drawer")
+        .classList.add("open");
+
+    document
+        .getElementById("overlay")
+        .classList.add("show");
+
+}
+
+
+function closeDrawer(){
+
+    document
+        .getElementById("drawer")
+        .classList.remove("open");
+
+    document
+        .getElementById("overlay")
+        .classList.remove("show");
+
+}
+
+
+/* =========================================
+   TOGGLE
+========================================= */
+
+function toggleSetting(button){
+
+    button.classList.toggle("active");
+
+}
+
+
+/* =========================================
+   VOICE
+========================================= */
+
+function selectVoice(button){
+
+    document
+        .querySelectorAll(".voice-option")
+        .forEach(
+            item =>
+            item.classList.remove("selected")
+        );
+
+    button.classList.add("selected");
+
+}
+
+
+/* =========================================
+   SIDE NAV
+========================================= */
+
+function selectSection(button){
+
+    document
+        .querySelectorAll(".nav-item")
+        .forEach(
+            item =>
+            item.classList.remove("active")
+        );
+
+    button.classList.add("active");
+
+}
+
+
+/* =========================================
+   SAVE
+========================================= */
+
+function saveSettings(){
+
+    alert(
+        "✓ Your ExamPro settings have been saved successfully."
+    );
+
+}
+
+
+/* =========================================
+   GENERAL MESSAGE
+========================================= */
+
+function showMessage(message){
+
+    alert(
+        "ExamPro: " + message
+    );
+
+}
+
+
+/* =========================================
+   LOGOUT
+========================================= */
+
+function logout(){
+
+    if(
+        confirm(
+            "Are you sure you want to logout?"
+        )
+    ){
+
+        alert(
+            "You have been logged out."
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   DELETE ACCOUNT
+========================================= */
+
+function deleteAccount(){
+
+    const confirmDelete =
+        confirm(
+            "Are you sure you want to permanently delete your account? This action cannot be undone."
+        );
+
+    if(confirmDelete){
+
+        alert(
+            "Account deletion request submitted."
+        );
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>

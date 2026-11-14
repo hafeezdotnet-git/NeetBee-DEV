@@ -1,0 +1,31 @@
+1. Create a key and start all three services
+
+powershell
+cd "D:\Website\NEET_BEE_App_v1.0\backend"
+
+# Generate a random 48-byte key (copy the output, you need it for every service)
+$key = [Convert]::ToBase64String((1..48 | ForEach-Object { Get-Random -Maximum 256 }) -as [byte[]])
+$key
+
+# Start the auth service, gateway and web app in separate windows
+.\run-all.ps1 -SigningKey $key
+
+
+Wait until all three windows show they are listening. The web app is at http://localhost:5100.
+
+2. Test the API through the gateway (new PowerShell window)
+
+powershell
+# Create an account
+Invoke-RestMethod -Method Post -Uri http://localhost:5000/api/auth/register `
+  -ContentType "application/json" `
+  -Body '{"userName":"demo.student","email":"demo.student@example.com","password":"Demo1234"}'
+
+# Sign in and receive tokens
+$tokens = Invoke-RestMethod -Method Post -Uri http://localhost:5000/api/auth/login `
+  -ContentType "application/json" `
+  -Body '{"username":"demo.student","password":"Demo1234"}'
+
+# Call a protected endpoint with the access token
+Invoke-RestMethod -Uri http://localhost:5000/api/auth/me `
+  -Headers @{ Authorization = "Bearer $($tokens.accessToken)" }

@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="common.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ExamPro - Activate Your Account</title>
+
+
+</head>
+
+<body class="firsttimeloginafterpayment-page">
+
+
+<!-- =====================================
+     TOP SUCCESS BANNER
+===================================== -->
+
+<div class="top-banner">
+
+    ✓ Payment Successful
+
+    <span>
+        ACCOUNT ACTIVATION REQUIRED
+    </span>
+
+</div>
+
+
+<!-- =====================================
+     HEADER
+===================================== -->
+
+<header class="header">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🎓
+        </div>
+
+        ExamPro
+
+    </div>
+
+    <button
+        class="support-btn"
+        onclick="support()">
+
+        💬 Need Help?
+
+    </button>
+
+</header>
+
+
+<!-- =====================================
+     MAIN
+===================================== -->
+
+<main class="container">
+
+
+    <!-- SUCCESS MESSAGE -->
+
+    <section class="success-header">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <h1>
+            Purchase <span>Successful!</span>
+        </h1>
+
+        <p>
+            Welcome to ExamPro! Your course has been
+            successfully purchased. Complete your account
+            setup below to start learning.
+        </p>
+
+    </section>
+
+
+    <!-- MAIN CARD -->
+
+    <section class="main-card">
+
+
+        <!-- =================================
+             PURCHASE INFORMATION
+        ================================== -->
+
+        <div class="purchase-panel">
+
+            <div class="panel-label">
+                ✓ PURCHASE CONFIRMED
+            </div>
+
+            <h2>
+                Your Course
+            </h2>
+
+            <p>
+                Your enrollment is confirmed and your
+                course is ready to activate.
+            </p>
+
+
+            <!-- COURSE -->
+
+            <div class="course-card">
+
+                <div class="course-icon">
+                    🎓
+                </div>
+
+                <h3>
+                    NEET Complete Preparation
+                </h3>
+
+                <p>
+                    Physics • Chemistry • Biology
+                    • Zoology
+                </p>
+
+                <div class="course-meta">
+
+                    <span>
+                        Validity
+                    </span>
+
+                    <strong>
+                        12 Months
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <!-- PAYMENT -->
+
+            <div class="payment-details">
+
+                <div class="payment-row">
+
+                    <span>
+                        Order ID
+                    </span>
+
+                    <strong>
+                        ORD-2026-58241
+                    </strong>
+
+                </div>
+
+                <div class="payment-row">
+
+                    <span>
+                        Amount Paid
+                    </span>
+
+                    <strong>
+                        ₹4,999
+                    </strong>
+
+                </div>
+
+                <div class="payment-row">
+
+                    <span>
+                        Payment
+                    </span>
+
+                    <strong>
+                        UPI
+                    </strong>
+
+                </div>
+
+                <div class="payment-row">
+
+                    <span>
+                        Status
+                    </span>
+
+                    <strong class="paid">
+                        ✓ Paid
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================
+             ACCOUNT SETUP
+        ================================== -->
+
+        <div class="setup-panel" id="setupPanel">
+
+
+            <h2>
+                Activate Your Account
+            </h2>
+
+            <p class="setup-subtitle">
+
+                This is your first login. Create your
+                secure password to access your purchased
+                course.
+
+            </p>
+
+
+            <!-- STEPS -->
+
+            <div class="steps">
+
+                <div class="step done">
+
+                    <div class="step-circle">
+                        ✓
+                    </div>
+
+                    <span>
+                        Purchase
+                    </span>
+
+                </div>
+
+                <div class="step-line"></div>
+
+                <div class="step active">
+
+                    <div class="step-circle">
+                        2
+                    </div>
+
+                    <span>
+                        Activate
+                    </span>
+
+                </div>
+
+                <div class="step-line"></div>
+
+                <div class="step">
+
+                    <div class="step-circle">
+                        3
+                    </div>
+
+                    <span>
+                        Start Learning
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- STUDENT -->
+
+            <div class="student">
+
+                <div class="avatar">
+                    👨‍🎓
+                </div>
+
+                <div class="student-info">
+
+                    <strong>
+                        Armaan Khan
+                    </strong>
+
+                    <span>
+                        Student ID: EXM20260025
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- EMAIL / MOBILE -->
+
+            <div class="form-group">
+
+                <label>
+                    REGISTERED MOBILE / EMAIL
+                </label>
+
+                <input
+                    type="text"
+                    value="student@example.com"
+                    readonly>
+
+            </div>
+
+
+            <!-- PASSWORD -->
+
+            <div class="form-group">
+
+                <label>
+                    CREATE PASSWORD
+                </label>
+
+                <div class="input-wrap">
+
+                    <input
+                        type="password"
+                        id="password"
+                        placeholder="Create a secure password"
+                        oninput="checkPassword()">
+
+                    <button
+                        class="eye"
+                        onclick="togglePassword(
+                            'password',
+                            this
+                        )">
+
+                        👁
+
+                    </button>
+
+                </div>
+
+
+                <div class="strength">
+
+                    <div
+                        class="bar"
+                        id="bar1">
+                    </div>
+
+                    <div
+                        class="bar"
+                        id="bar2">
+                    </div>
+
+                    <div
+                        class="bar"
+                        id="bar3">
+                    </div>
+
+                    <div
+                        class="bar"
+                        id="bar4">
+                    </div>
+
+                </div>
+
+                <div
+                    class="strength-text"
+                    id="strengthText">
+
+                    Password strength
+
+                </div>
+
+            </div>
+
+
+            <!-- CONFIRM PASSWORD -->
+
+            <div class="form-group">
+
+                <label>
+                    CONFIRM PASSWORD
+                </label>
+
+                <div class="input-wrap">
+
+                    <input
+                        type="password"
+                        id="confirm"
+                        placeholder="Confirm your password">
+
+                    <button
+                        class="eye"
+                        onclick="togglePassword(
+                            'confirm',
+                            this
+                        )">
+
+                        👁
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- TERMS -->
+
+            <label class="terms">
+
+                <input
+                    type="checkbox"
+                    id="terms">
+
+                <span>
+
+                    I agree to the ExamPro
+                    <a href="#">
+                        Terms & Conditions
+                    </a>
+                    and
+                    <a href="#">
+                        Privacy Policy
+                    </a>.
+
+                </span>
+
+            </label>
+
+
+            <!-- ACTIVATE -->
+
+            <button
+                class="activate-btn"
+                onclick="activateAccount()">
+
+                🚀 Activate Account & Start Learning
+
+            </button>
+
+
+            <div class="security">
+
+                🔒 Secure Account &nbsp; • &nbsp;
+                🛡️ Payment Verified
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================
+             COMPLETE
+        ================================== -->
+
+        <div
+            class="complete"
+            id="completePanel">
+
+            <div class="complete-icon">
+                ✓
+            </div>
+
+            <h2>
+                You're All Set!
+            </h2>
+
+            <p>
+                Your account is activated and your
+                purchased course is ready.
+                Start your exam preparation now.
+            </p>
+
+            <button
+                class="dashboard-btn"
+                onclick="goDashboard()">
+
+                🎓 Go to My Dashboard
+
+            </button>
+
+        </div>
+
+
+    </section>
+
+</main>
+
+
+<script>
+
+
+/* =====================================
+   PASSWORD TOGGLE
+===================================== */
+
+function togglePassword(
+    id,
+    button
+){
+
+    const input =
+        document.getElementById(id);
+
+    if(
+        input.type === "password"
+    ){
+
+        input.type = "text";
+
+        button.textContent = "🙈";
+
+    }else{
+
+        input.type = "password";
+
+        button.textContent = "👁";
+
+    }
+
+}
+
+
+/* =====================================
+   PASSWORD STRENGTH
+===================================== */
+
+function checkPassword(){
+
+    const password =
+        document
+        .getElementById("password")
+        .value;
+
+    const bars =
+        document.querySelectorAll(".bar");
+
+    bars.forEach(
+        bar =>
+        bar.classList.remove("active")
+    );
+
+    let score = 0;
+
+    if(password.length >= 6)
+        score++;
+
+    if(password.length >= 10)
+        score++;
+
+    if(/[A-Z]/.test(password))
+        score++;
+
+    if(/[0-9!@#$%^&*]/.test(password))
+        score++;
+
+    for(
+        let i=0;
+        i<score;
+        i++
+    ){
+        bars[i].classList.add("active");
+    }
+
+    const text =
+        document.getElementById(
+            "strengthText"
+        );
+
+    if(!password)
+        text.textContent =
+            "Password strength";
+
+    else if(score <= 1)
+        text.textContent =
+            "Weak password";
+
+    else if(score <= 2)
+        text.textContent =
+            "Moderate password";
+
+    else
+        text.textContent =
+            "Strong password";
+
+}
+
+
+/* =====================================
+   ACTIVATE ACCOUNT
+===================================== */
+
+function activateAccount(){
+
+    const password =
+        document
+        .getElementById("password")
+        .value;
+
+    const confirm =
+        document
+        .getElementById("confirm")
+        .value;
+
+    const terms =
+        document
+        .getElementById("terms")
+        .checked;
+
+
+    if(password.length < 6){
+
+        alert(
+            "Please create a password with at least 6 characters."
+        );
+
+        return;
+    }
+
+
+    if(password !== confirm){
+
+        alert(
+            "Passwords do not match."
+        );
+
+        return;
+    }
+
+
+    if(!terms){
+
+        alert(
+            "Please accept the Terms & Conditions."
+        );
+
+        return;
+    }
+
+
+    /*
+      Production API example:
+
+      POST /api/student/activate
+
+      {
+        studentId: "EXM20260025",
+        orderId: "ORD-2026-58241",
+        password: password
+      }
+
+      After successful API response:
+      redirect to /dashboard
+    */
+
+
+    document
+        .getElementById("setupPanel")
+        .style.display = "none";
+
+    document
+        .getElementById("completePanel")
+        .style.display = "block";
+
+}
+
+
+/* =====================================
+   DASHBOARD
+===================================== */
+
+function goDashboard(){
+
+    window.location.href =
+        "dashboard.html";
+
+}
+
+
+/* =====================================
+   SUPPORT
+===================================== */
+
+function support(){
+
+    alert(
+        "ExamPro Support: Please contact support with your Order ID."
+    );
+
+}
+
+</script>
+
+</body>
+</html>

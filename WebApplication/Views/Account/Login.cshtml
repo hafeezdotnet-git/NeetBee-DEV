@@ -1,0 +1,67 @@
+@model LoginViewModel
+@{
+    ViewData["Title"] = "Sign in";
+}
+
+<section class="auth-card" aria-labelledby="login-title">
+    <h1 id="login-title">Welcome back</h1>
+    <p class="sub">Sign in to continue your NEET preparation.</p>
+
+    @if (TempData["Message"] is string message)
+    {
+        <p class="alert alert-success" role="status">@message</p>
+    }
+
+    @if (TempData["Error"] is string googleError)
+    {
+        <p class="alert alert-error" role="alert">@googleError</p>
+    }
+
+    <div asp-validation-summary="ModelOnly" class="alert alert-error" role="alert"></div>
+
+    <form asp-action="Login" method="post" novalidate>
+        <input asp-for="ReturnUrl" type="hidden" />
+
+        <div class="field">
+            <label asp-for="Username"></label>
+            <input asp-for="Username" autocomplete="username" autofocus />
+            <span asp-validation-for="Username" class="field-error"></span>
+        </div>
+
+        <div class="field">
+            <label asp-for="Password"></label>
+            <div class="pw-wrap">
+                <input asp-for="Password" type="password" autocomplete="current-password" />
+                <button type="button" class="pw-toggle" data-target="Password" aria-label="Show password" aria-pressed="false">
+                    <svg class="icon-show" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                    <svg class="icon-hide" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/><line x1="3" y1="3" x2="21" y2="21"/></svg>
+                </button>
+            </div>
+            <span asp-validation-for="Password" class="field-error"></span>
+        </div>
+
+        <button type="submit" class="btn-primary">Sign in</button>
+    </form>
+
+    <div class="divider"><span>or</span></div>
+    <a class="btn-google" asp-action="GoogleLogin" asp-route-returnUrl="@Model.ReturnUrl">
+        <span class="g-mark" aria-hidden="true">G</span>
+        Login with Gmail
+    </a>
+
+    <p class="auth-alt"><a asp-action="EmailCode">Use an email code instead</a></p>
+
+    <p class="auth-switch">New to NEET BEE? <a asp-action="Register">Create an account</a></p>
+</section>
+
+<script>
+    document.querySelectorAll('.pw-toggle').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+            var input = document.getElementById(btn.getAttribute('data-target'));
+            var showing = input.type === 'password';
+            input.type = showing ? 'text' : 'password';
+            btn.setAttribute('aria-pressed', showing ? 'true' : 'false');
+            btn.setAttribute('aria-label', showing ? 'Hide password' : 'Show password');
+        });
+    });
+</script>

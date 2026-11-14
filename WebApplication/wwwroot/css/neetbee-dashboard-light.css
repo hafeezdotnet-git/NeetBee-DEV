@@ -1,0 +1,90 @@
+/* NEET BEE light dashboard theme. Loaded last; active only when body is not .dark.
+   The dark theme (neetbee-dashboard.css) is unchanged. */
+body.neetbee-theme:not(.dark) {
+    --nb-bg: #EEF4FC;
+    --nb-bg-2: #EEF4FC;
+    --nb-panel: #FFFFFF;
+    --nb-panel-2: #F4F8FE;
+    --nb-border: #D8E5F5;
+    --nb-text: #122B50;
+    --nb-muted: #64748B;
+    --nb-blue: #0878E8;
+    --nb-cyan: #14B8E8;
+    --nb-green: #10B981;
+    --nb-shadow: 0 10px 26px rgba(18, 43, 80, 0.08);
+    background: var(--nb-bg);
+    color: var(--nb-text);
+}
+body.neetbee-theme:not(.dark) .nb-topbar,
+body.neetbee-theme:not(.dark) .nb-sidebar,
+body.neetbee-theme:not(.dark) .nb-card,
+body.neetbee-theme:not(.dark) .nb-popover,
+body.neetbee-theme:not(.dark) .nb-tools-list,
+body.neetbee-theme:not(.dark) .nb-bottom-nav {
+    background: #FFFFFF;
+    color: var(--nb-text);
+}
+body.neetbee-theme:not(.dark) .nb-topbar { border-bottom: 1px solid var(--nb-border); box-shadow: 0 4px 16px rgba(18, 43, 80, 0.05); }
+body.neetbee-theme:not(.dark) .nb-sidebar { border-right: 1px solid var(--nb-border); }
+body.neetbee-theme:not(.dark) .nb-card { border: 1px solid var(--nb-border); box-shadow: var(--nb-shadow); }
+body.neetbee-theme:not(.dark) .nb-welcome {
+    background: linear-gradient(110deg, #E5EFFF, #F0EBFF);
+    border: 1px solid var(--nb-border);
+}
+body.neetbee-theme:not(.dark) .nb-welcome h1,
+body.neetbee-theme:not(.dark) .nb-section-title h2,
+body.neetbee-theme:not(.dark) .nb-stat strong,
+body.neetbee-theme:not(.dark) .nb-brand-title,
+body.neetbee-theme:not(.dark) .nb-topnav a,
+body.neetbee-theme:not(.dark) .nb-nav a,
+body.neetbee-theme:not(.dark) .nb-tools-menu > summary { color: var(--nb-text); }
+body.neetbee-theme:not(.dark) .nb-brand-subtitle,
+body.neetbee-theme:not(.dark) .nb-muted,
+body.neetbee-theme:not(.dark) .nb-stat span,
+body.neetbee-theme:not(.dark) .nb-welcome p { color: var(--nb-muted); }
+body.neetbee-theme:not(.dark) .nb-nav-group { color: var(--nb-blue); }
+body.neetbee-theme:not(.dark) .nb-nav a .nb-icon,
+body.neetbee-theme:not(.dark) .nb-topnav a .nb-icon,
+body.neetbee-theme:not(.dark) .nb-quick .nb-icon { color: var(--nb-blue); }
+body.neetbee-theme:not(.dark) .nb-stat .nb-icon { color: var(--nb-cyan); }
+body.neetbee-theme:not(.dark) .nb-topnav a.active,
+body.neetbee-theme:not(.dark) .nb-nav a.active,
+body.neetbee-theme:not(.dark) .nb-topnav a.active .nb-icon,
+body.neetbee-theme:not(.dark) .nb-nav a.active .nb-icon,
+body.neetbee-theme:not(.dark) .nb-bottom-nav a.active { color: #FFFFFF; }
+body.neetbee-theme:not(.dark) .nb-topnav a.active,
+body.neetbee-theme:not(.dark) .nb-nav a.active,
+body.neetbee-theme:not(.dark) .nb-bottom-nav a.active { background: linear-gradient(110deg, #0878E8, #0666C8); }
+body.neetbee-theme:not(.dark) .nb-nav a:hover,
+body.neetbee-theme:not(.dark) .nb-topnav a:hover { background: rgba(8, 120, 232, 0.08); }
+body.neetbee-theme:not(.dark) .nb-search,
+body.neetbee-theme:not(.dark) .nb-icon-btn,
+body.neetbee-theme:not(.dark) .nb-profile {
+    background: #FFFFFF;
+    border-color: var(--nb-border);
+    color: var(--nb-text);
+}
+body.neetbee-theme:not(.dark) .nb-search input { color: var(--nb-text); }
+body.neetbee-theme:not(.dark) .nb-search input::placeholder { color: var(--nb-muted); }
+body.neetbee-theme:not(.dark) .nb-continue { border-color: rgba(16, 185, 129, 0.6); }
+body.neetbee-theme:not(.dark) .nb-progress { background: #DCE8F7; }
+body.neetbee-theme:not(.dark) .nb-progress > span { background: linear-gradient(90deg, #0878E8, #10B981); }
+body.neetbee-theme:not(.dark) .nb-btn {
+    color: #FFFFFF;
+    background: linear-gradient(100deg, #14B8E8, #0878E8);
+}
+body.neetbee-theme:not(.dark) .nb-quick { background: #FFFFFF; border-color: var(--nb-border); color: var(--nb-text); }
+body.neetbee-theme:not(.dark) .nb-quick:hover { border-color: var(--nb-cyan); }
+body.neetbee-theme:not(.dark) .nb-chat {
+    color: #FFFFFF;
+    background: linear-gradient(100deg, #0878E8, #14B8E8);
+    border-color: #9ED3FA;
+    box-shadow: 0 10px 24px rgba(8, 120, 232, 0.3);
+}
+body.neetbee-theme:not(.dark) .nb-chat-msg {
+    background: #FFFFFF;
+    color: var(--nb-text);
+    border-color: var(--nb-border);
+}
+body.neetbee-theme:not(.dark) .nb-bottom-nav a { color: var(--nb-muted); }
+body.neetbee-theme:not(.dark) .nb-bottom-nav a.active { color: #FFFFFF; }

@@ -1,0 +1,929 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="common.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ExamPro - Performance Warning</title>
+
+
+</head>
+
+
+<body class="examreminderneedattention-page">
+
+
+<!-- =====================================================
+     OFFER
+===================================================== -->
+
+<div class="offer-banner">
+
+    ⚠️ <strong>EXAM ALERT</strong>
+
+    Your preparation needs immediate attention
+
+    <button
+        class="offer-btn"
+        onclick="startStudy()">
+
+        Focus Now
+
+    </button>
+
+</div>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+    <div class="header-left">
+
+        <div
+            class="hamburger"
+            onclick="openDrawer()">
+
+            ☰
+
+        </div>
+
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            ExamPro
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="dashboard-btn"
+        onclick="goDashboard()">
+
+        Dashboard
+
+    </button>
+
+</header>
+
+
+<!-- =====================================================
+     DRAWER
+===================================================== -->
+
+<div
+    class="overlay"
+    id="overlay"
+    onclick="closeDrawer()">
+</div>
+
+
+<div
+    class="drawer"
+    id="drawer">
+
+
+    <div class="drawer-header">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            ExamPro
+
+        </div>
+
+
+        <div
+            class="close"
+            onclick="closeDrawer()">
+
+            ×
+
+        </div>
+
+    </div>
+
+
+    <div class="drawer-menu">
+
+        <button>🏠 Dashboard</button>
+
+        <button>📚 Courses</button>
+
+        <button>📝 Mock Tests</button>
+
+        <button>📊 My Progress</button>
+
+        <button>⚠️ Performance Alert</button>
+
+        <button>📖 Questions & Answers</button>
+
+        <button>🎤 Voice Questions</button>
+
+        <button>🏆 Leaderboard</button>
+
+        <button>⚙️ Settings</button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="container">
+
+
+    <!-- =================================================
+         WARNING
+    ================================================== -->
+
+    <section class="critical-warning">
+
+        <div class="warning-content">
+
+            <div class="warning-badge">
+
+                ⚠️ CRITICAL PERFORMANCE ALERT
+
+            </div>
+
+
+            <h1>
+
+                Your Preparation Needs Immediate Attention
+
+            </h1>
+
+
+            <p>
+
+                Your current preparation level is below the
+                recommended level for this stage of the exam.
+                There is still time to improve, but you need
+                to focus now. Complete your pending topics,
+                strengthen weak subjects and take regular
+                mock tests.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         COUNTDOWN
+    ================================================== -->
+
+    <section class="countdown-card">
+
+        <div class="countdown-title">
+
+            ⏰ Time Remaining — Don't Waste It
+
+        </div>
+
+
+        <div class="countdown">
+
+            <div class="time-box">
+
+                <strong id="days">
+                    28
+                </strong>
+
+                <span>
+                    Days
+                </span>
+
+            </div>
+
+
+            <div class="time-box">
+
+                <strong id="hours">
+                    14
+                </strong>
+
+                <span>
+                    Hours
+                </span>
+
+            </div>
+
+
+            <div class="time-box">
+
+                <strong id="minutes">
+                    32
+                </strong>
+
+                <span>
+                    Minutes
+                </span>
+
+            </div>
+
+
+            <div class="time-box">
+
+                <strong id="seconds">
+                    45
+                </strong>
+
+                <span>
+                    Seconds
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <div class="exam-date">
+
+            🗓️ Exam Date:
+
+            <strong>
+                06 September 2026
+            </strong>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         PERFORMANCE GRID
+    ================================================== -->
+
+    <section class="performance-grid">
+
+
+        <!-- PERFORMANCE -->
+
+        <div class="card">
+
+            <div class="card-title">
+
+                <h2>
+                    Current Performance
+                </h2>
+
+                <span>
+                    Needs Improvement
+                </span>
+
+            </div>
+
+
+            <div class="score-layout">
+
+                <div class="score-circle">
+
+                    <strong>
+                        48%
+                    </strong>
+
+                    <span>
+                        Preparation
+                    </span>
+
+                </div>
+
+
+                <div class="score-info">
+
+                    <h3>
+                        ⚠️ Below Target
+                    </h3>
+
+
+                    <p>
+
+                        Recommended preparation at this
+                        stage is <strong>75%+</strong>.
+
+                        <br><br>
+
+                        You are currently
+                        <strong>27%</strong>
+                        behind the recommended level.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- WARNING STATS -->
+
+        <div class="card">
+
+            <div class="card-title">
+
+                <h2>
+                    What Needs Attention?
+                </h2>
+
+                <span>
+                    Priority
+                </span>
+
+            </div>
+
+
+            <div class="warning-stat">
+
+                <div class="warning-icon">
+                    📚
+                </div>
+
+                <div class="warning-stat-info">
+
+                    <strong>
+                        Pending Topics
+                    </strong>
+
+                    <span>
+                        Topics not completed
+                    </span>
+
+                </div>
+
+                <div class="warning-value">
+                    32
+                </div>
+
+            </div>
+
+
+            <div class="warning-stat">
+
+                <div class="warning-icon">
+                    📝
+                </div>
+
+                <div class="warning-stat-info">
+
+                    <strong>
+                        Mock Tests
+                    </strong>
+
+                    <span>
+                        Tests remaining
+                    </span>
+
+                </div>
+
+                <div class="warning-value">
+                    18
+                </div>
+
+            </div>
+
+
+            <div class="warning-stat">
+
+                <div class="warning-icon">
+                    🎯
+                </div>
+
+                <div class="warning-stat-info">
+
+                    <strong>
+                        Weak Subjects
+                    </strong>
+
+                    <span>
+                        Require more practice
+                    </span>
+
+                </div>
+
+                <div class="warning-value">
+                    3
+                </div>
+
+            </div>
+
+
+            <div class="warning-stat">
+
+                <div class="warning-icon">
+                    ⏱️
+                </div>
+
+                <div class="warning-stat-info">
+
+                    <strong>
+                        Daily Study Target
+                    </strong>
+
+                    <span>
+                        Recommended from now
+                    </span>
+
+                </div>
+
+                <div class="warning-value">
+                    5h
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         SUBJECTS
+    ================================================== -->
+
+    <section class="card">
+
+        <div class="card-title">
+
+            <h2>
+                🔴 Subjects Requiring Attention
+            </h2>
+
+            <span>
+                Focus Areas
+            </span>
+
+        </div>
+
+
+        <div class="subject-grid">
+
+
+            <div class="subject">
+
+                <div class="subject-top">
+
+                    <span class="subject-name">
+                        ⚡ Physics
+                    </span>
+
+                    <span class="subject-percent">
+                        31%
+                    </span>
+
+                </div>
+
+
+                <div class="bar">
+
+                    <div class="bar-fill examreminderneedattention-page-inline-1">
+                    </div>
+
+                </div>
+
+
+                <div class="subject-status">
+                    🔴 Critical — Focus immediately
+                </div>
+
+            </div>
+
+
+            <div class="subject">
+
+                <div class="subject-top">
+
+                    <span class="subject-name">
+                        🧪 Chemistry
+                    </span>
+
+                    <span class="subject-percent">
+                        42%
+                    </span>
+
+                </div>
+
+
+                <div class="bar">
+
+                    <div class="bar-fill examreminderneedattention-page-inline-2">
+                    </div>
+
+                </div>
+
+
+                <div class="subject-status">
+                    🔴 Below recommended level
+                </div>
+
+            </div>
+
+
+            <div class="subject">
+
+                <div class="subject-top">
+
+                    <span class="subject-name">
+                        ➗ Mathematics
+                    </span>
+
+                    <span class="subject-percent">
+                        46%
+                    </span>
+
+                </div>
+
+
+                <div class="bar">
+
+                    <div class="bar-fill examreminderneedattention-page-inline-3">
+                    </div>
+
+                </div>
+
+
+                <div class="subject-status">
+                    🟠 Needs more practice
+                </div>
+
+            </div>
+
+
+            <div class="subject">
+
+                <div class="subject-top">
+
+                    <span class="subject-name">
+                        🧬 Biology
+                    </span>
+
+                    <span class="subject-percent">
+                        67%
+                    </span>
+
+                </div>
+
+
+                <div class="bar">
+
+                    <div class="bar-fill examreminderneedattention-page-inline-4">
+                    </div>
+
+                </div>
+
+
+                <div class="subject-status">
+                    🟠 Revision recommended
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         FOCUS MESSAGE
+    ================================================== -->
+
+    <section class="focus-card">
+
+        <div class="focus-content">
+
+            <div class="focus-label">
+
+                🚨 YOUR NEXT STEP
+
+            </div>
+
+
+            <h2>
+
+                Don't Panic. Start Focusing.
+
+            </h2>
+
+
+            <p>
+
+                You still have an opportunity to improve your
+                score. Don't spend your remaining days studying
+                everything equally. Focus on high-priority
+                pending topics, revise frequently asked concepts,
+                practice questions and take mock tests.
+
+                <br><br>
+
+                <strong>
+                    Your performance can change significantly
+                    with focused preparation from today.
+                </strong>
+
+            </p>
+
+
+            <div class="focus-points">
+
+                <div class="focus-point">
+                    🔴 Finish Critical Topics
+                </div>
+
+                <div class="focus-point">
+                    📖 Daily Revision
+                </div>
+
+                <div class="focus-point">
+                    📝 Mock Test Every Day
+                </div>
+
+                <div class="focus-point">
+                    🎯 Improve Weak Subjects
+                </div>
+
+                <div class="focus-point">
+                    ⏰ Follow Study Schedule
+                </div>
+
+            </div>
+
+
+            <div class="actions">
+
+                <button
+                    class="primary-btn"
+                    onclick="startStudy()">
+
+                    🚀 Start Focused Preparation
+
+                </button>
+
+
+                <button
+                    class="secondary-btn"
+                    onclick="viewPending()">
+
+                    🔴 View Critical Topics
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<!-- =====================================================
+     BOTTOM NAV
+===================================================== -->
+
+<nav class="bottom-nav">
+
+    <button onclick="goDashboard()">
+
+        <span class="bottom-icon">
+            🏠
+        </span>
+
+        Home
+
+    </button>
+
+
+    <button>
+
+        <span class="bottom-icon">
+            📚
+        </span>
+
+        Courses
+
+    </button>
+
+
+    <button class="active">
+
+        <span class="bottom-icon">
+            ⚠️
+        </span>
+
+        Alert
+
+    </button>
+
+
+    <button>
+
+        <span class="bottom-icon">
+            📊
+        </span>
+
+        Progress
+
+    </button>
+
+
+    <button onclick="openDrawer()">
+
+        <span class="bottom-icon">
+            ☰
+        </span>
+
+        Menu
+
+    </button>
+
+</nav>
+
+
+<script>
+
+/* =====================================================
+   EXAM COUNTDOWN
+===================================================== */
+
+/*
+   Change this to the actual exam date/time.
+
+   Example:
+   2026-09-06T09:00:00
+*/
+
+const examDate =
+    new Date(
+        "2026-09-06T09:00:00"
+    ).getTime();
+
+
+function updateCountdown(){
+
+    const now =
+        new Date().getTime();
+
+    const distance =
+        examDate - now;
+
+
+    if(distance <= 0){
+
+        ["days","hours","minutes","seconds"]
+        .forEach(id => {
+
+            document.getElementById(id)
+                .textContent = "00";
+
+        });
+
+        return;
+
+    }
+
+
+    const days =
+        Math.floor(
+            distance /
+            (1000 * 60 * 60 * 24)
+        );
+
+
+    const hours =
+        Math.floor(
+            (distance %
+            (1000 * 60 * 60 * 24)) /
+            (1000 * 60 * 60)
+        );
+
+
+    const minutes =
+        Math.floor(
+            (distance %
+            (1000 * 60 * 60)) /
+            (1000 * 60)
+        );
+
+
+    const seconds =
+        Math.floor(
+            (distance %
+            (1000 * 60)) /
+            1000
+        );
+
+
+    document.getElementById("days")
+        .textContent =
+        String(days).padStart(2,"0");
+
+
+    document.getElementById("hours")
+        .textContent =
+        String(hours).padStart(2,"0");
+
+
+    document.getElementById("minutes")
+        .textContent =
+        String(minutes).padStart(2,"0");
+
+
+    document.getElementById("seconds")
+        .textContent =
+        String(seconds).padStart(2,"0");
+
+}
+
+
+updateCountdown();
+
+setInterval(
+    updateCountdown,
+    1000
+);
+
+
+/* =====================================================
+   ACTIONS
+===================================================== */
+
+function startStudy(){
+
+    alert(
+        "Starting your focused preparation..."
+    );
+
+}
+
+
+function viewPending(){
+
+    alert(
+        "Opening critical pending topics..."
+    );
+
+}
+
+
+function goDashboard(){
+
+    alert(
+        "Opening Dashboard..."
+    );
+
+}
+
+
+/* =====================================================
+   DRAWER
+===================================================== */
+
+function openDrawer(){
+
+    document
+        .getElementById("drawer")
+        .classList.add("open");
+
+    document
+        .getElementById("overlay")
+        .classList.add("show");
+
+}
+
+
+function closeDrawer(){
+
+    document
+        .getElementById("drawer")
+        .classList.remove("open");
+
+    document
+        .getElementById("overlay")
+        .classList.remove("show");
+
+}
+
+</script>
+
+</body>
+</html>

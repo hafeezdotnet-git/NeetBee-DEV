@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="common.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ExamPro - Student Referral Offer</title>
+
+
+</head>
+
+
+<body class="referafriend-page">
+
+
+<!-- =========================================
+     TOP OFFER
+========================================= -->
+
+<div class="top-offer">
+
+    🎁 Refer a Friend & Earn Rewards!
+
+    <span>
+        STUDENT SPECIAL
+    </span>
+
+</div>
+
+
+<!-- =========================================
+     HEADER
+========================================= -->
+
+<header class="header">
+
+    <div class="header-left">
+
+        <div
+            class="hamburger"
+            onclick="openDrawer()">
+
+            ☰
+
+        </div>
+
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            ExamPro
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="profile-btn"
+        onclick="goProfile()">
+
+        👤 My Profile
+
+    </button>
+
+</header>
+
+
+<!-- =========================================
+     DRAWER
+========================================= -->
+
+<div
+    class="overlay"
+    id="overlay"
+    onclick="closeDrawer()">
+</div>
+
+
+<div
+    class="drawer"
+    id="drawer">
+
+    <div class="drawer-header">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            ExamPro
+
+        </div>
+
+
+        <div
+            class="close"
+            onclick="closeDrawer()">
+
+            ×
+
+        </div>
+
+    </div>
+
+
+    <div class="drawer-menu">
+
+        <button>🏠 Dashboard</button>
+
+        <button>📚 Courses</button>
+
+        <button>📝 Mock Tests</button>
+
+        <button>📊 My Progress</button>
+
+        <button>📖 Questions & Answers</button>
+
+        <button>🎤 Voice Study</button>
+
+        <button>💬 Messages</button>
+
+        <button>🎁 Refer & Earn</button>
+
+        <button>💳 Payments</button>
+
+        <button>⚙️ Settings</button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================
+     MAIN
+========================================= -->
+
+<main class="container">
+
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <div class="student-badge">
+
+                🎓 STUDENT REFERRAL OFFER
+
+            </div>
+
+
+            <h1>
+
+                Invite Your Friends.
+
+                <span>Earn Rewards.</span>
+
+            </h1>
+
+
+            <p>
+
+                Preparing for your exam is better together!
+                Invite your classmates and friends to join
+                ExamPro. When they register and complete
+                the qualifying action, you can earn rewards.
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- MAIN REWARD -->
+
+    <section class="reward-banner">
+
+        <div class="reward-icon">
+            🎁
+        </div>
+
+
+        <div>
+
+            <h2>
+                Earn ₹100 for Every Friend!
+            </h2>
+
+            <p>
+                Get your referral reward when your friend
+                successfully joins through your referral.
+            </p>
+
+        </div>
+
+
+        <div class="reward-amount">
+            ₹100
+        </div>
+
+    </section>
+
+
+    <!-- OFFER DETAILS -->
+
+    <section class="offer-grid">
+
+
+        <div class="offer-card">
+
+            <div class="icon">
+                👥
+            </div>
+
+            <strong>
+                ₹100
+            </strong>
+
+            <span>
+                Your reward for a qualifying referral
+            </span>
+
+        </div>
+
+
+        <div class="offer-card">
+
+            <div class="icon">
+                🎓
+            </div>
+
+            <strong>
+                ₹50
+            </strong>
+
+            <span>
+                Special benefit for your friend
+            </span>
+
+        </div>
+
+
+        <div class="offer-card">
+
+            <div class="icon">
+                🏆
+            </div>
+
+            <strong>
+                ₹500
+            </strong>
+
+            <span>
+                Bonus after reaching 10 qualifying referrals
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- REFERRAL CODE -->
+
+    <section class="code-card">
+
+        <div class="title">
+
+            <h2>
+                🔗 Your Personal Referral Code
+            </h2>
+
+            <p>
+                Share this code with your friends.
+            </p>
+
+        </div>
+
+
+        <div class="code-row">
+
+            <div
+                class="code"
+                id="referralCode">
+
+                STUDENT25
+
+            </div>
+
+
+            <button
+                class="copy-btn"
+                onclick="copyCode()">
+
+                📋 Copy Code
+
+            </button>
+
+        </div>
+
+
+        <div class="share-row">
+
+            <button
+                class="share-btn"
+                onclick="shareReferral()">
+
+                📤 Share with Friends
+
+            </button>
+
+
+            <button
+                class="share-btn"
+                onclick="copyLink()">
+
+                🔗 Copy Referral Link
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- HOW IT WORKS -->
+
+    <section class="how-card">
+
+        <div class="how-title">
+
+            <h2>
+                How It Works
+            </h2>
+
+            <p>
+                Start earning in three simple steps
+            </p>
+
+        </div>
+
+
+        <div class="steps">
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    1
+                </div>
+
+                <h3>
+                    Share
+                </h3>
+
+                <p>
+                    Send your referral code
+                    to your classmates.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    2
+                </div>
+
+                <h3>
+                    Friend Joins
+                </h3>
+
+                <p>
+                    Your friend registers
+                    using your referral code.
+                </p>
+
+            </div>
+
+
+            <div class="step">
+
+                <div class="step-number">
+                    3
+                </div>
+
+                <h3>
+                    Earn
+                </h3>
+
+                <p>
+                    Receive your reward
+                    after the referral qualifies.
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PROGRESS -->
+
+    <section class="progress-card">
+
+        <div class="progress-header">
+
+            <strong>
+                🏆 Your Referral Progress
+            </strong>
+
+            <span>
+                6 / 10
+            </span>
+
+        </div>
+
+
+        <div class="progress">
+
+            <div class="progress-fill">
+            </div>
+
+        </div>
+
+
+        <div class="progress-bottom">
+
+            <span>
+                6 successful referrals
+            </span>
+
+            <span>
+                4 more for ₹500 bonus
+            </span>
+
+        </div>
+
+    </section>
+
+
+    <!-- FRIEND BENEFIT -->
+
+    <section class="friend-card">
+
+        <div class="friend-icon">
+            🎓
+        </div>
+
+
+        <div class="friend-info">
+
+            <strong>
+                Your friend gets a benefit too!
+            </strong>
+
+            <span>
+                Friends joining through your referral
+                may receive a special joining offer.
+            </span>
+
+        </div>
+
+
+        <div class="friend-reward">
+            ₹50
+        </div>
+
+    </section>
+
+
+    <!-- TERMS -->
+
+    <div class="terms">
+
+        * Referral rewards are subject to the current
+        ExamPro referral terms and qualifying conditions.
+        Rewards are issued only for eligible referrals.
+        ExamPro may modify or discontinue the offer.
+
+    </div>
+
+
+</main>
+
+
+<!-- =========================================
+     BOTTOM NAV
+========================================= -->
+
+<nav class="bottom-nav">
+
+
+    <button onclick="goDashboard()">
+
+        <span class="bottom-icon">
+            🏠
+        </span>
+
+        Home
+
+    </button>
+
+
+    <button>
+
+        <span class="bottom-icon">
+            📚
+        </span>
+
+        Courses
+
+    </button>
+
+
+    <button class="active">
+
+        <span class="bottom-icon">
+            🎁
+        </span>
+
+        Refer
+
+    </button>
+
+
+    <button>
+
+        <span class="bottom-icon">
+            📊
+        </span>
+
+        Progress
+
+    </button>
+
+
+    <button onclick="openDrawer()">
+
+        <span class="bottom-icon">
+            ☰
+        </span>
+
+        Menu
+
+    </button>
+
+</nav>
+
+
+<script>
+
+/* =========================================
+   COPY CODE
+========================================= */
+
+function copyCode(){
+
+    const code =
+        document
+        .getElementById(
+            "referralCode"
+        )
+        .textContent
+        .trim();
+
+
+    if(
+        navigator.clipboard
+    ){
+
+        navigator.clipboard
+            .writeText(code)
+            .then(
+                ()=>{
+                    alert(
+                        "Referral code copied!"
+                    );
+                }
+            );
+
+    }
+
+}
+
+
+/* =========================================
+   COPY LINK
+========================================= */
+
+function copyLink(){
+
+    const link =
+        "https://exampro.example.com/register?ref=STUDENT25";
+
+
+    if(
+        navigator.clipboard
+    ){
+
+        navigator.clipboard
+            .writeText(link)
+            .then(
+                ()=>{
+                    alert(
+                        "Referral link copied!"
+                    );
+                }
+            );
+
+    }
+
+}
+
+
+/* =========================================
+   SHARE
+========================================= */
+
+function shareReferral(){
+
+    const code =
+        document
+        .getElementById(
+            "referralCode"
+        )
+        .textContent
+        .trim();
+
+
+    const message =
+        "🎓 Join me on ExamPro for exam preparation! Use my referral code " +
+        code +
+        " when you register and get the student joining offer.";
+
+
+    const url =
+        "https://exampro.example.com/register?ref=" +
+        code;
+
+
+    if(
+        navigator.share
+    ){
+
+        navigator.share({
+
+            title:
+                "Join ExamPro",
+
+            text:
+                message,
+
+            url:
+                url
+
+        });
+
+    }
+    else{
+
+        navigator.clipboard
+            .writeText(
+                message +
+                "\n" +
+                url
+            );
+
+        alert(
+            "Referral message copied!"
+        );
+
+    }
+
+}
+
+
+/* =========================================
+   DRAWER
+========================================= */
+
+function openDrawer(){
+
+    document
+        .getElementById(
+            "drawer"
+        )
+        .classList.add(
+            "open"
+        );
+
+    document
+        .getElementById(
+            "overlay"
+        )
+        .classList.add(
+            "show"
+        );
+
+}
+
+
+function closeDrawer(){
+
+    document
+        .getElementById(
+            "drawer"
+        )
+        .classList.remove(
+            "open"
+        );
+
+    document
+        .getElementById(
+            "overlay"
+        )
+        .classList.remove(
+            "show"
+        );
+
+}
+
+
+/* =========================================
+   NAVIGATION
+========================================= */
+
+function goDashboard(){
+
+    alert(
+        "Opening Dashboard..."
+    );
+
+}
+
+
+function goProfile(){
+
+    alert(
+        "Opening Student Profile..."
+    );
+
+}
+
+</script>
+
+</body>
+</html>

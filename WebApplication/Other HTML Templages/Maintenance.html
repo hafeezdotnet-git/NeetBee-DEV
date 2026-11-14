@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="common.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ExamPro - System Maintenance</title>
+
+
+</head>
+
+
+<body class="maintenance-page">
+
+
+<!-- ==========================================
+     TOP BANNER
+========================================== -->
+
+<div class="top-banner">
+
+    🛠️ ExamPro System Maintenance
+
+    <span>
+        TEMPORARILY UNAVAILABLE
+    </span>
+
+</div>
+
+
+<!-- ==========================================
+     HEADER
+========================================== -->
+
+<header class="header">
+
+    <div class="header-left">
+
+        <div
+            class="hamburger"
+            onclick="openDrawer()">
+
+            ☰
+
+        </div>
+
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            ExamPro
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="dashboard-btn"
+        onclick="refreshPage()">
+
+        Refresh
+
+    </button>
+
+</header>
+
+
+<!-- ==========================================
+     DRAWER
+========================================== -->
+
+<div
+    class="overlay"
+    id="overlay"
+    onclick="closeDrawer()">
+</div>
+
+
+<div
+    class="drawer"
+    id="drawer">
+
+    <div class="drawer-header">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            ExamPro
+
+        </div>
+
+
+        <div
+            class="close"
+            onclick="closeDrawer()">
+
+            ×
+
+        </div>
+
+    </div>
+
+
+    <div class="drawer-menu">
+
+        <button>🏠 Dashboard</button>
+
+        <button>📚 Courses</button>
+
+        <button>📝 Mock Tests</button>
+
+        <button>📊 Progress</button>
+
+        <button>📖 Questions & Answers</button>
+
+        <button>🎤 Voice Study</button>
+
+        <button>💬 Messages</button>
+
+        <button>🎁 Refer & Earn</button>
+
+        <button>💳 Payments</button>
+
+        <button>⚙️ Settings</button>
+
+    </div>
+
+</div>
+
+
+<!-- ==========================================
+     MAIN
+========================================== -->
+
+<main class="container">
+
+
+    <section class="maintenance-card">
+
+
+        <!-- ICON -->
+
+        <div class="maintenance-icon">
+            🛠️
+        </div>
+
+
+        <!-- TITLE -->
+
+        <h1>
+            We'll Be Back Soon!
+        </h1>
+
+
+        <p class="subtitle">
+
+            ExamPro is currently undergoing scheduled
+            maintenance to improve your learning
+            experience, performance and security.
+
+            <br><br>
+
+            Your courses, progress and exam data are safe.
+
+        </p>
+
+
+        <!-- STATUS -->
+
+        <div class="status">
+
+            <span class="status-dot"></span>
+
+            System Maintenance in Progress
+
+        </div>
+
+
+        <!-- COUNTDOWN -->
+
+        <div class="countdown-title">
+
+            Estimated Time Remaining
+
+        </div>
+
+
+        <div class="countdown">
+
+
+            <div class="time-box">
+
+                <strong id="days">
+                    00
+                </strong>
+
+                <span>
+                    Days
+                </span>
+
+            </div>
+
+
+            <div class="time-box">
+
+                <strong id="hours">
+                    02
+                </strong>
+
+                <span>
+                    Hours
+                </span>
+
+            </div>
+
+
+            <div class="time-box">
+
+                <strong id="minutes">
+                    30
+                </strong>
+
+                <span>
+                    Minutes
+                </span>
+
+            </div>
+
+
+            <div class="time-box">
+
+                <strong id="seconds">
+                    00
+                </strong>
+
+                <span>
+                    Seconds
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- DETAILS -->
+
+        <div class="details">
+
+
+            <div class="detail-row">
+
+                <span>
+                    Maintenance Started
+                </span>
+
+                <strong>
+                    10:00 PM
+                </strong>
+
+            </div>
+
+
+            <div class="detail-row">
+
+                <span>
+                    Expected Completion
+                </span>
+
+                <strong>
+                    12:30 AM
+                </strong>
+
+            </div>
+
+
+            <div class="detail-row">
+
+                <span>
+                    Course Data
+                </span>
+
+                <strong class="online">
+                    ✓ Safe
+                </strong>
+
+            </div>
+
+
+            <div class="detail-row">
+
+                <span>
+                    Student Progress
+                </span>
+
+                <strong class="online">
+                    ✓ Safe
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- ACTIONS -->
+
+        <div class="actions">
+
+            <button
+                class="refresh-btn"
+                onclick="refreshPage()">
+
+                🔄 Check Again
+
+            </button>
+
+
+            <button
+                class="support-btn"
+                onclick="contactSupport()">
+
+                💬 Contact Support
+
+            </button>
+
+        </div>
+
+
+        <p class="note">
+
+            You can safely return to this page later.
+
+            <br>
+
+            <strong>
+                Thank you for your patience while we make
+                ExamPro better for you.
+            </strong>
+
+        </p>
+
+
+    </section>
+
+
+</main>
+
+
+<!-- ==========================================
+     BOTTOM NAV
+========================================== -->
+
+<nav class="bottom-nav">
+
+
+    <button>
+
+        <span class="bottom-icon">
+            🏠
+        </span>
+
+        Home
+
+    </button>
+
+
+    <button>
+
+        <span class="bottom-icon">
+            📚
+        </span>
+
+        Courses
+
+    </button>
+
+
+    <button class="active">
+
+        <span class="bottom-icon">
+            🛠️
+        </span>
+
+        Status
+
+    </button>
+
+
+    <button>
+
+        <span class="bottom-icon">
+            💬
+        </span>
+
+        Support
+
+    </button>
+
+
+    <button onclick="openDrawer()">
+
+        <span class="bottom-icon">
+            ☰
+        </span>
+
+        Menu
+
+    </button>
+
+
+</nav>
+
+
+<script>
+
+/* ==========================================
+   MAINTENANCE COUNTDOWN
+========================================== */
+
+/*
+   Set your actual maintenance end time here.
+
+   Example:
+   new Date("August 9, 2026 00:30:00")
+*/
+
+const maintenanceEnd =
+    new Date(
+        Date.now() +
+        (
+            2 * 60 * 60 * 1000
+        ) +
+        (
+            30 * 60 * 1000
+        )
+    );
+
+
+function updateCountdown(){
+
+    const now =
+        new Date();
+
+
+    const difference =
+        maintenanceEnd - now;
+
+
+    if(difference <= 0){
+
+        document.getElementById(
+            "days"
+        ).textContent = "00";
+
+        document.getElementById(
+            "hours"
+        ).textContent = "00";
+
+        document.getElementById(
+            "minutes"
+        ).textContent = "00";
+
+        document.getElementById(
+            "seconds"
+        ).textContent = "00";
+
+
+        return;
+
+    }
+
+
+    const days =
+        Math.floor(
+            difference /
+            (
+                1000 *
+                60 *
+                60 *
+                24
+            )
+        );
+
+
+    const hours =
+        Math.floor(
+            (
+                difference /
+                (
+                    1000 *
+                    60 *
+                    60
+                )
+            ) % 24
+        );
+
+
+    const minutes =
+        Math.floor(
+            (
+                difference /
+                (
+                    1000 *
+                    60
+                )
+            ) % 60
+        );
+
+
+    const seconds =
+        Math.floor(
+            (
+                difference /
+                1000
+            ) % 60
+        );
+
+
+    document.getElementById(
+        "days"
+    ).textContent =
+        String(days).padStart(2,"0");
+
+
+    document.getElementById(
+        "hours"
+    ).textContent =
+        String(hours).padStart(2,"0");
+
+
+    document.getElementById(
+        "minutes"
+    ).textContent =
+        String(minutes).padStart(2,"0");
+
+
+    document.getElementById(
+        "seconds"
+    ).textContent =
+        String(seconds).padStart(2,"0");
+
+}
+
+
+setInterval(
+    updateCountdown,
+    1000
+);
+
+updateCountdown();
+
+
+/* ==========================================
+   REFRESH
+========================================== */
+
+function refreshPage(){
+
+    /*
+       Production:
+
+       window.location.reload();
+
+       Or call your health-check API first:
+
+       GET /api/system/status
+    */
+
+    window.location.reload();
+
+}
+
+
+/* ==========================================
+   SUPPORT
+========================================== */
+
+function contactSupport(){
+
+    alert(
+        "Opening ExamPro Support..."
+    );
+
+}
+
+
+/* ==========================================
+   DRAWER
+========================================== */
+
+function openDrawer(){
+
+    document
+        .getElementById(
+            "drawer"
+        )
+        .classList.add(
+            "open"
+        );
+
+    document
+        .getElementById(
+            "overlay"
+        )
+        .classList.add(
+            "show"
+        );
+
+}
+
+
+function closeDrawer(){
+
+    document
+        .getElementById(
+            "drawer"
+        )
+        .classList.remove(
+            "open"
+        );
+
+    document
+        .getElementById(
+            "overlay"
+        )
+        .classList.remove(
+            "show"
+        );
+
+}
+
+</script>
+
+</body>
+</html>

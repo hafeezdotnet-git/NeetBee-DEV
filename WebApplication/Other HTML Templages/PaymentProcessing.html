@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="common.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ExamPro - Payment</title>
+
+
+</head>
+
+
+<body class="paymentprocessing-page">
+
+
+<!-- OFFER -->
+
+<div class="offer-banner">
+
+    🎁 <strong>LIMITED OFFER</strong>
+
+    Get 50% OFF on Premium Mock Tests
+
+    <button class="offer-btn">
+        Register Now
+    </button>
+
+</div>
+
+
+<!-- HEADER -->
+
+<header class="header">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🎓
+        </div>
+
+        ExamPro
+
+    </div>
+
+    <div class="secure-header">
+        🔒 Secure Checkout
+    </div>
+
+</header>
+
+
+<main class="container">
+
+
+    <!-- =========================
+         PAYMENT PROCESSING
+    ========================== -->
+
+    <section
+        class="screen active"
+        id="processingScreen">
+
+
+        <div class="processing-icon">
+
+            <div class="card-symbol">
+                💳
+            </div>
+
+        </div>
+
+
+        <h1 class="processing-title">
+            Processing Payment
+        </h1>
+
+
+        <p class="processing-text">
+
+            Please wait while we securely
+            process your payment.
+
+            <br>
+
+            Do not close or refresh this page.
+
+            <span class="dots">
+                <span>.</span>
+                <span>.</span>
+                <span>.</span>
+            </span>
+
+        </p>
+
+
+        <div class="processing-status">
+
+            <div class="status-row">
+
+                <span>
+                    Payment Amount
+                </span>
+
+                <strong>
+                    ₹999
+                </strong>
+
+            </div>
+
+
+            <div class="status-row">
+
+                <span>
+                    Payment Method
+                </span>
+
+                <strong>
+                    UPI
+                </strong>
+
+            </div>
+
+
+            <div class="status-row">
+
+                <span>
+                    Status
+                </span>
+
+                <strong>
+                    Processing...
+                </strong>
+
+            </div>
+
+        </div>
+
+
+        <div class="security">
+
+            🔐 Your payment information is securely
+            encrypted.
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SUCCESS
+    ========================== -->
+
+    <section
+        class="screen"
+        id="successScreen">
+
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+
+        <h1 class="success-title">
+            Payment Successful! 🎉
+        </h1>
+
+
+        <p class="success-message">
+
+            Congratulations!
+
+            Your ExamPro registration has been
+            successfully completed.
+
+        </p>
+
+
+        <!-- ORDER DETAILS -->
+
+        <div class="order-box">
+
+
+            <div class="order-row">
+
+                <span>
+                    Order ID
+                </span>
+
+                <strong
+                    class="order-id"
+                    id="orderId">
+                    EXM-20260808-78452
+                </strong>
+
+            </div>
+
+
+            <div class="order-row">
+
+                <span>
+                    Student
+                </span>
+
+                <strong>
+                    Hafeez
+                </strong>
+
+            </div>
+
+
+            <div class="order-row">
+
+                <span>
+                    Plan
+                </span>
+
+                <strong>
+                    Premium Exam Plan
+                </strong>
+
+            </div>
+
+
+            <div class="order-row">
+
+                <span>
+                    Duration
+                </span>
+
+                <strong>
+                    3 Months
+                </strong>
+
+            </div>
+
+
+            <div class="order-row">
+
+                <span>
+                    Amount Paid
+                </span>
+
+                <strong>
+                    ₹999
+                </strong>
+
+            </div>
+
+
+            <div class="order-row">
+
+                <span>
+                    Payment Status
+                </span>
+
+                <strong class="paymentprocessing-page-inline-1">
+                    ✓ Paid
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- ACCESS -->
+
+        <div class="access-box">
+
+            <h3>
+                🎓 Your Exam Access is Ready
+            </h3>
+
+            <p>
+                You can now access Mathematics,
+                Physics, Chemistry, Biology and
+                Zoology mock tests from your
+                student dashboard.
+            </p>
+
+        </div>
+
+
+        <!-- ACTIONS -->
+
+        <div class="actions">
+
+            <button
+                class="btn primary"
+                onclick="goDashboard()">
+
+                🏠 Go to Dashboard
+
+            </button>
+
+
+            <button
+                class="btn secondary"
+                onclick="startExam()">
+
+                📝 Start Exam
+
+            </button>
+
+        </div>
+
+
+        <div class="security">
+
+            ✓ Payment receipt has been generated
+            successfully.
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+<script>
+
+/* =========================
+   SIMULATE PAYMENT
+========================= */
+
+/*
+   Demo only.
+
+   In production, do NOT use a client-side
+   timer to determine payment success.
+
+   Instead:
+   Payment Gateway
+        ↓
+   Server Verification
+        ↓
+   Verified Payment
+        ↓
+   Success Screen
+*/
+
+setTimeout(function(){
+
+    showSuccess();
+
+},5000);
+
+
+/* =========================
+   SHOW SUCCESS
+========================= */
+
+function showSuccess(){
+
+    document
+        .getElementById("processingScreen")
+        .classList.remove("active");
+
+    document
+        .getElementById("successScreen")
+        .classList.add("active");
+
+}
+
+
+/* =========================
+   DASHBOARD
+========================= */
+
+function goDashboard(){
+
+    alert(
+        "Opening Student Dashboard..."
+    );
+
+    // Example:
+    // window.location.href = "dashboard.html";
+
+}
+
+
+/* =========================
+   START EXAM
+========================= */
+
+function startExam(){
+
+    alert(
+        "Opening your examination..."
+    );
+
+    // Example:
+    // window.location.href = "exam.html";
+
+}
+
+</script>
+
+</body>
+</html>

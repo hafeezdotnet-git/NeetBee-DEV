@@ -1,0 +1,922 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="common.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ExamPro - Send Message</title>
+
+
+</head>
+
+
+<body class="sendmessage-page">
+
+
+<!-- ==========================================
+     OFFER
+========================================== -->
+
+<div class="offer-banner">
+
+    💬 <strong>EXAMPRO SUPPORT</strong>
+
+    Need help with your preparation?
+
+    <button onclick="goMessages()">
+        View Messages
+    </button>
+
+</div>
+
+
+<!-- ==========================================
+     HEADER
+========================================== -->
+
+<header class="header">
+
+    <div class="header-left">
+
+        <div
+            class="hamburger"
+            onclick="openDrawer()">
+
+            ☰
+
+        </div>
+
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            ExamPro
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="header-btn"
+        onclick="goDashboard()">
+
+        Dashboard
+
+    </button>
+
+</header>
+
+
+<!-- ==========================================
+     DRAWER
+========================================== -->
+
+<div
+    class="overlay"
+    id="drawerOverlay"
+    onclick="closeDrawer()">
+</div>
+
+
+<div
+    class="drawer"
+    id="drawer">
+
+    <div class="drawer-header">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            ExamPro
+
+        </div>
+
+
+        <div
+            class="close"
+            onclick="closeDrawer()">
+
+            ×
+
+        </div>
+
+    </div>
+
+
+    <div class="drawer-menu">
+
+        <button>🏠 Dashboard</button>
+
+        <button>📚 Courses</button>
+
+        <button>📝 Mock Tests</button>
+
+        <button>📊 Progress</button>
+
+        <button>📖 Questions & Answers</button>
+
+        <button>🎤 Voice Study</button>
+
+        <button>💬 Messages</button>
+
+        <button>💳 Payments</button>
+
+        <button>⚙️ Settings</button>
+
+    </div>
+
+</div>
+
+
+<!-- ==========================================
+     MAIN
+========================================== -->
+
+<main class="container">
+
+
+    <!-- PAGE HEADER -->
+
+    <section class="page-header">
+
+        <button
+            class="back-btn"
+            onclick="goMessages()">
+
+            ←
+
+        </button>
+
+
+        <div class="page-icon">
+            ✉️
+        </div>
+
+
+        <div>
+
+            <h1>
+                Send Message
+            </h1>
+
+            <p>
+                Contact ExamPro support or your instructor.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================
+         COMPOSE CARD
+    ========================================== -->
+
+    <section
+        class="compose-card"
+        id="composeCard">
+
+
+        <!-- RECIPIENT -->
+
+        <div class="form-group">
+
+            <div class="form-label">
+
+                <span>
+                    TO
+                </span>
+
+                Recipient
+
+            </div>
+
+
+            <div class="recipient-box">
+
+                <div class="recipient-avatar">
+                    🎓
+                </div>
+
+
+                <div class="recipient-info">
+
+                    <strong>
+                        ExamPro Support
+                    </strong>
+
+                    <span>
+                        Support & Student Assistance
+                    </span>
+
+                </div>
+
+
+                <button
+                    class="change-recipient"
+                    onclick="changeRecipient()">
+
+                    Change
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- SUBJECT -->
+
+        <div class="form-group">
+
+            <div class="form-label">
+
+                <span>
+                    SUBJECT
+                </span>
+
+                Message subject
+
+            </div>
+
+
+            <input
+                class="input"
+                id="subject"
+                type="text"
+                maxlength="100"
+                placeholder="Enter your message subject">
+
+        </div>
+
+
+        <!-- MESSAGE -->
+
+        <div class="form-group">
+
+            <div class="form-label">
+
+                <span>
+                    MESSAGE
+                </span>
+
+                <span id="characterCount">
+                    0 / 2000
+                </span>
+
+            </div>
+
+
+            <textarea
+                class="message-area"
+                id="message"
+                maxlength="2000"
+                placeholder="Write your message here... For example: I need help understanding my Physics performance report.">
+            </textarea>
+
+
+            <div class="message-footer">
+
+                <div class="message-tools">
+
+                    <button
+                        class="tool-btn"
+                        onclick="document.getElementById('fileInput').click()">
+
+                        📎 Attach File
+
+                    </button>
+
+
+                    <button
+                        class="tool-btn"
+                        onclick="startVoiceInput()">
+
+                        🎤 Voice Input
+
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <input
+                type="file"
+                id="fileInput"
+                hidden
+                multiple
+                onchange="handleFiles(this.files)">
+
+
+            <div
+                class="attachment-list"
+                id="attachmentList">
+            </div>
+
+        </div>
+
+
+        <!-- PRIORITY -->
+
+        <div class="form-group">
+
+            <div class="form-label">
+
+                MESSAGE PRIORITY
+
+                <span>
+                    Optional
+                </span>
+
+            </div>
+
+
+            <div class="priority-options">
+
+                <button
+                    class="priority"
+                    onclick="setPriority(this)">
+
+                    🟢 Normal
+
+                </button>
+
+
+                <button
+                    class="priority"
+                    onclick="setPriority(this)">
+
+                    🟡 Important
+
+                </button>
+
+
+                <button
+                    class="priority"
+                    onclick="setPriority(this)">
+
+                    🔴 Urgent
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- SEND -->
+
+        <div class="send-area">
+
+            <label class="save-draft">
+
+                <input
+                    type="checkbox"
+                    id="saveDraft">
+
+                Save as draft
+
+            </label>
+
+
+            <button
+                class="send-btn"
+                onclick="sendMessage()">
+
+                🚀 Send Message
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================
+         SUCCESS
+    =========================================== -->
+
+    <section
+        class="compose-card success-screen"
+        id="successScreen">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+
+        <h2>
+            Message Sent Successfully!
+        </h2>
+
+
+        <p>
+
+            Your message has been sent to ExamPro Support.
+
+            <br>
+
+            We'll get back to you as soon as possible.
+
+        </p>
+
+
+        <button
+            class="success-back"
+            onclick="goMessages()">
+
+            ← Back to Messages
+
+        </button>
+
+    </section>
+
+
+</main>
+
+
+<!-- ==========================================
+     BOTTOM NAV
+========================================== -->
+
+<nav class="bottom-nav">
+
+    <button onclick="goDashboard()">
+
+        <span class="bottom-icon">
+            🏠
+        </span>
+
+        Home
+
+    </button>
+
+
+    <button>
+
+        <span class="bottom-icon">
+            📚
+        </span>
+
+        Courses
+
+    </button>
+
+
+    <button class="active">
+
+        <span class="bottom-icon">
+            ✉️
+        </span>
+
+        Message
+
+    </button>
+
+
+    <button>
+
+        <span class="bottom-icon">
+            📊
+        </span>
+
+        Progress
+
+    </button>
+
+
+    <button onclick="openDrawer()">
+
+        <span class="bottom-icon">
+            ☰
+        </span>
+
+        Menu
+
+    </button>
+
+</nav>
+
+
+<script>
+
+/* ==========================================
+   CHARACTER COUNTER
+========================================== */
+
+const message =
+    document.getElementById(
+        "message"
+    );
+
+const characterCount =
+    document.getElementById(
+        "characterCount"
+    );
+
+
+message.addEventListener(
+    "input",
+    function(){
+
+        characterCount.textContent =
+            this.value.length +
+            " / 2000";
+
+    }
+);
+
+
+/* ==========================================
+   PRIORITY
+========================================== */
+
+function setPriority(button){
+
+    document
+        .querySelectorAll(
+            ".priority"
+        )
+        .forEach(
+            item =>
+            item.classList.remove(
+                "active"
+            )
+        );
+
+
+    button.classList.add(
+        "active"
+    );
+
+}
+
+
+/* ==========================================
+   FILE ATTACHMENTS
+========================================== */
+
+function handleFiles(files){
+
+    const list =
+        document.getElementById(
+            "attachmentList"
+        );
+
+
+    Array.from(files).forEach(
+        file => {
+
+            const item =
+                document.createElement(
+                    "div"
+                );
+
+            item.className =
+                "attachment";
+
+
+            item.innerHTML = `
+
+                <div class="file-icon">
+                    📎
+                </div>
+
+                <div class="file-info">
+
+                    <strong>
+                        ${file.name}
+                    </strong>
+
+                    <span>
+                        ${formatFileSize(file.size)}
+                    </span>
+
+                </div>
+
+                <button
+                    class="remove-file"
+                    onclick="this.parentElement.remove()">
+
+                    ×
+
+                </button>
+
+            `;
+
+
+            list.appendChild(item);
+
+        }
+    );
+
+}
+
+
+function formatFileSize(bytes){
+
+    if(bytes < 1024){
+
+        return bytes + " B";
+
+    }
+
+
+    if(bytes < 1024 * 1024){
+
+        return (
+            bytes / 1024
+        ).toFixed(1) + " KB";
+
+    }
+
+
+    return (
+        bytes /
+        (1024 * 1024)
+    ).toFixed(1) + " MB";
+
+}
+
+
+/* ==========================================
+   VOICE INPUT
+========================================== */
+
+let recognition = null;
+
+function startVoiceInput(){
+
+    const SpeechRecognition =
+        window.SpeechRecognition ||
+        window.webkitSpeechRecognition;
+
+
+    if(!SpeechRecognition){
+
+        alert(
+            "Voice input is not supported by this browser."
+        );
+
+        return;
+
+    }
+
+
+    recognition =
+        new SpeechRecognition();
+
+
+    recognition.lang =
+        "en-IN";
+
+    recognition.continuous =
+        false;
+
+    recognition.interimResults =
+        false;
+
+
+    recognition.onresult =
+        function(event){
+
+            const text =
+                event.results[0][0]
+                .transcript;
+
+
+            const current =
+                message.value.trim();
+
+
+            message.value =
+                current
+                    ? current + " " + text
+                    : text;
+
+
+            message.dispatchEvent(
+                new Event("input")
+            );
+
+        };
+
+
+    recognition.onerror =
+        function(){
+
+            alert(
+                "Unable to capture your voice. Please try again."
+            );
+
+        };
+
+
+    recognition.start();
+
+}
+
+
+/* ==========================================
+   CHANGE RECIPIENT
+========================================== */
+
+function changeRecipient(){
+
+    const recipient =
+        prompt(
+            "Enter recipient:",
+            "ExamPro Support"
+        );
+
+
+    if(
+        recipient &&
+        recipient.trim()
+    ){
+
+        document
+            .querySelector(
+                ".recipient-info strong"
+            )
+            .textContent =
+                recipient.trim();
+
+    }
+
+}
+
+
+/* ==========================================
+   SEND MESSAGE
+========================================== */
+
+function sendMessage(){
+
+    const subject =
+        document
+        .getElementById(
+            "subject"
+        )
+        .value
+        .trim();
+
+
+    const body =
+        document
+        .getElementById(
+            "message"
+        )
+        .value
+        .trim();
+
+
+    if(!subject){
+
+        alert(
+            "Please enter a subject."
+        );
+
+        document
+            .getElementById(
+                "subject"
+            )
+            .focus();
+
+        return;
+
+    }
+
+
+    if(!body){
+
+        alert(
+            "Please enter your message."
+        );
+
+        document
+            .getElementById(
+                "message"
+            )
+            .focus();
+
+        return;
+
+    }
+
+
+    /*
+       Production API example:
+
+       POST /api/messages
+
+       {
+           recipientId: "...",
+           subject: subject,
+           body: body,
+           priority: priority,
+           attachments: [...]
+       }
+    */
+
+
+    document.getElementById(
+        "composeCard"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "successScreen"
+    ).style.display =
+        "block";
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+}
+
+
+/* ==========================================
+   NAVIGATION
+========================================== */
+
+function goMessages(){
+
+    alert(
+        "Opening Messages..."
+    );
+
+}
+
+
+function goDashboard(){
+
+    alert(
+        "Opening Dashboard..."
+    );
+
+}
+
+
+/* ==========================================
+   DRAWER
+========================================== */
+
+function openDrawer(){
+
+    document
+        .getElementById(
+            "drawer"
+        )
+        .classList.add(
+            "open"
+        );
+
+    document
+        .getElementById(
+            "drawerOverlay"
+        )
+        .classList.add(
+            "show"
+        );
+
+}
+
+
+function closeDrawer(){
+
+    document
+        .getElementById(
+            "drawer"
+        )
+        .classList.remove(
+            "open"
+        );
+
+    document
+        .getElementById(
+            "drawerOverlay"
+        )
+        .classList.remove(
+            "show"
+        );
+
+}
+
+</script>
+
+</body>
+</html>

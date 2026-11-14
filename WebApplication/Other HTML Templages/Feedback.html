@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="common.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ExamPro - Feedback</title>
+
+
+</head>
+
+
+<body class="feedback-page">
+
+
+<!-- OFFER -->
+
+<div class="offer-banner">
+
+    🎓 <strong>EXAMPRO</strong>
+
+    Help us improve your learning experience
+
+    <button onclick="scrollToFeedback()">
+        Give Feedback
+    </button>
+
+</div>
+
+
+<!-- HEADER -->
+
+<header class="header">
+
+    <div class="header-left">
+
+        <div
+            class="hamburger"
+            onclick="openDrawer()">
+
+            ☰
+
+        </div>
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            ExamPro
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="dashboard-btn"
+        onclick="goDashboard()">
+
+        Dashboard
+
+    </button>
+
+</header>
+
+
+<!-- DRAWER -->
+
+<div
+    class="overlay"
+    id="overlay"
+    onclick="closeDrawer()">
+</div>
+
+
+<div
+    class="drawer"
+    id="drawer">
+
+    <div class="drawer-header">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            ExamPro
+
+        </div>
+
+        <div
+            class="close"
+            onclick="closeDrawer()">
+
+            ×
+
+        </div>
+
+    </div>
+
+
+    <div class="drawer-menu">
+
+        <button>🏠 Dashboard</button>
+
+        <button>📚 Courses</button>
+
+        <button>📝 Mock Tests</button>
+
+        <button>📊 Progress</button>
+
+        <button>📖 Questions & Answers</button>
+
+        <button>🎤 Voice Study</button>
+
+        <button>💳 Payments</button>
+
+        <button>💬 Feedback</button>
+
+        <button>⚙️ Settings</button>
+
+    </div>
+
+</div>
+
+
+<!-- MAIN -->
+
+<main
+    class="container"
+    id="feedbackSection">
+
+
+    <!-- PAGE HEADER -->
+
+    <section class="page-header">
+
+        <div class="feedback-icon">
+            💬
+        </div>
+
+        <h1>
+            We Value Your Feedback
+        </h1>
+
+        <p>
+            Your feedback helps us make ExamPro better,
+            faster and more useful for your exam preparation.
+        </p>
+
+    </section>
+
+
+    <!-- FEEDBACK CARD -->
+
+    <section
+        class="feedback-card"
+        id="feedbackCard">
+
+
+        <!-- RATING -->
+
+        <div class="section">
+
+            <div class="section-title">
+
+                How would you rate your
+                ExamPro experience?
+
+                <div class="section-subtitle">
+                    Tap a star to rate your experience
+                </div>
+
+            </div>
+
+
+            <div class="rating">
+
+                <button
+                    class="star"
+                    data-rating="1"
+                    onclick="setRating(1)">
+                    ★
+                </button>
+
+                <button
+                    class="star"
+                    data-rating="2"
+                    onclick="setRating(2)">
+                    ★
+                </button>
+
+                <button
+                    class="star"
+                    data-rating="3"
+                    onclick="setRating(3)">
+                    ★
+                </button>
+
+                <button
+                    class="star"
+                    data-rating="4"
+                    onclick="setRating(4)">
+                    ★
+                </button>
+
+                <button
+                    class="star"
+                    data-rating="5"
+                    onclick="setRating(5)">
+                    ★
+                </button>
+
+            </div>
+
+
+            <div
+                class="rating-text"
+                id="ratingText">
+
+                Select your rating
+
+            </div>
+
+        </div>
+
+
+        <!-- CATEGORY -->
+
+        <div class="section">
+
+            <div class="section-title">
+
+                What would you like to give feedback about?
+
+            </div>
+
+
+            <div class="categories">
+
+                <button
+                    class="category"
+                    onclick="selectCategory(this)">
+                    📚 Courses
+                </button>
+
+                <button
+                    class="category"
+                    onclick="selectCategory(this)">
+                    📝 Exams
+                </button>
+
+                <button
+                    class="category"
+                    onclick="selectCategory(this)">
+                    📖 Questions
+                </button>
+
+                <button
+                    class="category"
+                    onclick="selectCategory(this)">
+                    🎤 Voice Feature
+                </button>
+
+                <button
+                    class="category"
+                    onclick="selectCategory(this)">
+                    📊 Progress
+                </button>
+
+                <button
+                    class="category"
+                    onclick="selectCategory(this)">
+                    📱 App / UI
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- COMMENT -->
+
+        <div class="section">
+
+            <div class="section-title">
+
+                Tell us more
+
+                <div class="section-subtitle">
+                    Share your suggestions, problems or ideas.
+                </div>
+
+            </div>
+
+
+            <textarea
+                id="feedbackText"
+                placeholder="Example: I really like the voice questions feature. It would be helpful if I could bookmark difficult questions...">
+            </textarea>
+
+        </div>
+
+
+        <!-- VOICE FEEDBACK -->
+
+        <div class="section">
+
+            <div class="section-title">
+
+                🎤 Voice Feedback
+
+                <div class="section-subtitle">
+                    You can also speak your feedback.
+                </div>
+
+            </div>
+
+
+            <div class="voice-box">
+
+                <div class="voice-info">
+
+                    <div class="voice-icon">
+                        🎙️
+                    </div>
+
+                    <div>
+
+                        <strong>
+                            Record your feedback
+                        </strong>
+
+                        <span>
+                            Tap the button and start speaking
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="voice-btn"
+                    id="voiceBtn"
+                    onclick="toggleVoice()">
+
+                    🎤 Start Recording
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- SUBMIT -->
+
+        <button
+            class="submit-btn"
+            onclick="submitFeedback()">
+
+            💜 Submit Feedback
+
+        </button>
+
+
+        <div class="privacy">
+
+            🔒 Your feedback is used only to improve ExamPro.
+
+        </div>
+
+    </section>
+
+
+    <!-- SUCCESS -->
+
+    <section
+        class="feedback-card success"
+        id="successCard">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <h2>
+            Thank You! 💜
+        </h2>
+
+        <p>
+
+            Your feedback has been submitted successfully.
+
+            <br>
+
+            We appreciate you taking the time to help us
+            improve ExamPro.
+
+        </p>
+
+
+        <button
+            class="back-btn"
+            onclick="resetFeedback()">
+
+            Give Another Feedback
+
+        </button>
+
+    </section>
+
+
+</main>
+
+
+<!-- BOTTOM NAV -->
+
+<nav class="bottom-nav">
+
+    <button onclick="goDashboard()">
+
+        <span class="bottom-icon">
+            🏠
+        </span>
+
+        Home
+
+    </button>
+
+
+    <button>
+
+        <span class="bottom-icon">
+            📚
+        </span>
+
+        Courses
+
+    </button>
+
+
+    <button class="active">
+
+        <span class="bottom-icon">
+            💬
+        </span>
+
+        Feedback
+
+    </button>
+
+
+    <button>
+
+        <span class="bottom-icon">
+            📊
+        </span>
+
+        Progress
+
+    </button>
+
+
+    <button onclick="openDrawer()">
+
+        <span class="bottom-icon">
+            ☰
+        </span>
+
+        Menu
+
+    </button>
+
+</nav>
+
+
+<script>
+
+/* ==========================================
+   RATING
+========================================== */
+
+let selectedRating = 0;
+
+
+const ratingMessages = {
+
+    1:"😞 We're sorry about your experience.",
+
+    2:"😕 We'll work harder to improve.",
+
+    3:"🙂 Thanks! We can still do better.",
+
+    4:"😊 Great! We're glad you like ExamPro.",
+
+    5:"🤩 Excellent! Thank you!"
+
+};
+
+
+function setRating(rating){
+
+    selectedRating = rating;
+
+
+    document
+        .querySelectorAll(".star")
+        .forEach(star => {
+
+            const value =
+                Number(
+                    star.dataset.rating
+                );
+
+            star.classList.toggle(
+                "active",
+                value <= rating
+            );
+
+        });
+
+
+    document.getElementById(
+        "ratingText"
+    ).textContent =
+        ratingMessages[rating];
+
+}
+
+
+/* ==========================================
+   CATEGORY
+========================================== */
+
+function selectCategory(button){
+
+    document
+        .querySelectorAll(".category")
+        .forEach(item => {
+
+            item.classList.remove(
+                "active"
+            );
+
+        });
+
+
+    button.classList.add(
+        "active"
+    );
+
+}
+
+
+/* ==========================================
+   VOICE RECORDING
+========================================== */
+
+let recognition = null;
+
+let recording = false;
+
+
+function toggleVoice(){
+
+    const button =
+        document.getElementById(
+            "voiceBtn"
+        );
+
+
+    /*
+       Browser support check
+    */
+
+    const SpeechRecognition =
+        window.SpeechRecognition ||
+        window.webkitSpeechRecognition;
+
+
+    if(!SpeechRecognition){
+
+        alert(
+            "Voice input is not supported by this browser."
+        );
+
+        return;
+
+    }
+
+
+    if(recording){
+
+        recognition.stop();
+
+        return;
+
+    }
+
+
+    recognition =
+        new SpeechRecognition();
+
+
+    recognition.lang =
+        "en-IN";
+
+
+    recognition.continuous =
+        true;
+
+
+    recognition.interimResults =
+        true;
+
+
+    recognition.onstart =
+        ()=>{
+
+            recording = true;
+
+            button.textContent =
+                "⏹ Stop Recording";
+
+        };
+
+
+    recognition.onresult =
+        event =>{
+
+            let text = "";
+
+            for(
+                let i =
+                    event.resultIndex;
+
+                i <
+                    event.results.length;
+
+                i++
+            ){
+
+                text +=
+                    event.results[i][0]
+                    .transcript;
+
+            }
+
+
+            document.getElementById(
+                "feedbackText"
+            ).value =
+                text;
+
+        };
+
+
+    recognition.onerror =
+        ()=>{
+            recording = false;
+
+            button.textContent =
+                "🎤 Start Recording";
+        };
+
+
+    recognition.onend =
+        ()=>{
+
+            recording = false;
+
+            button.textContent =
+                "🎤 Start Recording";
+
+        };
+
+
+    recognition.start();
+
+}
+
+
+/* ==========================================
+   SUBMIT
+========================================== */
+
+function submitFeedback(){
+
+    const feedback =
+        document.getElementById(
+            "feedbackText"
+        ).value.trim();
+
+
+    if(selectedRating === 0){
+
+        alert(
+            "Please select a rating."
+        );
+
+        return;
+
+    }
+
+
+    if(feedback === ""){
+
+        alert(
+            "Please enter your feedback."
+        );
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "feedbackCard"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "successCard"
+    ).style.display =
+        "block";
+
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+
+    /*
+       Production implementation:
+
+       Send data to backend:
+
+       {
+          rating: selectedRating,
+          category: selectedCategory,
+          feedback: feedback
+       }
+    */
+
+}
+
+
+/* ==========================================
+   RESET
+========================================== */
+
+function resetFeedback(){
+
+    selectedRating = 0;
+
+
+    document
+        .querySelectorAll(".star")
+        .forEach(
+            star =>
+            star.classList.remove(
+                "active"
+            )
+        );
+
+
+    document.getElementById(
+        "ratingText"
+    ).textContent =
+        "Select your rating";
+
+
+    document.getElementById(
+        "feedbackText"
+    ).value = "";
+
+
+    document
+        .querySelectorAll(".category")
+        .forEach(
+            category =>
+            category.classList.remove(
+                "active"
+            )
+        );
+
+
+    document.getElementById(
+        "successCard"
+    ).style.display =
+        "none";
+
+
+    document.getElementById(
+        "feedbackCard"
+    ).style.display =
+        "block";
+
+}
+
+
+/* ==========================================
+   SCROLL
+========================================== */
+
+function scrollToFeedback(){
+
+    document
+        .getElementById(
+            "feedbackSection"
+        )
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+
+/* ==========================================
+   DRAWER
+========================================== */
+
+function openDrawer(){
+
+    document
+        .getElementById("drawer")
+        .classList.add("open");
+
+    document
+        .getElementById("overlay")
+        .classList.add("show");
+
+}
+
+
+function closeDrawer(){
+
+    document
+        .getElementById("drawer")
+        .classList.remove("open");
+
+    document
+        .getElementById("overlay")
+        .classList.remove("show");
+
+}
+
+
+/* ==========================================
+   DASHBOARD
+========================================== */
+
+function goDashboard(){
+
+    alert(
+        "Opening Dashboard..."
+    );
+
+}
+
+</script>
+
+</body>
+</html>

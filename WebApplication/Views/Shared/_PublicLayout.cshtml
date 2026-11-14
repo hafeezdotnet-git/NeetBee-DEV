@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <partial name="_Head" />
+</head>
+<body class="public-body">
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+
+    <partial name="_PublicHeader" />
+
+    <main id="main-content" class="page-main">
+        @RenderBody()
+    </main>
+
+    <partial name="_Footer" />
+
+    <div class="toast" role="status" aria-live="polite"></div>
+
+    <script>
+        (function () {
+            var toggle = document.querySelector('.hamburger');
+            var nav = document.querySelector('.nav');
+            if (!toggle || !nav) return;
+            toggle.addEventListener('click', function () {
+                var open = nav.classList.toggle('open');
+                toggle.setAttribute('aria-expanded', String(open));
+            });
+        })();
+    </script>
+    <script>
+        // Theme toggle and search, matching the static site's behaviour (the static site uses js/main.js).
+        (function () {
+            var toastEl = document.querySelector('.toast');
+            var timer;
+            function showToast(text) {
+                if (!toastEl) return;
+                toastEl.textContent = text;
+                toastEl.classList.add('show');
+                clearTimeout(timer);
+                timer = setTimeout(function () { toastEl.classList.remove('show'); }, 2500);
+            }
+
+            // Remember the theme between pages. The static site uses the same key (js/main.js).
+            try {
+                if (localStorage.getItem('neetbee-theme') === 'dark') document.body.classList.add('dark');
+            } catch (e) { /* storage can be blocked; the theme then lasts for this page only */ }
+
+            var themeBtn = document.querySelector('.theme-toggle');
+            if (themeBtn) {
+                themeBtn.addEventListener('click', function () {
+                    document.body.classList.toggle('dark');
+                    try {
+                        localStorage.setItem('neetbee-theme', document.body.classList.contains('dark') ? 'dark' : 'light');
+                    } catch (e) { /* ignore */ }
+                    showToast(document.body.classList.contains('dark') ? 'Dark theme enabled' : 'Light theme enabled');
+                });
+            }
+
+            // The search box is already in the header, just before the icon. The icon shows it and hides it.
+            var searchBtn = document.querySelector('.search-trigger');
+            var searchBox = document.getElementById('site-search');
+            if (searchBtn && searchBox) {
+                var setSearch = function (open) {
+                    searchBox.hidden = !open;
+                    searchBtn.setAttribute('aria-expanded', String(open));
+                    if (open) searchBox.focus();
+                };
+
+                searchBtn.addEventListener('click', function () {
+                    setSearch(searchBox.hidden);
+                });
+
+                searchBox.addEventListener('keydown', function (e) {
+                    if (e.key === 'Enter') {
+                        var q = searchBox.value.trim().toLowerCase();
+                        if (!q) return;
+                        location.href = q.includes('audio') ? '/audio-learning.html'
+                            : q.includes('paper') ? '/previous-year-papers.html'
+                            : q.includes('mock') ? '/mock-tests.html'
+                            : q.includes('price') ? '/pricing.html'
+                            : q.includes('course') ? '/courses.html'
+                            : '/mcq-practice.html';
+                    }
+                    if (e.key === 'Escape') setSearch(false);
+                });
+            }
+        })();
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
