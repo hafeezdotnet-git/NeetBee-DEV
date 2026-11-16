@@ -66,7 +66,8 @@
               "RelativeToolTip": "WebApplication\\Views\\Shared\\_DashboardLayout.cshtml",
               "ViewState": "AgIAAAYAAAAAAAAAAAAwwA8AAABLAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-11-10T14:57:17.8Z"
+              "WhenOpened": "2026-11-10T14:57:17.8Z",
+              "OwnerCaption": "%2"
             },
             {
               "$type": "Document",
@@ -78,7 +79,8 @@
               "RelativeToolTip": "AuthenticationService\\Services\\AuthService.cs",
               "ViewState": "AgIAADYAAAAAAAAAAAAwwEEAAAAjAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-10T12:10:34.596Z"
+              "WhenOpened": "2026-11-10T12:10:34.596Z",
+              "OwnerCaption": "%2"
             },
             {
               "$type": "Document",
@@ -90,7 +92,8 @@
               "RelativeToolTip": "WebApplication\\Controllers\\AccountController.cs",
               "ViewState": "AgIAAEUAAAAAAAAAAAAawFsAAAAeAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-10T09:35:41.125Z"
+              "WhenOpened": "2026-11-10T09:35:41.125Z",
+              "OwnerCaption": "%2"
             },
             {
               "$type": "Document",
@@ -100,10 +103,11 @@
               "RelativeDocumentMoniker": "ApiGateway\\appsettings.json",
               "ToolTip": "D:\\Website\\NEET_BEE_App_v1.0\\backend\\ApiGateway\\appsettings.json",
               "RelativeToolTip": "ApiGateway\\appsettings.json",
-              "ViewState": "AgIAACEAAAAAAAAAAAAowCwAAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAmwBgAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
               "WhenOpened": "2026-11-10T09:33:02.415Z",
-              "EditorCaption": ""
+              "EditorCaption": "",
+              "OwnerCaption": "%2"
             },
             {
               "$type": "Document",
@@ -115,7 +119,8 @@
               "RelativeToolTip": "WebApplication\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-11-10T09:32:41.187Z"
+              "WhenOpened": "2026-11-10T09:32:41.187Z",
+              "OwnerCaption": "%2"
             },
             {
               "$type": "Document",
@@ -127,7 +132,8 @@
               "RelativeToolTip": "WebApplication\\Program.cs",
               "ViewState": "AgIAAHgAAAAAAAAAAAAwwIcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-10T06:38:22.808Z"
+              "WhenOpened": "2026-11-10T06:38:22.808Z",
+              "OwnerCaption": "%2"
             },
             {
               "$type": "Document",
@@ -139,7 +145,8 @@
               "RelativeToolTip": "ApiGateway\\Program.cs",
               "ViewState": "AgIAACkAAAAAAAAAAAAwwDQAAAAqAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-10T06:37:36.221Z"
+              "WhenOpened": "2026-11-10T06:37:36.221Z",
+              "OwnerCaption": "%2"
             },
             {
               "$type": "Document",
@@ -151,7 +158,8 @@
               "RelativeToolTip": "AuthenticationService\\Controllers\\AuthController.cs",
               "ViewState": "AgIAAEoAAAAAAAAAAAAwwFUAAAAUAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-10T13:28:35.931Z"
+              "WhenOpened": "2026-11-10T13:28:35.931Z",
+              "OwnerCaption": "%2"
             },
             {
               "$type": "Document",
@@ -163,7 +171,8 @@
               "RelativeToolTip": "WebApplication\\SiteFileProvider.cs",
               "ViewState": "AgIAAAMAAAAAAAAAAAAgwAoAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-11-10T06:37:48.986Z"
+              "WhenOpened": "2026-11-10T06:37:48.986Z",
+              "OwnerCaption": "%2"
             },
             {
               "$type": "Document",
@@ -175,7 +184,8 @@
               "RelativeToolTip": "AuthenticationService\\appsettings.json",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2026-11-10T10:35:11.521Z"
+              "WhenOpened": "2026-11-10T10:35:11.521Z",
+              "OwnerCaption": "%2"
             },
             {
               "$type": "Document",
@@ -187,7 +197,8 @@
               "RelativeToolTip": "WebApplication\\index.html",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAACcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2026-11-10T06:36:37.412Z"
+              "WhenOpened": "2026-11-10T06:36:37.412Z",
+              "OwnerCaption": "%2"
             }
           ]
         }

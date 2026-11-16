@@ -50,6 +50,9 @@ builder.Services.AddScoped<IStudentProgressService, StudentProgressService>();
 // Voice Q&A: questions from SQL Server (dbo.Questions), and Azure AI Speech (optional; the page falls back to browser speech without a key).
 builder.Services.AddScoped<IVoiceQuestionService, SqlVoiceQuestionService>();
 builder.Services.AddMemoryCache();
+
+// Plan check for the "Go Premium" button in the header (dbo.UserPlans).
+builder.Services.AddScoped<IUserPlanService, UserPlanService>();
 builder.Services.AddHttpClient<AzureSpeechService>(client => client.Timeout = TimeSpan.FromSeconds(15));
 
 // Server-to-server calls to the gateway. The browser never talks to the gateway directly.

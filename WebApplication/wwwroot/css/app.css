@@ -265,3 +265,23 @@ footer > small { display: block; margin-top: 18px; opacity: 0.85; }
     footer .footer-logo { height: 52px; }
     footer > div { gap: 6px; }
 }
+
+/* ---- Sign in: "Don't have an account? Register for free" above an outlined "Sign-In with Google" button ---- */
+.auth-register { margin: 0 0 10px; color: #4a5160; font-size: 15px; text-align: center; }
+.auth-register a { color: #0b6eb4; font-weight: 700; text-decoration: none; }
+.auth-register a:hover { text-decoration: underline; }
+.btn-google {
+  gap: 12px;
+  padding: 13px 16px;
+  border: 1.5px solid #5f6368;
+  border-radius: 12px;
+  color: #3c4043;
+  font-size: 18px;
+  font-weight: 500;
+}
+.btn-google:hover { border-color: #3c4043; background: #f8fafd; }
+.btn-google .g-logo { flex: none; width: 24px; height: 24px; }
+body.dark .auth-register { color: #b9c9e6; }
+body.dark .auth-register a { color: #5cc8ff; }
+body.dark .btn-google { border-color: #8a9bb8; }
+body.dark .btn-google:hover { border-color: #c7d4ea; background: #10244d; }

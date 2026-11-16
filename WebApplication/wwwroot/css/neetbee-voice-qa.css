@@ -899,3 +899,52 @@ a.vqa-pg-num:hover { background: var(--vqa-accent-soft); }
         overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
     }
 }
+
+/* ---------- Top pager (above the questions), with Show / Hide ---------- */
+.vqa-pager-top:empty { display: none; }
+.vqa-pager-top { margin: 0 0 14px; }
+.vqa-pager-top .vqa-pg { margin: 8px 0 0; }
+.vqa-pager-top-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 0 4px;
+}
+.vqa-pager-top-summary { color: var(--vqa-muted); font-size: 13px; font-weight: 600; }
+.vqa-pager-top-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px;
+    border: 1.5px solid var(--vqa-pg-btn-border);
+    border-radius: 999px;
+    background: var(--vqa-pg-bg);
+    color: var(--vqa-accent-text);
+    font-size: 13px;
+    font-weight: 700;
+    cursor: pointer;
+}
+.vqa-pager-top-toggle:hover { border-color: var(--vqa-accent-2); background: var(--vqa-accent-soft); }
+.vqa-pager-top-toggle:focus-visible { outline: 3px solid var(--vqa-accent-2); outline-offset: 2px; }
+.vqa-pager-top-toggle svg { flex: none; transition: transform 0.2s ease; }
+.vqa-pager-top-toggle .vqa-when-closed { display: none; }
+.vqa.vqa-top-pager-collapsed .vqa-pager-top-toggle .vqa-when-open { display: none; }
+.vqa.vqa-top-pager-collapsed .vqa-pager-top-toggle .vqa-when-closed { display: inline; }
+.vqa.vqa-top-pager-collapsed .vqa-pager-top-toggle svg { transform: rotate(180deg); }
+.vqa.vqa-top-pager-collapsed .vqa-pager-top-body { display: none; }
+
+@media (max-width: 640px) {
+    .vqa-pager-top-summary { font-size: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .vqa-pager-top-toggle svg { transition: none; }
+}
+
+/* Keep the voice badge and ⋮ menu clear of the floating gold "Go Premium" button (top-right). */
+@media (max-width: 1400px) {
+    body.has-premium-fab .vqa-head { padding-right: 76px; }
+}
+@media (max-width: 760px) {
+    body.has-premium-fab .vqa-head { padding-right: 60px; }
+}

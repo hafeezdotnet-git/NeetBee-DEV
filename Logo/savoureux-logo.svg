@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 870" width="1400" height="870">
+  <title>Savoureux Pharma Private Limited — Trusted Science for Better Health</title>
+  <defs>
+    <!-- One arm of the mark: an outer swoosh and an inner swoosh. Drawn around the mark's centre (0,0). -->
+    <path id="outer" d="M -150,42 C -112,-12 -132,-150 -62,-214 C -2,-268 100,-240 152,-160 C 84,-212 12,-200 -28,-140 C -70,-78 -92,-6 -150,42 Z"/>
+    <path id="inner" d="M -142,40 C -76,-16 -36,-118 22,-158 C 92,-204 196,-140 208,-36 C 176,-108 112,-122 60,-92 C 2,-56 -58,8 -142,40 Z"/>
+    <linearGradient id="teal" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#138c86"/><stop offset="1" stop-color="#0b6b6c"/>
+    </linearGradient>
+    <linearGradient id="orange" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#d4924f"/><stop offset="1" stop-color="#bf7638"/>
+    </linearGradient>
+    <linearGradient id="swoosh" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#0aa39a"/><stop offset="1" stop-color="#2fc4b8"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1400" height="870" fill="#ffffff"/>
+
+  <!-- Mark: three arms, 120° apart (teal + navy at the top, orange lower right, navy lower left). -->
+  <g transform="translate(696 268)">
+    <g transform="translate(0 -34) scale(0.9)">
+      <use href="#outer" fill="url(#teal)"/>
+      <use href="#inner" fill="#0d3557"/>
+    </g>
+    <g transform="rotate(120) translate(0 -34) scale(0.9)">
+      <use href="#outer" fill="url(#orange)"/>
+      <use href="#inner" fill="#c3803f"/>
+    </g>
+    <g transform="rotate(240) translate(0 -34) scale(0.9)">
+      <use href="#outer" fill="#0f3a5f"/>
+      <use href="#inner" fill="#0b2f4f"/>
+    </g>
+  </g>
+
+  <!-- Name -->
+  <text x="700" y="662" text-anchor="middle" font-family="'Arial Black', 'Segoe UI Black', Arial, sans-serif"
+        font-weight="900" font-size="168" letter-spacing="2" fill="#0e3a67"
+        textLength="1330" lengthAdjust="spacingAndGlyphs">SAVOUREUX</text>
+  <!-- Teal swoosh across the A, as in the original -->
+  <path d="M 165,660 C 210,600 290,592 335,606 C 285,604 228,618 196,662 Z" fill="url(#swoosh)"/>
+
+  <!-- PHARMA PRIVATE LIMITED -->
+  <text x="700" y="746" text-anchor="middle" font-family="Arial, 'Segoe UI', sans-serif" font-weight="700"
+        font-size="50" fill="#0e3a67" textLength="1320" lengthAdjust="spacing">PHARMA PRIVATE LIMITED</text>
+
+  <!-- Tagline between two teal rules -->
+  <line x1="22" y1="814" x2="246" y2="814" stroke="#16807b" stroke-width="5"/>
+  <line x1="1154" y1="814" x2="1378" y2="814" stroke="#16807b" stroke-width="5"/>
+  <text x="700" y="830" text-anchor="middle" font-family="'Trebuchet MS', 'Segoe UI', sans-serif" font-style="italic"
+        font-size="50" fill="#0e3a67" textLength="880" lengthAdjust="spacingAndGlyphs">Trusted Science for Better Health.</text>
+</svg>

@@ -179,7 +179,8 @@
         if (nextSeg) fetchAudio(nextSeg.dataset.say, voice, rate).catch(() => { });
 
         await new Promise((resolve, reject) => {
-            audio = new Audio(url);
+            audio = sharedAudio;
+            audio.src = url;
             finishCurrent = resolve;
             audio.onended = resolve;
             audio.onerror = () => reject(Object.assign(new Error("Audio playback failed"), { fallback: true }));
@@ -190,14 +191,29 @@
     }
 
     // ---------- Browser speech ----------
+    // Device voices differ by browser: Edge has Neerja / Prabhat, Safari (Mac, iPhone) has Rishi / Veena,
+    // Android Chrome has Google's Indian English voices, Chrome and Firefox on Windows usually only US/UK voices.
+    const FEMALE = /neerja|aashi|kavya|ananya|aarti|heera|veena|lekha|isha|zira|hazel|susan|samantha|karen|moira|catherine|female|woman/i;
+    const MALE = /prabhat|aarav|kunal|rehaan|arjun|ravi|rishi|david|mark|george|daniel|james|\bmale\b/i;
     function pickBrowserVoice() {
         if (!synth) return null;
         const voices = synth.getVoices();
-        const hint = (els.voice.selectedOptions[0]?.dataset.hint || "").toLowerCase();
-        const isIndian = (v) => /en[-_]in/i.test(v.lang);
+        const chosen = els.voice.selectedOptions[0];
+        const hint = (chosen?.dataset.hint || "").toLowerCase();
+        const wantFemale = /female/i.test(chosen?.textContent || "");
+        const isIndian = (v) => /en[-_]in/i.test(v.lang) || /india/i.test(v.name);
+        const sameGender = (v) => (wantFemale ? FEMALE.test(v.name) && !/\bmale\b/i.test(v.name) : MALE.test(v.name));
+        const indian = voices.filter(isIndian);
+        const english = voices.filter((v) => /^en/i.test(v.lang));
+        const british = english.filter((v) => /^en[-_]GB/i.test(v.lang));
+        // Exact voice, then an Indian English voice (same gender first), then a UK / other English voice.
         return voices.find((v) => isIndian(v) && v.name.toLowerCase().includes(hint))
-            || voices.find(isIndian)
-            || voices.find((v) => /^en/i.test(v.lang))
+            || indian.find(sameGender)
+            || indian[0]
+            || british.find(sameGender)
+            || english.find(sameGender)
+            || british[0]
+            || english[0]
             || null;
     }
 
@@ -207,36 +223,80 @@
             showNote("This browser cannot speak text. Try Microsoft Edge or Google Chrome.");
             return;
         }
-        const chosen = els.voice.selectedOptions[0];
         const voice = pickBrowserVoice();
+        const indian = voice && (/en[-_]in/i.test(voice.lang) || /india/i.test(voice.name));
         if (!voice) {
-            showNote("No English voice was found on this device.");
-        } else if (!voice.name.toLowerCase().includes((chosen.dataset.hint || "").toLowerCase())) {
-            showNote(`${chosen.textContent} is not available on this device, so "${voice.name}" is used. ` +
-                "Microsoft Edge includes Neerja and Prabhat; all five voices are available when Azure Speech is configured.");
+            showNote("This browser has no English voice installed, so questions cannot be read aloud here.");
+        } else if (indian) {
+            showNote("");   // an Indian English voice from this device is in use
         } else {
-            showNote("");
+            showNote(`This browser has no Indian English voice, so "${voice.name}" is used. ` +
+                "For Indian voices, open this page in Microsoft Edge, Safari or Chrome on Android.");
         }
+    }
+
+    // Splits text into pieces of up to ~180 characters at sentence (or comma / space) boundaries.
+    function chunkText(text) {
+        const pieces = [];
+        for (const sentence of text.match(/[^.!?]+[.!?]*\s*/g) || [text]) {
+            let rest = sentence.trim();
+            while (rest.length > 180) {
+                let cut = rest.lastIndexOf(", ", 180);
+                if (cut < 60) cut = rest.lastIndexOf(" ", 180);
+                if (cut < 60) cut = 180;
+                pieces.push(rest.slice(0, cut + 1).trim());
+                rest = rest.slice(cut + 1).trim();
+            }
+            if (rest) pieces.push(rest);
+        }
+        return pieces.length ? pieces : [text];
     }
 
     function speakBrowser(seg, id) {
         return new Promise((resolve, reject) => {
             if (!synth) { reject(new Error("Speech is not supported in this browser")); return; }
-            const u = new SpeechSynthesisUtterance(seg.dataset.say);
             const voice = pickBrowserVoice();
-            if (voice) u.voice = voice;
-            u.lang = voice ? voice.lang : "en-IN";
-            u.rate = Number(els.rate.value) || 1;
+            const pieces = chunkText(seg.dataset.say);
+            let next = 0;
             finishCurrent = resolve;
-            u.onend = resolve;
-            u.onerror = (e) => (e.error === "interrupted" || e.error === "canceled" ? resolve() : reject(new Error(e.error)));
-            if (id === session) synth.speak(u);
+            const speakNext = () => {
+                if (id !== session) { resolve(); return; }
+                if (next >= pieces.length) { resolve(); return; }
+                const u = new SpeechSynthesisUtterance(pieces[next++]);
+                if (voice) u.voice = voice;
+                u.lang = voice ? voice.lang : "en-IN";
+                u.rate = Number(els.rate.value) || 1;
+                u.onend = speakNext;
+                u.onerror = (e) => (e.error === "interrupted" || e.error === "canceled" ? resolve() : reject(new Error(e.error)));
+                synth.speak(u);
+            };
+            speakNext();
         });
     }
+
+    // Safari and iPhones only allow speech / audio that starts from a tap. Starting something silent
+    // inside the first tap unlocks them for the rest of the visit.
+    let unlocked = false;
+    const sharedAudio = new Audio();
+    function unlockPlayback() {
+        if (unlocked) return;
+        unlocked = true;
+        try {
+            sharedAudio.src = "data:audio/wav;base64,UklGRiQAAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQAAAAA=";
+            const p = sharedAudio.play();
+            if (p && p.catch) p.catch(() => { });
+        } catch { /* nothing to unlock */ }
+        if (synth) {
+            try { const u = new SpeechSynthesisUtterance(""); u.volume = 0; synth.speak(u); } catch { /* ignore */ }
+        }
+    }
+    document.addEventListener("pointerdown", unlockPlayback, { once: true, capture: true });
+    document.addEventListener("keydown", unlockPlayback, { once: true, capture: true });
 
     // ---------- Session control ----------
     function haltOutput() {
         if (audio) { audio.pause(); audio.onended = audio.onerror = null; audio = null; }
+        sharedAudio.onended = sharedAudio.onerror = null;
         if (synth) synth.cancel();
         if (finishCurrent) { const f = finishCurrent; finishCurrent = null; f(); }
     }
@@ -462,13 +522,14 @@
         const res = await fetch(url, { headers: { "X-Requested-With": "fetch" }, credentials: "same-origin" });
         if (!res.ok) throw new Error(`HTTP ${res.status}`);
         const doc = new DOMParser().parseFromString(await res.text(), "text/html");
-        for (const id of ["vqa-list", "vqa-progress", "vqa-pager-wrap"]) {
+        for (const id of ["vqa-list", "vqa-progress", "vqa-pager-top", "vqa-pager-wrap"]) {
             const fresh = doc.getElementById(id);
             const current = $(id);
             if (fresh && current) current.replaceWith(document.importNode(fresh, true));
         }
         history.replaceState(null, "", url);
         applyBookmarks();
+        syncTopPager();
     }
 
     // ---------- Events ----------
@@ -643,7 +704,7 @@
     // ---------- Rows per page ----------
     // Remembered in a cookie (read by the server); keeps the first question on screen in view.
     root.addEventListener("change", (event) => {
-        const select = event.target.closest("#vqa-rows");
+        const select = event.target.closest(".vqa-rows-select");
         if (!select) return;
         const size = Number(select.value);
         document.cookie = `neetbee-vqa-size=${size}; path=/; max-age=31536000; SameSite=Lax`;
@@ -654,6 +715,22 @@
         stop();
         window.location.assign(url);
     });
+
+    // ---------- Top pager: show / hide ----------
+    const TOP_PAGER_KEY = "neetbee-vqa-top-pager";
+    function syncTopPager() {
+        const hidden = root.classList.contains("vqa-top-pager-collapsed");
+        root.querySelectorAll("[data-pager-toggle]").forEach((b) => b.setAttribute("aria-expanded", hidden ? "false" : "true"));
+    }
+    root.addEventListener("click", (event) => {
+        if (!event.target.closest("[data-pager-toggle]")) return;
+        const hidden = !root.classList.contains("vqa-top-pager-collapsed");
+        root.classList.toggle("vqa-top-pager-collapsed", hidden);
+        try { localStorage.setItem(TOP_PAGER_KEY, hidden ? "hidden" : "shown"); } catch { /* storage blocked */ }
+        syncTopPager();
+    });
+    try { if (localStorage.getItem(TOP_PAGER_KEY) === "hidden") root.classList.add("vqa-top-pager-collapsed"); } catch { /* storage blocked */ }
+    syncTopPager();
 
     // ---------- Start-up ----------
     loadSettings();
@@ -667,7 +744,10 @@
         resumeCard.classList.add("is-resume");
     }
     if (!useAzure) {
-        if (synth && synth.getVoices().length === 0) synth.addEventListener("voiceschanged", describeBrowserVoice, { once: true });
+        if (synth && synth.getVoices().length === 0) {
+            if (synth.addEventListener) synth.addEventListener("voiceschanged", describeBrowserVoice, { once: true });
+            setTimeout(describeBrowserVoice, 1200);
+        }
         describeBrowserVoice();
     }
 })();

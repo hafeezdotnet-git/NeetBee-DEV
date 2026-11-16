@@ -15,6 +15,72 @@
     }
     var progressPercent = Model.TotalPages == 0 ? 0 : Model.Page * 100 / Model.TotalPages;
 
+    var hasPager = !Model.Filter.ShowAll && Model.TotalQuestions > NeetBee.Web.Models.VoiceQaFilter.SizeOptions[0];
+
+    // The pager, shown above and below the questions. "where" ("top" / "bottom") keeps element ids unique.
+    async Task Pager(string where)
+    {
+
+        var atFirst = Model.Page == 1;
+        var atLast = Model.Page == Model.TotalPages;
+        <nav class="vqa-pg vqa-pg-@where" aria-label="@(where == "top" ? "Question pages (top)" : "Question pages")">
+            <div class="vqa-pg-nav">
+                @{ await PagerLink(1, atFirst, "First page", "M11 17l-5-5 5-5M18 17l-5-5 5-5"); }
+                @{ await PagerLink(Model.Page - 1, atFirst, "Previous page", "M15 18l-6-6 6-6"); }
+                <span class="vqa-pg-pages">
+                    @foreach (var p in pages)
+                    {
+                        if (p == 0)
+                        {
+                            <span class="vqa-pg-gap" aria-hidden="true">…</span>
+                        }
+                        else if (p == Model.Page)
+                        {
+                            <span class="vqa-pg-num is-current" aria-current="page">@p</span>
+                        }
+                        else
+                        {
+                            <a class="vqa-pg-num" asp-action="VoiceQa" asp-all-route-data="@Model.Filter.RouteValues(p)" aria-label="Page @p">@p</a>
+                        }
+                    }
+                </span>
+                @{ await PagerLink(Model.Page + 1, atLast, "Next page", "M9 18l6-6-6-6"); }
+                @{ await PagerLink(Model.TotalPages, atLast, "Last page", "M13 17l5-5-5-5M6 17l5-5-5-5"); }
+            </div>
+
+            <span class="vqa-pg-sep" aria-hidden="true"></span>
+
+            @* "5 / 108": type a page number and press Enter to jump there. *@
+            <form class="vqa-pg-jump" method="get" asp-action="VoiceQa">
+                @if (Model.Filter.Subject is not null) { <input type="hidden" name="subject" value="@Model.Filter.Subject"> }
+                @if (Model.Filter.Year is not null) { <input type="hidden" name="year" value="@Model.Filter.Year"> }
+                <input type="hidden" name="size" value="@Model.PageSize">
+                <label for="vqa-goto-page-@where" class="visually-hidden">Go to page (1 to @Model.TotalPages)</label>
+                <input type="number" id="vqa-goto-page-@where" name="page" min="1" max="@Model.TotalPages" value="@Model.Page" inputmode="numeric" required>
+                <span class="vqa-pg-total">/ @Model.TotalPages</span>
+                <button type="submit" class="visually-hidden">Go</button>
+            </form>
+
+            <span class="vqa-pg-sep" aria-hidden="true"></span>
+
+            <form class="vqa-pg-rows" method="get" asp-action="VoiceQa">
+                @if (Model.Filter.Subject is not null) { <input type="hidden" name="subject" value="@Model.Filter.Subject"> }
+                @if (Model.Filter.Year is not null) { <input type="hidden" name="year" value="@Model.Filter.Year"> }
+                <label for="vqa-rows-@where">Rows:</label>
+                <span class="vqa-select-wrap">
+                    <select id="vqa-rows-@where" class="vqa-rows-select" name="size" data-first="@Model.FirstNumber">
+                        @foreach (var option in NeetBee.Web.Models.VoiceQaFilter.SizeOptions)
+                        {
+                            <option value="@option" selected="@(option == Model.PageSize)">@option</option>
+                        }
+                    </select>
+                </span>
+                <noscript><button type="submit">Apply</button></noscript>
+            </form>
+        </nav>
+        
+    }
+
     // « ‹ › » buttons: a link, or a disabled button when already at that end.
     async Task PagerLink(int target, bool disabled, string label, string iconPath)
     {
@@ -31,7 +97,7 @@
 }
 
 @section Styles {
-    <link rel="stylesheet" href="/css/neetbee-voice-qa.css?v=9">
+    <link rel="stylesheet" href="/css/neetbee-voice-qa.css?v=11">
 }
 
 @Html.AntiForgeryToken()
@@ -286,6 +352,22 @@
         </div>
     }
 
+    <div class="vqa-pager-top" id="vqa-pager-top">
+        @if (hasPager)
+        {
+            <div class="vqa-pager-top-bar">
+                <span class="vqa-pager-top-summary">Page @Model.Page of @Model.TotalPages · @Model.FirstNumber – @Model.LastNumber of @Model.TotalQuestions</span>
+                <button type="button" class="vqa-pager-top-toggle" data-pager-toggle aria-expanded="true" aria-controls="vqa-pager-top-body">
+                    <span class="vqa-when-open">Hide paging</span><span class="vqa-when-closed">Show paging</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg>
+                </button>
+            </div>
+            <div class="vqa-pager-top-body" id="vqa-pager-top-body">
+                @{ await Pager("top"); }
+            </div>
+        }
+    </div>
+
     <ol class="vqa-list" id="vqa-list" data-page="@Model.Page" data-total-pages="@Model.TotalPages">
         @foreach (var q in Model.Questions)
         {
@@ -345,69 +427,10 @@
     </ol>
 
     <div id="vqa-pager-wrap">
-    @if (!Model.Filter.ShowAll && Model.TotalQuestions > NeetBee.Web.Models.VoiceQaFilter.SizeOptions[0])
-    {
-        var atFirst = Model.Page == 1;
-        var atLast = Model.Page == Model.TotalPages;
-        <nav class="vqa-pg" aria-label="Question pages">
-            <div class="vqa-pg-nav">
-                @{ await PagerLink(1, atFirst, "First page", "M11 17l-5-5 5-5M18 17l-5-5 5-5"); }
-                @{ await PagerLink(Model.Page - 1, atFirst, "Previous page", "M15 18l-6-6 6-6"); }
-                <span class="vqa-pg-pages">
-                    @foreach (var p in pages)
-                    {
-                        if (p == 0)
-                        {
-                            <span class="vqa-pg-gap" aria-hidden="true">…</span>
-                        }
-                        else if (p == Model.Page)
-                        {
-                            <span class="vqa-pg-num is-current" aria-current="page">@p</span>
-                        }
-                        else
-                        {
-                            <a class="vqa-pg-num" asp-action="VoiceQa" asp-all-route-data="@Model.Filter.RouteValues(p)" aria-label="Page @p">@p</a>
-                        }
-                    }
-                </span>
-                @{ await PagerLink(Model.Page + 1, atLast, "Next page", "M9 18l6-6-6-6"); }
-                @{ await PagerLink(Model.TotalPages, atLast, "Last page", "M13 17l5-5-5-5M6 17l5-5-5-5"); }
-            </div>
-
-            <span class="vqa-pg-sep" aria-hidden="true"></span>
-
-            @* "5 / 108": type a page number and press Enter to jump there. *@
-            <form class="vqa-pg-jump" method="get" asp-action="VoiceQa">
-                @if (Model.Filter.Subject is not null) { <input type="hidden" name="subject" value="@Model.Filter.Subject"> }
-                @if (Model.Filter.Year is not null) { <input type="hidden" name="year" value="@Model.Filter.Year"> }
-                <input type="hidden" name="size" value="@Model.PageSize">
-                <label for="vqa-goto-page" class="visually-hidden">Go to page (1 to @Model.TotalPages)</label>
-                <input type="number" id="vqa-goto-page" name="page" min="1" max="@Model.TotalPages" value="@Model.Page" inputmode="numeric" required>
-                <span class="vqa-pg-total">/ @Model.TotalPages</span>
-                <button type="submit" class="visually-hidden">Go</button>
-            </form>
-
-            <span class="vqa-pg-sep" aria-hidden="true"></span>
-
-            <form class="vqa-pg-rows" method="get" asp-action="VoiceQa" id="vqa-rows-form">
-                @if (Model.Filter.Subject is not null) { <input type="hidden" name="subject" value="@Model.Filter.Subject"> }
-                @if (Model.Filter.Year is not null) { <input type="hidden" name="year" value="@Model.Filter.Year"> }
-                <label for="vqa-rows">Rows:</label>
-                <span class="vqa-select-wrap">
-                    <select id="vqa-rows" name="size" data-first="@Model.FirstNumber">
-                        @foreach (var option in NeetBee.Web.Models.VoiceQaFilter.SizeOptions)
-                        {
-                            <option value="@option" selected="@(option == Model.PageSize)">@option</option>
-                        }
-                    </select>
-                </span>
-                <noscript><button type="submit">Apply</button></noscript>
-            </form>
-        </nav>
-    }
+        @if (hasPager) { await Pager("bottom"); }
     </div>
 </section>
 
 @section Scripts {
-    <script src="/js/voice-qa.js?v=8"></script>
+    <script src="/js/voice-qa.js?v=9"></script>
 }
