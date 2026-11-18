@@ -1,0 +1,173 @@
+
+name: NEET BEE - Build and Deploy
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Select Deployment Environment'
+        required: true
+        type: choice
+        default: DEV
+        options:
+          - DEV
+          - QA
+          - UAT
+          - Production
+
+      branch_name:
+        description: 'Select Git Branch'
+        required: true
+        type: choice
+        default: dev
+        options:
+          - dev
+          - qa
+          - uat
+          - main
+
+      version_id:
+        description: 'Enter Version ID (001, 002, 1.0.1)'
+        required: true
+        default: '001'
+        type: string
+
+jobs:
+
+  build:
+    name: Build Application
+    runs-on: windows-latest
+
+    permissions:
+      contents: read
+
+    outputs:
+      release_version: ${{ steps.version.outputs.release_version }}
+
+    steps:
+
+      # 1. Checkout selected branch
+      - name: Checkout Selected Branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.branch_name }}
+
+      # 2. Setup .NET
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '11.0.x'
+
+      # 3. Generate release version
+      - name: Generate Release Version
+        id: version
+        shell: pwsh
+        env:
+          VERSION_ID: ${{ inputs.version_id }}
+        run: |
+          if ($env:VERSION_ID -notmatch '^[A-Za-z0-9][A-Za-z0-9.-]*$') {
+            throw "Invalid Version ID."
+          }
+
+          $indiaTime = [TimeZoneInfo]::ConvertTimeBySystemTimeZoneId(
+            [DateTime]::UtcNow,
+            'India Standard Time'
+          )
+
+          $date = $indiaTime.ToString('yyyy-MM-dd')
+          $version = "$date-$env:VERSION_ID"
+
+          "release_version=$version" >> $env:GITHUB_OUTPUT
+
+          Write-Host "Release Version: $version"
+
+      # 4. Build
+      - name: Build Application
+        run: dotnet build --configuration Release
+
+      # 5. Publish
+      - name: Publish Application
+        run: dotnet publish -c Release -o "${{ runner.temp }}/myapp"
+
+      # 6. Create version information for website UI
+      - name: Generate Website Version File
+        shell: pwsh
+        env:
+          RELEASE_VERSION: ${{ steps.version.outputs.release_version }}
+          DEPLOY_ENVIRONMENT: ${{ inputs.environment }}
+          BRANCH_NAME: ${{ inputs.branch_name }}
+        run: |
+          $wwwroot = "${{ runner.temp }}/myapp/wwwroot"
+
+          New-Item -ItemType Directory -Force -Path $wwwroot | Out-Null
+
+          $versionInfo = @{
+            application = "NEET BEE"
+            version = $env:RELEASE_VERSION
+            environment = $env:DEPLOY_ENVIRONMENT
+            branch = $env:BRANCH_NAME
+            buildDate = (Get-Date).ToUniversalTime().ToString("o")
+          }
+
+          $versionInfo |
+            ConvertTo-Json |
+            Set-Content "$wwwroot/version.json" -Encoding utf8
+
+          Write-Host "Website version file generated."
+
+      # 7. Upload artifact
+      - name: Upload Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: neetbee-${{ steps.version.outputs.release_version }}
+          path: ${{ runner.temp }}/myapp
+          retention-days: 7
+
+      # 8. Build summary
+      - name: Build Summary
+        shell: pwsh
+        run: |
+          "## NEET BEE Build Summary" >> $env:GITHUB_STEP_SUMMARY
+          "- Environment: ${{ inputs.environment }}" >> $env:GITHUB_STEP_SUMMARY
+          "- Branch: ${{ inputs.branch_name }}" >> $env:GITHUB_STEP_SUMMARY
+          "- Version: ${{ steps.version.outputs.release_version }}" >> $env:GITHUB_STEP_SUMMARY
+          "- Build Status: Successful" >> $env:GITHUB_STEP_SUMMARY
+
+  deploy:
+    name: Deploy to Azure
+    runs-on: windows-latest
+    needs: build
+
+    # Select the corresponding GitHub Environment
+    environment:
+      name: ${{ inputs.environment }}
+
+    steps:
+
+      # 9. Download artifact
+      - name: Download Build Artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: neetbee-${{ needs.build.outputs.release_version }}
+          path: ./publish
+
+      # 10. Deploy to Azure
+      - name: Deploy to Azure Web App
+        id: deploy-to-webapp
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ vars.AZURE_WEBAPP_NAME }}
+          slot-name: Production
+          package: ./publish
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
+
+      # 11. Deployment summary
+      - name: Deployment Summary
+        shell: pwsh
+        run: |
+          "## NEET BEE Deployment Summary" >> $env:GITHUB_STEP_SUMMARY
+          "- Environment: ${{ inputs.environment }}" >> $env:GITHUB_STEP_SUMMARY
+          "- Branch: ${{ inputs.branch_name }}" >> $env:GITHUB_STEP_SUMMARY
+          "- Version: ${{ needs.build.outputs.release_version }}" >> $env:GITHUB_STEP_SUMMARY
+          "- Azure App: ${{ vars.AZURE_WEBAPP_NAME }}" >> $env:GITHUB_STEP_SUMMARY
+          "- Deployment Status: Successful" >> $env:GITHUB_STEP_SUMMARY
