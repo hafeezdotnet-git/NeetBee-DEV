@@ -15,9 +15,9 @@ Folder layout (each folder is also a solution folder in Visual Studio):
 |---|---|---|
 | WebApplication (web app) | http://localhost:5100 | Gateway (called from the browser) |
 | ApiGateway | http://localhost:5000 | AuthenticationService, PaymentService, NotificationService |
-| AuthenticationService | http://localhost:5001 (localhost only) | SQL Server (`NEET_BEE`), NotificationService (sign-in code emails) |
-| NotificationService | http://localhost:5002 (localhost only) | SMTP server, SMS / WhatsApp provider |
-| PaymentService | http://localhost:5003 (localhost only) | SQL Server (`NEET_BEE`), payment gateway, NotificationService |
+| AuthenticationService | http://localhost:5001 | SQL Server (`NEET_BEE`), NotificationService (sign-in code emails). Listens on host interfaces for the Dockerized gateway; restrict access with the host firewall. |
+| NotificationService | http://localhost:5002 | SMTP server, SMS / WhatsApp provider. Listens on host interfaces for the Dockerized gateway; restrict access with the host firewall. |
+| PaymentService | http://localhost:5003 | SQL Server (`NEET_BEE`), payment gateway, NotificationService. Listens on host interfaces for the Dockerized gateway; restrict access with the host firewall. |
 | SQL Server | localhost, Windows Authentication | none |
 
 Start order: SQL Server, then NotificationService, then AuthenticationService and PaymentService, then ApiGateway, then WebApplication.
@@ -78,7 +78,7 @@ File: `Services\AuthenticationService\appsettings.json`
 
 | Key | Value | Notes |
 |---|---|---|
-| `Kestrel:Endpoints:Http:Url` | `http://localhost:5001` | Keep on localhost; the gateway is the public entry point. |
+| `Kestrel:Endpoints:Http:Url` | `http://0.0.0.0:5001` | Listens on host interfaces so the Dockerized gateway can reach the service. Keep port 5001 blocked from external networks with the host firewall. |
 | `ConnectionStrings:NeetBee` | `Server=localhost;Database=NEET_BEE;Trusted_Connection=True;TrustServerCertificate=True;Encrypt=True;` | Windows Authentication. Change `Server` if SQL Server runs elsewhere. |
 | `Authentication:Auth_type` | `TokenBased` or `Existing` | `Existing` makes login return 501. |
 | `Authentication:Jwt:Issuer` | `NeetBee` | Must match the gateway. |
@@ -100,7 +100,7 @@ Message text lives in `Services\NotificationService\Notifications\NotificationTe
 
 | Key | Value | Notes |
 |---|---|---|
-| `Kestrel:Endpoints:Http:Url` | `http://localhost:5002` | Keep on localhost. |
+| `Kestrel:Endpoints:Http:Url` | `http://0.0.0.0:5002` | Listens on host interfaces so the Dockerized gateway can reach the service. Keep port 5002 blocked from external networks with the host firewall. |
 | `NotificationApi:ApiKey` | leave empty | Supply through `NotificationApi__ApiKey`. |
 | `Email:Host`, `Email:Port`, `Email:UseSsl`, `Email:UserName`, `Email:FromAddress`, `Email:FromName` | empty / `587` / `true` | SMTP settings (moved here from AuthenticationService). Empty `Host` in Development logs the message instead of sending it. |
 | `Messaging:Provider` | `Stub` or `Twilio` | `Stub` sends nothing (Development logs the text). |
@@ -113,7 +113,7 @@ File: `Services\PaymentService\appsettings.json`. Endpoints (JWT required): `POS
 
 | Key | Value | Notes |
 |---|---|---|
-| `Kestrel:Endpoints:Http:Url` | `http://localhost:5003` | Keep on localhost. |
+| `Kestrel:Endpoints:Http:Url` | `http://0.0.0.0:5003` | Listens on host interfaces so the Dockerized gateway can reach the service. Keep port 5003 blocked from external networks with the host firewall. |
 | `ConnectionStrings:NeetBee` | same as AuthenticationService | |
 | `Authentication:Jwt:Issuer` / `Audience` / `SigningKey` | `NeetBee` / `NeetBeeClients` / empty | Must match the auth service. |
 | `Payments:Gateway` | `Fake` | Only `Fake` exists (no money moves). Test failures: bank `FAIL`, UPI `fail@...`, card token `tok_fail`. |
@@ -137,9 +137,9 @@ File: `Services\ApiGateway\appsettings.json`
 | `ReverseProxy:Routes:auth-public` | `/api/auth/{**catch-all}`, policy `Anonymous` | Register, login, refresh, logout. |
 | `ReverseProxy:Routes:payments` | `/api/payments/{**catch-all}`, policy `Default` | PaymentService. Requires a valid JWT. |
 | `ReverseProxy:Routes:notifications` | `/api/notifications/{**catch-all}`, policy `Default` | NotificationService. Requires a valid JWT and the `X-Api-Key`. |
-| `ReverseProxy:Clusters:authentication:Destinations:primary:Address` | `http://localhost:5001/` | Address of the auth service. |
-| `ReverseProxy:Clusters:notification:Destinations:primary:Address` | `http://localhost:5002/` | Address of the notification service. |
-| `ReverseProxy:Clusters:payment:Destinations:primary:Address` | `http://localhost:5003/` | Address of the payment service. |
+| `ReverseProxy:Clusters:authentication:Destinations:primary:Address` | `http://localhost:5001/` locally; `http://192.168.65.254:5001/` in Docker Desktop | Address of the auth service. The Dockerfile sets the Docker value for this Docker Desktop host. |
+| `ReverseProxy:Clusters:notification:Destinations:primary:Address` | `http://localhost:5002/` locally; `http://192.168.65.254:5002/` in Docker Desktop | Address of the notification service. The Dockerfile sets the Docker value for this Docker Desktop host. |
+| `ReverseProxy:Clusters:payment:Destinations:primary:Address` | `http://localhost:5003/` locally; `http://192.168.65.254:5003/` in Docker Desktop | Address of the payment service. The Dockerfile sets the Docker value for this Docker Desktop host. |
 | Rate limit | 100 requests per minute per client IP | Set in `Services\ApiGateway\Program.cs`. |
 
 To add a downstream service later, add a cluster and a route here. Routes are the only way traffic reaches a service.

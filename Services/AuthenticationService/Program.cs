@@ -117,9 +117,10 @@ app.Use(async (context, next) =>
 // One summary line per request: method, path, status code and elapsed time.
 app.UseSerilogRequestLogging();
 
+// The API Gateway aggregates this JSON document for its Swagger UI in Docker and other environments.
+app.UseSwagger();
 if (app.Environment.IsDevelopment())
 {
-    app.UseSwagger();
     app.UseSwaggerUI();
 }
 

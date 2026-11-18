@@ -13,6 +13,18 @@
       {
         "Path": "Web\\WebApplication\\WebApplication.csproj",
         "Action": "Start"
+      },
+      {
+        "Path": "Mobile\\MobileApp\\NeetBee.Mobile.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "Services\\NotificationService\\NotificationService.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "Services\\PaymentService\\PaymentService.csproj",
+        "Action": "Start"
       }
     ]
   }

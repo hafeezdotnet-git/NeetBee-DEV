@@ -86,6 +86,13 @@ builder.Services.AddReverseProxy()
 builder.Services.AddProblemDetails();
 
 var app = builder.Build();
+app.UseSwaggerUI(options =>
+{
+    options.SwaggerEndpoint("/swagger/authentication/swagger.json", "NEET BEE Authentication Service");
+    options.SwaggerEndpoint("/swagger/payments/swagger.json", "NEET BEE Payment Service");
+    options.SwaggerEndpoint("/swagger/notifications/swagger.json", "NEET BEE Notification Service");
+    options.RoutePrefix = "swagger";
+});
 
 // Correlation ID: reuse the caller's header if sane, otherwise create one. Echoed in the response.
 app.Use(async (context, next) =>
