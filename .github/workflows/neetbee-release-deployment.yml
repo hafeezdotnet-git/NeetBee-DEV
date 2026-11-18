@@ -142,7 +142,31 @@ jobs:
     environment:
       name: ${{ inputs.environment }}
 
+    # Target app and publish profile. Each GitHub Environment can set its own
+    # AZURE_WEBAPP_NAME variable and AZUREAPPSERVICE_PUBLISHPROFILE secret.
+    # DEV falls back to the existing dev app and its repository publish-profile secret;
+    # other environments never fall back, so they cannot deploy to the dev app by mistake.
+    env:
+      AZURE_WEBAPP_NAME: ${{ vars.AZURE_WEBAPP_NAME || (inputs.environment == 'DEV' && 'neetbee-dev-95747231' || '') }}
+      AZURE_PUBLISH_PROFILE: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE || (inputs.environment == 'DEV' && secrets.AZUREAPPSERVICE_PUBLISHPROFILE_D4B8CC6B240E4857898D9F31A82E9292 || '') }}
+
     steps:
+
+      # 9a. Stop early with a clear message when the deployment settings are missing
+      - name: Check Deployment Settings
+        shell: pwsh
+        env:
+          DEPLOY_ENVIRONMENT: ${{ inputs.environment }}
+        run: |
+          $missing = @()
+          if ([string]::IsNullOrWhiteSpace($env:AZURE_WEBAPP_NAME))     { $missing += "variable AZURE_WEBAPP_NAME" }
+          if ([string]::IsNullOrWhiteSpace($env:AZURE_PUBLISH_PROFILE)) { $missing += "secret AZUREAPPSERVICE_PUBLISHPROFILE" }
+
+          if ($missing.Count -gt 0) {
+            throw "Missing $($missing -join ' and ') for '$env:DEPLOY_ENVIRONMENT'. Add them under Settings > Environments > $env:DEPLOY_ENVIRONMENT in the GitHub repository."
+          }
+
+          Write-Host "Deploying to Azure app: $env:AZURE_WEBAPP_NAME"
 
       # 9. Download artifact
       - name: Download Build Artifact
@@ -156,10 +180,10 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: ${{ vars.AZURE_WEBAPP_NAME }}
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
           slot-name: Production
           package: ./publish
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
+          publish-profile: ${{ env.AZURE_PUBLISH_PROFILE }}
 
       # 11. Deployment summary
       - name: Deployment Summary
@@ -169,5 +193,5 @@ jobs:
           "- Environment: ${{ inputs.environment }}" >> $env:GITHUB_STEP_SUMMARY
           "- Branch: ${{ inputs.branch_name }}" >> $env:GITHUB_STEP_SUMMARY
           "- Version: ${{ needs.build.outputs.release_version }}" >> $env:GITHUB_STEP_SUMMARY
-          "- Azure App: ${{ vars.AZURE_WEBAPP_NAME }}" >> $env:GITHUB_STEP_SUMMARY
+          "- Azure App: ${{ env.AZURE_WEBAPP_NAME }}" >> $env:GITHUB_STEP_SUMMARY
           "- Deployment Status: Successful" >> $env:GITHUB_STEP_SUMMARY
