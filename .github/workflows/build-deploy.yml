@@ -64,11 +64,11 @@ jobs:
 
       # 4. Build Application
       - name: Build Application
-        run: dotnet build --configuration Release
+        run: dotnet build WebApplication/WebApplication.csproj --configuration Release
 
       # 5. Publish Application
       - name: Publish Application
-        run: dotnet publish -c Release -o "${{ runner.temp }}/myapp"
+        run: dotnet publish WebApplication/WebApplication.csproj -c Release -o "${{ runner.temp }}/myapp"
 
       # 6. Upload Build Artifact
       - name: Upload Build Artifact

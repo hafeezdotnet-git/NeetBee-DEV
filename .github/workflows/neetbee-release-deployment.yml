@@ -83,11 +83,11 @@ jobs:
 
       # 4. Build
       - name: Build Application
-        run: dotnet build --configuration Release
+        run: dotnet build WebApplication/WebApplication.csproj --configuration Release
 
       # 5. Publish
       - name: Publish Application
-        run: dotnet publish -c Release -o "${{ runner.temp }}/myapp"
+        run: dotnet publish WebApplication/WebApplication.csproj -c Release -o "${{ runner.temp }}/myapp"
 
       # 6. Create version information for website UI
       - name: Generate Website Version File
