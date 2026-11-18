@@ -1,0 +1,145 @@
+# Builds the NEET BEE mobile app (MobileApp/NeetBee.Mobile.csproj) for Android and iOS.
+# Runs on pushes to dev that touch MobileApp/, or manually from the Actions tab.
+# Build only: nothing is uploaded to the Play Store or App Store.
+
+name: Build NEET BEE Mobile App (Android + iOS)
+
+on:
+  push:
+    branches:
+      - 'dev'
+    paths:
+      - 'MobileApp/**'
+      - '.github/workflows/mobile-build.yml'
+  workflow_dispatch:
+    inputs:
+      branch_name:
+        description: 'Enter the branch name'
+        required: true
+        default: 'dev'
+        type: string
+      configuration:
+        description: 'Build configuration'
+        required: true
+        default: 'Release'
+        type: choice
+        options:
+          - Release
+          - Debug
+
+permissions:
+  contents: read
+
+env:
+  PROJECT: MobileApp/NeetBee.Mobile.csproj
+  DOTNET_VERSION: '11.0.x'
+  # Pushes have no inputs, so fall back to the pushed branch and Release.
+  BRANCH: ${{ inputs.branch_name || github.ref_name }}
+  CONFIGURATION: ${{ inputs.configuration || 'Release' }}
+
+jobs:
+  android:
+    name: Android
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.BRANCH }}
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Setup Java (needed by the Android build)
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'microsoft'
+          java-version: '21'
+
+      - name: Install MAUI Android workload
+        run: dotnet workload install maui-android
+
+      - name: Install Android SDK packages the project needs
+        shell: pwsh
+        run: >
+          dotnet build $env:PROJECT -f net11.0-android -t:InstallAndroidDependencies
+          -p:AndroidSdkDirectory="$env:ANDROID_SDK_ROOT"
+          -p:AcceptAndroidSDKLicenses=True
+
+      # Release builds are signed with the default debug key, which is fine for testing
+      # but not for the Play Store (that needs a release keystore stored as a secret).
+      - name: Build Android APK and AAB
+        shell: pwsh
+        run: >
+          dotnet publish $env:PROJECT -f net11.0-android -c $env:CONFIGURATION
+          -p:AndroidPackageFormats="apk%3Baab"
+          -o "${{ runner.temp }}/android"
+
+      - name: Upload Android build
+        uses: actions/upload-artifact@v4
+        with:
+          name: neetbee-android-${{ env.CONFIGURATION }}-${{ github.run_number }}
+          path: |
+            ${{ runner.temp }}/android/*.apk
+            ${{ runner.temp }}/android/*.aab
+          if-no-files-found: error
+          retention-days: 7
+
+  ios:
+    name: iOS
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ env.BRANCH }}
+
+      - name: Use the latest stable Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ env.DOTNET_VERSION }}
+
+      - name: Install MAUI iOS workload
+        run: dotnet workload install maui-ios
+
+      # Builds for the iOS Simulator, which needs no Apple signing certificate.
+      # A device/App Store build needs a distribution certificate and provisioning
+      # profile stored as secrets (see MobileApp/README.md).
+      - name: Build iOS (simulator)
+        run: >
+          dotnet build "$PROJECT" -f net11.0-ios -c "$CONFIGURATION"
+          -p:RuntimeIdentifier=iossimulator-arm64
+
+      - name: Upload iOS simulator build
+        uses: actions/upload-artifact@v4
+        with:
+          name: neetbee-ios-simulator-${{ env.CONFIGURATION }}-${{ github.run_number }}
+          path: MobileApp/bin/${{ env.CONFIGURATION }}/net11.0-ios/iossimulator-arm64/
+          if-no-files-found: error
+          retention-days: 7
+
+  summary:
+    name: Summary
+    runs-on: ubuntu-latest
+    needs: [android, ios]
+    if: always()
+
+    steps:
+      - name: Build Summary
+        run: |
+          {
+            echo "### NEET BEE Mobile Build"
+            echo "- Branch: $BRANCH"
+            echo "- Configuration: $CONFIGURATION"
+            echo "- Android: ${{ needs.android.result }}"
+            echo "- iOS (simulator): ${{ needs.ios.result }}"
+          } >> "$GITHUB_STEP_SUMMARY"

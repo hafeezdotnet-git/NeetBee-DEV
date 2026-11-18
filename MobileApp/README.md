@@ -66,8 +66,19 @@ dotnet build MobileApp/NeetBee.Mobile.csproj -f net11.0-ios -t:Run
 
 This starts the iOS Simulator. Running on a real iPhone or publishing to the App Store needs an Apple Developer account and signing set up (`CodesignKey` / `CodesignProvision`).
 
+## CI builds (GitHub Actions)
+
+[`.github/workflows/mobile-build.yml`](../.github/workflows/mobile-build.yml) builds the app on GitHub:
+
+- **When:** on every push to `dev` that changes `MobileApp/**`, or manually from **Actions → Build NEET BEE Mobile App (Android + iOS) → Run workflow** (choose the branch and Release/Debug).
+- **Android** (Windows runner): builds an `.apk` (install on a phone for testing) and an `.aab` (Play Store format), uploaded as the `neetbee-android-…` artifact. They are signed with the default debug key, so they are fine for testing but not for the Play Store.
+- **iOS** (macOS runner): builds for the iOS Simulator, uploaded as the `neetbee-ios-simulator-…` artifact. This needs no Apple certificate, but it does not run on a real iPhone.
+- Nothing is published to the stores.
+
+Store-ready builds need signing secrets added to the workflow later: an Android release keystore (`AndroidKeyStore`, `AndroidSigningKeyStore`, `AndroidSigningKeyAlias`, `AndroidSigningKeyPass`, `AndroidSigningStorePass`) and, for iOS, an Apple distribution certificate and provisioning profile (`CodesignKey`, `CodesignProvision`).
+
 ## Notes
 
 - The app ID is `com.neetbee.mobile` (`ApplicationId` in `NeetBee.Mobile.csproj`). Choose the final ID before the first store upload; it cannot be changed afterwards.
 - **Google sign-in**: Google blocks its sign-in page inside embedded WebViews ("disallowed_useragent"), so "Login with Gmail" will not work in the app as is. Email/password login is unaffected. Fixing this needs native sign-in (for example `WebAuthenticator`) and is not part of this shell.
-- The CI workflows in `.github/workflows/` build `WebApplication/WebApplication.csproj` directly, so this project does not affect them.
+- The website workflows in `.github/workflows/` build `WebApplication/WebApplication.csproj` directly, so this project does not affect them.
