@@ -1,4 +1,4 @@
-# NEET BEE backend
+# NEET BEE backend, test
 
 Two ASP.NET Core 8 services:
 
