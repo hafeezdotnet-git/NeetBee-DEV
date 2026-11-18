@@ -37,12 +37,16 @@
 
     <div class="nb-footer-bottom">
         <p class="nb-footer-copy">© @DateTime.UtcNow.Year NEET BEE. All rights reserved.</p>
+        @* Deployed version, filled from /version.json by js/app-version.js. Stays hidden if that file is missing. *@
+        <p class="nb-footer-version" id="appVersion" hidden></p>
         <nav class="nb-footer-legal" aria-label="Legal">
             <a asp-controller="Study" asp-action="HelpSupport" asp-fragment="terms" data-nb-terms>Terms &amp; Conditions</a>
             <a asp-controller="Study" asp-action="HelpSupport" asp-fragment="privacy">Privacy Policy</a>
         </nav>
     </div>
 </footer>
+
+<script src="/js/app-version.js?v=1" defer></script>
 
 <div class="nb-terms" id="nb-terms" hidden role="dialog" aria-modal="true" aria-labelledby="nb-terms-title">
     <div class="nb-terms-backdrop" data-nb-terms-close></div>

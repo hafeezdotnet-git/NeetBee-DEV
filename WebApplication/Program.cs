@@ -140,7 +140,21 @@ foreach (var folder in new[] { "css", "js", "assets", "login" })
 app.UseStaticFiles(new StaticFileOptions { FileProvider = siteFiles });
 
 // Web app assets (wwwroot\css\app.css). Requests not found above fall through to here.
-app.UseStaticFiles();
+// version.json (written by the deployment workflow) must never be cached, so the footer always shows
+// the version that is actually deployed.
+app.UseStaticFiles(new StaticFileOptions
+{
+    OnPrepareResponse = context =>
+    {
+        if (string.Equals(context.File.Name, "version.json", StringComparison.OrdinalIgnoreCase))
+        {
+            var headers = context.Context.Response.Headers;
+            headers.CacheControl = "no-store, no-cache, must-revalidate, max-age=0";
+            headers.Pragma = "no-cache";
+            headers.Expires = "0";
+        }
+    }
+});
 
 // One summary line per page request: method, path, status code and elapsed time.
 app.UseSerilogRequestLogging();

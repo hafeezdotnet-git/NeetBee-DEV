@@ -29,6 +29,31 @@ jobs:
       - name: dotnet publish
         run: dotnet publish WebApplication/WebApplication.csproj -c Release -o "${{env.DOTNET_ROOT}}/myapp"
 
+      # Write wwwroot/version.json, which the site footer reads (js/app-version.js).
+      # Pushes have no version input, so the version is the India date plus the short commit SHA.
+      - name: Generate Website Version File
+        shell: pwsh
+        env:
+          PUBLISH_DIR: ${{ env.DOTNET_ROOT }}/myapp
+          BRANCH_NAME: ${{ github.ref_name }}
+          COMMIT_SHA: ${{ github.sha }}
+        run: |
+          $indiaTime = [TimeZoneInfo]::ConvertTimeBySystemTimeZoneId([DateTime]::UtcNow, 'India Standard Time')
+          $version = "$($indiaTime.ToString('yyyy-MM-dd'))-$($env:COMMIT_SHA.Substring(0, 7))"
+
+          $wwwroot = Join-Path $env:PUBLISH_DIR 'wwwroot'
+          New-Item -ItemType Directory -Force -Path $wwwroot | Out-Null
+
+          @{
+            application = 'NEET BEE'
+            version     = $version
+            environment = 'DEV'
+            branch      = $env:BRANCH_NAME
+            buildDate   = (Get-Date).ToUniversalTime().ToString('o')
+          } | ConvertTo-Json | Set-Content (Join-Path $wwwroot 'version.json') -Encoding utf8
+
+          Write-Host "version.json written: $version"
+
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
         with:

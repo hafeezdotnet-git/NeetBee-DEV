@@ -1,6 +1,13 @@
 @model LoginViewModel
+@inject IConfiguration Configuration
 @{
     ViewData["Title"] = "Sign in";
+
+    // Where the "Download the App!" QR code points. Set App:DownloadUrl to the Play Store / App Store link.
+    var configuredAppUrl = Configuration["App:DownloadUrl"];
+    var appDownloadUrl = !string.IsNullOrWhiteSpace(configuredAppUrl)
+        ? configuredAppUrl
+        : $"{Context.Request.Scheme}://{Context.Request.Host}/";
 }
 
 <section class="auth-card" aria-labelledby="login-title">
@@ -59,6 +66,16 @@
     <p class="auth-alt"><a asp-action="EmailCode">Use an email code instead</a></p>
 </section>
 
+@* "Download the App!" card, bottom-left. The QR code opens App:DownloadUrl (appsettings);
+   until a store link is set it opens this website. Hidden on phones, where scanning makes no sense. *@
+<aside class="app-promo" id="app-promo" aria-label="Get the NEET Bee app" hidden>
+    <button type="button" class="app-promo-close" id="app-promo-close" aria-label="Close">&times;</button>
+    <span class="app-promo-badge">Download the App!</span>
+    <a class="app-promo-qr" href="@appDownloadUrl" target="_blank" rel="noopener" aria-label="Scan this QR code or open the NEET Bee app link">
+        <span id="app-promo-qr" data-url="@appDownloadUrl"></span>
+    </a>
+</aside>
+
 <script>
     document.querySelectorAll('.pw-toggle').forEach(function (btn) {
         btn.addEventListener('click', function () {
@@ -70,3 +87,31 @@
         });
     });
 </script>
+
+@section Scripts {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        // Draws the QR code and shows the card (closed cards stay closed for this browser session).
+        (function () {
+            var card = document.getElementById('app-promo');
+            var holder = document.getElementById('app-promo-qr');
+            if (!card || !holder || typeof QRCode === 'undefined') return;   // library unavailable: leave hidden
+            try { if (sessionStorage.getItem('neetbee-app-promo') === 'closed') return; } catch (e) { }
+
+            new QRCode(holder, {
+                text: holder.getAttribute('data-url'),
+                width: 132,
+                height: 132,
+                colorDark: '#000000',
+                colorLight: '#ffffff',
+                correctLevel: QRCode.CorrectLevel.M
+            });
+            card.hidden = false;
+
+            document.getElementById('app-promo-close').addEventListener('click', function () {
+                card.hidden = true;
+                try { sessionStorage.setItem('neetbee-app-promo', 'closed'); } catch (e) { }
+            });
+        })();
+    </script>
+}

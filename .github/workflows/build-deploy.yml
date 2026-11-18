@@ -70,6 +70,27 @@ jobs:
       - name: Publish Application
         run: dotnet publish WebApplication/WebApplication.csproj -c Release -o "${{ runner.temp }}/myapp"
 
+      # 5b. Write wwwroot/version.json, which the site footer reads (js/app-version.js)
+      - name: Generate Website Version File
+        shell: pwsh
+        env:
+          RELEASE_VERSION: ${{ steps.version.outputs.release_version }}
+          BRANCH_NAME: ${{ inputs.branch_name }}
+          PUBLISH_DIR: ${{ runner.temp }}/myapp
+        run: |
+          $wwwroot = Join-Path $env:PUBLISH_DIR 'wwwroot'
+          New-Item -ItemType Directory -Force -Path $wwwroot | Out-Null
+
+          @{
+            application = 'NEET BEE'
+            version     = $env:RELEASE_VERSION
+            environment = 'DEV'
+            branch      = $env:BRANCH_NAME
+            buildDate   = (Get-Date).ToUniversalTime().ToString('o')
+          } | ConvertTo-Json | Set-Content (Join-Path $wwwroot 'version.json') -Encoding utf8
+
+          Write-Host "version.json written: $env:RELEASE_VERSION"
+
       # 6. Upload Build Artifact
       - name: Upload Build Artifact
         uses: actions/upload-artifact@v4
