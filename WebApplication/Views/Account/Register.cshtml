@@ -60,7 +60,12 @@
         Sign-Up with Google
     </a>
 
-    <p class="auth-alt"><a asp-action="EmailCode">Use an email code instead</a></p>
+    <a class="btn-google btn-email" asp-action="EmailCode">
+        <span class="g-mark email-mark" aria-hidden="true">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        </span>
+        Use an email code instead
+    </a>
 
     <p class="auth-switch">Already have an account? <a asp-action="Login">Sign in</a></p>
 </section>
