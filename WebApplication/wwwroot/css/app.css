@@ -354,3 +354,9 @@ body.dark .app-promo { box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5); }
 @media (max-width: 999px) {
   .app-promo { display: none !important; }
 }
+
+/* ---- Public header on tablets/phones: menu button first, then the logo; search and theme stay on the right ---- */
+@media (max-width: 1000px) {
+  .topbar .hamburger { order: -1; margin-left: 0; padding: 0 2px; line-height: 1; }
+  .topbar .tools { margin-left: auto; }
+}
