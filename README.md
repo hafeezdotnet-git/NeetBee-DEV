@@ -12,7 +12,7 @@ Two ASP.NET Core 8 services:
 From a terminal on the machine running SQL Server:
 
 ```powershell
-sqlcmd -S localhost -E -i "D:\Website\NEET_BEE_App_v1.0\backend\Database\001_create_neet_bee.sql"
+sqlcmd -S localhost -E -i "Database\001_create_neet_bee.sql"
 ```
 
 This creates the `NEET_BEE` database and the `Users` and `RefreshTokens` tables. It is safe to re-run.
@@ -30,9 +30,12 @@ To persist it for the user account instead, use `setx Authentication__Jwt__Signi
 ## 3. Run
 
 ```powershell
-dotnet run --project "D:\Website\NEET_BEE_App_v1.0\backend\AuthenticationService"
-dotnet run --project "D:\Website\NEET_BEE_App_v1.0\backend\ApiGateway"
+dotnet run --project Services\NotificationService
+dotnet run --project Services\AuthenticationService
+dotnet run --project Services\ApiGateway
 ```
+
+Run these from the repository root. Projects are grouped in `Web\`, `Mobile\`, `Services\` and `Common\`; see `CONFIGURATION.md` for the full list and `run-all.ps1` to start everything.
 
 Swagger for the auth service is at `http://localhost:5001/swagger` in Development.
 

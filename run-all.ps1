@@ -15,7 +15,7 @@ if (-not $env:Authentication__Jwt__SigningKey -or $env:Authentication__Jwt__Sign
 
 # Start order: notification service first (auth and payment services call it), then auth and payment services
 # (the gateway forwards to them), then the gateway, then the web app.
-$projects = @("NotificationService", "AuthenticationService", "PaymentService", "ApiGateway", "WebApplication")
+$projects = @("Services\NotificationService", "Services\AuthenticationService", "Services\PaymentService", "Services\ApiGateway", "Web\WebApplication")
 foreach ($project in $projects) {
     $projectPath = Join-Path $backend $project
     Start-Process powershell -WorkingDirectory $projectPath -ArgumentList @(

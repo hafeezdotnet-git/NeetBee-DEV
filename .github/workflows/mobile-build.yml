@@ -1,5 +1,5 @@
-# Builds the NEET BEE mobile app (MobileApp/NeetBee.Mobile.csproj) for Android and iOS.
-# Android: runs on pushes to dev that touch MobileApp/, and on manual runs from the Actions tab.
+# Builds the NEET BEE mobile app (Mobile/MobileApp/NeetBee.Mobile.csproj) for Android and iOS.
+# Android: runs on pushes to dev that touch Mobile/MobileApp/, and on manual runs from the Actions tab.
 # iOS: only on manual runs with "Also build iOS" ticked. macOS runners are often short of
 #      capacity ("job was not acquired") and use the most Actions minutes, so pushes skip it.
 # Build only: nothing is uploaded to the Play Store or App Store.
@@ -11,7 +11,7 @@ on:
     branches:
       - 'dev'
     paths:
-      - 'MobileApp/**'
+      - 'Mobile/MobileApp/**'
       - '.github/workflows/mobile-build.yml'
   workflow_dispatch:
     inputs:
@@ -38,7 +38,7 @@ permissions:
   contents: read
 
 env:
-  PROJECT: MobileApp/NeetBee.Mobile.csproj
+  PROJECT: Mobile/MobileApp/NeetBee.Mobile.csproj
   DOTNET_VERSION: '11.0.x'
   # Pushes have no inputs, so fall back to the pushed branch and Release.
   BRANCH: ${{ inputs.branch_name || github.ref_name }}
@@ -127,7 +127,7 @@ jobs:
 
       # Builds for the iOS Simulator, which needs no Apple signing certificate.
       # A device/App Store build needs a distribution certificate and provisioning
-      # profile stored as secrets (see MobileApp/README.md).
+      # profile stored as secrets (see Mobile/MobileApp/README.md).
       - name: Build iOS (simulator)
         run: >
           dotnet build "$PROJECT" -f net11.0-ios -c "$CONFIGURATION"
@@ -138,7 +138,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: neetbee-ios-simulator-${{ env.CONFIGURATION }}-${{ github.run_number }}
-          path: MobileApp/bin/${{ env.CONFIGURATION }}/net11.0-ios/iossimulator-arm64/
+          path: Mobile/MobileApp/bin/${{ env.CONFIGURATION }}/net11.0-ios/iossimulator-arm64/
           if-no-files-found: error
           retention-days: 7
 

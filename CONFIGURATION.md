@@ -1,6 +1,15 @@
 # NEET BEE: configuration reference
 
-Solution: `D:\Website\NEET_BEE_App_v1.0\backend\NeetBee.sln`
+Solution: `NeetBee.sln` at the repository root.
+
+Folder layout (each folder is also a solution folder in Visual Studio):
+
+| Folder | Projects |
+|---|---|
+| `Web\` | `WebApplication` (the website) |
+| `Mobile\` | `MobileApp` (`NeetBee.Mobile`, Android and iOS app) |
+| `Services\` | `ApiGateway`, `AuthenticationService`, `NotificationService`, `PaymentService` |
+| `Common\` | `NeetBee.Common`: shared logging setup (`AddNeetBeeLogging`) and the NotificationService contract and client (`NotificationType`, `NotificationChannel`, `NotificationData`, `INotificationClient`), used by the services |
 
 | Project | URL | Depends on |
 |---|---|---|
@@ -65,7 +74,7 @@ Generate a key:
 
 ## 4. AuthenticationService
 
-File: `AuthenticationService\appsettings.json`
+File: `Services\AuthenticationService\appsettings.json`
 
 | Key | Value | Notes |
 |---|---|---|
@@ -84,10 +93,10 @@ Swagger (Development only): http://localhost:5001/swagger
 
 ## 4a. NotificationService
 
-File: `NotificationService\appsettings.json`. Endpoint: `POST api/notifications` with
+File: `Services\NotificationService\appsettings.json`. Endpoint: `POST api/notifications` with
 `{ "channel": "Email" | "Sms" | "WhatsApp", "type": "Otp" | "EnrollmentSuccess" | "PaymentSuccess" | "PaymentFailed" | "LearningStatusUpdate", "recipient": "...", "data": { ... } }`.
 Returns 202 when sent, 400 when a template value is missing, 401 without the key, 502 when delivery failed.
-Message text lives in `NotificationService\Notifications\NotificationTemplates.cs`.
+Message text lives in `Services\NotificationService\Notifications\NotificationTemplates.cs`.
 
 | Key | Value | Notes |
 |---|---|---|
@@ -99,7 +108,7 @@ Message text lives in `NotificationService\Notifications\NotificationTemplates.c
 
 ## 4b. PaymentService
 
-File: `PaymentService\appsettings.json`. Endpoints (JWT required): `POST api/payments/netbanking`, `POST api/payments/upi`,
+File: `Services\PaymentService\appsettings.json`. Endpoints (JWT required): `POST api/payments/netbanking`, `POST api/payments/upi`,
 `POST api/payments/card`, `GET api/payments/history`. Table: `dbo.PaymentTransactions` (`Database\008_create_payment_transactions.sql`).
 
 | Key | Value | Notes |
@@ -114,7 +123,7 @@ File: `PaymentService\appsettings.json`. Endpoints (JWT required): `POST api/pay
 
 ## 5. ApiGateway
 
-File: `ApiGateway\appsettings.json`
+File: `Services\ApiGateway\appsettings.json`
 
 | Key | Value | Notes |
 |---|---|---|
@@ -131,18 +140,18 @@ File: `ApiGateway\appsettings.json`
 | `ReverseProxy:Clusters:authentication:Destinations:primary:Address` | `http://localhost:5001/` | Address of the auth service. |
 | `ReverseProxy:Clusters:notification:Destinations:primary:Address` | `http://localhost:5002/` | Address of the notification service. |
 | `ReverseProxy:Clusters:payment:Destinations:primary:Address` | `http://localhost:5003/` | Address of the payment service. |
-| Rate limit | 100 requests per minute per client IP | Set in `ApiGateway\Program.cs`. |
+| Rate limit | 100 requests per minute per client IP | Set in `Services\ApiGateway\Program.cs`. |
 
 To add a downstream service later, add a cluster and a route here. Routes are the only way traffic reaches a service.
 
 ## 6. WebApplication (web app)
 
-File: `WebApplication\appsettings.json`
+File: `Web\WebApplication\appsettings.json`
 
 | Key | Value | Notes |
 |---|---|---|
 | `Kestrel:Endpoints:Http:Url` | `http://localhost:5100` | Open this in a browser. |
-| `Site:RootPath` | `..\..` | Folder that holds `index.html`, `css`, `js`, `assets`, `login`. Relative to `WebApplication`. |
+| `Site:RootPath` | `.` | Folder that holds `index.html`, `css`, `js`, `assets`, `login`. Relative to `Web\WebApplication`. |
 | `Gateway:BaseUrl` | `http://localhost:5000` | ApiGateway address. The web server calls it for login, register, refresh and logout. |
 | `Session:SecureCookies` | `false` | Set to `true` in production (HTTPS only) so the session cookie is sent only over HTTPS. |
 
@@ -167,21 +176,24 @@ The login page calls the gateway at `http://localhost:5000` (set in `login\index
 Open the solution in Visual Studio 2022 (17.8 or later) or VS Code, or run the helper script:
 
 ```powershell
-cd "D:\Website\NEET_BEE_App_v1.0\backend"
+cd "D:\Github\NEET-Bee\NeetBee-DEV"
 .\run-all.ps1 -SigningKey "<your 32+ character random key>"
 ```
 
-The script starts the three projects in separate windows, in this order: AuthenticationService, ApiGateway, WebApplication.
+The script starts the five projects in separate windows, in this order: NotificationService, AuthenticationService, PaymentService, ApiGateway, WebApplication.
 
-To run from Visual Studio, set **Multiple startup projects** (right-click the solution, Properties) to the three projects with action **Start**.
+To run from Visual Studio, set **Multiple startup projects** (right-click the solution, Properties) to the five projects above with action **Start**.
 
 Manual commands:
 
 ```powershell
-dotnet build "D:\Website\NEET_BEE_App_v1.0\backend\NeetBee.sln"
-dotnet run --project "D:\Website\NEET_BEE_App_v1.0\backend\AuthenticationService"
-dotnet run --project "D:\Website\NEET_BEE_App_v1.0\backend\ApiGateway"
-dotnet run --project "D:\Website\NEET_BEE_App_v1.0\backend\WebApplication"
+cd "D:\Github\NEET-Bee\NeetBee-DEV"
+dotnet build NeetBee.sln
+dotnet run --project Services\NotificationService
+dotnet run --project Services\AuthenticationService
+dotnet run --project Services\PaymentService
+dotnet run --project Services\ApiGateway
+dotnet run --project Web\WebApplication
 ```
 
 ## 8. Checks

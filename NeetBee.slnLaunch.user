@@ -3,15 +3,15 @@
     "Name": "New Profile",
     "Projects": [
       {
-        "Path": "AuthenticationService\\AuthenticationService.csproj",
+        "Path": "Services\\AuthenticationService\\AuthenticationService.csproj",
         "Action": "Start"
       },
       {
-        "Path": "ApiGateway\\ApiGateway.csproj",
+        "Path": "Services\\ApiGateway\\ApiGateway.csproj",
         "Action": "Start"
       },
       {
-        "Path": "WebApplication\\WebApplication.csproj",
+        "Path": "Web\\WebApplication\\WebApplication.csproj",
         "Action": "Start"
       }
     ]

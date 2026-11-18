@@ -64,11 +64,11 @@ jobs:
 
       # 4. Build Application
       - name: Build Application
-        run: dotnet build WebApplication/WebApplication.csproj --configuration Release
+        run: dotnet build Web/WebApplication/WebApplication.csproj --configuration Release
 
       # 5. Publish Application
       - name: Publish Application
-        run: dotnet publish WebApplication/WebApplication.csproj -c Release -o "${{ runner.temp }}/myapp"
+        run: dotnet publish Web/WebApplication/WebApplication.csproj -c Release -o "${{ runner.temp }}/myapp"
 
       # 5b. Write wwwroot/version.json, which the site footer reads (js/app-version.js)
       - name: Generate Website Version File

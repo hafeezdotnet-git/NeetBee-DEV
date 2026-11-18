@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "D:\\Github\\NEET-Bee\\NeetBee-DEV\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{6A1E5B3C-7D2F-4E8A-9B1C-2F3D4E5A6B03}|WebApplication\\WebApplication.csproj|d:\\github\\neet-bee\\neetbee-dev\\webapplication\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{6A1E5B3C-7D2F-4E8A-9B1C-2F3D4E5A6B03}|WebApplication\\WebApplication.csproj|solutionrelative:webapplication\\web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Github\\NEET-Bee\\NeetBee-DEV\\WebApplication\\Web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:WebApplication\\Web.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
     }
   ],
   "DocumentGroupContainers": [
@@ -24,10 +24,8 @@
               "RelativeDocumentMoniker": "WebApplication\\Web.config",
               "ToolTip": "D:\\Github\\NEET-Bee\\NeetBee-DEV\\WebApplication\\Web.config",
               "RelativeToolTip": "WebApplication\\Web.config",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAgAAAATAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
               "WhenOpened": "2026-11-18T11:31:26.742Z",
-              "EditorCaption": "",
               "OwnerCaption": "%2"
             }
           ]
