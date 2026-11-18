@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- NEET BEE navy and pink, used for the Android status bar and accents. -->
+    <color name="colorPrimary">#1B2A6B</color>
+    <color name="colorPrimaryDark">#111C4E</color>
+    <color name="colorAccent">#E91E63</color>
+</resources>
