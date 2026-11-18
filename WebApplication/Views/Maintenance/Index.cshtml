@@ -1,0 +1,67 @@
+@{
+    Layout = null;
+    var mobileImage = ViewData["MobileImage"] as string;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>NEET BEE - System Under Maintenance</title>
+    <style>
+        html, body { margin: 0; height: 100%; }
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            min-height: 100dvh;
+        }
+        /* Colours taken from the images' own edges, so any space around the picture blends into it. */
+        body { background: linear-gradient(90deg, #242286 0%, #23318b 50%, #2236a4 100%); }
+        main { width: 100%; }
+        img {
+            display: block;
+            width: 100%;
+            height: 100vh;
+            height: 100dvh;
+            object-fit: contain;
+        }
+
+        /* Phones: the tall image (3:4) is wider than a phone screen's shape, so enlarge it to fill the height,
+           trimming at most ~15% off each side (empty background only; the text and buttons start ~17% in).
+           Its top and bottom edges fade into the page colour so no hard band shows. */
+        @@media (max-width: 767px), (orientation: portrait) {
+            html, body { overflow-x: hidden; }
+            body { background: linear-gradient(180deg, #2e32b4 0%, #2a35b8 50%, #113dc3 100%); }
+            main {
+                display: flex;
+                justify-content: center;
+                overflow: hidden;
+            }
+            img {
+                flex: none;
+                width: min(142vw, 75vh);
+                width: min(142vw, 75dvh);
+                height: auto;
+                -webkit-mask-image: linear-gradient(180deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+                mask-image: linear-gradient(180deg, transparent 0, #000 7%, #000 93%, transparent 100%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <picture>
+            @if (!string.IsNullOrEmpty(mobileImage))
+            {
+                @* Phones and other portrait screens get the tall image (wwwroot/img/maintenance-mobile.*). *@
+                <source media="(max-width: 767px), (orientation: portrait)" srcset="@mobileImage" />
+            }
+            <img src="/img/maintenance.webp"
+                 alt="System Under Maintenance. We're currently performing scheduled maintenance to improve performance and reliability. We'll be back shortly! Thank you for your patience. - NEETBEE Team" />
+        </picture>
+    </main>
+</body>
+</html>

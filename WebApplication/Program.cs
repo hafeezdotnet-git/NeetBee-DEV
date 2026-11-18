@@ -116,8 +116,29 @@ app.Use(async (context, next) =>
     }
 });
 
+// Maintenance mode: when App:SystemInMaintenance is "Y", every request (except the maintenance page itself,
+// its image and /health) is served the maintenance page with 503. Read per request, so editing
+// appsettings.json or the App__SystemInMaintenance app setting takes effect without a code change.
+app.Use(async (context, next) =>
+{
+    if (MaintenanceController.IsEnabled(context.RequestServices.GetRequiredService<IConfiguration>()))
+    {
+        var path = context.Request.Path;
+        if (!path.StartsWithSegments("/health")
+            && !path.StartsWithSegments(MaintenanceController.PagePath)
+            && !MaintenanceController.IsMaintenanceImage(path))
+        {
+            context.Request.Path = MaintenanceController.PagePath;
+            context.Request.QueryString = QueryString.Empty;
+        }
+    }
+
+    await next();
+});
+
 app.UseExceptionHandler("/error");
-app.UseStatusCodePages();
+// Error status codes with no body (404 and so on) show the same "System Error" page as exceptions.
+app.UseStatusCodePagesWithReExecute("/error");
 
 // Public static site. Each site folder is mapped directly so its URLs match the static site
 // (/css/style.css, /js/main.js, /assets/..., /login/index.html).

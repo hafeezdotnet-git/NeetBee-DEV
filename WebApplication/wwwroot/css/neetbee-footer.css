@@ -103,11 +103,16 @@
     .nb-footer-brand { grid-column: 1 / -1; }
 }
 
-/* Mobile: stacked sections, compact spacing. */
+/* Mobile: full-width logo and brand on top, then Quick Links and Support & Information side by side. */
 @media (max-width: 640px) {
-    .nb-footer { padding: 28px 18px 0; }
-    .nb-footer-main { grid-template-columns: 1fr; gap: 26px; }
-    .nb-footer-logo { width: 216px; }
+    .nb-footer { padding: 28px 16px 0; }
+    .nb-footer-main { grid-template-columns: 1fr 1fr; gap: 24px 16px; }
+    .nb-footer-brand { grid-column: 1 / -1; }
+    .nb-footer-logo-link { display: block; }
+    .nb-footer-logo { width: 100%; max-width: 480px; }
+    .nb-footer h3 { margin-bottom: 12px; font-size: 14px; line-height: 1.3; }
+    .nb-footer ul { gap: 10px; }
+    .nb-footer-main .nb-footer-col a { font-size: 13.5px; line-height: 1.35; }
     .nb-footer-bottom { flex-direction: column; align-items: flex-start; margin-top: 26px; padding: 16px 0 20px; }
     .nb-footer-legal { gap: 16px; }
 }

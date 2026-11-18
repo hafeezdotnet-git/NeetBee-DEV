@@ -1,9 +1,95 @@
 @{
-    ViewData["Title"] = "Something went wrong";
+    Layout = null;
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>NEET BEE - Something went wrong</title>
+    <style>
+        /* Desktop image (1672 x 941) and where its "Try Again" button sits, in percent of the image. */
+        :root {
+            --ratio: 1672 / 941;
+            --btn-left: 58%;
+            --btn-top: 60%;
+            --btn-width: 34%;
+            --btn-height: 14%;
+        }
+        /* Phones and portrait screens: the tall image (1086 x 1448). Same breakpoint as the <source> below. */
+        @@media (max-width: 767px), (orientation: portrait) {
+            :root {
+                --ratio: 1086 / 1448;
+                --btn-left: 18.5%;
+                --btn-top: 71%;
+                --btn-width: 63%;
+                --btn-height: 11.5%;
+            }
+        }
 
-<section class="auth-card" aria-labelledby="error-title">
-    <h1 id="error-title">Something went wrong</h1>
-    <p class="sub">We could not complete that request. Please try again.</p>
-    <p class="auth-switch"><a href="/">Back to home</a></p>
-</section>
+        html, body { margin: 0; height: 100%; }
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            min-height: 100dvh;
+            background: #0b1240;
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+        }
+        .error-art {
+            position: relative;
+            aspect-ratio: var(--ratio);
+            /* As large as fits the screen without cropping. */
+            width: min(100vw, calc(100vh * (var(--ratio))));
+            width: min(100vw, calc(100dvh * (var(--ratio))));
+        }
+        .error-art img {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        /* Invisible button laid over the "Try Again" button in the picture. */
+        .try-again {
+            position: absolute;
+            left: var(--btn-left);
+            top: var(--btn-top);
+            width: var(--btn-width);
+            height: var(--btn-height);
+            margin: 0;
+            padding: 0;
+            border: 0;
+            border-radius: 999px;
+            background: transparent;
+            cursor: pointer;
+        }
+        .try-again:hover { box-shadow: 0 0 24px 4px rgba(255, 120, 90, .55); }
+        .try-again:focus-visible { outline: 3px solid #fff; outline-offset: 3px; }
+        .home-link {
+            position: absolute;
+            bottom: 12px;
+            left: 0;
+            right: 0;
+            text-align: center;
+        }
+        .home-link a { color: #c9d2ff; font-size: 14px; }
+        .sr-only {
+            position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+            overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+        }
+    </style>
+</head>
+<body>
+    <main class="error-art">
+        <h1 class="sr-only">System Error! Something went wrong while processing your request.</h1>
+        <picture>
+            <source media="(max-width: 767px), (orientation: portrait)" srcset="/img/error-mobile.webp" />
+            <img src="/img/error.webp" alt="" />
+        </picture>
+        <button type="button" class="try-again" aria-label="Try again" onclick="location.reload()"></button>
+    </main>
+    <p class="home-link"><a href="/">Back to home</a></p>
+</body>
+</html>
