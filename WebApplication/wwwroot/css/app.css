@@ -32,6 +32,9 @@
 .sub { margin: 0 0 20px; text-align: center; color: #5d6779; }
 .auth-switch { text-align: center; margin: 18px 0 0; color: #5d6779; }
 .auth-switch a { color: #0a8fb3; font-weight: 700; }
+.auth-brand { font-weight: 900; letter-spacing: .3px; }
+.auth-brand-neet { color: #13226b; }
+.auth-brand-bee { color: #ec1c74; }
 
 .field { margin-bottom: 14px; }
 .field label { display: block; font-weight: 700; margin-bottom: 6px; }
@@ -178,7 +181,6 @@
 .auth-alt { text-align: center; margin: 14px 0 0; }
 .auth-alt a { color: #0a8fb3; font-weight: 700; }
 .btn-email { margin-top: 10px; }
-.email-mark { color: #0a8fb3; }
 .code-input { letter-spacing: 8px; font-size: 22px; font-weight: 800; text-align: center; }
 
 /* ---- Password show/hide toggle ---- */
@@ -240,7 +242,8 @@ body.dark .auth-switch,
 body.dark .divider { color: #b9c9e6; }
 body.dark .field input { background: #0b1b3d; border-color: #2b416a; color: #eaf2ff; }
 body.dark .btn-google { background: #0b1b3d; border-color: #2b416a; color: #eaf2ff; }
-body.dark .email-mark { background: #0b1b3d; color: #5fd6f5; box-shadow: inset 0 0 0 1.5px #2b416a; }
+body.dark .auth-brand-neet { color: #8fb0ff; }
+body.dark .auth-brand-bee { color: #ff5fa2; }
 body.dark .pw-toggle { color: #b9c9e6; }
 body.dark .page-main { background: transparent; }
 
