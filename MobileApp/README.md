@@ -73,6 +73,7 @@ This starts the iOS Simulator. Running on a real iPhone or publishing to the App
 - **When:** on every push to `dev` that changes `MobileApp/**`, or manually from **Actions → Build NEET BEE Mobile App (Android + iOS) → Run workflow** (choose the branch and Release/Debug).
 - **Android** (Windows runner): builds an `.apk` (install on a phone for testing) and an `.aab` (Play Store format), uploaded as the `neetbee-android-…` artifact. They are signed with the default debug key, so they are fine for testing but not for the Play Store.
 - **iOS** (macOS runner): builds for the iOS Simulator, uploaded as the `neetbee-ios-simulator-…` artifact. This needs no Apple certificate, but it does not run on a real iPhone.
+- **Downloading a build:** open the workflow run, click **Summary** (house icon, top of the left sidebar) and download it from **Artifacts** at the bottom of the page. Artifacts are kept for 7 days. For Android, install `com.neetbee.mobile-Signed.apk`.
 - Nothing is published to the stores.
 
 Store-ready builds need signing secrets added to the workflow later: an Android release keystore (`AndroidKeyStore`, `AndroidSigningKeyStore`, `AndroidSigningKeyAlias`, `AndroidSigningKeyPass`, `AndroidSigningStorePass`) and, for iOS, an Apple distribution certificate and provisioning profile (`CodesignKey`, `CodesignProvision`).

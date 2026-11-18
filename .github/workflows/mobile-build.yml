@@ -133,7 +133,8 @@ jobs:
           retention-days: 7
 
   summary:
-    name: Summary
+    # Not "Summary": that clashes with GitHub's own run Summary page, where the artifacts are.
+    name: Build report
     runs-on: ubuntu-latest
     needs: [android, ios]
     if: always()
