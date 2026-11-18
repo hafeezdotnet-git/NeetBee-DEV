@@ -1,4 +1,4 @@
-namespace AuthenticationService.Services;
+namespace NotificationService.Email;
 
 /// <summary>Sends an email. Returns false when the message could not be sent.</summary>
 public interface IEmailSender

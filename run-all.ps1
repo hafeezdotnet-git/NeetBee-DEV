@@ -1,4 +1,4 @@
-# Starts the three NEET BEE projects in separate PowerShell windows.
+# Starts the five NEET BEE projects in separate PowerShell windows.
 # Usage:  .\run-all.ps1                      (uses the existing Authentication__Jwt__SigningKey variable)
 #         .\run-all.ps1 -SigningKey "<key>"  (sets it for this session first)
 param(
@@ -13,8 +13,9 @@ if (-not $env:Authentication__Jwt__SigningKey -or $env:Authentication__Jwt__Sign
     throw "Authentication__Jwt__SigningKey is missing or shorter than 32 characters. Pass -SigningKey or set the variable first."
 }
 
-# Start order: auth service first (the gateway forwards to it), then the gateway, then the web app.
-$projects = @("AuthenticationService", "ApiGateway", "WebApplication")
+# Start order: notification service first (auth and payment services call it), then auth and payment services
+# (the gateway forwards to them), then the gateway, then the web app.
+$projects = @("NotificationService", "AuthenticationService", "PaymentService", "ApiGateway", "WebApplication")
 foreach ($project in $projects) {
     $projectPath = Join-Path $backend $project
     Start-Process powershell -WorkingDirectory $projectPath -ArgumentList @(
@@ -23,4 +24,4 @@ foreach ($project in $projects) {
     Start-Sleep -Seconds 2
 }
 
-Write-Host "Started. Web app: http://localhost:5100   Gateway: http://localhost:5000   Auth service: http://localhost:5001"
+Write-Host "Started. Web app: http://localhost:5100   Gateway: http://localhost:5000   Auth service: http://localhost:5001   Notification service: http://localhost:5002   Payment service: http://localhost:5003"

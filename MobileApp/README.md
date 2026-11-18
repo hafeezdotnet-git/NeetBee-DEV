@@ -70,7 +70,8 @@ This starts the iOS Simulator. Running on a real iPhone or publishing to the App
 
 [`.github/workflows/mobile-build.yml`](../.github/workflows/mobile-build.yml) builds the app on GitHub:
 
-- **When:** on every push to `dev` that changes `MobileApp/**`, or manually from **Actions → Build NEET BEE Mobile App (Android + iOS) → Run workflow** (choose the branch and Release/Debug).
+- **When:** on every push to `dev` that changes `MobileApp/**` (Android only), or manually from **Actions → Build NEET BEE Mobile App (Android + iOS) → Run workflow** (choose the branch and Release/Debug, and tick **Also build iOS** to include iOS).
+- **Why iOS is opt-in:** GitHub's macOS runners are often out of capacity ("The job was not acquired by Runner of type hosted") and use the most Actions minutes. If that error appears, just run it again later.
 - **Android** (Windows runner): builds an `.apk` (install on a phone for testing) and an `.aab` (Play Store format), uploaded as the `neetbee-android-…` artifact. They are signed with the default debug key, so they are fine for testing but not for the Play Store.
 - **iOS** (macOS runner): builds for the iOS Simulator, uploaded as the `neetbee-ios-simulator-…` artifact. This needs no Apple certificate, but it does not run on a real iPhone.
 - **Downloading a build:** open the workflow run, click **Summary** (house icon, top of the left sidebar) and download it from **Artifacts** at the bottom of the page. Artifacts are kept for 7 days. For Android, install `com.neetbee.mobile-Signed.apk`.

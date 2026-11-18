@@ -5,11 +5,13 @@ Solution: `D:\Website\NEET_BEE_App_v1.0\backend\NeetBee.sln`
 | Project | URL | Depends on |
 |---|---|---|
 | WebApplication (web app) | http://localhost:5100 | Gateway (called from the browser) |
-| ApiGateway | http://localhost:5000 | AuthenticationService |
-| AuthenticationService | http://localhost:5001 (localhost only) | SQL Server (`NEET_BEE`) |
+| ApiGateway | http://localhost:5000 | AuthenticationService, PaymentService, NotificationService |
+| AuthenticationService | http://localhost:5001 (localhost only) | SQL Server (`NEET_BEE`), NotificationService (sign-in code emails) |
+| NotificationService | http://localhost:5002 (localhost only) | SMTP server, SMS / WhatsApp provider |
+| PaymentService | http://localhost:5003 (localhost only) | SQL Server (`NEET_BEE`), payment gateway, NotificationService |
 | SQL Server | localhost, Windows Authentication | none |
 
-Start order: SQL Server, then AuthenticationService, then ApiGateway, then WebApplication.
+Start order: SQL Server, then NotificationService, then AuthenticationService and PaymentService, then ApiGateway, then WebApplication.
 
 ## 1. Prerequisites
 
@@ -30,13 +32,18 @@ sqlcmd -S localhost -E -i "D:\Website\NEET_BEE_App_v1.0\backend\Database\001_cre
 | Server | `localhost` |
 | Authentication | Windows (`-E` / `Trusted_Connection=True`) |
 | Database | `NEET_BEE` |
-| Tables | `dbo.Users`, `dbo.RefreshTokens` |
+| Tables | `dbo.Users`, `dbo.RefreshTokens`; scripts `002` to `008` add the rest (run them in order) |
 
 ## 3. Environment variables (secrets)
 
 | Variable | Used by | Required | Value |
 |---|---|---|---|
-| `Authentication__Jwt__SigningKey` | AuthenticationService and ApiGateway | Yes (TokenBased mode) | Random string, 32+ characters. Both services must have the same value. |
+| `Authentication__Jwt__SigningKey` | AuthenticationService, PaymentService and ApiGateway | Yes (TokenBased mode) | Random string, 32+ characters. All three must have the same value. |
+| `NotificationApi__ApiKey` | NotificationService | Yes outside Development | Random string, 32+ characters. Callers send it in `X-Api-Key`. Empty in Development = calls accepted without a key. |
+| `NotificationService__ApiKey` | AuthenticationService and PaymentService | Same as above | The same value as `NotificationApi__ApiKey`. |
+| `Email__Password` | NotificationService | When SMTP needs a password | SMTP password. |
+| `Messaging__AuthToken` | NotificationService | When `Messaging:Provider` is `Twilio` | Twilio auth token. |
+| `Payments__Razorpay__KeySecret`, `Payments__Razorpay__WebhookSecret` | PaymentService | Not yet (no Razorpay gateway yet) | Razorpay secrets. |
 
 Set it for the session:
 
@@ -70,8 +77,40 @@ File: `AuthenticationService\appsettings.json`
 | `Authentication:Jwt:SigningKey` | leave empty | Supply through the environment variable above. |
 | `Authentication:Jwt:AccessTokenExpiryMinutes` | `15` | Allowed range 1 to 60. |
 | `Authentication:Jwt:RefreshTokenExpiryDays` | `30` | Allowed range 1 to 90. |
+| `NotificationService:BaseUrl` | `http://localhost:5002/` | Sign-in code emails are sent through NotificationService. |
+| `NotificationService:ApiKey` | leave empty | Supply through `NotificationService__ApiKey`. |
 
 Swagger (Development only): http://localhost:5001/swagger
+
+## 4a. NotificationService
+
+File: `NotificationService\appsettings.json`. Endpoint: `POST api/notifications` with
+`{ "channel": "Email" | "Sms" | "WhatsApp", "type": "Otp" | "EnrollmentSuccess" | "PaymentSuccess" | "PaymentFailed" | "LearningStatusUpdate", "recipient": "...", "data": { ... } }`.
+Returns 202 when sent, 400 when a template value is missing, 401 without the key, 502 when delivery failed.
+Message text lives in `NotificationService\Notifications\NotificationTemplates.cs`.
+
+| Key | Value | Notes |
+|---|---|---|
+| `Kestrel:Endpoints:Http:Url` | `http://localhost:5002` | Keep on localhost. |
+| `NotificationApi:ApiKey` | leave empty | Supply through `NotificationApi__ApiKey`. |
+| `Email:Host`, `Email:Port`, `Email:UseSsl`, `Email:UserName`, `Email:FromAddress`, `Email:FromName` | empty / `587` / `true` | SMTP settings (moved here from AuthenticationService). Empty `Host` in Development logs the message instead of sending it. |
+| `Messaging:Provider` | `Stub` or `Twilio` | `Stub` sends nothing (Development logs the text). |
+| `Messaging:AccountSid`, `Messaging:SmsFrom`, `Messaging:WhatsAppFrom` | empty | Twilio account and sender numbers (E.164). |
+
+## 4b. PaymentService
+
+File: `PaymentService\appsettings.json`. Endpoints (JWT required): `POST api/payments/netbanking`, `POST api/payments/upi`,
+`POST api/payments/card`, `GET api/payments/history`. Table: `dbo.PaymentTransactions` (`Database\008_create_payment_transactions.sql`).
+
+| Key | Value | Notes |
+|---|---|---|
+| `Kestrel:Endpoints:Http:Url` | `http://localhost:5003` | Keep on localhost. |
+| `ConnectionStrings:NeetBee` | same as AuthenticationService | |
+| `Authentication:Jwt:Issuer` / `Audience` / `SigningKey` | `NeetBee` / `NeetBeeClients` / empty | Must match the auth service. |
+| `Payments:Gateway` | `Fake` | Only `Fake` exists (no money moves). Test failures: bank `FAIL`, UPI `fail@...`, card token `tok_fail`. |
+| `Payments:Currency` / `Payments:MaxAmount` | `INR` / `100000` | |
+| `Payments:Razorpay:KeyId` | empty | For a future Razorpay gateway. |
+| `NotificationService:BaseUrl` / `ApiKey` | `http://localhost:5002/` / empty | Payment success / failed messages. |
 
 ## 5. ApiGateway
 
@@ -87,7 +126,11 @@ File: `ApiGateway\appsettings.json`
 | `Authentication:Jwt:SigningKey` | leave empty | Supply through the environment variable. |
 | `ReverseProxy:Routes:auth-me` | `/api/auth/me`, policy `Default` | Requires a valid JWT. |
 | `ReverseProxy:Routes:auth-public` | `/api/auth/{**catch-all}`, policy `Anonymous` | Register, login, refresh, logout. |
+| `ReverseProxy:Routes:payments` | `/api/payments/{**catch-all}`, policy `Default` | PaymentService. Requires a valid JWT. |
+| `ReverseProxy:Routes:notifications` | `/api/notifications/{**catch-all}`, policy `Default` | NotificationService. Requires a valid JWT and the `X-Api-Key`. |
 | `ReverseProxy:Clusters:authentication:Destinations:primary:Address` | `http://localhost:5001/` | Address of the auth service. |
+| `ReverseProxy:Clusters:notification:Destinations:primary:Address` | `http://localhost:5002/` | Address of the notification service. |
+| `ReverseProxy:Clusters:payment:Destinations:primary:Address` | `http://localhost:5003/` | Address of the payment service. |
 | Rate limit | 100 requests per minute per client IP | Set in `ApiGateway\Program.cs`. |
 
 To add a downstream service later, add a cluster and a route here. Routes are the only way traffic reaches a service.

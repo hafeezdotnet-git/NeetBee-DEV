@@ -32,10 +32,18 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 // ---- Services ----------------------------------------------------------------
 builder.Services.AddSingleton<IPasswordHasher<User>, PasswordHasher<User>>();
-builder.Services.Configure<EmailOptions>(builder.Configuration.GetSection(EmailOptions.SectionName));
-builder.Services.AddSingleton<IEmailSender, SmtpEmailSender>();
 builder.Services.AddSingleton<ITokenService, TokenService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+
+// Sign-in code emails go through NotificationService over HTTP ("NotificationService" section).
+builder.Services.Configure<NotificationClientOptions>(builder.Configuration.GetSection(NotificationClientOptions.SectionName));
+var notificationUrl = builder.Configuration[$"{NotificationClientOptions.SectionName}:BaseUrl"] ?? "http://localhost:5002/";
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddHttpClient<INotificationClient, NotificationClient>(client =>
+{
+    client.BaseAddress = new Uri(notificationUrl.TrimEnd('/') + "/");
+    client.Timeout = TimeSpan.FromSeconds(20);
+});
 
 // Outbound HTTP client. Used to ask Google's userinfo endpoint who a Gmail sign-in token belongs to.
 builder.Services.AddHttpClient(AuthService.GoogleUserInfoClient, client =>

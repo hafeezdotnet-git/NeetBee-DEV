@@ -21,7 +21,7 @@ public sealed class AuthService(
     IPasswordHasher<User> passwordHasher,
     IOptions<AuthOptions> options,
     IHttpClientFactory httpClientFactory,
-    IEmailSender emailSender,
+    INotificationClient notifications,
     ILogger<AuthService> logger) : IAuthService
 {
     private const string InvalidRefreshMessage = "The refresh token is invalid.";
@@ -354,9 +354,8 @@ public sealed class AuthService(
         await db.SaveChangesAsync(cancellationToken);
         logger.LogDebug("Email code stored for {Email}, expires in {Minutes} minutes", MaskEmail(email), OtpLifetimeMinutes);
 
-        var body = $"Your NEET BEE sign-in code is {code}. It expires in {OtpLifetimeMinutes} minutes. "
-                 + "If you did not ask for this code, you can ignore this email.";
-        var sent = await emailSender.SendAsync(email, "Your NEET BEE sign-in code", body, cancellationToken);
+        // NotificationService sends it by email; the wording is its "Otp" template.
+        var sent = await notifications.SendOtpEmailAsync(email, code, OtpLifetimeMinutes, cancellationToken);
 
         if (!sent)
         {

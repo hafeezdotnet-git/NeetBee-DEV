@@ -1,9 +1,9 @@
 using System.Net;
 using System.Net.Mail;
-using AuthenticationService.Configuration;
+using NotificationService.Configuration;
 using Microsoft.Extensions.Options;
 
-namespace AuthenticationService.Services;
+namespace NotificationService.Email;
 
 /// <summary>Sends email through the SMTP server configured in the "Email" section of appsettings.json.</summary>
 public sealed class SmtpEmailSender(

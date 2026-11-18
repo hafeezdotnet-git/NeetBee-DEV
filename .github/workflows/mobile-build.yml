@@ -1,5 +1,7 @@
 # Builds the NEET BEE mobile app (MobileApp/NeetBee.Mobile.csproj) for Android and iOS.
-# Runs on pushes to dev that touch MobileApp/, or manually from the Actions tab.
+# Android: runs on pushes to dev that touch MobileApp/, and on manual runs from the Actions tab.
+# iOS: only on manual runs with "Also build iOS" ticked. macOS runners are often short of
+#      capacity ("job was not acquired") and use the most Actions minutes, so pushes skip it.
 # Build only: nothing is uploaded to the Play Store or App Store.
 
 name: Build NEET BEE Mobile App (Android + iOS)
@@ -26,6 +28,11 @@ on:
         options:
           - Release
           - Debug
+      build_ios:
+        description: 'Also build iOS (macOS runner)'
+        required: false
+        default: false
+        type: boolean
 
 permissions:
   contents: read
@@ -95,6 +102,9 @@ jobs:
   ios:
     name: iOS
     runs-on: macos-latest
+    # Pushes have no inputs, so this is false for them and the job is skipped.
+    if: ${{ inputs.build_ios }}
+    timeout-minutes: 60
 
     steps:
       - name: Checkout
