@@ -1,0 +1,21 @@
+@* Floating gold "Go Premium" button, top-right under the header (like the AI chat button, bottom-right).
+   Shown only to users without an active Premium / Advance plan, and not on the Pricing page itself.
+   Styles: css/neetbee-dashboard-overrides.css. Position: js/go-premium.js. *@
+@inject NeetBee.Web.Services.IUserPlanService Plans
+@{
+    var onPricing = string.Equals(ViewContext.RouteData.Values["controller"]?.ToString(), "Study", StringComparison.OrdinalIgnoreCase)
+        && string.Equals(ViewContext.RouteData.Values["action"]?.ToString(), "Pricing", StringComparison.OrdinalIgnoreCase);
+    var show = !onPricing && !await Plans.HasPremiumAsync(User, Context.RequestAborted);
+}
+@if (show)
+{
+    <a class="nb-premium-fab" id="nb-premium-fab" asp-controller="Study" asp-action="Pricing" aria-label="Go Premium: see plans">
+        <span class="nb-premium-crown" aria-hidden="true">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M3 7.5 7.5 11 12 4l4.5 7L21 7.5 19 18H5L3 7.5Zm2 12.5h14v2H5v-2Z"/></svg>
+        </span>
+        <span class="nb-premium-label" aria-hidden="true">
+            <strong>Go Premium</strong>
+            <small>Unlock all questions &amp; audio</small>
+        </span>
+    </a>
+}

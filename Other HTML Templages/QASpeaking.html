@@ -1,0 +1,1389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="common.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ExamPro - Questions & Answers</title>
+
+
+</head>
+
+
+<body class="qaspeaking-page">
+
+
+<!-- =====================================================
+     OFFER
+===================================================== -->
+
+<div class="offer-banner">
+
+    🎁 <strong>EXAM SPECIAL</strong>
+
+    Practice more • Improve your score
+
+    <button onclick="startStudy()">
+        Study Now
+    </button>
+
+</div>
+
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
+
+<header class="header">
+
+    <div class="header-left">
+
+        <div
+            class="hamburger"
+            onclick="openDrawer()">
+
+            ☰
+
+        </div>
+
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            ExamPro
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="header-btn"
+        onclick="goDashboard()">
+
+        Dashboard
+
+    </button>
+
+</header>
+
+
+<!-- =====================================================
+     DRAWER
+===================================================== -->
+
+<div
+    class="overlay"
+    id="overlay"
+    onclick="closeDrawer()">
+</div>
+
+
+<div
+    class="drawer"
+    id="drawer">
+
+
+    <div class="drawer-header">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            ExamPro
+
+        </div>
+
+
+        <div
+            class="close"
+            onclick="closeDrawer()">
+
+            ×
+
+        </div>
+
+    </div>
+
+
+    <div class="drawer-menu">
+
+        <button>🏠 Dashboard</button>
+
+        <button>📚 Courses</button>
+
+        <button>📝 Mock Tests</button>
+
+        <button>📊 Progress</button>
+
+        <button>📖 Questions & Answers</button>
+
+        <button>🎤 Voice Study</button>
+
+        <button>🏆 Leaderboard</button>
+
+        <button>💳 Payments</button>
+
+    </div>
+
+</div>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="container">
+
+
+    <!-- HEADER -->
+
+    <section class="page-header">
+
+        <div>
+
+            <h1>
+                Questions & Answers
+            </h1>
+
+            <p>
+                Revise important questions without distractions.
+                Listen to questions and answers using voice.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         VOICE CONTROL
+    ================================================== -->
+
+    <section class="voice-panel">
+
+        <div class="voice-controls">
+
+
+            <span class="control-label">
+                🎤 Voice
+            </span>
+
+
+            <select
+                class="voice-select"
+                id="voiceGender">
+
+                <option value="female">
+                    👩 Female Voice
+                </option>
+
+                <option value="male">
+                    👨 Male Voice
+                </option>
+
+            </select>
+
+
+            <div class="repeat-control">
+
+                <span class="control-label">
+                    🔁 Repeat
+                </span>
+
+
+                <input
+                    id="repeatCount"
+                    class="repeat-input"
+                    type="number"
+                    min="1"
+                    max="20"
+                    value="1">
+
+                <span class="control-label">
+                    times
+                </span>
+
+            </div>
+
+
+            <button
+                class="voice-main-btn"
+                onclick="speakCurrentPage()">
+
+                🔊 Read Page
+
+            </button>
+
+
+            <button
+                class="stop-btn"
+                onclick="stopSpeaking()">
+
+                ■ Stop
+
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         SUBJECT TABS
+    ================================================== -->
+
+    <div class="subject-tabs">
+
+
+        <button
+            class="subject-tab active"
+            data-subject="Mathematics"
+            onclick="changeSubject('Mathematics',this)">
+
+            ➗ Mathematics
+
+        </button>
+
+
+        <button
+            class="subject-tab"
+            data-subject="Physics"
+            onclick="changeSubject('Physics',this)">
+
+            ⚡ Physics
+
+        </button>
+
+
+        <button
+            class="subject-tab"
+            data-subject="Chemistry"
+            onclick="changeSubject('Chemistry',this)">
+
+            🧪 Chemistry
+
+        </button>
+
+
+        <button
+            class="subject-tab"
+            data-subject="Biology"
+            onclick="changeSubject('Biology',this)">
+
+            🧬 Biology
+
+        </button>
+
+
+        <button
+            class="subject-tab"
+            data-subject="Zoology"
+            onclick="changeSubject('Zoology',this)">
+
+            🦎 Zoology
+
+        </button>
+
+    </div>
+
+
+    <!-- SUBJECT INFO -->
+
+    <div class="subject-info">
+
+        <div>
+
+            <h2 id="subjectTitle">
+                Mathematics
+            </h2>
+
+        </div>
+
+        <span id="questionCount">
+            120 Questions
+        </span>
+
+    </div>
+
+
+    <!-- =================================================
+         QUESTIONS
+    ================================================== -->
+
+    <section
+        class="question-list"
+        id="questionList">
+    </section>
+
+
+    <!-- =================================================
+         PAGINATION
+    ================================================== -->
+
+    <div
+        class="pagination"
+        id="pagination">
+    </div>
+
+
+    <div
+        class="page-info"
+        id="pageInfo">
+    </div>
+
+
+</main>
+
+
+<!-- =====================================================
+     BOTTOM NAV
+===================================================== -->
+
+<nav class="bottom-nav">
+
+
+    <button onclick="goDashboard()">
+
+        <span class="bottom-icon">
+            🏠
+        </span>
+
+        Home
+
+    </button>
+
+
+    <button>
+
+        <span class="bottom-icon">
+            📚
+        </span>
+
+        Courses
+
+    </button>
+
+
+    <button class="active">
+
+        <span class="bottom-icon">
+            📖
+        </span>
+
+        Q&A
+
+    </button>
+
+
+    <button>
+
+        <span class="bottom-icon">
+            📊
+        </span>
+
+        Progress
+
+    </button>
+
+
+    <button onclick="openDrawer()">
+
+        <span class="bottom-icon">
+            ☰
+        </span>
+
+        Menu
+
+    </button>
+
+</nav>
+
+
+<script>
+
+/* =====================================================
+   QUESTION DATA
+===================================================== */
+
+const questions = {
+
+    Mathematics: [
+
+        {
+            q:"What is the derivative of x²?",
+            a:"The derivative of x² is 2x."
+        },
+
+        {
+            q:"What is the value of π approximately?",
+            a:"The approximate value of π is 3.14159."
+        },
+
+        {
+            q:"What is the quadratic formula?",
+            a:"For ax² + bx + c = 0, the roots are x = (−b ± √(b² − 4ac)) / 2a."
+        },
+
+        {
+            q:"What is the integral of 2x?",
+            a:"The integral of 2x with respect to x is x² + C."
+        },
+
+        {
+            q:"What is the sum of angles in a triangle?",
+            a:"The sum of the interior angles of a triangle is 180 degrees."
+        },
+
+        {
+            q:"What is the Pythagorean theorem?",
+            a:"For a right-angled triangle, a² + b² = c²."
+        },
+
+        {
+            q:"What is a prime number?",
+            a:"A prime number is a positive integer greater than one with exactly two positive divisors: one and itself."
+        },
+
+        {
+            q:"What is the value of 5 factorial?",
+            a:"5 factorial is 5 × 4 × 3 × 2 × 1 = 120."
+        }
+
+    ],
+
+
+    Physics: [
+
+        {
+            q:"What is Newton's first law?",
+            a:"An object remains at rest or in uniform motion unless acted upon by an external force."
+        },
+
+        {
+            q:"What is the SI unit of force?",
+            a:"The SI unit of force is the Newton."
+        },
+
+        {
+            q:"What is acceleration?",
+            a:"Acceleration is the rate of change of velocity with respect to time."
+        },
+
+        {
+            q:"What is kinetic energy?",
+            a:"Kinetic energy is the energy possessed by an object due to its motion."
+        },
+
+        {
+            q:"What is the speed of light in vacuum?",
+            a:"The speed of light in vacuum is approximately 3 × 10⁸ metres per second."
+        },
+
+        {
+            q:"What is Ohm's law?",
+            a:"Ohm's law states that V = IR."
+        }
+
+    ],
+
+
+    Chemistry: [
+
+        {
+            q:"What is the atomic number of hydrogen?",
+            a:"The atomic number of hydrogen is 1."
+        },
+
+        {
+            q:"What is Avogadro's number?",
+            a:"Avogadro's number is approximately 6.022 × 10²³ particles per mole."
+        },
+
+        {
+            q:"What is a catalyst?",
+            a:"A catalyst is a substance that changes the rate of a chemical reaction without being consumed."
+        },
+
+        {
+            q:"What is the pH of pure water at room temperature?",
+            a:"The pH of pure water is approximately 7."
+        },
+
+        {
+            q:"What is an acid?",
+            a:"An acid is a substance that can donate hydrogen ions or increase hydrogen ion concentration in aqueous solution."
+        }
+
+    ],
+
+
+    Biology: [
+
+        {
+            q:"What is the basic unit of life?",
+            a:"The cell is the basic structural and functional unit of life."
+        },
+
+        {
+            q:"What is photosynthesis?",
+            a:"Photosynthesis is the process by which green plants use light energy to convert carbon dioxide and water into glucose and oxygen."
+        },
+
+        {
+            q:"What is DNA?",
+            a:"DNA is deoxyribonucleic acid, the molecule that carries genetic information."
+        },
+
+        {
+            q:"What is the powerhouse of the cell?",
+            a:"The mitochondrion is commonly called the powerhouse of the cell because it produces ATP."
+        },
+
+        {
+            q:"What is mitosis?",
+            a:"Mitosis is a type of cell division that produces two genetically similar daughter cells."
+        }
+
+    ],
+
+
+    Zoology: [
+
+        {
+            q:"What is zoology?",
+            a:"Zoology is the branch of biology concerned with the study of animals."
+        },
+
+        {
+            q:"What is the largest mammal?",
+            a:"The blue whale is the largest known mammal."
+        },
+
+        {
+            q:"What is the scientific study of birds called?",
+            a:"The scientific study of birds is called ornithology."
+        },
+
+        {
+            q:"What is the largest organ in the human body?",
+            a:"The skin is the largest organ of the human body."
+        },
+
+        {
+            q:"What is the function of red blood cells?",
+            a:"Red blood cells primarily transport oxygen from the lungs to tissues and carry some carbon dioxide back to the lungs."
+        }
+
+    ]
+
+};
+
+
+/* =====================================================
+   PAGINATION
+===================================================== */
+
+let currentSubject =
+    "Mathematics";
+
+let currentPage =
+    1;
+
+const questionsPerPage =
+    5;
+
+
+/* =====================================================
+   RENDER
+===================================================== */
+
+function renderQuestions(){
+
+    const data =
+        questions[currentSubject] || [];
+
+    const totalPages =
+        Math.ceil(
+            data.length /
+            questionsPerPage
+        );
+
+
+    if(currentPage > totalPages){
+
+        currentPage = totalPages || 1;
+
+    }
+
+
+    const start =
+        (currentPage - 1) *
+        questionsPerPage;
+
+
+    const pageQuestions =
+        data.slice(
+            start,
+            start + questionsPerPage
+        );
+
+
+    const list =
+        document.getElementById(
+            "questionList"
+        );
+
+
+    list.innerHTML = "";
+
+
+    pageQuestions.forEach(
+        (item,index)=>{
+
+            const number =
+                start + index + 1;
+
+
+            const card =
+                document.createElement(
+                    "article"
+                );
+
+
+            card.className =
+                "question-card";
+
+
+            card.innerHTML = `
+
+                <div class="question-header">
+
+                    <div class="question-number">
+
+                        <span>
+                            ${number}
+                        </span>
+
+                        <strong>
+                            Question ${number}
+                        </strong>
+
+                    </div>
+
+
+                    <button
+                        class="speak-question"
+                        onclick="speakQuestion(${number - start - 1})">
+
+                        🔊
+
+                    </button>
+
+                </div>
+
+
+                <div class="question">
+
+                    ${item.q}
+
+                </div>
+
+
+                <div class="answer-box">
+
+                    <div class="answer-header">
+
+                        <span class="answer-label">
+                            ✓ ANSWER
+                        </span>
+
+                        <button
+                            class="speak-answer"
+                            onclick="speakAnswer(${number - start - 1})">
+
+                            🔊
+
+                        </button>
+
+                    </div>
+
+
+                    <div class="answer">
+
+                        ${item.a}
+
+                    </div>
+
+                </div>
+
+
+                <div class="repeat-row">
+
+                    <span class="repeat-info">
+
+                        🔁 Repeat this Q&A:
+
+                        <span
+                            class="repeat-number"
+                            id="repeat-${number}">
+                            1
+                        </span>
+
+                        time(s)
+
+                    </span>
+
+
+                    <div class="repeat-buttons">
+
+                        <button
+                            class="repeat-btn"
+                            onclick="repeatQA(${number - start - 1},1)">
+
+                            ▶
+
+                        </button>
+
+
+                        <button
+                            class="repeat-btn"
+                            onclick="repeatQA(${number - start - 1},3)">
+
+                            ×3
+
+                        </button>
+
+
+                        <button
+                            class="repeat-btn"
+                            onclick="repeatQA(${number - start - 1},5)">
+
+                            ×5
+
+                        </button>
+
+
+                        <button
+                            class="repeat-btn"
+                            onclick="repeatQA(${number - start - 1},10)">
+
+                            ×10
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+            `;
+
+
+            list.appendChild(card);
+
+        }
+    );
+
+
+    document.getElementById(
+        "subjectTitle"
+    ).textContent =
+        currentSubject;
+
+
+    document.getElementById(
+        "questionCount"
+    ).textContent =
+        data.length + " Questions";
+
+
+    renderPagination(
+        totalPages
+    );
+
+}
+
+
+/* =====================================================
+   PAGINATION UI
+===================================================== */
+
+function renderPagination(totalPages){
+
+    const pagination =
+        document.getElementById(
+            "pagination"
+        );
+
+
+    pagination.innerHTML = "";
+
+
+    const previous =
+        document.createElement(
+            "button"
+        );
+
+
+    previous.className =
+        "page-btn";
+
+
+    previous.textContent =
+        "‹";
+
+
+    previous.disabled =
+        currentPage === 1;
+
+
+    previous.onclick =
+        ()=>{
+            currentPage--;
+            renderQuestions();
+            window.scrollTo({
+                top:0,
+                behavior:"smooth"
+            });
+        };
+
+
+    pagination.appendChild(
+        previous
+    );
+
+
+    for(
+        let i=1;
+        i<=totalPages;
+        i++
+    ){
+
+        const button =
+            document.createElement(
+                "button"
+            );
+
+
+        button.className =
+            "page-btn";
+
+
+        if(i === currentPage){
+
+            button.classList.add(
+                "active"
+            );
+
+        }
+
+
+        button.textContent =
+            i;
+
+
+        button.onclick =
+            ()=>{
+                currentPage = i;
+                renderQuestions();
+
+                window.scrollTo({
+                    top:0,
+                    behavior:"smooth"
+                });
+            };
+
+
+        pagination.appendChild(
+            button
+        );
+
+    }
+
+
+    const next =
+        document.createElement(
+            "button"
+        );
+
+
+    next.className =
+        "page-btn";
+
+
+    next.textContent =
+        "›";
+
+
+    next.disabled =
+        currentPage === totalPages;
+
+
+    next.onclick =
+        ()=>{
+            currentPage++;
+            renderQuestions();
+
+            window.scrollTo({
+                top:0,
+                behavior:"smooth"
+            });
+        };
+
+
+    pagination.appendChild(
+        next
+    );
+
+
+    document.getElementById(
+        "pageInfo"
+    ).textContent =
+        "Page " +
+        currentPage +
+        " of " +
+        totalPages;
+
+}
+
+
+/* =====================================================
+   SUBJECT
+===================================================== */
+
+function changeSubject(
+    subject,
+    button
+){
+
+    currentSubject =
+        subject;
+
+    currentPage =
+        1;
+
+
+    document
+        .querySelectorAll(
+            ".subject-tab"
+        )
+        .forEach(
+            tab =>
+            tab.classList.remove(
+                "active"
+            )
+        );
+
+
+    button.classList.add(
+        "active"
+    );
+
+
+    stopSpeaking();
+
+    renderQuestions();
+
+}
+
+
+/* =====================================================
+   SPEECH
+===================================================== */
+
+function getVoice(){
+
+    const gender =
+        document.getElementById(
+            "voiceGender"
+        ).value;
+
+
+    const voices =
+        speechSynthesis.getVoices();
+
+
+    /*
+       Browser voice names vary by OS/browser.
+       We try to select a voice based on
+       common female/male naming patterns.
+    */
+
+    const femaleNames = [
+        "female",
+        "samantha",
+        "zira",
+        "karen",
+        "susan",
+        "google uk english female"
+    ];
+
+
+    const maleNames = [
+        "male",
+        "daniel",
+        "david",
+        "alex",
+        "mark",
+        "google uk english male"
+    ];
+
+
+    const names =
+        gender === "female"
+            ? femaleNames
+            : maleNames;
+
+
+    const selected =
+        voices.find(
+            voice =>
+            names.some(
+                name =>
+                voice.name
+                    .toLowerCase()
+                    .includes(name)
+            )
+        );
+
+
+    return selected || voices[0];
+
+}
+
+
+/* =====================================================
+   SPEAK TEXT
+===================================================== */
+
+function speakText(text){
+
+    stopSpeaking();
+
+
+    const repeat =
+        Math.max(
+            1,
+            Math.min(
+                20,
+                Number(
+                    document.getElementById(
+                        "repeatCount"
+                    ).value
+                ) || 1
+            )
+        );
+
+
+    const voice =
+        getVoice();
+
+
+    let count = 0;
+
+
+    function speakNext(){
+
+        if(count >= repeat){
+
+            return;
+
+        }
+
+
+        const speech =
+            new SpeechSynthesisUtterance(
+                text
+            );
+
+
+        speech.voice =
+            voice;
+
+        speech.rate =
+            .9;
+
+        speech.pitch =
+            document.getElementById(
+                "voiceGender"
+            ).value === "female"
+                ? 1.1
+                : .9;
+
+
+        speech.onend =
+            ()=>{
+                count++;
+                speakNext();
+            };
+
+
+        speechSynthesis.speak(
+            speech
+        );
+
+    }
+
+
+    speakNext();
+
+}
+
+
+/* =====================================================
+   QUESTION SPEECH
+===================================================== */
+
+function speakQuestion(index){
+
+    const data =
+        questions[currentSubject];
+
+    const item =
+        data[
+            (currentPage - 1) *
+            questionsPerPage +
+            index
+        ];
+
+
+    if(!item) return;
+
+
+    speakText(
+        "Question. " +
+        item.q
+    );
+
+}
+
+
+/* =====================================================
+   ANSWER SPEECH
+===================================================== */
+
+function speakAnswer(index){
+
+    const data =
+        questions[currentSubject];
+
+    const item =
+        data[
+            (currentPage - 1) *
+            questionsPerPage +
+            index
+        ];
+
+
+    if(!item) return;
+
+
+    speakText(
+        "Answer. " +
+        item.a
+    );
+
+}
+
+
+/* =====================================================
+   REPEAT QUESTION + ANSWER
+===================================================== */
+
+function repeatQA(
+    index,
+    count
+){
+
+    const data =
+        questions[currentSubject];
+
+    const item =
+        data[
+            (currentPage - 1) *
+            questionsPerPage +
+            index
+        ];
+
+
+    if(!item) return;
+
+
+    const repeat =
+        Math.max(
+            1,
+            Math.min(
+                20,
+                count
+            )
+        );
+
+
+    document.getElementById(
+        "repeatCount"
+    ).value =
+        repeat;
+
+
+    speakText(
+
+        "Question. " +
+        item.q +
+        ". Answer. " +
+        item.a
+
+    );
+
+}
+
+
+/* =====================================================
+   READ CURRENT PAGE
+===================================================== */
+
+function speakCurrentPage(){
+
+    const data =
+        questions[currentSubject];
+
+
+    const start =
+        (currentPage - 1) *
+        questionsPerPage;
+
+
+    const pageQuestions =
+        data.slice(
+            start,
+            start + questionsPerPage
+        );
+
+
+    let text = "";
+
+
+    pageQuestions.forEach(
+        (item,index)=>{
+
+            text +=
+                "Question " +
+                (start + index + 1) +
+                ". " +
+                item.q +
+                ". Answer. " +
+                item.a +
+                ". ";
+
+        }
+    );
+
+
+    speakText(text);
+
+}
+
+
+/* =====================================================
+   STOP
+===================================================== */
+
+function stopSpeaking(){
+
+    if(
+        "speechSynthesis"
+        in window
+    ){
+
+        speechSynthesis.cancel();
+
+    }
+
+}
+
+
+/* =====================================================
+   DRAWER
+===================================================== */
+
+function openDrawer(){
+
+    document
+        .getElementById("drawer")
+        .classList.add("open");
+
+    document
+        .getElementById("overlay")
+        .classList.add("show");
+
+}
+
+
+function closeDrawer(){
+
+    document
+        .getElementById("drawer")
+        .classList.remove("open");
+
+    document
+        .getElementById("overlay")
+        .classList.remove("show");
+
+}
+
+
+/* =====================================================
+   OTHER
+===================================================== */
+
+function goDashboard(){
+
+    alert(
+        "Opening Dashboard..."
+    );
+
+}
+
+
+function startStudy(){
+
+    alert(
+        "Starting study session..."
+    );
+
+}
+
+
+/* =====================================================
+   INITIAL LOAD
+===================================================== */
+
+renderQuestions();
+
+
+/*
+   Some browsers populate available voices
+   asynchronously.
+*/
+
+if(
+    "speechSynthesis"
+    in window
+){
+
+    speechSynthesis.onvoiceschanged =
+        ()=>{
+            getVoice();
+        };
+
+}
+
+</script>
+
+</body>
+</html>

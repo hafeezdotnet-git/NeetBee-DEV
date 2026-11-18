@@ -1,0 +1,828 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="common.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ExamPro - Questions & Answers</title>
+
+
+</head>
+
+
+<body class="q-a4-page">
+
+
+<!-- OFFER -->
+
+<div class="offer-banner">
+
+    🎁 <strong>LIMITED OFFER</strong>
+
+    Get 50% OFF on Premium Mock Tests
+
+    <button class="offer-btn">
+        Register Now
+    </button>
+
+</div>
+
+
+<!-- HEADER -->
+
+<header class="header">
+
+    <div class="header-left">
+
+        <div
+            class="hamburger"
+            onclick="openDrawer()">
+            ☰
+        </div>
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            ExamPro
+
+        </div>
+
+    </div>
+
+    <button class="register">
+        Register
+    </button>
+
+</header>
+
+
+<!-- DRAWER -->
+
+<div
+    class="overlay"
+    id="overlay"
+    onclick="closeDrawer()">
+</div>
+
+
+<div
+    class="drawer"
+    id="drawer">
+
+    <div class="drawer-header">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            ExamPro
+
+        </div>
+
+        <div
+            class="close"
+            onclick="closeDrawer()">
+            ×
+        </div>
+
+    </div>
+
+
+    <div class="drawer-menu">
+
+        <button>🏠 Dashboard</button>
+
+        <button>📝 Exams</button>
+
+        <button>📊 Progress</button>
+
+        <button>📋 Questions & Answers</button>
+
+        <button>🏆 Leaderboard</button>
+
+        <button>📚 Study Material</button>
+
+    </div>
+
+</div>
+
+
+<!-- MAIN -->
+
+<main class="container">
+
+
+    <div class="page-heading">
+
+        <div class="icon">
+            📖
+        </div>
+
+        <h1>
+            Questions & Answers
+        </h1>
+
+        <p>
+            Review questions and listen to the questions and answers.
+        </p>
+
+    </div>
+
+
+    <section class="question-list">
+
+
+        <!-- QUESTION 1 -->
+
+        <article class="question-card">
+
+            <div class="question-header">
+
+                <span class="question-number">
+                    QUESTION 01
+                </span>
+
+                <span class="subject">
+                    ⚡ Physics
+                </span>
+
+            </div>
+
+
+            <div class="question-area">
+
+                <div class="question-text">
+
+                    A body starts from rest and accelerates
+                    uniformly at 2 m/s². What will be its
+                    velocity after 5 seconds?
+
+                </div>
+
+                <button
+                    class="speak-question"
+                    onclick="speak(this.closest('.question-card').querySelector('.question-text').innerText)">
+                    🔊
+                </button>
+
+            </div>
+
+
+            <div class="options">
+
+                <div class="option">
+
+                    <span class="option-letter">
+                        A
+                    </span>
+
+                    5 m/s
+
+                </div>
+
+
+                <div class="option correct">
+
+                    <span class="option-letter">
+                        B
+                    </span>
+
+                    10 m/s
+
+                    <span class="correct-mark">
+                        ✓
+                    </span>
+
+                </div>
+
+
+                <div class="option">
+
+                    <span class="option-letter">
+                        C
+                    </span>
+
+                    15 m/s
+
+                </div>
+
+
+                <div class="option">
+
+                    <span class="option-letter">
+                        D
+                    </span>
+
+                    20 m/s
+
+                </div>
+
+            </div>
+
+
+            <div class="answer-section">
+
+                <div class="answer-header">
+
+                    <span class="answer-title">
+                        ✓ CORRECT ANSWER
+                    </span>
+
+                    <button
+                        class="speak-answer"
+                        onclick="speak('The correct answer is B, 10 meters per second.')">
+                        🔊
+                    </button>
+
+                </div>
+
+                <div class="answer-text">
+                    B — 10 m/s
+                </div>
+
+                <div class="explanation">
+                    Using v = u + at, the velocity is
+                    0 + (2 × 5) = 10 m/s.
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- QUESTION 2 -->
+
+        <article class="question-card">
+
+            <div class="question-header">
+
+                <span class="question-number">
+                    QUESTION 02
+                </span>
+
+                <span class="subject">
+                    🧪 Chemistry
+                </span>
+
+            </div>
+
+
+            <div class="question-area">
+
+                <div class="question-text">
+
+                    What is the chemical formula of water?
+
+                </div>
+
+                <button
+                    class="speak-question"
+                    onclick="speak(this.closest('.question-card').querySelector('.question-text').innerText)">
+                    🔊
+                </button>
+
+            </div>
+
+
+            <div class="options">
+
+                <div class="option">
+
+                    <span class="option-letter">
+                        A
+                    </span>
+
+                    CO₂
+
+                </div>
+
+
+                <div class="option correct">
+
+                    <span class="option-letter">
+                        B
+                    </span>
+
+                    H₂O
+
+                    <span class="correct-mark">
+                        ✓
+                    </span>
+
+                </div>
+
+
+                <div class="option">
+
+                    <span class="option-letter">
+                        C
+                    </span>
+
+                    O₂
+
+                </div>
+
+
+                <div class="option">
+
+                    <span class="option-letter">
+                        D
+                    </span>
+
+                    NaCl
+
+                </div>
+
+            </div>
+
+
+            <div class="answer-section">
+
+                <div class="answer-header">
+
+                    <span class="answer-title">
+                        ✓ CORRECT ANSWER
+                    </span>
+
+                    <button
+                        class="speak-answer"
+                        onclick="speak('The correct answer is B, H2O, water.')">
+                        🔊
+                    </button>
+
+                </div>
+
+                <div class="answer-text">
+                    B — H₂O
+                </div>
+
+                <div class="explanation">
+                    Water contains two hydrogen atoms and
+                    one oxygen atom.
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- QUESTION 3 -->
+
+        <article class="question-card">
+
+            <div class="question-header">
+
+                <span class="question-number">
+                    QUESTION 03
+                </span>
+
+                <span class="subject">
+                    🧬 Biology
+                </span>
+
+            </div>
+
+
+            <div class="question-area">
+
+                <div class="question-text">
+
+                    Which organelle is known as the
+                    powerhouse of the cell?
+
+                </div>
+
+                <button
+                    class="speak-question"
+                    onclick="speak(this.closest('.question-card').querySelector('.question-text').innerText)">
+                    🔊
+                </button>
+
+            </div>
+
+
+            <div class="options">
+
+                <div class="option">
+
+                    <span class="option-letter">
+                        A
+                    </span>
+
+                    Nucleus
+
+                </div>
+
+
+                <div class="option correct">
+
+                    <span class="option-letter">
+                        B
+                    </span>
+
+                    Mitochondria
+
+                    <span class="correct-mark">
+                        ✓
+                    </span>
+
+                </div>
+
+
+                <div class="option">
+
+                    <span class="option-letter">
+                        C
+                    </span>
+
+                    Ribosome
+
+                </div>
+
+
+                <div class="option">
+
+                    <span class="option-letter">
+                        D
+                    </span>
+
+                    Golgi apparatus
+
+                </div>
+
+            </div>
+
+
+            <div class="answer-section">
+
+                <div class="answer-header">
+
+                    <span class="answer-title">
+                        ✓ CORRECT ANSWER
+                    </span>
+
+                    <button
+                        class="speak-answer"
+                        onclick="speak('The correct answer is B, Mitochondria.')">
+                        🔊
+                    </button>
+
+                </div>
+
+                <div class="answer-text">
+                    B — Mitochondria
+                </div>
+
+                <div class="explanation">
+                    Mitochondria produce ATP through cellular
+                    respiration and are commonly called the
+                    powerhouse of the cell.
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- QUESTION 4 -->
+
+        <article class="question-card">
+
+            <div class="question-header">
+
+                <span class="question-number">
+                    QUESTION 04
+                </span>
+
+                <span class="subject">
+                    ➗ Mathematics
+                </span>
+
+            </div>
+
+
+            <div class="question-area">
+
+                <div class="question-text">
+
+                    If x + 5 = 12, what is the value of x?
+
+                </div>
+
+                <button
+                    class="speak-question"
+                    onclick="speak(this.closest('.question-card').querySelector('.question-text').innerText)">
+                    🔊
+                </button>
+
+            </div>
+
+
+            <div class="options">
+
+                <div class="option">
+
+                    <span class="option-letter">
+                        A
+                    </span>
+
+                    5
+
+                </div>
+
+
+                <div class="option correct">
+
+                    <span class="option-letter">
+                        B
+                    </span>
+
+                    7
+
+                    <span class="correct-mark">
+                        ✓
+                    </span>
+
+                </div>
+
+
+                <div class="option">
+
+                    <span class="option-letter">
+                        C
+                    </span>
+
+                    8
+
+                </div>
+
+
+                <div class="option">
+
+                    <span class="option-letter">
+                        D
+                    </span>
+
+                    12
+
+                </div>
+
+            </div>
+
+
+            <div class="answer-section">
+
+                <div class="answer-header">
+
+                    <span class="answer-title">
+                        ✓ CORRECT ANSWER
+                    </span>
+
+                    <button
+                        class="speak-answer"
+                        onclick="speak('The correct answer is B, 7.')">
+                        🔊
+                    </button>
+
+                </div>
+
+                <div class="answer-text">
+                    B — 7
+                </div>
+
+                <div class="explanation">
+                    Subtract 5 from both sides:
+                    x = 12 minus 5, which equals 7.
+                </div>
+
+            </div>
+
+        </article>
+
+
+        <!-- QUESTION 5 -->
+
+        <article class="question-card">
+
+            <div class="question-header">
+
+                <span class="question-number">
+                    QUESTION 05
+                </span>
+
+                <span class="subject">
+                    🦎 Zoology
+                </span>
+
+            </div>
+
+
+            <div class="question-area">
+
+                <div class="question-text">
+
+                    Which is the largest animal on Earth?
+
+                </div>
+
+                <button
+                    class="speak-question"
+                    onclick="speak(this.closest('.question-card').querySelector('.question-text').innerText)">
+                    🔊
+                </button>
+
+            </div>
+
+
+            <div class="options">
+
+                <div class="option">
+
+                    <span class="option-letter">
+                        A
+                    </span>
+
+                    African Elephant
+
+                </div>
+
+
+                <div class="option correct">
+
+                    <span class="option-letter">
+                        B
+                    </span>
+
+                    Blue Whale
+
+                    <span class="correct-mark">
+                        ✓
+                    </span>
+
+                </div>
+
+
+                <div class="option">
+
+                    <span class="option-letter">
+                        C
+                    </span>
+
+                    Giraffe
+
+                </div>
+
+
+                <div class="option">
+
+                    <span class="option-letter">
+                        D
+                    </span>
+
+                    Great White Shark
+
+                </div>
+
+            </div>
+
+
+            <div class="answer-section">
+
+                <div class="answer-header">
+
+                    <span class="answer-title">
+                        ✓ CORRECT ANSWER
+                    </span>
+
+                    <button
+                        class="speak-answer"
+                        onclick="speak('The correct answer is B, Blue Whale.')">
+                        🔊
+                    </button>
+
+                </div>
+
+                <div class="answer-text">
+                    B — Blue Whale
+                </div>
+
+                <div class="explanation">
+                    The blue whale is the largest known animal
+                    to have ever lived.
+                </div>
+
+            </div>
+
+        </article>
+
+
+    </section>
+
+</main>
+
+
+<!-- MOBILE BOTTOM NAV -->
+
+<nav class="bottom-nav">
+
+    <button>
+        <span class="bottom-icon">🏠</span>
+        Home
+    </button>
+
+    <button>
+        <span class="bottom-icon">📝</span>
+        Exams
+    </button>
+
+    <button class="active">
+        <span class="bottom-icon">📖</span>
+        Answers
+    </button>
+
+    <button onclick="openDrawer()">
+        <span class="bottom-icon">☰</span>
+        Menu
+    </button>
+
+</nav>
+
+
+<script>
+
+/* =========================
+   VOICE
+========================= */
+
+function speak(text){
+
+    if(!("speechSynthesis" in window)){
+
+        alert(
+            "Voice reading is not supported in this browser."
+        );
+
+        return;
+    }
+
+    // Stop currently playing speech
+    window.speechSynthesis.cancel();
+
+    const speech =
+        new SpeechSynthesisUtterance(text);
+
+    speech.rate = 0.85;
+    speech.pitch = 1;
+    speech.volume = 1;
+
+    window.speechSynthesis.speak(speech);
+}
+
+
+/* =========================
+   DRAWER
+========================= */
+
+function openDrawer(){
+
+    document
+        .getElementById("drawer")
+        .classList.add("open");
+
+    document
+        .getElementById("overlay")
+        .classList.add("show");
+}
+
+
+function closeDrawer(){
+
+    document
+        .getElementById("drawer")
+        .classList.remove("open");
+
+    document
+        .getElementById("overlay")
+        .classList.remove("show");
+}
+
+
+/* Stop voice when leaving page */
+
+window.addEventListener(
+    "beforeunload",
+    function(){
+        window.speechSynthesis.cancel();
+    }
+);
+
+</script>
+
+</body>
+</html>

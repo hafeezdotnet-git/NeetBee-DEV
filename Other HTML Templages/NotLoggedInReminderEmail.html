@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="common.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ExamPro - Your Exam Is Near</title>
+</head>
+
+<body  class="notloggedinreminderemail-page-inline-1 notloggedinreminderemail-page">
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0" class="notloggedinreminderemail-page-inline-2">
+
+<tr>
+<td align="center" class="notloggedinreminderemail-page-inline-3">
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0" class="notloggedinreminderemail-page-inline-4">
+
+
+<!-- =========================================
+     TOP WARNING BAR
+========================================= -->
+
+<tr>
+
+<td align="center" class="notloggedinreminderemail-page-inline-5">
+
+    ⚠️ Your Exam Is Getting Closer
+
+</td>
+
+</tr>
+
+
+<!-- =========================================
+     HEADER
+========================================= -->
+
+<tr>
+
+<td align="center" class="notloggedinreminderemail-page-inline-6">
+
+<table cellpadding="0" cellspacing="0" border="0">
+
+<tr>
+
+<td class="notloggedinreminderemail-page-inline-7">
+
+    🎓
+
+</td>
+
+<td class="notloggedinreminderemail-page-inline-8"></td>
+
+<td class="notloggedinreminderemail-page-inline-9">
+
+    ExamPro
+
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+
+<!-- =========================================
+     WARNING HERO
+========================================= -->
+
+<tr>
+
+<td align="center" class="notloggedinreminderemail-page-inline-10">
+
+<div class="notloggedinreminderemail-page-inline-11">
+
+    ⏰
+
+</div>
+
+
+<h1 class="notloggedinreminderemail-page-inline-12">
+
+    Your Exam Is Nearing!
+
+</h1>
+
+
+<p class="notloggedinreminderemail-page-inline-13">
+
+    We noticed that you haven't logged in recently.
+    Now is the time to get back on track.
+
+</p>
+
+</td>
+
+</tr>
+
+
+<!-- =========================================
+     STUDENT MESSAGE
+========================================= -->
+
+<tr>
+
+<td class="notloggedinreminderemail-page-inline-14">
+
+<p class="notloggedinreminderemail-page-inline-15">
+
+    Hi <strong>{{StudentName}}</strong>,
+
+</p>
+
+
+<p class="notloggedinreminderemail-page-inline-16">
+
+    Your exam is only
+    <strong class="notloggedinreminderemail-page-inline-17">
+        {{DaysRemaining}} days
+    </strong>
+    away, but you haven't accessed your ExamPro
+    account for
+    <strong>
+        {{InactiveDays}} days
+    </strong>.
+
+    <br><br>
+
+    Don't let the time you've invested go to waste.
+    A focused study routine now can make a big
+    difference to your final result.
+
+</p>
+
+</td>
+
+</tr>
+
+
+<!-- =========================================
+     COUNTDOWN
+========================================= -->
+
+<tr>
+
+<td class="notloggedinreminderemail-page-inline-18">
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0" class="notloggedinreminderemail-page-inline-19">
+
+<tr>
+
+<td align="center" class="notloggedinreminderemail-page-inline-20">
+
+<div class="notloggedinreminderemail-page-inline-21">
+
+    {{DaysRemaining}}
+
+</div>
+
+<div class="notloggedinreminderemail-page-inline-22">
+
+    Days Remaining
+
+</div>
+
+</td>
+
+
+<td align="center" class="notloggedinreminderemail-page-inline-23">
+
+    :
+
+</td>
+
+
+<td align="center" class="notloggedinreminderemail-page-inline-24">
+
+<div class="notloggedinreminderemail-page-inline-25">
+
+    {{HoursRemaining}}
+
+</div>
+
+<div class="notloggedinreminderemail-page-inline-26">
+
+    Hours
+
+</div>
+
+</td>
+
+
+<td align="center" class="notloggedinreminderemail-page-inline-27">
+
+    :
+
+</td>
+
+
+<td align="center" class="notloggedinreminderemail-page-inline-28">
+
+<div class="notloggedinreminderemail-page-inline-29">
+
+    {{MinutesRemaining}}
+
+</div>
+
+<div class="notloggedinreminderemail-page-inline-30">
+
+    Minutes
+
+</div>
+
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+
+<!-- =========================================
+     COURSE STATUS
+========================================= -->
+
+<tr>
+
+<td class="notloggedinreminderemail-page-inline-31">
+
+<h2 class="notloggedinreminderemail-page-inline-32">
+
+    📊 Your Current Preparation
+
+</h2>
+
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0" class="notloggedinreminderemail-page-inline-33">
+
+
+<!-- COMPLETION -->
+
+<tr>
+
+<td class="notloggedinreminderemail-page-inline-34">
+
+    Course Completion
+
+</td>
+
+<td align="right" class="notloggedinreminderemail-page-inline-35">
+
+    {{CompletionPercent}}%
+
+</td>
+
+</tr>
+
+
+<!-- PENDING -->
+
+<tr>
+
+<td class="notloggedinreminderemail-page-inline-36">
+
+    Pending Topics
+
+</td>
+
+<td align="right" class="notloggedinreminderemail-page-inline-37">
+
+    {{PendingTopics}}
+
+</td>
+
+</tr>
+
+
+<!-- QUESTIONS -->
+
+<tr>
+
+<td class="notloggedinreminderemail-page-inline-38">
+
+    Questions Pending
+
+</td>
+
+<td align="right" class="notloggedinreminderemail-page-inline-39">
+
+    {{PendingQuestions}}
+
+</td>
+
+</tr>
+
+
+<!-- MOCK TEST -->
+
+<tr>
+
+<td class="notloggedinreminderemail-page-inline-40">
+
+    Last Mock Test Score
+
+</td>
+
+<td align="right" class="notloggedinreminderemail-page-inline-41">
+
+    {{LastMockScore}}%
+
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+
+<!-- =========================================
+     URGENT MESSAGE
+========================================= -->
+
+<tr>
+
+<td class="notloggedinreminderemail-page-inline-42">
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0" class="notloggedinreminderemail-page-inline-43">
+
+<tr>
+
+<td width="45" valign="top" class="notloggedinreminderemail-page-inline-44">
+
+    🚨
+
+</td>
+
+
+<td class="notloggedinreminderemail-page-inline-45">
+
+<strong class="notloggedinreminderemail-page-inline-46">
+
+    Don't Wait Until the Last Week
+
+</strong>
+
+
+<p class="notloggedinreminderemail-page-inline-47">
+
+    The remaining time is limited. Start with your
+    pending topics, revise weak subjects and take
+    regular mock tests.
+
+</p>
+
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+
+<!-- =========================================
+     RECOMMENDED PLAN
+========================================= -->
+
+<tr>
+
+<td class="notloggedinreminderemail-page-inline-48">
+
+<h2 class="notloggedinreminderemail-page-inline-49">
+
+    🎯 Start Today
+
+</h2>
+
+
+<table
+    width="100%"
+    cellpadding="0"
+    cellspacing="0"
+    border="0">
+
+
+<tr>
+
+<td class="notloggedinreminderemail-page-inline-50">
+
+    <strong class="notloggedinreminderemail-page-inline-51">
+        01
+    </strong>
+    &nbsp;
+    Complete your pending lessons
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td class="notloggedinreminderemail-page-inline-52">
+
+    <strong class="notloggedinreminderemail-page-inline-53">
+        02
+    </strong>
+    &nbsp;
+    Practice at least 50 questions
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td class="notloggedinreminderemail-page-inline-54">
+
+    <strong class="notloggedinreminderemail-page-inline-55">
+        03
+    </strong>
+    &nbsp;
+    Attempt a full-length mock test
+
+</td>
+
+</tr>
+
+
+<tr>
+
+<td class="notloggedinreminderemail-page-inline-56">
+
+    <strong class="notloggedinreminderemail-page-inline-57">
+        04
+    </strong>
+    &nbsp;
+    Review your incorrect answers
+
+</td>
+
+</tr>
+
+</table>
+
+</td>
+
+</tr>
+
+
+<!-- =========================================
+     CTA
+========================================= -->
+
+<tr>
+
+<td align="center" class="notloggedinreminderemail-page-inline-58">
+
+<table cellpadding="0" cellspacing="0" border="0">
+
+<tr>
+
+<td bgcolor="#dc2626" class="notloggedinreminderemail-page-inline-59">
+
+<a href="{{LoginUrl}}" class="notloggedinreminderemail-page-inline-60">
+
+    🚀 Login & Start Preparing
+
+</a>
+
+</td>
+
+</tr>
+
+</table>
+
+
+<p class="notloggedinreminderemail-page-inline-61">
+
+    Your next study session can start right now.
+
+</p>
+
+</td>
+
+</tr>
+
+
+<!-- =========================================
+     MOTIVATION
+========================================= -->
+
+<tr>
+
+<td align="center" class="notloggedinreminderemail-page-inline-62">
+
+<p class="notloggedinreminderemail-page-inline-63">
+
+    Your Goal Is Still Within Reach. 💪
+
+</p>
+
+
+<p class="notloggedinreminderemail-page-inline-64">
+
+    Don't focus on how much is left.
+    Focus on what you can complete today.
+
+</p>
+
+</td>
+
+</tr>
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<tr>
+
+<td align="center" class="notloggedinreminderemail-page-inline-65">
+
+<p class="notloggedinreminderemail-page-inline-66">
+
+    ExamPro
+
+</p>
+
+
+<p class="notloggedinreminderemail-page-inline-67">
+
+    Learn • Practice • Track • Succeed
+
+    <br>
+
+    © 2026 ExamPro. All rights reserved.
+
+</p>
+
+</td>
+
+</tr>
+
+
+</table>
+
+</td>
+</tr>
+
+</table>
+
+</body>
+</html>

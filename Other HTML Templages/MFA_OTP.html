@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="common.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ExamPro - OTP Verification</title>
+
+
+</head>
+
+
+<body class="mfa-otp-page">
+
+
+<!-- OFFER -->
+
+<div class="offer-banner">
+
+    🎁 <strong>LIMITED OFFER</strong>
+
+    Get 50% OFF on Premium Mock Tests
+
+    <button
+        class="offer-btn"
+        onclick="goRegister()">
+
+        Register Now
+
+    </button>
+
+</div>
+
+
+<!-- HEADER -->
+
+<header class="header">
+
+    <div class="header-left">
+
+        <div
+            class="hamburger"
+            onclick="openDrawer()">
+
+            ☰
+
+        </div>
+
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            ExamPro
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="register-btn"
+        onclick="goRegister()">
+
+        Register
+
+    </button>
+
+</header>
+
+
+<!-- DRAWER -->
+
+<div
+    class="overlay"
+    id="overlay"
+    onclick="closeDrawer()">
+</div>
+
+
+<div
+    class="drawer"
+    id="drawer">
+
+
+    <div class="drawer-header">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            ExamPro
+
+        </div>
+
+
+        <div
+            class="close"
+            onclick="closeDrawer()">
+
+            ×
+
+        </div>
+
+    </div>
+
+
+    <div class="drawer-menu">
+
+        <button>
+            🏠 Dashboard
+        </button>
+
+        <button>
+            📝 Exams
+        </button>
+
+        <button>
+            📊 Progress
+        </button>
+
+        <button>
+            📖 Questions & Answers
+        </button>
+
+        <button>
+            🏆 Leaderboard
+        </button>
+
+        <button>
+            📚 Study Material
+        </button>
+
+        <button>
+            🔐 Login
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- MAIN -->
+
+<main class="container">
+
+
+    <div class="otp-wrapper">
+
+
+        <!-- OTP CARD -->
+
+        <section
+            class="otp-card"
+            id="otpCard">
+
+
+            <div class="otp-icon">
+                🔐
+            </div>
+
+
+            <h1>
+                Verify Your Account
+            </h1>
+
+
+            <p class="otp-description">
+
+                Enter the 6-digit verification code
+                sent to your email or mobile number.
+
+            </p>
+
+
+            <!-- METHOD -->
+
+            <div class="method-switch">
+
+                <button
+                    class="method-btn active"
+                    id="mobileMethod"
+                    onclick="selectMethod('mobile')">
+
+                    📱 Mobile OTP
+
+                </button>
+
+
+                <button
+                    class="method-btn"
+                    id="emailMethod"
+                    onclick="selectMethod('email')">
+
+                    ✉️ Email OTP
+
+                </button>
+
+            </div>
+
+
+            <!-- CONTACT -->
+
+            <div class="contact-label">
+
+                Verification code sent to
+
+            </div>
+
+
+            <div
+                class="contact-value"
+                id="contactValue">
+
+                +91 ******7845
+
+            </div>
+
+
+            <!-- OTP -->
+
+            <div class="otp-inputs">
+
+                <input
+                    class="otp-input"
+                    maxlength="1"
+                    inputmode="numeric"
+                    autocomplete="one-time-code">
+
+                <input
+                    class="otp-input"
+                    maxlength="1"
+                    inputmode="numeric">
+
+                <input
+                    class="otp-input"
+                    maxlength="1"
+                    inputmode="numeric">
+
+                <input
+                    class="otp-input"
+                    maxlength="1"
+                    inputmode="numeric">
+
+                <input
+                    class="otp-input"
+                    maxlength="1"
+                    inputmode="numeric">
+
+                <input
+                    class="otp-input"
+                    maxlength="1"
+                    inputmode="numeric">
+
+            </div>
+
+
+            <!-- RESEND -->
+
+            <div class="resend-area">
+
+                Didn't receive the code?
+
+                <span
+                    class="timer"
+                    id="timer">
+                    Resend in 30s
+                </span>
+
+                <button
+                    class="resend-btn"
+                    id="resendBtn"
+                    onclick="resendOTP()"
+                    disabled>
+
+                    Resend OTP
+
+                </button>
+
+            </div>
+
+
+            <!-- VERIFY -->
+
+            <button
+                class="verify-btn"
+                onclick="verifyOTP()">
+
+                ✓ Verify OTP
+
+            </button>
+
+
+            <!-- CHANGE -->
+
+            <a
+                href="#"
+                class="change-contact"
+                onclick="changeContact(event)">
+
+                ← Change Email / Mobile Number
+
+            </a>
+
+
+            <div class="security">
+
+                🔒 Never share your OTP with anyone.
+                ExamPro support will never ask for your OTP.
+
+            </div>
+
+        </section>
+
+
+        <!-- SUCCESS -->
+
+        <section
+            class="otp-card success"
+            id="successCard">
+
+
+            <div class="success-icon">
+                ✓
+            </div>
+
+
+            <h2>
+                OTP Verified Successfully!
+            </h2>
+
+
+            <p>
+
+                Your account has been verified.
+                You can now continue to your
+                ExamPro account.
+
+            </p>
+
+        </section>
+
+
+    </div>
+
+</main>
+
+
+<!-- BOTTOM NAV -->
+
+<nav class="bottom-nav">
+
+    <button>
+
+        <span class="bottom-icon">
+            🏠
+        </span>
+
+        Home
+
+    </button>
+
+
+    <button>
+
+        <span class="bottom-icon">
+            📝
+        </span>
+
+        Exams
+
+    </button>
+
+
+    <button class="active">
+
+        <span class="bottom-icon">
+            🔐
+        </span>
+
+        Verify
+
+    </button>
+
+
+    <button onclick="openDrawer()">
+
+        <span class="bottom-icon">
+            ☰
+        </span>
+
+        Menu
+
+    </button>
+
+</nav>
+
+
+<script>
+
+/* =========================
+   OTP INPUT BEHAVIOUR
+========================= */
+
+const inputs =
+    document.querySelectorAll(".otp-input");
+
+
+inputs.forEach((input,index)=>{
+
+    input.addEventListener(
+        "input",
+        function(){
+
+            this.value =
+                this.value.replace(/\D/g,"");
+
+            if(
+                this.value &&
+                index < inputs.length - 1
+            ){
+
+                inputs[index + 1].focus();
+
+            }
+
+        }
+    );
+
+
+    input.addEventListener(
+        "keydown",
+        function(event){
+
+            if(
+                event.key === "Backspace" &&
+                !this.value &&
+                index > 0
+            ){
+
+                inputs[index - 1].focus();
+
+            }
+
+        }
+    );
+
+});
+
+
+/* =========================
+   METHOD
+========================= */
+
+function selectMethod(method){
+
+    const mobile =
+        document.getElementById("mobileMethod");
+
+    const email =
+        document.getElementById("emailMethod");
+
+    const contact =
+        document.getElementById("contactValue");
+
+
+    if(method === "mobile"){
+
+        mobile.classList.add("active");
+
+        email.classList.remove("active");
+
+        contact.textContent =
+            "+91 ******7845";
+
+    }else{
+
+        email.classList.add("active");
+
+        mobile.classList.remove("active");
+
+        contact.textContent =
+            "ha****@example.com";
+
+    }
+
+    clearOTP();
+
+    startTimer();
+
+}
+
+
+/* =========================
+   CLEAR OTP
+========================= */
+
+function clearOTP(){
+
+    inputs.forEach(input=>{
+        input.value="";
+    });
+
+    inputs[0].focus();
+
+}
+
+
+/* =========================
+   TIMER
+========================= */
+
+let seconds = 30;
+
+let timerInterval;
+
+
+function startTimer(){
+
+    clearInterval(timerInterval);
+
+    seconds = 30;
+
+    const timer =
+        document.getElementById("timer");
+
+    const resend =
+        document.getElementById("resendBtn");
+
+    resend.disabled = true;
+
+    resend.style.display = "none";
+
+    timer.style.display = "inline";
+
+    timer.textContent =
+        "Resend in " + seconds + "s";
+
+
+    timerInterval =
+        setInterval(()=>{
+
+            seconds--;
+
+            timer.textContent =
+                "Resend in " + seconds + "s";
+
+
+            if(seconds <= 0){
+
+                clearInterval(timerInterval);
+
+                timer.style.display = "none";
+
+                resend.style.display = "inline";
+
+                resend.disabled = false;
+
+            }
+
+        },1000);
+
+}
+
+
+startTimer();
+
+
+/* =========================
+   RESEND
+========================= */
+
+function resendOTP(){
+
+    clearOTP();
+
+    startTimer();
+
+    alert(
+        "A new OTP has been sent."
+    );
+
+}
+
+
+/* =========================
+   VERIFY
+========================= */
+
+function verifyOTP(){
+
+    let otp = "";
+
+    inputs.forEach(input=>{
+        otp += input.value;
+    });
+
+
+    if(otp.length !== 6){
+
+        alert(
+            "Please enter the complete 6-digit OTP."
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Connect this to your backend.
+
+       Example:
+
+       POST /api/verify-otp
+
+       {
+           otp: otp,
+           method: "mobile"
+       }
+    */
+
+
+    document
+        .getElementById("otpCard")
+        .style.display = "none";
+
+    document
+        .getElementById("successCard")
+        .classList.add("show");
+
+}
+
+
+/* =========================
+   CHANGE CONTACT
+========================= */
+
+function changeContact(event){
+
+    event.preventDefault();
+
+    alert(
+        "Returning to email/mobile entry."
+    );
+
+    // Example:
+    // window.location.href = "login.html";
+
+}
+
+
+/* =========================
+   REGISTER
+========================= */
+
+function goRegister(){
+
+    alert(
+        "Opening registration..."
+    );
+
+}
+
+
+/* =========================
+   DRAWER
+========================= */
+
+function openDrawer(){
+
+    document
+        .getElementById("drawer")
+        .classList.add("open");
+
+    document
+        .getElementById("overlay")
+        .classList.add("show");
+
+}
+
+
+function closeDrawer(){
+
+    document
+        .getElementById("drawer")
+        .classList.remove("open");
+
+    document
+        .getElementById("overlay")
+        .classList.remove("show");
+
+}
+
+</script>
+
+</body>
+</html>

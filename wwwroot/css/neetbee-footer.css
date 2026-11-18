@@ -1,0 +1,240 @@
+/* NEET BEE footer. Class-based selectors override the older element rules in style.css and app.css. */
+.nb-footer {
+    display: block;
+    margin: 0;
+    padding: 36px 24px 0;
+    background: #071A3D;
+    color: #D6E5FF;
+    text-align: left;
+    border-top: 1px solid #29446D;
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+}
+.nb-footer-main {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 36px;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0;
+}
+.nb-footer-col { margin: 0; }
+.nb-footer-logo-link { display: inline-block; margin: 0 0 14px; background: none; padding: 0; }
+.nb-footer-logo {
+    display: block;
+    width: 259px;
+    max-width: 100%;
+    height: auto;
+    margin: 0;
+}
+.nb-footer-tagline {
+    margin: 0 0 6px;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.4;
+}
+.nb-footer-desc {
+    margin: 0;
+    color: #B9CBE8;
+    font-size: 14px;
+    line-height: 1.55;
+}
+.nb-footer h3 {
+    margin: 0 0 14px;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.3px;
+}
+.nb-footer ul {
+    display: grid;
+    gap: 9px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.nb-footer li { margin: 0; padding: 0; }
+.nb-footer a {
+    display: inline-block;
+    padding: 0;
+    border-radius: 0;
+    background: none;
+    color: #D6E5FF;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+.nb-footer a:hover,
+.nb-footer a:focus-visible {
+    color: #24B8F0;
+    background: none;
+    transform: translateX(2px);
+}
+.nb-footer a:focus-visible { outline: 2px solid #24B8F0; outline-offset: 3px; border-radius: 4px; }
+
+.nb-footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 14px;
+    max-width: 1120px;
+    margin: 30px auto 0;
+    padding: 18px 0 22px;
+    border-top: 1px solid #29446D;
+}
+.nb-footer-copy {
+    margin: 0;
+    color: #B9CBE8;
+    font-size: 13px;
+    line-height: 1.5;
+}
+.nb-footer-legal {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+.nb-footer-legal a { font-size: 13px; }
+
+/* Tablet: two columns, brand across the top. */
+@media (max-width: 1024px) {
+    .nb-footer-main { grid-template-columns: 1fr 1fr; gap: 28px 32px; }
+    .nb-footer-brand { grid-column: 1 / -1; }
+}
+
+/* Mobile: stacked sections, compact spacing. */
+@media (max-width: 640px) {
+    .nb-footer { padding: 28px 18px 0; }
+    .nb-footer-main { grid-template-columns: 1fr; gap: 26px; }
+    .nb-footer-logo { width: 216px; }
+    .nb-footer-bottom { flex-direction: column; align-items: flex-start; margin-top: 26px; padding: 16px 0 20px; }
+    .nb-footer-legal { gap: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .nb-footer a { transition: none; }
+    .nb-footer a:hover, .nb-footer a:focus-visible { transform: none; }
+}
+
+/* Terms and conditions popup: 80% of the viewport width on desktop, 95% on mobile; height 70%. */
+.nb-terms {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.nb-terms[hidden] { display: none; }
+.nb-terms-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(3, 10, 26, 0.72);
+}
+.nb-terms-dialog {
+    position: relative;
+    width: 80vw;
+    height: 70vh;
+    max-width: none;
+    display: flex;
+    flex-direction: column;
+    background: #0B2350;
+    color: #D6E5FF;
+    border: 1px solid #29446D;
+    border-radius: 16px;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.45);
+    overflow: hidden;
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+}
+.nb-terms-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 18px 24px;
+    border-bottom: 1px solid #29446D;
+}
+.nb-terms-head h2 {
+    margin: 0;
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: 800;
+}
+.nb-terms-close {
+    flex: 0 0 auto;
+    width: 36px;
+    height: 36px;
+    border: 1px solid #29446D;
+    border-radius: 50%;
+    background: none;
+    color: #FFFFFF;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+}
+.nb-terms-close:hover,
+.nb-terms-close:focus-visible {
+    color: #24B8F0;
+    border-color: #24B8F0;
+    outline: none;
+}
+.nb-terms-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 22px 24px;
+    color: #B9CBE8;
+    font-size: 14px;
+    line-height: 1.6;
+}
+.nb-terms-body h3 {
+    margin: 18px 0 6px;
+    color: #FFFFFF;
+    font-size: 15px;
+    font-weight: 700;
+}
+.nb-terms-body h3:first-child { margin-top: 0; }
+.nb-terms-body p { margin: 0 0 10px; }
+.nb-terms-open { overflow: hidden; }
+
+@media (max-width: 640px) {
+    .nb-terms-dialog { width: 95vw; }
+    .nb-terms-head { padding: 14px 16px; }
+    .nb-terms-head h2 { font-size: 17px; }
+    .nb-terms-body { padding: 16px; }
+}
+
+/* ---- Deployed version (filled from /version.json by js/app-version.js) ---- */
+.nb-footer-version {
+    display: inline-flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 4px 8px;
+    margin: 0;
+    color: #8FA6CC;
+    font-size: 12px;
+    line-height: 1.5;
+    letter-spacing: .01em;
+}
+.nb-footer-version[hidden] { display: none; }
+.nb-ver-app { color: #B9CBE8; font-weight: 700; }
+.nb-ver-sep { color: #3E5A85; }
+.nb-ver-value { color: #D6E5FF; font-weight: 600; font-variant-numeric: tabular-nums; }
+.nb-ver-env {
+    padding: 1px 8px;
+    border: 1px solid currentColor;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .04em;
+    text-transform: uppercase;
+}
+.nb-ver-env[data-env="dev"]   { color: #24B8F0; background: rgba(36, 184, 240, .10); }
+.nb-ver-env[data-env="qa"]    { color: #FBBF24; background: rgba(251, 191, 36, .10); }
+.nb-ver-env[data-env="uat"]   { color: #C4B5FD; background: rgba(196, 181, 253, .10); }
+.nb-ver-env[data-env="prod"]  { color: #34D399; background: rgba(52, 211, 153, .10); }
+.nb-ver-env[data-env="other"] { color: #B9CBE8; background: rgba(185, 203, 232, .08); }
+
+@media (max-width: 640px) {
+    .nb-footer-version { font-size: 11.5px; }
+}

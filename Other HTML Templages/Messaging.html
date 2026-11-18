@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="common.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ExamPro - Messages</title>
+
+
+</head>
+
+
+<body class="messaging-page">
+
+
+<!-- =========================================
+     OFFER
+========================================= -->
+
+<div class="offer-banner">
+
+    💬 <strong>EXAMPRO SUPPORT</strong>
+
+    Need help with your preparation?
+
+    <button onclick="openCompose()">
+        Message Us
+    </button>
+
+</div>
+
+
+<!-- =========================================
+     HEADER
+========================================= -->
+
+<header class="header">
+
+    <div class="header-left">
+
+        <div
+            class="hamburger"
+            onclick="openDrawer()">
+
+            ☰
+
+        </div>
+
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            ExamPro
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="header-btn"
+        onclick="goDashboard()">
+
+        Dashboard
+
+    </button>
+
+</header>
+
+
+<!-- =========================================
+     DRAWER
+========================================= -->
+
+<div
+    class="overlay"
+    id="drawerOverlay"
+    onclick="closeDrawer()">
+</div>
+
+
+<div
+    class="drawer"
+    id="drawer">
+
+    <div class="drawer-header">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            ExamPro
+
+        </div>
+
+
+        <div
+            class="close"
+            onclick="closeDrawer()">
+
+            ×
+
+        </div>
+
+    </div>
+
+
+    <div class="drawer-menu">
+
+        <button>🏠 Dashboard</button>
+
+        <button>📚 Courses</button>
+
+        <button>📝 Mock Tests</button>
+
+        <button>📊 Progress</button>
+
+        <button>📖 Questions & Answers</button>
+
+        <button>🎤 Voice Study</button>
+
+        <button>💬 Messages</button>
+
+        <button>💳 Payments</button>
+
+        <button>⚙️ Settings</button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================
+     MAIN
+========================================= -->
+
+<main class="container">
+
+
+    <!-- PAGE HEADER -->
+
+    <section class="page-header">
+
+        <div class="page-title">
+
+            <div class="page-icon">
+                💬
+            </div>
+
+
+            <div>
+
+                <h1>
+                    Messages
+                </h1>
+
+                <p>
+                    Stay connected with ExamPro support and instructors.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="new-message-btn"
+            onclick="openCompose()">
+
+            <span>
+                ＋
+            </span>
+
+            New Message
+
+        </button>
+
+    </section>
+
+
+    <!-- SEARCH -->
+
+    <div class="search-box">
+
+        <span>
+            🔍
+        </span>
+
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search messages..."
+            oninput="searchMessages()">
+
+    </div>
+
+
+    <!-- SUMMARY -->
+
+    <div class="summary">
+
+        <span>
+            Your Inbox
+        </span>
+
+        <strong id="messageSummary">
+            3 Unread • 6 Messages
+        </strong>
+
+    </div>
+
+
+    <!-- MESSAGE LIST -->
+
+    <section
+        class="message-list"
+        id="messageList">
+
+
+        <!-- MESSAGE 1 -->
+
+        <article
+            class="message-item unread"
+            data-search="exampro support exam preparation mock test">
+
+            <div class="avatar">
+                🎓
+            </div>
+
+
+            <div
+                class="message-content"
+                onclick="openMessage(this)">
+
+                <div class="message-top">
+
+                    <span class="sender">
+
+                        ExamPro Support
+
+                        <span class="unread-badge">
+                            1
+                        </span>
+
+                    </span>
+
+
+                    <span class="time">
+                        10:45 AM
+                    </span>
+
+                </div>
+
+
+                <div class="message-subject">
+
+                    Your exam preparation update
+
+                </div>
+
+
+                <div class="message-preview">
+
+                    Your preparation level has improved.
+                    We recommend completing your pending mock tests...
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="delete-btn"
+                onclick="deleteMessage(this)"
+                title="Delete message">
+
+                🗑️
+
+            </button>
+
+        </article>
+
+
+        <!-- MESSAGE 2 -->
+
+        <article
+            class="message-item unread"
+            data-search="physics instructor weak topics">
+
+            <div class="avatar">
+                ⚡
+            </div>
+
+
+            <div
+                class="message-content"
+                onclick="openMessage(this)">
+
+                <div class="message-top">
+
+                    <span class="sender">
+
+                        Physics Instructor
+
+                        <span class="unread-badge">
+                            1
+                        </span>
+
+                    </span>
+
+
+                    <span class="time">
+                        Yesterday
+                    </span>
+
+                </div>
+
+
+                <div class="message-subject">
+
+                    Important Physics topics
+
+                </div>
+
+
+                <div class="message-preview">
+
+                    Please revise the chapters on current
+                    electricity and electromagnetic induction...
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="delete-btn"
+                onclick="deleteMessage(this)"
+                title="Delete message">
+
+                🗑️
+
+            </button>
+
+        </article>
+
+
+        <!-- MESSAGE 3 -->
+
+        <article
+            class="message-item unread"
+            data-search="exam alert preparation">
+
+            <div class="avatar">
+                ⚠️
+            </div>
+
+
+            <div
+                class="message-content"
+                onclick="openMessage(this)">
+
+                <div class="message-top">
+
+                    <span class="sender">
+
+                        ExamPro Alerts
+
+                        <span class="unread-badge">
+                            1
+                        </span>
+
+                    </span>
+
+
+                    <span class="time">
+                        Yesterday
+                    </span>
+
+                </div>
+
+
+                <div class="message-subject">
+
+                    Exam is getting closer!
+
+                </div>
+
+
+                <div class="message-preview">
+
+                    Focus on your pending subjects and
+                    increase your daily revision time...
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="delete-btn"
+                onclick="deleteMessage(this)"
+                title="Delete message">
+
+                🗑️
+
+            </button>
+
+        </article>
+
+
+        <!-- MESSAGE 4 -->
+
+        <article
+            class="message-item"
+            data-search="biology instructor revision">
+
+            <div class="avatar">
+                🧬
+            </div>
+
+
+            <div
+                class="message-content"
+                onclick="openMessage(this)">
+
+                <div class="message-top">
+
+                    <span class="sender">
+                        Biology Instructor
+                    </span>
+
+
+                    <span class="time">
+                        2 days ago
+                    </span>
+
+                </div>
+
+
+                <div class="message-subject">
+
+                    Biology revision material
+
+                </div>
+
+
+                <div class="message-preview">
+
+                    New revision questions have been added
+                    to your Biology question bank.
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="delete-btn"
+                onclick="deleteMessage(this)"
+                title="Delete message">
+
+                🗑️
+
+            </button>
+
+        </article>
+
+
+        <!-- MESSAGE 5 -->
+
+        <article
+            class="message-item"
+            data-search="payment receipt course">
+
+            <div class="avatar">
+                💳
+            </div>
+
+
+            <div
+                class="message-content"
+                onclick="openMessage(this)">
+
+                <div class="message-top">
+
+                    <span class="sender">
+                        ExamPro Payments
+                    </span>
+
+
+                    <span class="time">
+                        4 days ago
+                    </span>
+
+                </div>
+
+
+                <div class="message-subject">
+
+                    Payment receipt
+
+                </div>
+
+
+                <div class="message-preview">
+
+                    Your payment receipt is available
+                    in your ExamPro account.
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="delete-btn"
+                onclick="deleteMessage(this)"
+                title="Delete message">
+
+                🗑️
+
+            </button>
+
+        </article>
+
+
+        <!-- MESSAGE 6 -->
+
+        <article
+            class="message-item"
+            data-search="welcome exampro account">
+
+            <div class="avatar">
+                👋
+            </div>
+
+
+            <div
+                class="message-content"
+                onclick="openMessage(this)">
+
+                <div class="message-top">
+
+                    <span class="sender">
+                        ExamPro
+                    </span>
+
+
+                    <span class="time">
+                        1 week ago
+                    </span>
+
+                </div>
+
+
+                <div class="message-subject">
+
+                    Welcome to ExamPro!
+
+                </div>
+
+
+                <div class="message-preview">
+
+                    Welcome! Your exam preparation journey
+                    starts here. Explore your courses...
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="delete-btn"
+                onclick="deleteMessage(this)"
+                title="Delete message">
+
+                🗑️
+
+            </button>
+
+        </article>
+
+
+    </section>
+
+
+    <!-- EMPTY -->
+
+    <section
+        class="empty-state"
+        id="emptyState">
+
+        <div class="empty-icon">
+            📭
+        </div>
+
+        <h2>
+            No Messages Found
+        </h2>
+
+        <p>
+            Your inbox is empty or no messages match your search.
+        </p>
+
+    </section>
+
+
+</main>
+
+
+<!-- =========================================
+     COMPOSE MODAL
+========================================= -->
+
+<div
+    class="modal-overlay"
+    id="composeModal">
+
+    <div class="compose-modal">
+
+        <div class="modal-header">
+
+            <h2>
+                ✉️ New Message
+            </h2>
+
+
+            <button
+                class="close-modal"
+                onclick="closeCompose()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                TO
+            </label>
+
+            <input
+                type="text"
+                id="messageTo"
+                value="ExamPro Support"
+                placeholder="Recipient">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                SUBJECT
+            </label>
+
+            <input
+                type="text"
+                id="messageSubject"
+                placeholder="Enter message subject">
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label>
+                MESSAGE
+            </label>
+
+            <textarea
+                id="messageBody"
+                placeholder="Write your message...">
+            </textarea>
+
+        </div>
+
+
+        <button
+            class="send-btn"
+            onclick="sendMessage()">
+
+            🚀 Send Message
+
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================
+     BOTTOM NAV
+========================================= -->
+
+<nav class="bottom-nav">
+
+    <button onclick="goDashboard()">
+
+        <span class="bottom-icon">
+            🏠
+        </span>
+
+        Home
+
+    </button>
+
+
+    <button>
+
+        <span class="bottom-icon">
+            📚
+        </span>
+
+        Courses
+
+    </button>
+
+
+    <button class="active">
+
+        <span class="bottom-icon">
+            💬
+        </span>
+
+        Messages
+
+    </button>
+
+
+    <button>
+
+        <span class="bottom-icon">
+            📊
+        </span>
+
+        Progress
+
+    </button>
+
+
+    <button onclick="openDrawer()">
+
+        <span class="bottom-icon">
+            ☰
+        </span>
+
+        Menu
+
+    </button>
+
+</nav>
+
+
+<script>
+
+/* =========================================
+   OPEN MESSAGE
+========================================= */
+
+function openMessage(element){
+
+    const item =
+        element.closest(
+            ".message-item"
+        );
+
+
+    item.classList.remove(
+        "unread"
+    );
+
+
+    const badge =
+        item.querySelector(
+            ".unread-badge"
+        );
+
+
+    if(badge){
+        badge.remove();
+    }
+
+
+    updateSummary();
+
+
+    alert(
+        "Opening message..."
+    );
+
+}
+
+
+/* =========================================
+   DELETE MESSAGE
+========================================= */
+
+function deleteMessage(button){
+
+    const item =
+        button.closest(
+            ".message-item"
+        );
+
+
+    if(
+        !confirm(
+            "Delete this message?"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    item.remove();
+
+    updateSummary();
+
+    checkEmpty();
+
+}
+
+
+/* =========================================
+   SEARCH
+========================================= */
+
+function searchMessages(){
+
+    const query =
+        document
+        .getElementById(
+            "searchInput"
+        )
+        .value
+        .toLowerCase()
+        .trim();
+
+
+    const messages =
+        document.querySelectorAll(
+            ".message-item"
+        );
+
+
+    let visible = 0;
+
+
+    messages.forEach(
+        message => {
+
+            const text =
+                message
+                .dataset
+                .search
+                .toLowerCase();
+
+
+            const matches =
+                text.includes(
+                    query
+                );
+
+
+            message.style.display =
+                matches
+                    ? "flex"
+                    : "none";
+
+
+            if(matches){
+                visible++;
+            }
+
+        }
+    );
+
+
+    document.getElementById(
+        "emptyState"
+    ).style.display =
+        visible === 0
+            ? "block"
+            : "none";
+
+}
+
+
+/* =========================================
+   SUMMARY
+========================================= */
+
+function updateSummary(){
+
+    const messages =
+        document.querySelectorAll(
+            ".message-item"
+        );
+
+
+    const unread =
+        document.querySelectorAll(
+            ".message-item.unread"
+        );
+
+
+    document.getElementById(
+        "messageSummary"
+    ).textContent =
+
+        unread.length +
+        " Unread • " +
+        messages.length +
+        " Messages";
+
+}
+
+
+/* =========================================
+   EMPTY STATE
+========================================= */
+
+function checkEmpty(){
+
+    const messages =
+        document.querySelectorAll(
+            ".message-item"
+        );
+
+
+    document.getElementById(
+        "emptyState"
+    ).style.display =
+        messages.length === 0
+            ? "block"
+            : "none";
+
+}
+
+
+/* =========================================
+   COMPOSE
+========================================= */
+
+function openCompose(){
+
+    document
+        .getElementById(
+            "composeModal"
+        )
+        .classList.add(
+            "show"
+        );
+
+}
+
+
+function closeCompose(){
+
+    document
+        .getElementById(
+            "composeModal"
+        )
+        .classList.remove(
+            "show"
+        );
+
+}
+
+
+/* =========================================
+   SEND MESSAGE
+========================================= */
+
+function sendMessage(){
+
+    const subject =
+        document
+        .getElementById(
+            "messageSubject"
+        )
+        .value
+        .trim();
+
+
+    const body =
+        document
+        .getElementById(
+            "messageBody"
+        )
+        .value
+        .trim();
+
+
+    if(!subject){
+
+        alert(
+            "Please enter a subject."
+        );
+
+        return;
+
+    }
+
+
+    if(!body){
+
+        alert(
+            "Please enter your message."
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Production:
+
+       Send the message to your backend.
+
+       Example:
+
+       POST /api/messages
+
+       {
+          recipientId: "...",
+          subject: subject,
+          body: body
+       }
+    */
+
+
+    alert(
+        "Message sent successfully!"
+    );
+
+
+    document.getElementById(
+        "messageSubject"
+    ).value = "";
+
+
+    document.getElementById(
+        "messageBody"
+    ).value = "";
+
+
+    closeCompose();
+
+}
+
+
+/* =========================================
+   DRAWER
+========================================= */
+
+function openDrawer(){
+
+    document
+        .getElementById(
+            "drawer"
+        )
+        .classList.add(
+            "open"
+        );
+
+    document
+        .getElementById(
+            "drawerOverlay"
+        )
+        .classList.add(
+            "show"
+        );
+
+}
+
+
+function closeDrawer(){
+
+    document
+        .getElementById(
+            "drawer"
+        )
+        .classList.remove(
+            "open"
+        );
+
+    document
+        .getElementById(
+            "drawerOverlay"
+        )
+        .classList.remove(
+            "show"
+        );
+
+}
+
+
+/* =========================================
+   DASHBOARD
+========================================= */
+
+function goDashboard(){
+
+    alert(
+        "Opening Dashboard..."
+    );
+
+}
+
+</script>
+
+</body>
+</html>

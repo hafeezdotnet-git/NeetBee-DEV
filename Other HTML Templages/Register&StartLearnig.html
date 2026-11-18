@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="common.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ExamPro - Register & Payment</title>
+
+
+</head>
+
+
+<body class="register-startlearnig-page">
+
+
+<!-- OFFER -->
+
+<div class="offer-banner">
+
+    🎁 <strong>LIMITED OFFER</strong>
+
+    Get 50% OFF on Premium Mock Tests
+
+    <button class="offer-btn">
+        Register Now
+    </button>
+
+</div>
+
+
+<!-- HEADER -->
+
+<header class="header">
+
+    <div class="header-left">
+
+        <div
+            class="hamburger"
+            onclick="openDrawer()">
+            ☰
+        </div>
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            ExamPro
+
+        </div>
+
+    </div>
+
+
+    <button class="register-top">
+        Register
+    </button>
+
+</header>
+
+
+<!-- DRAWER -->
+
+<div
+    class="overlay"
+    id="overlay"
+    onclick="closeDrawer()">
+</div>
+
+
+<div
+    class="drawer"
+    id="drawer">
+
+    <div class="drawer-header">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            ExamPro
+
+        </div>
+
+        <div
+            class="close"
+            onclick="closeDrawer()">
+            ×
+        </div>
+
+    </div>
+
+
+    <div class="drawer-menu">
+
+        <button>🏠 Dashboard</button>
+
+        <button>📝 Exams</button>
+
+        <button>📊 Progress</button>
+
+        <button>📖 Questions & Answers</button>
+
+        <button>🏆 Leaderboard</button>
+
+        <button>📚 Study Material</button>
+
+    </div>
+
+</div>
+
+
+<!-- MAIN -->
+
+<main class="container">
+
+
+    <div class="page-heading">
+
+        <span class="eyebrow">
+            JOIN EXAMPRO
+        </span>
+
+        <h1>
+            Register & Start Learning 🚀
+        </h1>
+
+        <p>
+            Create your account and unlock your exam preparation.
+        </p>
+
+    </div>
+
+
+    <div class="checkout">
+
+
+        <!-- LEFT -->
+
+        <div>
+
+
+            <!-- REGISTRATION -->
+
+            <section class="card">
+
+                <div class="card-title">
+
+                    <div class="card-icon">
+                        👤
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Student Registration
+                        </h2>
+
+                        <p>
+                            Enter your basic information
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+
+                    <div class="form-group">
+
+                        <label>
+                            First Name
+                        </label>
+
+                        <input
+                            type="text"
+                            id="firstName"
+                            placeholder="Enter first name">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Last Name
+                        </label>
+
+                        <input
+                            type="text"
+                            placeholder="Enter last name">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Email Address
+                        </label>
+
+                        <input
+                            type="email"
+                            placeholder="student@example.com">
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Mobile Number
+                        </label>
+
+                        <div class="phone-field">
+
+                            <select class="country-code">
+
+                                <option>
+                                    +91
+                                </option>
+
+                                <option>
+                                    +1
+                                </option>
+
+                                <option>
+                                    +44
+                                </option>
+
+                            </select>
+
+                            <input
+                                type="tel"
+                                placeholder="Mobile number">
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="form-group full">
+
+                        <label>
+                            Select Exam Category
+                        </label>
+
+                        <select>
+
+                            <option>
+                                NEET Preparation
+                            </option>
+
+                            <option>
+                                JEE Preparation
+                            </option>
+
+                            <option>
+                                General Competitive Exams
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+            <!-- SUBJECTS -->
+
+            <section class="card register-startlearnig-page-inline-1">
+
+                <div class="card-title">
+
+                    <div class="card-icon">
+                        🎓
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Choose Subjects
+                        </h2>
+
+                        <p>
+                            Select the subjects you want to prepare
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="subjects">
+
+                    <div
+                        class="subject active"
+                        onclick="selectSubject(this)">
+
+                        <div class="subject-icon">
+                            ➗
+                        </div>
+
+                        <span>
+                            Mathematics
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="subject active"
+                        onclick="selectSubject(this)">
+
+                        <div class="subject-icon">
+                            ⚡
+                        </div>
+
+                        <span>
+                            Physics
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="subject active"
+                        onclick="selectSubject(this)">
+
+                        <div class="subject-icon">
+                            🧪
+                        </div>
+
+                        <span>
+                            Chemistry
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="subject active"
+                        onclick="selectSubject(this)">
+
+                        <div class="subject-icon">
+                            🧬
+                        </div>
+
+                        <span>
+                            Biology
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="subject"
+                        onclick="selectSubject(this)">
+
+                        <div class="subject-icon">
+                            🦎
+                        </div>
+
+                        <span>
+                            Zoology
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- PAYMENT -->
+
+            <section class="card register-startlearnig-page-inline-2">
+
+                <div class="card-title">
+
+                    <div class="card-icon">
+                        💳
+                    </div>
+
+                    <div>
+
+                        <h2>
+                            Payment Method
+                        </h2>
+
+                        <p>
+                            Choose your preferred payment method
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="payment-methods">
+
+
+                    <div
+                        class="payment-method active"
+                        onclick="selectPayment(this)">
+
+                        <div class="pay-icon">
+                            📱
+                        </div>
+
+                        <span>
+                            UPI
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="payment-method"
+                        onclick="selectPayment(this)">
+
+                        <div class="pay-icon">
+                            💳
+                        </div>
+
+                        <span>
+                            Card
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="payment-method"
+                        onclick="selectPayment(this)">
+
+                        <div class="pay-icon">
+                            🏦
+                        </div>
+
+                        <span>
+                            Net Banking
+                        </span>
+
+                    </div>
+
+
+                    <div
+                        class="payment-method"
+                        onclick="selectPayment(this)">
+
+                        <div class="pay-icon">
+                            👛
+                        </div>
+
+                        <span>
+                            Wallet
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+
+                <div class="upi-box">
+
+                    <p>
+                        Enter your UPI ID
+                    </p>
+
+                    <input
+                        type="text"
+                        placeholder="example@upi">
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+
+        <!-- RIGHT SUMMARY -->
+
+        <aside class="summary">
+
+            <section class="card">
+
+                <h2 class="summary-title">
+                    Order Summary
+                </h2>
+
+
+                <div class="plan">
+
+                    <div class="plan-top">
+
+                        <h3>
+                            Premium Exam Plan
+                        </h3>
+
+                        <div class="plan-price">
+                            ₹999
+                        </div>
+
+                    </div>
+
+                    <p>
+                        3 Months Access
+                    </p>
+
+                </div>
+
+
+                <div class="price-row">
+
+                    <span>
+                        Original Price
+                    </span>
+
+                    <span>
+                        ₹1,999
+                    </span>
+
+                </div>
+
+
+                <div class="price-row discount">
+
+                    <span>
+                        🎁 Offer Discount
+                    </span>
+
+                    <span>
+                        − ₹1,000
+                    </span>
+
+                </div>
+
+
+                <div class="divider"></div>
+
+
+                <div class="price-row">
+
+                    <span>
+                        Taxes
+                    </span>
+
+                    <span>
+                        Included
+                    </span>
+
+                </div>
+
+
+                <div class="divider"></div>
+
+
+                <div class="total">
+
+                    <span>
+                        Total Payable
+                    </span>
+
+                    <strong>
+                        ₹999
+                    </strong>
+
+                </div>
+
+
+                <div class="offer-box">
+
+                    <strong>
+                        🎉 50% OFFER APPLIED
+                    </strong>
+
+                    <p>
+                        You saved ₹1,000 with the
+                        current registration offer.
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="pay-btn"
+                    onclick="makePayment()">
+
+                    🔒 Pay ₹999 Securely
+
+                </button>
+
+
+                <div class="secure">
+
+                    🔐 Secure Payment &nbsp; • &nbsp;
+                    Your information is protected
+
+                </div>
+
+            </section>
+
+        </aside>
+
+
+    </div>
+
+</main>
+
+
+<!-- BOTTOM NAV -->
+
+<nav class="bottom-nav">
+
+    <button>
+        <span class="bottom-icon">
+            🏠
+        </span>
+        Home
+    </button>
+
+    <button>
+        <span class="bottom-icon">
+            📝
+        </span>
+        Exams
+    </button>
+
+    <button class="active">
+        <span class="bottom-icon">
+            👤
+        </span>
+        Register
+    </button>
+
+    <button onclick="openDrawer()">
+        <span class="bottom-icon">
+            ☰
+        </span>
+        Menu
+    </button>
+
+</nav>
+
+
+<script>
+
+/* =========================
+   DRAWER
+========================= */
+
+function openDrawer(){
+
+    document
+        .getElementById("drawer")
+        .classList.add("open");
+
+    document
+        .getElementById("overlay")
+        .classList.add("show");
+
+}
+
+
+function closeDrawer(){
+
+    document
+        .getElementById("drawer")
+        .classList.remove("open");
+
+    document
+        .getElementById("overlay")
+        .classList.remove("show");
+
+}
+
+
+/* =========================
+   SUBJECT
+========================= */
+
+function selectSubject(element){
+
+    element.classList.toggle("active");
+
+}
+
+
+/* =========================
+   PAYMENT METHOD
+========================= */
+
+function selectPayment(element){
+
+    document
+        .querySelectorAll(".payment-method")
+        .forEach(item => {
+
+            item.classList.remove("active");
+
+        });
+
+    element.classList.add("active");
+
+}
+
+
+/* =========================
+   PAYMENT
+========================= */
+
+function makePayment(){
+
+    const name =
+        document.getElementById("firstName").value;
+
+    if(!name){
+
+        alert(
+            "Please enter your first name before continuing."
+        );
+
+        return;
+
+    }
+
+    alert(
+        "Registration details validated.\n\n" +
+        "Connect this button to your payment gateway " +
+        "to process the ₹999 payment."
+    );
+
+}
+
+</script>
+
+</body>
+</html>

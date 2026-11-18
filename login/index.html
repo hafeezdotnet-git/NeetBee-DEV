@@ -1,0 +1,305 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Sign in to NEET BEE.">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' http://localhost:5000; script-src 'self' 'unsafe-inline'; frame-ancestors 'none'; base-uri 'none'; form-action 'self'">
+  <title>Sign In | NEET BEE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --accent: #0ac6f0;
+      --accent-dark: #0a8fb3;
+      --ink: #1d2433;
+      --muted: #5d6779;
+      --line: #d7dde8;
+      --danger: #b33a3a;
+      --ok: #07864a;
+      --bg: #f4f8fc;
+      --card: #ffffff;
+      font-family: "Nunito Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; min-height: 100%; }
+    body {
+      background: radial-gradient(circle at top left, #e3f7fd, var(--bg) 60%);
+      color: var(--ink);
+      display: grid;
+      place-items: center;
+      min-height: 100vh;
+      padding: 24px 16px;
+    }
+    .card {
+      width: min(420px, 100%);
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: 0 12px 32px rgba(29, 36, 51, .08);
+      padding: 32px 28px 28px;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: center;
+      text-decoration: none;
+      color: var(--ink);
+      margin-bottom: 18px;
+      font-weight: 900;
+      font-size: 22px;
+    }
+    .brand em { color: var(--accent-dark); font-style: normal; }
+    h1 { font-size: 24px; margin: 0 0 6px; text-align: center; }
+    .sub { margin: 0 0 22px; color: var(--muted); text-align: center; font-size: 15px; }
+    label { display: block; font-weight: 700; font-size: 14px; margin-bottom: 14px; }
+    .field-wrap { position: relative; margin-top: 6px; }
+    input[type="text"], input[type="email"], input[type="password"] {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid var(--line);
+      border-radius: 12px;
+      font: inherit;
+      font-size: 15px;
+      color: var(--ink);
+      background: #fff;
+    }
+    input:focus-visible { outline: 3px solid rgba(10, 198, 240, .35); border-color: var(--accent); }
+    input[aria-invalid="true"] { border-color: var(--danger); }
+    .pw-toggle {
+      position: absolute;
+      right: 6px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: none;
+      border: 0;
+      padding: 6px 10px;
+      font: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--accent-dark);
+      cursor: pointer;
+    }
+    .field-error { display: block; min-height: 18px; color: var(--danger); font-size: 13px; font-weight: 600; margin-top: 4px; }
+    .row { display: flex; justify-content: space-between; align-items: center; font-size: 14px; margin: 4px 0 18px; gap: 12px; }
+    .row label.inline { margin: 0; font-weight: 600; display: flex; align-items: center; gap: 6px; }
+    .row a { color: var(--accent-dark); font-weight: 700; text-decoration: none; }
+    .row a:hover { text-decoration: underline; }
+    button.submit {
+      width: 100%;
+      padding: 13px 16px;
+      border: 0;
+      border-radius: 12px;
+      background: var(--accent);
+      color: #052a36;
+      font: inherit;
+      font-weight: 900;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button.submit:hover { background: #07b4dd; }
+    button.submit:disabled { opacity: .6; cursor: progress; }
+    button.submit:focus-visible { outline: 3px solid rgba(10, 198, 240, .5); outline-offset: 2px; }
+    .status {
+      min-height: 22px;
+      margin: 16px 0 0;
+      font-size: 14px;
+      font-weight: 700;
+      text-align: center;
+    }
+    .status.error { color: var(--danger); }
+    .status.ok { color: var(--ok); }
+    .footer-note { margin-top: 18px; text-align: center; font-size: 13px; color: var(--muted); }
+    .footer-note a { color: var(--accent-dark); font-weight: 700; }
+    .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+    @media (prefers-reduced-motion: reduce) { * { transition: none !important; animation: none !important; } }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <a class="brand" href="../index.html" aria-label="NEET BEE home">NEET <em>BEE</em></a>
+    <h1>Welcome back</h1>
+    <p class="sub">Sign in to continue your NEET preparation.</p>
+
+    <form id="login-form" novalidate autocomplete="on">
+      <label for="username">
+        Email or username
+        <span class="field-wrap">
+          <input id="username" name="username" type="text" autocomplete="username" inputmode="email"
+                 placeholder="you@example.com" required aria-describedby="username-error" maxlength="256">
+        </span>
+        <span id="username-error" class="field-error" role="alert"></span>
+      </label>
+
+      <label for="password">
+        Password
+        <span class="field-wrap">
+          <input id="password" name="password" type="password" autocomplete="current-password"
+                 placeholder="Enter your password" required minlength="8" maxlength="128"
+                 aria-describedby="password-error">
+          <button type="button" class="pw-toggle" id="pw-toggle" aria-controls="password"
+                  aria-pressed="false">Show</button>
+        </span>
+        <span id="password-error" class="field-error" role="alert"></span>
+      </label>
+
+      <div class="row">
+        <label class="inline"><input type="checkbox" id="remember" name="remember"> Keep me signed in</label>
+      </div>
+
+      <button type="submit" class="submit" id="submit-btn">Sign in</button>
+      <p id="status" class="status" role="status" aria-live="polite"></p>
+    </form>
+
+    <p class="footer-note">New to NEET BEE? <a href="../pricing.html">View plans</a></p>
+  </main>
+
+  <script>
+    (function () {
+      "use strict";
+
+      // ---- Configuration -----------------------------------------------------
+      // Base URL of the API Gateway. Leave empty to call on the same origin.
+      // Gateway route for login (spec section 4).
+      var API_BASE = "http://localhost:5000";
+      var LOGIN_URL = API_BASE + "/api/auth/login";
+      var REQUEST_TIMEOUT_MS = 15000;
+      var MIN_PASSWORD_LENGTH = 8;
+      var EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      var USERNAME_RE = /^[A-Za-z0-9._-]{3,64}$/;
+
+      var form = document.getElementById("login-form");
+      var userInput = document.getElementById("username");
+      var passInput = document.getElementById("password");
+      var userErr = document.getElementById("username-error");
+      var passErr = document.getElementById("password-error");
+      var submitBtn = document.getElementById("submit-btn");
+      var statusEl = document.getElementById("status");
+      var pwToggle = document.getElementById("pw-toggle");
+      var busy = false;
+
+      // Access token is kept in memory only. It is never written to storage or logs.
+      var session = { accessToken: null, expiresAt: 0 };
+
+      function setFieldError(input, errEl, message) {
+        errEl.textContent = message || "";
+        input.setAttribute("aria-invalid", message ? "true" : "false");
+      }
+
+      function setStatus(message, kind) {
+        statusEl.textContent = message || "";
+        statusEl.className = "status" + (kind ? " " + kind : "");
+      }
+
+      function validateUsername() {
+        var v = userInput.value.trim();
+        var msg = "";
+        if (!v) msg = "Please enter your email or username.";
+        else if (v.indexOf("@") !== -1 ? !EMAIL_RE.test(v) : !USERNAME_RE.test(v)) msg = "Enter a valid email address or username.";
+        setFieldError(userInput, userErr, msg);
+        return !msg;
+      }
+
+      function validatePassword() {
+        var v = passInput.value;
+        var msg = "";
+        if (!v) msg = "Please enter your password.";
+        else if (v.length < MIN_PASSWORD_LENGTH) msg = "Password must be at least " + MIN_PASSWORD_LENGTH + " characters.";
+        setFieldError(passInput, passErr, msg);
+        return !msg;
+      }
+
+      function setBusy(state) {
+        busy = state;
+        submitBtn.disabled = state;
+        submitBtn.textContent = state ? "Signing in…" : "Sign in";
+        userInput.disabled = state;
+        passInput.disabled = state;
+      }
+
+      function messageForStatus(code) {
+        if (code === 400) return "Please check the details you entered.";
+        if (code === 401) return "Incorrect email/username or password.";
+        if (code === 403) return "Your account is not allowed to sign in. Please contact support.";
+        if (code === 423) return "Your account is temporarily locked. Try again later.";
+        if (code === 429) return "Too many attempts. Please wait a few minutes and try again.";
+        if (code >= 500) return "Something went wrong on our side. Please try again shortly.";
+        return "Sign-in failed. Please try again.";
+      }
+
+      async function login(username, password) {
+        var controller = new AbortController();
+        var timer = setTimeout(function () { controller.abort(); }, REQUEST_TIMEOUT_MS);
+        try {
+          var res = await fetch(LOGIN_URL, {
+            method: "POST",
+            headers: { "Content-Type": "application/json", "Accept": "application/json" },
+            body: JSON.stringify({ username: username, password: password }),
+            credentials: "omit",
+            cache: "no-store",
+            signal: controller.signal
+          });
+
+          if (!res.ok) {
+            setStatus(messageForStatus(res.status), "error");
+            return;
+          }
+
+          var data = await res.json();
+          if (!data || !data.accessToken) {
+            setStatus("Unexpected response from server.", "error");
+            return;
+          }
+
+          session.accessToken = data.accessToken;
+          session.expiresAt = Date.now() + (Number(data.expiresIn) || 0) * 1000;
+          // Refresh token handling is not implemented on this page yet; see the implementation notes.
+          passInput.value = "";
+          setStatus("Signed in successfully.", "ok");
+        } catch (err) {
+          if (err && err.name === "AbortError") {
+            setStatus("The server took too long to respond. Please try again.", "error");
+          } else {
+            setStatus("Cannot reach the server. Check your connection and try again.", "error");
+          }
+        } finally {
+          clearTimeout(timer);
+        }
+      }
+
+      userInput.addEventListener("blur", validateUsername);
+      passInput.addEventListener("blur", validatePassword);
+      userInput.addEventListener("input", function () { if (userErr.textContent) validateUsername(); });
+      passInput.addEventListener("input", function () { if (passErr.textContent) validatePassword(); });
+
+      pwToggle.addEventListener("click", function () {
+        var show = passInput.type === "password";
+        passInput.type = show ? "text" : "password";
+        pwToggle.textContent = show ? "Hide" : "Show";
+        pwToggle.setAttribute("aria-pressed", String(show));
+      });
+
+      form.addEventListener("submit", async function (e) {
+        e.preventDefault();
+        if (busy) return;
+        setStatus("", "");
+
+        var okUser = validateUsername();
+        var okPass = validatePassword();
+        if (!okUser || !okPass) {
+          (okUser ? passInput : userInput).focus();
+          return;
+        }
+
+        setBusy(true);
+        try {
+          await login(userInput.value.trim(), passInput.value);
+        } finally {
+          setBusy(false);
+        }
+      });
+    })();
+  </script>
+</body>
+</html>

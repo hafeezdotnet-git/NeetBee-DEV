@@ -1,0 +1,59 @@
+@{
+    var controller = ViewContext.RouteData.Values["controller"]?.ToString();
+    var action = ViewContext.RouteData.Values["action"]?.ToString();
+    var page = controller + "/" + action;
+}
+<!doctype html>
+<html lang="en">
+<head>
+    <partial name="_Head" />
+    <link rel="stylesheet" href="/css/neetbee-dashboard.css?v=3">
+    <link rel="stylesheet" href="/css/neetbee-dashboard-overrides.css?v=14">
+    <link id="nb-light-css" rel="stylesheet" href="/css/neetbee-dashboard-light.css?v=6" disabled>
+    <link rel="stylesheet" href="/css/neetbee-ai-assistant.css?v=1">
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body class="dashboard-body neetbee-theme">
+    @* Apply a hidden sidebar before the first paint, so it does not flash open and then close. *@
+    <script>try { if (localStorage.getItem("neetbee-sidebar") === "collapsed") document.body.classList.add("nb-sidebar-collapsed"); } catch (e) { }</script>
+    <a class="skip-link" href="#dashboard-content">Skip to main content</a>
+
+    <partial name="_DashboardHeader" />
+
+    <div class="nb-layout">
+        <partial name="_DashboardSidebar" />
+
+        @* Hide / show the sidebar (wide screens only; phones use the ☰ drawer). *@
+        <button type="button" class="nb-sidebar-toggle" id="nb-sidebar-toggle" aria-controls="nb-sidebar" aria-expanded="true" aria-label="Hide menu" title="Hide menu">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 6 6 6-6 6"/></svg>
+        </button>
+
+        <main id="dashboard-content" class="nb-main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <partial name="_Footer" />
+
+    <div class="nb-backdrop" id="nb-backdrop" hidden></div>
+
+    <nav class="nb-bottom-nav" aria-label="Quick navigation">
+        <a class="@(page == "Study/AudioLearning" ? "active" : null)" asp-controller="Study" asp-action="AudioLearning"><span class="nb-icon" style="--nb-icon:url('/assets/neetbee/headphones.svg')" aria-hidden="true"></span>Audio Learning</a>
+        <a class="@(page == "Study/Pricing" ? "active" : null)" asp-controller="Study" asp-action="Pricing"><span class="nb-icon" style="--nb-icon:url('/assets/neetbee/crown.svg')" aria-hidden="true"></span>Premium Plans</a>
+        <a class="@(page == "Study/Courses" ? "active" : null)" asp-controller="Study" asp-action="Courses"><span class="nb-icon" style="--nb-icon:url('/assets/neetbee/book.svg')" aria-hidden="true"></span>Courses</a>
+        <a class="@(page == "Study/McqPractice" ? "active" : null)" asp-controller="Study" asp-action="McqPractice"><span class="nb-icon" style="--nb-icon:url('/assets/neetbee/target.svg')" aria-hidden="true"></span>MCQ Practice</a>
+    </nav>
+
+    <div class="toast" role="status" aria-live="polite"></div>
+
+    <partial name="_AiAssistant" />
+    <partial name="_GoPremium" />
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="/js/dashboard.js?v=7"></script>
+    <script src="/js/sidebar-toggle.js?v=2"></script>
+    <script src="/js/go-premium.js?v=2"></script>
+    <script src="/js/ai-assistant.js?v=1"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

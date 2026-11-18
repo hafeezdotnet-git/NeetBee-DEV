@@ -1,0 +1,949 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="common.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ExamPro - Student Profile</title>
+
+
+
+</head>
+
+
+<body class="profilescreen-page">
+
+
+<!-- =========================================
+     OFFER
+========================================= -->
+
+<div class="top-offer">
+
+    🎓 ExamPro Student Portal
+
+    <span>
+        STUDENT PROFILE
+    </span>
+
+</div>
+
+
+<!-- =========================================
+     HEADER
+========================================= -->
+
+<header class="header">
+
+    <div class="header-left">
+
+        <div
+            class="hamburger"
+            onclick="openDrawer()">
+
+            ☰
+
+        </div>
+
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            ExamPro
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="notification"
+        onclick="openNotifications()">
+
+        🔔
+
+        <span class="notification-dot">
+        </span>
+
+    </button>
+
+</header>
+
+
+<!-- =========================================
+     DRAWER
+========================================= -->
+
+<div
+    class="overlay"
+    id="overlay"
+    onclick="closeDrawer()">
+</div>
+
+
+<div
+    class="drawer"
+    id="drawer">
+
+
+    <div class="drawer-header">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            ExamPro
+
+        </div>
+
+
+        <div
+            class="close"
+            onclick="closeDrawer()">
+
+            ×
+
+        </div>
+
+    </div>
+
+
+    <div class="drawer-menu">
+
+        <button>🏠 Dashboard</button>
+
+        <button>📚 Courses</button>
+
+        <button>📝 Mock Tests</button>
+
+        <button>📊 Progress</button>
+
+        <button>📖 Questions & Answers</button>
+
+        <button>🎤 Voice Study</button>
+
+        <button>💬 Messages</button>
+
+        <button>🎁 Refer & Earn</button>
+
+        <button>💳 Payments</button>
+
+        <button>👤 My Profile</button>
+
+        <button>⚙️ Settings</button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================================
+     MAIN
+========================================= -->
+
+<main class="container">
+
+
+    <!-- PROFILE HERO -->
+
+    <section class="profile-hero">
+
+        <div class="profile-content">
+
+
+            <div class="avatar-wrapper">
+
+                <div class="avatar">
+                    👨‍🎓
+                </div>
+
+                <div class="online">
+                </div>
+
+            </div>
+
+
+            <div class="profile-info">
+
+                <div class="student-badge">
+                    🎓 STUDENT
+                </div>
+
+                <h1>
+                    Armaan Khan
+                </h1>
+
+                <p>
+                    NEET Aspirant
+                    •
+                    Student ID: EXM20260025
+                </p>
+
+            </div>
+
+
+            <button
+                class="edit-btn"
+                onclick="editProfile()">
+
+                ✏️ Edit Profile
+
+            </button>
+
+
+        </div>
+
+    </section>
+
+
+    <!-- GRID -->
+
+    <div class="profile-grid">
+
+
+        <!-- =================================
+             LEFT COLUMN
+        ================================== -->
+
+        <div>
+
+
+            <!-- PERSONAL INFORMATION -->
+
+            <section class="card">
+
+                <div class="card-title">
+
+                    <h2>
+                        👤 Personal Information
+                    </h2>
+
+                    <span>
+                        Account Details
+                    </span>
+
+                </div>
+
+
+                <div class="info-grid">
+
+
+                    <div class="info-item">
+
+                        <label>
+                            Full Name
+                        </label>
+
+                        <strong>
+                            Armaan Khan
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <label>
+                            Student ID
+                        </label>
+
+                        <strong>
+                            EXM20260025
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <label>
+                            Email
+                        </label>
+
+                        <strong>
+                            armaan@example.com
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <label>
+                            Mobile
+                        </label>
+
+                        <strong>
+                            +91 98765 43210
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <label>
+                            Date of Birth
+                        </label>
+
+                        <strong>
+                            15 May 2007
+                        </strong>
+
+                    </div>
+
+
+                    <div class="info-item">
+
+                        <label>
+                            Target Exam
+                        </label>
+
+                        <strong>
+                            NEET
+                        </strong>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+            <!-- COURSES -->
+
+            <section class="card">
+
+                <div class="card-title">
+
+                    <h2>
+                        📚 My Courses
+                    </h2>
+
+                    <span>
+                        1 Active
+                    </span>
+
+                </div>
+
+
+                <div class="course-card">
+
+                    <div class="course-icon">
+                        🎓
+                    </div>
+
+
+                    <div class="course-info">
+
+                        <strong>
+                            NEET Complete Preparation
+                        </strong>
+
+                        <span>
+                            Physics • Chemistry • Biology • Zoology
+                        </span>
+
+                    </div>
+
+
+                    <div class="course-status">
+                        ACTIVE
+                    </div>
+
+                </div>
+
+
+                <div class="course-card">
+
+                    <div class="course-icon">
+                        📝
+                    </div>
+
+
+                    <div class="course-info">
+
+                        <strong>
+                            NEET Mock Test Series
+                        </strong>
+
+                        <span>
+                            Full syllabus test series
+                        </span>
+
+                    </div>
+
+
+                    <div class="course-status">
+                        ACTIVE
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- PERFORMANCE -->
+
+            <section class="card">
+
+                <div class="card-title">
+
+                    <h2>
+                        📊 Performance Summary
+                    </h2>
+
+                    <span>
+                        Overall
+                    </span>
+
+                </div>
+
+
+                <div class="performance">
+
+
+                    <div class="performance-item">
+
+                        <strong class="purple">
+                            68%
+                        </strong>
+
+                        <span>
+                            Course Complete
+                        </span>
+
+                    </div>
+
+
+                    <div class="performance-item">
+
+                        <strong class="green">
+                            82%
+                        </strong>
+
+                        <span>
+                            Accuracy
+                        </span>
+
+                    </div>
+
+
+                    <div class="performance-item">
+
+                        <strong class="blue">
+                            78%
+                        </strong>
+
+                        <span>
+                            Avg. Test Score
+                        </span>
+
+                    </div>
+
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+
+        <!-- =================================
+             RIGHT COLUMN
+        ================================== -->
+
+        <div>
+
+
+            <!-- SUBJECT PROGRESS -->
+
+            <section class="card">
+
+                <div class="card-title">
+
+                    <h2>
+                        📈 Subject Progress
+                    </h2>
+
+                </div>
+
+
+                <div class="progress-row">
+
+                    <div class="progress-head">
+
+                        <span>
+                            ⚡ Physics
+                        </span>
+
+                        <strong>
+                            62%
+                        </strong>
+
+                    </div>
+
+                    <div class="progress">
+
+                        <div class="progress-fill profilescreen-page-inline-1">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="progress-row">
+
+                    <div class="progress-head">
+
+                        <span>
+                            🧪 Chemistry
+                        </span>
+
+                        <strong>
+                            74%
+                        </strong>
+
+                    </div>
+
+                    <div class="progress">
+
+                        <div class="progress-fill profilescreen-page-inline-2">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="progress-row">
+
+                    <div class="progress-head">
+
+                        <span>
+                            🧬 Biology
+                        </span>
+
+                        <strong>
+                            81%
+                        </strong>
+
+                    </div>
+
+                    <div class="progress">
+
+                        <div class="progress-fill profilescreen-page-inline-3">
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="progress-row">
+
+                    <div class="progress-head">
+
+                        <span>
+                            🔬 Zoology
+                        </span>
+
+                        <strong>
+                            69%
+                        </strong>
+
+                    </div>
+
+                    <div class="progress">
+
+                        <div class="progress-fill profilescreen-page-inline-4">
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- ACCOUNT STATUS -->
+
+            <section class="card">
+
+                <div class="card-title">
+
+                    <h2>
+                        🔐 Account Status
+                    </h2>
+
+                </div>
+
+
+                <div class="status-item">
+
+                    <div class="status-icon">
+                        ✓
+                    </div>
+
+                    <div class="status-info">
+
+                        <strong>
+                            Email Verification
+                        </strong>
+
+                        <span>
+                            Email successfully verified
+                        </span>
+
+                    </div>
+
+                    <div class="status-value active">
+                        Verified
+                    </div>
+
+                </div>
+
+
+                <div class="status-item">
+
+                    <div class="status-icon">
+                        ✓
+                    </div>
+
+                    <div class="status-info">
+
+                        <strong>
+                            Mobile Verification
+                        </strong>
+
+                        <span>
+                            Mobile number verified
+                        </span>
+
+                    </div>
+
+                    <div class="status-value active">
+                        Verified
+                    </div>
+
+                </div>
+
+
+                <div class="status-item">
+
+                    <div class="status-icon">
+                        🔒
+                    </div>
+
+                    <div class="status-info">
+
+                        <strong>
+                            Account Security
+                        </strong>
+
+                        <span>
+                            Password protected
+                        </span>
+
+                    </div>
+
+                    <div class="status-value active">
+                        Secure
+                    </div>
+
+                </div>
+
+
+            </section>
+
+
+            <!-- QUICK ACTIONS -->
+
+            <section class="card">
+
+                <div class="card-title">
+
+                    <h2>
+                        ⚡ Quick Actions
+                    </h2>
+
+                </div>
+
+
+                <div class="quick-actions">
+
+
+                    <button
+                        class="quick-action"
+                        onclick="openProgress()">
+
+                        <div class="quick-action-icon">
+                            📊
+                        </div>
+
+                        <strong>
+                            My Progress
+                        </strong>
+
+                        <span>
+                            View performance
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="quick-action"
+                        onclick="openCourses()">
+
+                        <div class="quick-action-icon">
+                            📚
+                        </div>
+
+                        <strong>
+                            My Courses
+                        </strong>
+
+                        <span>
+                            Continue learning
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="quick-action"
+                        onclick="openSettings()">
+
+                        <div class="quick-action-icon">
+                            ⚙️
+                        </div>
+
+                        <strong>
+                            Settings
+                        </strong>
+
+                        <span>
+                            Manage account
+                        </span>
+
+                    </button>
+
+
+                    <button
+                        class="quick-action"
+                        onclick="logout()">
+
+                        <div class="quick-action-icon">
+                            🚪
+                        </div>
+
+                        <strong>
+                            Logout
+                        </strong>
+
+                        <span>
+                            Sign out securely
+                        </span>
+
+                    </button>
+
+
+                </div>
+
+            </section>
+
+
+        </div>
+
+
+    </div>
+
+
+</main>
+
+
+<!-- =========================================
+     BOTTOM NAV
+========================================= -->
+
+<nav class="bottom-nav">
+
+
+    <button onclick="goDashboard()">
+
+        <span class="bottom-icon">
+            🏠
+        </span>
+
+        Home
+
+    </button>
+
+
+    <button onclick="openCourses()">
+
+        <span class="bottom-icon">
+            📚
+        </span>
+
+        Courses
+
+    </button>
+
+
+    <button onclick="openProgress()">
+
+        <span class="bottom-icon">
+            📊
+        </span>
+
+        Progress
+
+    </button>
+
+
+    <button class="active">
+
+        <span class="bottom-icon">
+            👤
+        </span>
+
+        Profile
+
+    </button>
+
+
+    <button onclick="openDrawer()">
+
+        <span class="bottom-icon">
+            ☰
+        </span>
+
+        Menu
+
+    </button>
+
+
+</nav>
+
+
+<script>
+
+/* =========================================
+   DRAWER
+========================================= */
+
+function openDrawer(){
+
+    document
+        .getElementById("drawer")
+        .classList.add("open");
+
+    document
+        .getElementById("overlay")
+        .classList.add("show");
+
+}
+
+
+function closeDrawer(){
+
+    document
+        .getElementById("drawer")
+        .classList.remove("open");
+
+    document
+        .getElementById("overlay")
+        .classList.remove("show");
+
+}
+
+
+/* =========================================
+   ACTIONS
+========================================= */
+
+function editProfile(){
+
+    alert(
+        "Opening Edit Profile..."
+    );
+
+}
+
+
+function openNotifications(){
+
+    alert(
+        "Opening Notifications..."
+    );
+
+}
+
+
+function openProgress(){
+
+    alert(
+        "Opening Student Progress..."
+    );
+
+}
+
+
+function openCourses(){
+
+    alert(
+        "Opening My Courses..."
+    );
+
+}
+
+
+function openSettings(){
+
+    alert(
+        "Opening Account Settings..."
+    );
+
+}
+
+
+function goDashboard(){
+
+    alert(
+        "Opening Dashboard..."
+    );
+
+}
+
+
+function logout(){
+
+    if(
+        confirm(
+            "Are you sure you want to logout?"
+        )
+    ){
+
+        alert(
+            "You have been logged out."
+        );
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>

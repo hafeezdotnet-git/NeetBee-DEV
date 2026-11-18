@@ -1,0 +1,89 @@
+@{
+    ViewData["Title"] = "Plans and Pricing";
+    Layout = "_DashboardLayout";
+
+    // Plan data for the NEET 2027 rate card. Each card is rendered from this list so the markup is not repeated.
+    var plans = new[]
+    {
+        new
+        {
+            Key = "starter", Name = "Starter", Sub = "Limited access", Featured = false, Badge = (string?)null,
+            OldPrice = "₹99", Price = "₹49",
+            Icon = "<path d=\"M4 5a2 2 0 0 1 2-2h13v16H6a2 2 0 0 0-2 2z\"/><path d=\"M4 19V5\"/>",
+            Features = new[] { "Last 3 years of MCQs", "Sample chapters", "Audio for selected Q&A", "AI bot: 10 queries a day" }
+        },
+        new
+        {
+            Key = "premium", Name = "Premium", Sub = "Complete preparation", Featured = true, Badge = (string?)"MOST POPULAR",
+            OldPrice = "₹499", Price = "₹299",
+            Icon = "<path d=\"M7 3c0 6 10 6 10 12s-10 6-10 6\"/><path d=\"M17 3c0 6-10 6-10 12s10 6 10 6\"/><path d=\"M9 7h6M9 17h6\"/>",
+            Features = new[] { "All 10 years of MCQs", "Full subject-wise text", "Audio for all Q&A", "AI bot: 100 queries a day" }
+        },
+        new
+        {
+            Key = "advance", Name = "Advance", Sub = "Everything, unlimited", Featured = true, Badge = (string?)null,
+            OldPrice = "₹999", Price = "₹499",
+            Icon = "<path d=\"M6 3v6a4 4 0 0 0 8 0V3\"/><path d=\"M10 13v3a4 4 0 0 0 8 0v-1\"/><circle cx=\"18\" cy=\"12\" r=\"2\"/>",
+            Features = new[] { "Everything in Premium", "Unlimited AI doubt solving", "Mock tests and analytics", "Offline downloads, priority support" }
+        }
+    };
+}
+
+@section Styles {
+    <link rel="stylesheet" href="/css/neetbee-pricing.css?v=4">
+}
+
+<section class="page-hero nb-pricing-hero">
+    <span class="eyebrow">NEET 2027 PLANS</span>
+    <h1 id="nb-pricing-title">Choose your <em>plan</em></h1>
+    <p>10 years of MCQs, subject-wise text, audio Q&amp;A and an AI doubt bot. One payment, valid till the NEET 2027 exam.</p>
+</section>
+
+<section class="content">
+<div class="nb-pricing" role="region" aria-labelledby="nb-pricing-title">
+    <div class="nb-pricing-head">
+        <span class="nb-pricing-tag">NEET 2027</span>
+        <h2>Pick the plan that fits your preparation</h2>
+    </div>
+
+    <div class="nb-pricing-grid">
+        @foreach (var plan in plans)
+        {
+            <article class="nb-plan@(plan.Badge != null ? " is-popular" : null)@(plan.Featured ? " is-featured" : null)" aria-labelledby="plan-@plan.Key">
+                @if (plan.Badge != null)
+                {
+                    <span class="nb-plan-badge">@plan.Badge</span>
+                }
+                <div class="nb-plan-top">
+                    <div class="nb-plan-icon" aria-hidden="true">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">@Html.Raw(plan.Icon)</svg>
+                    </div>
+                    <div>
+                        <h2 id="plan-@plan.Key">@plan.Name</h2>
+                        <div class="nb-plan-sub">@plan.Sub</div>
+                    </div>
+                </div>
+                <p class="nb-plan-price">
+                    <s class="nb-plan-old"><span class="visually-hidden">Was </span>@plan.OldPrice</s>
+                    <span class="nb-plan-just">just</span>
+                    <span class="nb-plan-new">@plan.Price</span>
+                    <small>/ till NEET 2027</small>
+                </p>
+                <ul class="nb-plan-features">
+                    @foreach (var feature in plan.Features)
+                    {
+                        <li><span class="nb-plan-check" aria-hidden="true">✓</span>@feature</li>
+                    }
+                </ul>
+                <button type="button" class="nb-plan-btn open-auth" data-plan="@plan.Key">Get @plan.Name</button>
+            </article>
+        }
+    </div>
+
+    <p class="nb-pricing-foot">Available on website, mobile app and tablet · One account, all devices · Prices in INR</p>
+</div>
+</section>
+
+@section Scripts {
+    <script src="/js/study.js"></script>
+}

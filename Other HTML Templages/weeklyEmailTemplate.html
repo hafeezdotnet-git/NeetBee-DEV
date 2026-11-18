@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="common.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ExamPro Weekly Progress Report</title>
+</head>
+
+<body  class="weeklyemailtemplate-page-inline-1 weeklyemailtemplate-page">
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0" class="weeklyemailtemplate-page-inline-2">
+
+<tr>
+<td align="center" class="weeklyemailtemplate-page-inline-3">
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0" class="weeklyemailtemplate-page-inline-4">
+
+
+<!-- =========================================
+     HEADER
+========================================= -->
+
+<tr>
+<td align="center" class="weeklyemailtemplate-page-inline-5">
+
+<table cellpadding="0" cellspacing="0" border="0">
+<tr>
+
+<td class="weeklyemailtemplate-page-inline-6">
+🎓
+</td>
+
+<td class="weeklyemailtemplate-page-inline-7"></td>
+
+<td class="weeklyemailtemplate-page-inline-8">
+ExamPro
+</td>
+
+</tr>
+</table>
+
+</td>
+</tr>
+
+
+<!-- =========================================
+     TITLE
+========================================= -->
+
+<tr>
+<td align="center" class="weeklyemailtemplate-page-inline-9">
+
+<div class="weeklyemailtemplate-page-inline-10">
+📊
+</div>
+
+<h1 class="weeklyemailtemplate-page-inline-11">
+Your Weekly Progress
+</h1>
+
+<p class="weeklyemailtemplate-page-inline-12">
+Here's your ExamPro performance summary
+for this week.
+</p>
+
+</td>
+</tr>
+
+
+<!-- =========================================
+     STUDENT
+========================================= -->
+
+<tr>
+<td class="weeklyemailtemplate-page-inline-13">
+
+<p class="weeklyemailtemplate-page-inline-14">
+Hi <strong>{{StudentName}}</strong>,
+</p>
+
+<p class="weeklyemailtemplate-page-inline-15">
+Here's what you accomplished between
+<strong>{{WeekStart}}</strong> and
+<strong>{{WeekEnd}}</strong>.
+</p>
+
+</td>
+</tr>
+
+
+<!-- =========================================
+     OVERALL PROGRESS
+========================================= -->
+
+<tr>
+<td class="weeklyemailtemplate-page-inline-16">
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+
+<tr>
+
+<!-- COMPLETION -->
+
+<td width="33%" align="center" class="weeklyemailtemplate-page-inline-17">
+
+<div class="weeklyemailtemplate-page-inline-18">
+{{CompletionPercent}}%
+</div>
+
+<div class="weeklyemailtemplate-page-inline-19">
+Course Complete
+</div>
+
+</td>
+
+<td width="5"></td>
+
+<!-- QUESTIONS -->
+
+<td width="33%" align="center" class="weeklyemailtemplate-page-inline-20">
+
+<div class="weeklyemailtemplate-page-inline-21">
+{{QuestionsAttempted}}
+</div>
+
+<div class="weeklyemailtemplate-page-inline-22">
+Questions
+</div>
+
+</td>
+
+<td width="5"></td>
+
+<!-- ACCURACY -->
+
+<td width="33%" align="center" class="weeklyemailtemplate-page-inline-23">
+
+<div class="weeklyemailtemplate-page-inline-24">
+{{Accuracy}}%
+</div>
+
+<div class="weeklyemailtemplate-page-inline-25">
+Accuracy
+</div>
+
+</td>
+
+</tr>
+
+</table>
+
+</td>
+</tr>
+
+
+<!-- =========================================
+     PROGRESS BAR
+========================================= -->
+
+<tr>
+<td class="weeklyemailtemplate-page-inline-26">
+
+<table width="100%" cellpadding="0" cellspacing="0" border="0">
+
+<tr>
+<td class="weeklyemailtemplate-page-inline-27">
+Overall Course Progress
+</td>
+
+<td align="right" class="weeklyemailtemplate-page-inline-28">
+{{CompletionPercent}}%
+</td>
+</tr>
+
+<tr>
+<td colspan="2" class="weeklyemailtemplate-page-inline-29">
+
+<table width="100%" cellpadding="0" cellspacing="0" class="weeklyemailtemplate-page-inline-30">
+
+<tr>
+
+<td width="{{CompletionPercent}}%" class="weeklyemailtemplate-page-inline-31">
+&nbsp;
+</td>
+
+<td class="weeklyemailtemplate-page-inline-32">
+&nbsp;
+</td>
+
+</tr>
+
+</table>
+
+</td>
+</tr>
+
+</table>
+
+</td>
+</tr>
+
+
+<!-- =========================================
+     SUBJECT PERFORMANCE
+========================================= -->
+
+<tr>
+<td class="weeklyemailtemplate-page-inline-33">
+
+<h2 class="weeklyemailtemplate-page-inline-34">
+Subject Performance
+</h2>
+
+
+<!-- PHYSICS -->
+
+<table width="100%" cellpadding="0" cellspacing="0" class="weeklyemailtemplate-page-inline-35">
+
+<tr>
+
+<td class="weeklyemailtemplate-page-inline-36">
+⚡ <strong>Physics</strong>
+</td>
+
+<td align="right" class="weeklyemailtemplate-page-inline-37">
+{{PhysicsScore}}%
+</td>
+
+</tr>
+
+</table>
+
+
+<!-- CHEMISTRY -->
+
+<table width="100%" cellpadding="0" cellspacing="0" class="weeklyemailtemplate-page-inline-38">
+
+<tr>
+
+<td class="weeklyemailtemplate-page-inline-39">
+🧪 <strong>Chemistry</strong>
+</td>
+
+<td align="right" class="weeklyemailtemplate-page-inline-40">
+{{ChemistryScore}}%
+</td>
+
+</tr>
+
+</table>
+
+
+<!-- BIOLOGY -->
+
+<table width="100%" cellpadding="0" cellspacing="0" class="weeklyemailtemplate-page-inline-41">
+
+<tr>
+
+<td class="weeklyemailtemplate-page-inline-42">
+🧬 <strong>Biology</strong>
+</td>
+
+<td align="right" class="weeklyemailtemplate-page-inline-43">
+{{BiologyScore}}%
+</td>
+
+</tr>
+
+</table>
+
+
+<!-- ZOOLOGY -->
+
+<table width="100%" cellpadding="0" cellspacing="0" class="weeklyemailtemplate-page-inline-44">
+
+<tr>
+
+<td class="weeklyemailtemplate-page-inline-45">
+🔬 <strong>Zoology</strong>
+</td>
+
+<td align="right" class="weeklyemailtemplate-page-inline-46">
+{{ZoologyScore}}%
+</td>
+
+</tr>
+
+</table>
+
+</td>
+</tr>
+
+
+<!-- =========================================
+     MOCK TEST
+========================================= -->
+
+<tr>
+<td class="weeklyemailtemplate-page-inline-47">
+
+<h2 class="weeklyemailtemplate-page-inline-48">
+Mock Test Performance
+</h2>
+
+<table width="100%" cellpadding="0" cellspacing="0" class="weeklyemailtemplate-page-inline-49">
+
+<tr>
+
+<td class="weeklyemailtemplate-page-inline-50">
+
+<div class="weeklyemailtemplate-page-inline-51">
+Tests Completed
+</div>
+
+<div class="weeklyemailtemplate-page-inline-52">
+{{MockTestsCompleted}}
+</div>
+
+</td>
+
+
+<td class="weeklyemailtemplate-page-inline-53">
+
+<div class="weeklyemailtemplate-page-inline-54">
+Average Score
+</div>
+
+<div class="weeklyemailtemplate-page-inline-55">
+{{MockAverage}}%
+</div>
+
+</td>
+
+
+<td class="weeklyemailtemplate-page-inline-56">
+
+<div class="weeklyemailtemplate-page-inline-57">
+Best Score
+</div>
+
+<div class="weeklyemailtemplate-page-inline-58">
+{{BestScore}}%
+</div>
+
+</td>
+
+</tr>
+
+</table>
+
+</td>
+</tr>
+
+
+<!-- =========================================
+     PENDING WORK
+========================================= -->
+
+<tr>
+<td class="weeklyemailtemplate-page-inline-59">
+
+<table width="100%" cellpadding="0" cellspacing="0" class="weeklyemailtemplate-page-inline-60">
+
+<tr>
+
+<td class="weeklyemailtemplate-page-inline-61">
+⚠️
+</td>
+
+<td class="weeklyemailtemplate-page-inline-62">
+
+<strong class="weeklyemailtemplate-page-inline-63">
+Pending Work
+</strong>
+
+<p class="weeklyemailtemplate-page-inline-64">
+{{PendingTopics}} topics and
+{{PendingQuestions}} questions are still pending.
+Try to complete them during the coming week.
+</p>
+
+</td>
+
+</tr>
+
+</table>
+
+</td>
+</tr>
+
+
+<!-- =========================================
+     WEEKLY HIGHLIGHT
+========================================= -->
+
+<tr>
+<td class="weeklyemailtemplate-page-inline-65">
+
+<table width="100%" cellpadding="0" cellspacing="0" class="weeklyemailtemplate-page-inline-66">
+
+<tr>
+
+<td class="weeklyemailtemplate-page-inline-67">
+🏆
+</td>
+
+<td class="weeklyemailtemplate-page-inline-68">
+
+<strong class="weeklyemailtemplate-page-inline-69">
+Your Weekly Highlight
+</strong>
+
+<p class="weeklyemailtemplate-page-inline-70">
+{{WeeklyHighlight}}
+</p>
+
+</td>
+
+</tr>
+
+</table>
+
+</td>
+</tr>
+
+
+<!-- =========================================
+     NEXT WEEK
+========================================= -->
+
+<tr>
+<td class="weeklyemailtemplate-page-inline-71">
+
+<h2 class="weeklyemailtemplate-page-inline-72">
+🎯 Focus for Next Week
+</h2>
+
+<p class="weeklyemailtemplate-page-inline-73">
+{{NextWeekMessage}}
+</p>
+
+<ul class="weeklyemailtemplate-page-inline-74">
+
+<li>{{FocusItem1}}</li>
+<li>{{FocusItem2}}</li>
+<li>{{FocusItem3}}</li>
+
+</ul>
+
+</td>
+</tr>
+
+
+<!-- =========================================
+     CTA
+========================================= -->
+
+<tr>
+<td align="center" class="weeklyemailtemplate-page-inline-75">
+
+<table cellpadding="0" cellspacing="0">
+<tr>
+
+<td bgcolor="#7c3aed" class="weeklyemailtemplate-page-inline-76">
+
+<a href="{{DashboardUrl}}" class="weeklyemailtemplate-page-inline-77">
+
+📊 View My Full Progress
+
+</a>
+
+</td>
+
+</tr>
+</table>
+
+</td>
+</tr>
+
+
+<!-- =========================================
+     MOTIVATION
+========================================= -->
+
+<tr>
+<td align="center" class="weeklyemailtemplate-page-inline-78">
+
+<p class="weeklyemailtemplate-page-inline-79">
+Keep Going, {{StudentName}}! 🚀
+</p>
+
+<p class="weeklyemailtemplate-page-inline-80">
+Consistency is the key to exam success.
+Keep learning, keep practicing and keep improving.
+</p>
+
+</td>
+</tr>
+
+
+<!-- =========================================
+     FOOTER
+========================================= -->
+
+<tr>
+<td align="center" class="weeklyemailtemplate-page-inline-81">
+
+<p class="weeklyemailtemplate-page-inline-82">
+ExamPro
+</p>
+
+<p class="weeklyemailtemplate-page-inline-83">
+Learn • Practice • Track • Succeed
+<br>
+© 2026 ExamPro. All rights reserved.
+</p>
+
+</td>
+</tr>
+
+
+</table>
+
+</td>
+</tr>
+
+</table>
+
+</body>
+</html>

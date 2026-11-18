@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="common.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ExamPro - Questions & Answers</title>
+
+
+</head>
+
+
+<body class="q-a4options-page">
+
+
+<!-- OFFER -->
+
+<div class="offer-banner">
+
+    🎁 <strong>LIMITED OFFER</strong>
+
+    Get 50% OFF on Premium Mock Tests
+
+    <button class="offer-btn">
+        Register Now
+    </button>
+
+</div>
+
+
+<!-- HEADER -->
+
+<header class="header">
+
+    <div class="header-left">
+
+        <div
+            class="hamburger"
+            onclick="openDrawer()">
+            ☰
+        </div>
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            ExamPro
+
+        </div>
+
+    </div>
+
+
+    <button class="register">
+        Register
+    </button>
+
+</header>
+
+
+<!-- DRAWER -->
+
+<div
+    class="overlay"
+    id="overlay"
+    onclick="closeDrawer()">
+</div>
+
+
+<div
+    class="drawer"
+    id="drawer">
+
+    <div class="drawer-header">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            ExamPro
+
+        </div>
+
+        <div
+            class="close"
+            onclick="closeDrawer()">
+            ×
+        </div>
+
+    </div>
+
+
+    <div class="drawer-menu">
+
+        <button>🏠 Dashboard</button>
+
+        <button>📝 Exams</button>
+
+        <button>📊 My Progress</button>
+
+        <button>📋 Questions & Answers</button>
+
+        <button>🏆 Leaderboard</button>
+
+        <button>📚 Study Material</button>
+
+        <button>⚙️ Settings</button>
+
+    </div>
+
+</div>
+
+
+<!-- MAIN -->
+
+<main class="container">
+
+
+    <!-- TITLE -->
+
+    <div class="page-title">
+
+        <span class="eyebrow">
+            EXAM REVIEW
+        </span>
+
+        <h1>
+            Questions & Answers 📋
+        </h1>
+
+        <p>
+            Review all questions, your answers and the correct solutions.
+        </p>
+
+    </div>
+
+
+    <!-- SUMMARY -->
+
+    <section class="exam-summary">
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon">
+                📝
+            </div>
+
+            <strong>
+                20
+            </strong>
+
+            <span>
+                Total Questions
+            </span>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon">
+                ✅
+            </div>
+
+            <strong>
+                16
+            </strong>
+
+            <span>
+                Correct Answers
+            </span>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon">
+                ❌
+            </div>
+
+            <strong>
+                3
+            </strong>
+
+            <span>
+                Wrong Answers
+            </span>
+
+        </div>
+
+
+        <div class="summary-card">
+
+            <div class="summary-icon">
+                ⏭️
+            </div>
+
+            <strong>
+                1
+            </strong>
+
+            <span>
+                Skipped
+            </span>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- FILTER -->
+
+    <section class="filter-section">
+
+        <div class="filters">
+
+            <button
+                class="filter-btn active"
+                onclick="filterQuestions('all',this)">
+                All
+            </button>
+
+            <button
+                class="filter-btn"
+                onclick="filterQuestions('correct',this)">
+                ✅ Correct
+            </button>
+
+            <button
+                class="filter-btn"
+                onclick="filterQuestions('wrong',this)">
+                ❌ Wrong
+            </button>
+
+            <button
+                class="filter-btn"
+                onclick="filterQuestions('skipped',this)">
+                ⏭️ Skipped
+            </button>
+
+        </div>
+
+
+        <div class="filters">
+
+            <button
+                class="filter-btn"
+                onclick="filterSubject('all',this)">
+                All Subjects
+            </button>
+
+            <button
+                class="filter-btn"
+                onclick="filterSubject('Physics',this)">
+                ⚡ Physics
+            </button>
+
+            <button
+                class="filter-btn"
+                onclick="filterSubject('Chemistry',this)">
+                🧪 Chemistry
+            </button>
+
+            <button
+                class="filter-btn"
+                onclick="filterSubject('Biology',this)">
+                🧬 Biology
+            </button>
+
+        </div>
+
+    </section>
+
+
+    <!-- QUESTIONS -->
+
+    <section class="question-list" id="questionList">
+
+
+        <!-- QUESTION 1 -->
+
+        <article
+            class="question-card"
+            data-status="correct"
+            data-subject="Physics">
+
+            <div class="question-header">
+
+                <span class="question-number">
+                    Q1
+                </span>
+
+                <span class="subject-tag">
+                    ⚡ Physics
+                </span>
+
+                <span class="status correct">
+                    ✓ Correct
+                </span>
+
+            </div>
+
+
+            <div class="question-text">
+
+                A body starts from rest and accelerates
+                uniformly at 2 m/s². What will be its
+                velocity after 5 seconds?
+
+            </div>
+
+
+            <div class="options">
+
+                <div class="option">
+
+                    <span class="option-letter">
+                        A
+                    </span>
+
+                    5 m/s
+
+                </div>
+
+
+                <div class="option correct">
+
+                    <span class="option-letter">
+                        B
+                    </span>
+
+                    10 m/s
+
+                </div>
+
+
+                <div class="option">
+
+                    <span class="option-letter">
+                        C
+                    </span>
+
+                    15 m/s
+
+                </div>
+
+
+                <div class="option">
+
+                    <span class="option-letter">
+                        D
+                    </span>
+
+                    20 m/s
+
+                </div>
+
+            </div>
+
+
+            <div class="answer-info">
+
+                <div class="answer-box">
+
+                    <span>
+                        YOUR ANSWER
+                    </span>
+
+                    <strong>
+                        B — 10 m/s
+                    </strong>
+
+                </div>
+
+
+                <div class="answer-box">
+
+                    <span>
+                        CORRECT ANSWER
+                    </span>
+
+                    <strong>
+                        B — 10 m/s
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="explanation">
+
+                <div class="explanation-title">
+                    💡 Explanation
+                </div>
+
+                <p>
+                    Using v = u + at, where u = 0,
+                    a = 2 m/s² and t = 5 seconds,
+                    the velocity is 10 m/s.
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <!-- QUESTION 2 -->
+
+        <article
+            class="question-card"
+            data-status="wrong"
+            data-subject="Chemistry">
+
+            <div class="question-header">
+
+                <span class="question-number">
+                    Q2
+                </span>
+
+                <span class="subject-tag">
+                    🧪 Chemistry
+                </span>
+
+                <span class="status wrong">
+                    ✕ Wrong
+                </span>
+
+            </div>
+
+
+            <div class="question-text">
+
+                What is the chemical formula of water?
+
+            </div>
+
+
+            <div class="options">
+
+                <div class="option wrong">
+
+                    <span class="option-letter">
+                        A
+                    </span>
+
+                    CO₂
+
+                </div>
+
+
+                <div class="option correct">
+
+                    <span class="option-letter">
+                        B
+                    </span>
+
+                    H₂O
+
+                </div>
+
+
+                <div class="option">
+
+                    <span class="option-letter">
+                        C
+                    </span>
+
+                    O₂
+
+                </div>
+
+
+                <div class="option">
+
+                    <span class="option-letter">
+                        D
+                    </span>
+
+                    NaCl
+
+                </div>
+
+            </div>
+
+
+            <div class="answer-info">
+
+                <div class="answer-box">
+
+                    <span>
+                        YOUR ANSWER
+                    </span>
+
+                    <strong>
+                        A — CO₂
+                    </strong>
+
+                </div>
+
+
+                <div class="answer-box">
+
+                    <span>
+                        CORRECT ANSWER
+                    </span>
+
+                    <strong>
+                        B — H₂O
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="explanation">
+
+                <div class="explanation-title">
+                    💡 Explanation
+                </div>
+
+                <p>
+                    A water molecule contains two
+                    hydrogen atoms and one oxygen atom,
+                    giving the chemical formula H₂O.
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <!-- QUESTION 3 -->
+
+        <article
+            class="question-card"
+            data-status="correct"
+            data-subject="Biology">
+
+            <div class="question-header">
+
+                <span class="question-number">
+                    Q3
+                </span>
+
+                <span class="subject-tag">
+                    🧬 Biology
+                </span>
+
+                <span class="status correct">
+                    ✓ Correct
+                </span>
+
+            </div>
+
+
+            <div class="question-text">
+
+                Which organelle is known as the
+                powerhouse of the cell?
+
+            </div>
+
+
+            <div class="options">
+
+                <div class="option">
+
+                    <span class="option-letter">
+                        A
+                    </span>
+
+                    Nucleus
+
+                </div>
+
+
+                <div class="option correct">
+
+                    <span class="option-letter">
+                        B
+                    </span>
+
+                    Mitochondria
+
+                </div>
+
+
+                <div class="option">
+
+                    <span class="option-letter">
+                        C
+                    </span>
+
+                    Ribosome
+
+                </div>
+
+
+                <div class="option">
+
+                    <span class="option-letter">
+                        D
+                    </span>
+
+                    Golgi apparatus
+
+                </div>
+
+            </div>
+
+
+            <div class="answer-info">
+
+                <div class="answer-box">
+
+                    <span>
+                        YOUR ANSWER
+                    </span>
+
+                    <strong>
+                        B — Mitochondria
+                    </strong>
+
+                </div>
+
+
+                <div class="answer-box">
+
+                    <span>
+                        CORRECT ANSWER
+                    </span>
+
+                    <strong>
+                        B — Mitochondria
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="explanation">
+
+                <div class="explanation-title">
+                    💡 Explanation
+                </div>
+
+                <p>
+                    Mitochondria produce ATP through
+                    cellular respiration and are therefore
+                    commonly called the powerhouse of the cell.
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <!-- QUESTION 4 -->
+
+        <article
+            class="question-card"
+            data-status="skipped"
+            data-subject="Mathematics">
+
+            <div class="question-header">
+
+                <span class="question-number">
+                    Q4
+                </span>
+
+                <span class="subject-tag">
+                    ➗ Mathematics
+                </span>
+
+                <span class="status wrong">
+                    ⏭ Skipped
+                </span>
+
+            </div>
+
+
+            <div class="question-text">
+
+                If x + 5 = 12, what is the value of x?
+
+            </div>
+
+
+            <div class="options">
+
+                <div class="option">
+
+                    <span class="option-letter">
+                        A
+                    </span>
+
+                    5
+
+                </div>
+
+
+                <div class="option correct">
+
+                    <span class="option-letter">
+                        B
+                    </span>
+
+                    7
+
+                </div>
+
+
+                <div class="option">
+
+                    <span class="option-letter">
+                        C
+                    </span>
+
+                    8
+
+                </div>
+
+
+                <div class="option">
+
+                    <span class="option-letter">
+                        D
+                    </span>
+
+                    12
+
+                </div>
+
+            </div>
+
+
+            <div class="answer-info">
+
+                <div class="answer-box">
+
+                    <span>
+                        YOUR ANSWER
+                    </span>
+
+                    <strong>
+                        Not Answered
+                    </strong>
+
+                </div>
+
+
+                <div class="answer-box">
+
+                    <span>
+                        CORRECT ANSWER
+                    </span>
+
+                    <strong>
+                        B — 7
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="explanation">
+
+                <div class="explanation-title">
+                    💡 Explanation
+                </div>
+
+                <p>
+                    Subtract 5 from both sides:
+                    x = 12 − 5 = 7.
+                </p>
+
+            </div>
+
+        </article>
+
+    </section>
+
+</main>
+
+
+<!-- MOBILE BOTTOM NAV -->
+
+<nav class="bottom-nav">
+
+    <button>
+        <span class="bottom-icon">🏠</span>
+        Home
+    </button>
+
+    <button>
+        <span class="bottom-icon">📝</span>
+        Exams
+    </button>
+
+    <button class="active">
+        <span class="bottom-icon">📋</span>
+        Answers
+    </button>
+
+    <button onclick="openDrawer()">
+        <span class="bottom-icon">☰</span>
+        Menu
+    </button>
+
+</nav>
+
+
+<script>
+
+/* =========================
+   DRAWER
+========================= */
+
+function openDrawer(){
+
+    document
+        .getElementById("drawer")
+        .classList.add("open");
+
+    document
+        .getElementById("overlay")
+        .classList.add("show");
+
+}
+
+
+function closeDrawer(){
+
+    document
+        .getElementById("drawer")
+        .classList.remove("open");
+
+    document
+        .getElementById("overlay")
+        .classList.remove("show");
+
+}
+
+
+/* =========================
+   STATUS FILTER
+========================= */
+
+function filterQuestions(status,button){
+
+    document
+        .querySelectorAll(".filter-btn")
+        .forEach(btn=>{
+            btn.classList.remove("active");
+        });
+
+    button.classList.add("active");
+
+    const cards =
+        document.querySelectorAll(".question-card");
+
+    cards.forEach(card=>{
+
+        if(
+            status === "all" ||
+            card.dataset.status === status
+        ){
+
+            card.style.display = "block";
+
+        }else{
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+}
+
+
+/* =========================
+   SUBJECT FILTER
+========================= */
+
+function filterSubject(subject,button){
+
+    const cards =
+        document.querySelectorAll(".question-card");
+
+    cards.forEach(card=>{
+
+        if(
+            subject === "all" ||
+            card.dataset.subject === subject
+        ){
+
+            card.style.display = "block";
+
+        }else{
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+}
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <RootNamespace>WebApplication</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Google (Gmail) sign-in. Used by the Login with Gmail and Register with Gmail buttons. -->
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="8.0.11" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.1.6" />
+    <!-- Logging: console plus a daily log file. Levels come from the "Serilog" section of appsettings.json. -->
+    <PackageReference Include="Serilog.AspNetCore" Version="8.0.3" />
+    <PackageReference Include="Serilog.Sinks.File" Version="6.0.0" />
+  </ItemGroup>
+
+</Project>

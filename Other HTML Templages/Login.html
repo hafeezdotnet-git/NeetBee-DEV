@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="common.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ExamPro - Login</title>
+
+
+</head>
+
+
+<body class="login-page">
+
+
+<!-- =========================
+     OFFER
+========================= -->
+
+<div class="offer-banner">
+
+    🎁 <strong>LIMITED OFFER</strong>
+
+    Get 50% OFF on Premium Mock Tests
+
+    <button
+        class="offer-btn"
+        onclick="goRegister()">
+
+        Register Now
+
+    </button>
+
+</div>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="header">
+
+    <div class="header-left">
+
+        <div
+            class="hamburger"
+            onclick="openDrawer()">
+
+            ☰
+
+        </div>
+
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            ExamPro
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="register-btn"
+        onclick="goRegister()">
+
+        Register
+
+    </button>
+
+</header>
+
+
+<!-- =========================
+     DRAWER
+========================= -->
+
+<div
+    class="overlay"
+    id="overlay"
+    onclick="closeDrawer()">
+</div>
+
+
+<div
+    class="drawer"
+    id="drawer">
+
+
+    <div class="drawer-header">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            ExamPro
+
+        </div>
+
+
+        <div
+            class="close"
+            onclick="closeDrawer()">
+
+            ×
+
+        </div>
+
+    </div>
+
+
+    <div class="drawer-menu">
+
+        <button>
+            🏠 Dashboard
+        </button>
+
+        <button>
+            📝 Exams
+        </button>
+
+        <button>
+            📊 Progress
+        </button>
+
+        <button>
+            📖 Questions & Answers
+        </button>
+
+        <button>
+            🏆 Leaderboard
+        </button>
+
+        <button>
+            📚 Study Material
+        </button>
+
+        <button>
+            👤 Register
+        </button>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<main class="container">
+
+
+    <div class="login-wrapper">
+
+
+        <section class="login-card">
+
+
+            <!-- HEADER -->
+
+            <div class="login-header">
+
+                <div class="login-icon">
+                    🔐
+                </div>
+
+                <h1>
+                    Welcome Back!
+                </h1>
+
+                <p>
+                    Login to continue your exam preparation
+                </p>
+
+            </div>
+
+
+            <!-- FORM -->
+
+            <form
+                id="loginForm"
+                onsubmit="login(event)">
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label>
+                        Email or Mobile Number
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            👤
+                        </span>
+
+                        <input
+                            type="text"
+                            id="username"
+                            placeholder="Enter email or mobile number"
+                            autocomplete="username"
+                            required>
+
+                    </div>
+
+                </div>
+
+
+                <!-- PASSWORD -->
+
+                <div class="form-group">
+
+                    <label>
+                        Password
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            🔒
+                        </span>
+
+                        <input
+                            type="password"
+                            id="password"
+                            placeholder="Enter your password"
+                            autocomplete="current-password"
+                            required>
+
+                        <button
+                            type="button"
+                            class="password-toggle"
+                            onclick="togglePassword()"
+                            id="passwordToggle">
+
+                            👁️
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- OPTIONS -->
+
+                <div class="login-options">
+
+                    <label class="remember">
+
+                        <input
+                            type="checkbox"
+                            id="remember">
+
+                        Remember me
+
+                    </label>
+
+
+                    <a
+                        href="#"
+                        class="forgot"
+                        onclick="forgotPassword(event)">
+
+                        Forgot Password?
+
+                    </a>
+
+                </div>
+
+
+                <!-- LOGIN -->
+
+                <button
+                    type="submit"
+                    class="login-btn">
+
+                    🔐 Login to ExamPro
+
+                </button>
+
+
+            </form>
+
+
+            <!-- DIVIDER -->
+
+            <div class="divider">
+                OR CONTINUE WITH
+            </div>
+
+
+            <!-- SOCIAL -->
+
+            <div class="social-login">
+
+                <button
+                    class="social-btn"
+                    onclick="socialLogin('Google')">
+
+                    🌐 Continue with Google
+
+                </button>
+
+
+                <button
+                    class="social-btn"
+                    onclick="socialLogin('Apple')">
+
+                     Continue with Apple
+
+                </button>
+
+            </div>
+
+
+            <!-- REGISTER -->
+
+            <div class="register-text">
+
+                Don't have an account?
+
+                <a
+                    href="#"
+                    onclick="goRegister()">
+
+                    Create Account
+
+                </a>
+
+            </div>
+
+
+            <!-- SECURITY -->
+
+            <div class="security">
+
+                🔒 Your account information is securely protected.
+
+            </div>
+
+
+        </section>
+
+    </div>
+
+</main>
+
+
+<!-- =========================
+     MOBILE BOTTOM NAV
+========================= -->
+
+<nav class="bottom-nav">
+
+    <button>
+
+        <span class="bottom-icon">
+            🏠
+        </span>
+
+        Home
+
+    </button>
+
+
+    <button>
+
+        <span class="bottom-icon">
+            📝
+        </span>
+
+        Exams
+
+    </button>
+
+
+    <button class="active">
+
+        <span class="bottom-icon">
+            🔐
+        </span>
+
+        Login
+
+    </button>
+
+
+    <button onclick="openDrawer()">
+
+        <span class="bottom-icon">
+            ☰
+        </span>
+
+        Menu
+
+    </button>
+
+</nav>
+
+
+<script>
+
+/* =========================
+   PASSWORD TOGGLE
+========================= */
+
+function togglePassword(){
+
+    const password =
+        document.getElementById("password");
+
+    const button =
+        document.getElementById("passwordToggle");
+
+
+    if(password.type === "password"){
+
+        password.type = "text";
+
+        button.textContent = "🙈";
+
+    }else{
+
+        password.type = "password";
+
+        button.textContent = "👁️";
+
+    }
+
+}
+
+
+/* =========================
+   LOGIN
+========================= */
+
+function login(event){
+
+    event.preventDefault();
+
+
+    const username =
+        document.getElementById("username").value.trim();
+
+    const password =
+        document.getElementById("password").value;
+
+
+    if(!username || !password){
+
+        alert(
+            "Please enter your login details."
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Connect this to your backend.
+
+       Example:
+
+       fetch("/api/login", {
+           method:"POST",
+           headers:{
+               "Content-Type":"application/json"
+           },
+           body:JSON.stringify({
+               username,
+               password
+           })
+       })
+    */
+
+
+    alert(
+        "Login request submitted."
+    );
+
+}
+
+
+/* =========================
+   FORGOT PASSWORD
+========================= */
+
+function forgotPassword(event){
+
+    event.preventDefault();
+
+    alert(
+        "Opening password recovery..."
+    );
+
+    // Example:
+    // window.location.href = "forgot-password.html";
+
+}
+
+
+/* =========================
+   REGISTER
+========================= */
+
+function goRegister(){
+
+    alert(
+        "Opening registration page..."
+    );
+
+    // Example:
+    // window.location.href = "register.html";
+
+}
+
+
+/* =========================
+   SOCIAL LOGIN
+========================= */
+
+function socialLogin(provider){
+
+    alert(
+        "Continue with " +
+        provider +
+        "..."
+    );
+
+}
+
+
+/* =========================
+   DRAWER
+========================= */
+
+function openDrawer(){
+
+    document
+        .getElementById("drawer")
+        .classList.add("open");
+
+    document
+        .getElementById("overlay")
+        .classList.add("show");
+
+}
+
+
+function closeDrawer(){
+
+    document
+        .getElementById("drawer")
+        .classList.remove("open");
+
+    document
+        .getElementById("overlay")
+        .classList.remove("show");
+
+}
+
+</script>
+
+</body>
+</html>

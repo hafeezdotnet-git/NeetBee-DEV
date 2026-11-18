@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="common.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ExamPro - First Time Login</title>
+
+
+</head>
+
+
+<body class="firsttimelogin-page">
+
+
+<!-- =========================================
+     OFFER
+========================================= -->
+
+<div class="offer-banner">
+
+    🎓 Welcome to ExamPro
+
+    <span>
+        FIRST LOGIN
+    </span>
+
+</div>
+
+
+<!-- =========================================
+     HEADER
+========================================= -->
+
+<header class="header">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🎓
+        </div>
+
+        ExamPro
+
+    </div>
+
+
+    <button
+        class="help-btn"
+        onclick="contactSupport()">
+
+        💬 Need Help?
+
+    </button>
+
+</header>
+
+
+<!-- =========================================
+     MAIN
+========================================= -->
+
+<main class="container">
+
+
+<section class="welcome-card">
+
+
+    <!-- =====================================
+         LEFT WELCOME
+    ====================================== -->
+
+    <div class="welcome-left">
+
+
+        <div class="badge">
+            ✨ WELCOME TO YOUR LEARNING JOURNEY
+        </div>
+
+
+        <h1>
+
+            Welcome,
+
+            <span>
+                Student!
+            </span>
+
+        </h1>
+
+
+        <p>
+
+            This is your first time signing in to
+            ExamPro. Let's complete your account setup
+            and get you ready for your exam journey.
+
+        </p>
+
+
+        <div class="benefits">
+
+
+            <div class="benefit">
+
+                <div class="benefit-icon">
+                    📚
+                </div>
+
+                <span>
+                    Access your courses
+                </span>
+
+            </div>
+
+
+            <div class="benefit">
+
+                <div class="benefit-icon">
+                    📝
+                </div>
+
+                <span>
+                    Practice unlimited questions
+                </span>
+
+            </div>
+
+
+            <div class="benefit">
+
+                <div class="benefit-icon">
+                    📊
+                </div>
+
+                <span>
+                    Track your performance
+                </span>
+
+            </div>
+
+
+            <div class="benefit">
+
+                <div class="benefit-icon">
+                    🎤
+                </div>
+
+                <span>
+                    Learn with voice assistance
+                </span>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================
+         RIGHT LOGIN
+    ====================================== -->
+
+    <div class="login-area" id="loginArea">
+
+
+        <h2>
+            Complete Your Setup
+        </h2>
+
+
+        <p class="login-subtitle">
+
+            Create your secure PIN/password to
+            access your ExamPro account.
+
+        </p>
+
+
+        <!-- STUDENT -->
+
+        <div class="student-profile">
+
+            <div class="avatar">
+                👨‍🎓
+            </div>
+
+
+            <div class="student-info">
+
+                <strong>
+                    Armaan Khan
+                </strong>
+
+                <span>
+                    Student ID: EXM20260025
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- MOBILE / EMAIL -->
+
+        <div class="form-group">
+
+            <label>
+                REGISTERED MOBILE / EMAIL
+            </label>
+
+            <input
+                type="text"
+                value="student@example.com"
+                readonly>
+
+        </div>
+
+
+        <!-- PASSWORD -->
+
+        <div class="form-group">
+
+            <label>
+                CREATE PASSWORD
+            </label>
+
+
+            <div class="input-wrap">
+
+                <input
+                    type="password"
+                    id="password"
+                    placeholder="Create your password"
+                    oninput="checkPassword()">
+
+
+                <button
+                    class="toggle-password"
+                    onclick="togglePassword('password',this)">
+
+                    👁
+
+                </button>
+
+            </div>
+
+
+            <div class="password-strength">
+
+                <div
+                    class="strength-bar"
+                    id="bar1">
+                </div>
+
+                <div
+                    class="strength-bar"
+                    id="bar2">
+                </div>
+
+                <div
+                    class="strength-bar"
+                    id="bar3">
+                </div>
+
+                <div
+                    class="strength-bar"
+                    id="bar4">
+                </div>
+
+            </div>
+
+
+            <div
+                class="strength-text"
+                id="strengthText">
+
+                Password strength
+
+            </div>
+
+        </div>
+
+
+        <!-- CONFIRM -->
+
+        <div class="form-group">
+
+            <label>
+                CONFIRM PASSWORD
+            </label>
+
+
+            <div class="input-wrap">
+
+                <input
+                    type="password"
+                    id="confirmPassword"
+                    placeholder="Confirm your password">
+
+
+                <button
+                    class="toggle-password"
+                    onclick="togglePassword('confirmPassword',this)">
+
+                    👁
+
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- TERMS -->
+
+        <label class="terms">
+
+            <input
+                type="checkbox"
+                id="terms">
+
+            <span>
+
+                I agree to the ExamPro
+                <a href="#">
+                    Terms & Conditions
+                </a>
+                and
+                <a href="#">
+                    Privacy Policy
+                </a>.
+
+            </span>
+
+        </label>
+
+
+        <!-- START -->
+
+        <button
+            class="start-btn"
+            onclick="completeSetup()">
+
+            🚀 Complete Setup & Start Learning
+
+        </button>
+
+
+        <div class="security">
+
+            🔒 Secure Account
+
+            <span>
+                •
+            </span>
+
+            🛡️ Protected Data
+
+        </div>
+
+
+    </div>
+
+
+    <!-- =====================================
+         SUCCESS
+    ====================================== -->
+
+    <div
+        class="success"
+        id="success">
+
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+
+        <h2>
+            Account Setup Complete!
+        </h2>
+
+
+        <p>
+
+            Your ExamPro account is ready.
+
+            <br>
+
+            Let's start your exam preparation journey.
+
+        </p>
+
+
+        <button onclick="goDashboard()" class="start-btn firsttimelogin-page-inline-1">
+
+            🎓 Go to Dashboard
+
+        </button>
+
+
+    </div>
+
+
+</section>
+
+
+</main>
+
+
+<script>
+
+
+/* =========================================
+   PASSWORD TOGGLE
+========================================= */
+
+function togglePassword(
+    id,
+    button
+){
+
+    const input =
+        document.getElementById(id);
+
+
+    if(
+        input.type === "password"
+    ){
+
+        input.type = "text";
+
+        button.textContent = "🙈";
+
+    }
+    else{
+
+        input.type = "password";
+
+        button.textContent = "👁";
+
+    }
+
+}
+
+
+/* =========================================
+   PASSWORD STRENGTH
+========================================= */
+
+function checkPassword(){
+
+    const password =
+        document
+        .getElementById(
+            "password"
+        )
+        .value;
+
+
+    const bars =
+        document.querySelectorAll(
+            ".strength-bar"
+        );
+
+
+    bars.forEach(
+        bar =>
+        bar.classList.remove(
+            "active"
+        )
+    );
+
+
+    let score = 0;
+
+
+    if(password.length >= 6)
+        score++;
+
+
+    if(password.length >= 10)
+        score++;
+
+
+    if(/[A-Z]/.test(password))
+        score++;
+
+
+    if(/[0-9!@#$%^&*]/.test(password))
+        score++;
+
+
+    for(
+        let i=0;
+        i<score;
+        i++
+    ){
+
+        bars[i].classList.add(
+            "active"
+        );
+
+    }
+
+
+    const text =
+        document.getElementById(
+            "strengthText"
+        );
+
+
+    if(!password){
+
+        text.textContent =
+            "Password strength";
+
+    }
+    else if(score <= 1){
+
+        text.textContent =
+            "Weak password";
+
+    }
+    else if(score <= 2){
+
+        text.textContent =
+            "Moderate password";
+
+    }
+    else{
+
+        text.textContent =
+            "Strong password";
+
+    }
+
+}
+
+
+/* =========================================
+   COMPLETE SETUP
+========================================= */
+
+function completeSetup(){
+
+    const password =
+        document
+        .getElementById(
+            "password"
+        )
+        .value;
+
+
+    const confirmPassword =
+        document
+        .getElementById(
+            "confirmPassword"
+        )
+        .value;
+
+
+    const terms =
+        document
+        .getElementById(
+            "terms"
+        )
+        .checked;
+
+
+    if(password.length < 6){
+
+        alert(
+            "Please create a password with at least 6 characters."
+        );
+
+        return;
+
+    }
+
+
+    if(password !== confirmPassword){
+
+        alert(
+            "Passwords do not match."
+        );
+
+        return;
+
+    }
+
+
+    if(!terms){
+
+        alert(
+            "Please accept the Terms & Conditions."
+        );
+
+        return;
+
+    }
+
+
+    /*
+       Production API:
+
+       POST /api/account/first-login
+
+       {
+           password: password,
+           firstLogin: true
+       }
+    */
+
+
+    document
+        .getElementById(
+            "loginArea"
+        )
+        .style.display =
+            "none";
+
+
+    document
+        .getElementById(
+            "success"
+        )
+        .style.display =
+            "block";
+
+}
+
+
+/* =========================================
+   DASHBOARD
+========================================= */
+
+function goDashboard(){
+
+    alert(
+        "Opening ExamPro Dashboard..."
+    );
+
+}
+
+
+/* =========================================
+   SUPPORT
+========================================= */
+
+function contactSupport(){
+
+    alert(
+        "Opening ExamPro Support..."
+    );
+
+}
+
+</script>
+
+</body>
+</html>

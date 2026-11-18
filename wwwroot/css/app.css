@@ -1,0 +1,350 @@
+/* NEET BEE web app layout. Extends the static site's css/style.css (header, nav, footer, buttons). */
+
+/* ---- Accessibility ---- */
+.skip-link {
+  position: absolute;
+  left: -999px;
+  top: 8px;
+  z-index: 100;
+  background: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+}
+.skip-link:focus { left: 12px; }
+
+/* ---- Public pages (login, register) ---- */
+.page-main {
+  min-height: 70vh;
+  padding: 32px 16px;
+  display: grid;
+  place-items: start center;
+}
+
+.auth-card {
+  width: min(440px, 100%);
+  background: #fff;
+  border: 1px solid #d7dde8;
+  border-radius: 18px;
+  padding: 32px 28px;
+  box-shadow: 0 12px 32px rgba(29, 36, 51, .08);
+}
+.auth-card h1 { font-size: 24px; margin: 0 0 6px; text-align: center; }
+.sub { margin: 0 0 20px; text-align: center; color: #5d6779; }
+.auth-switch { text-align: center; margin: 18px 0 0; color: #5d6779; }
+.auth-switch a { color: #0a8fb3; font-weight: 700; }
+
+.field { margin-bottom: 14px; }
+.field label { display: block; font-weight: 700; margin-bottom: 6px; }
+.field input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1.5px solid #d7dde8;
+  border-radius: 12px;
+  font: inherit;
+  color: #1d2433;
+  background: #fff;
+}
+.field input:focus-visible { outline: 3px solid rgba(10, 198, 240, .35); border-color: #0ac6f0; }
+.field input.input-validation-error { border-color: #b33a3a; }
+.field-error { display: block; min-height: 4px; margin-top: 4px; color: #b33a3a; font-size: 13px; font-weight: 600; }
+
+.alert { padding: 12px 14px; border-radius: 12px; font-weight: 600; margin: 0 0 16px; }
+.alert-error { background: #fdecec; color: #b33a3a; }
+.alert-error:empty { display: none; }
+.alert-error ul { margin: 0; padding-left: 18px; }
+.alert-success { background: #e7f7ef; color: #07864a; }
+
+.btn-primary {
+  width: 100%;
+  padding: 13px;
+  border: 0;
+  border-radius: 12px;
+  background: #0ac6f0;
+  color: #052a36;
+  font: inherit;
+  font-weight: 900;
+  font-size: 16px;
+  cursor: pointer;
+}
+.btn-primary:hover { background: #07b4dd; }
+.btn-primary:focus-visible { outline: 3px solid rgba(10, 198, 240, .5); outline-offset: 2px; }
+
+/* ---- Dashboard shell ---- */
+.dashboard-body { background: #f4f8fc; }
+
+.app-shell {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  min-height: 70vh;
+}
+
+.app-sidebar {
+  background: #fff;
+  border-right: 1px solid #d7dde8;
+  padding: 20px 14px;
+}
+
+.sidebar-nav { display: flex; flex-direction: column; gap: 6px; }
+.sidebar-link {
+  padding: 10px 12px;
+  border-radius: 10px;
+  color: #1d2433;
+  text-decoration: none;
+  font-weight: 700;
+}
+.sidebar-link:hover,
+.sidebar-link.active { background: #e3f7fd; color: #0a8fb3; }
+
+.app-content { padding: 28px 24px; }
+
+.welcome-card {
+  background: #fff;
+  border: 1px solid #d7dde8;
+  border-radius: 18px;
+  padding: 24px;
+  margin-bottom: 20px;
+}
+.welcome-card h1 { margin: 0 0 6px; font-size: 24px; }
+.welcome-card p { margin: 0; color: #5d6779; }
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+.stat-card {
+  background: #fff;
+  border: 1px solid #d7dde8;
+  border-radius: 16px;
+  padding: 20px;
+  color: #1d2433;
+  text-decoration: none;
+}
+.stat-card:hover { border-color: #0ac6f0; }
+.stat-card h2 { font-size: 18px; margin: 0 0 6px; }
+.stat-card p { margin: 0; color: #5d6779; }
+
+.user-chip { font-weight: 700; margin-right: 12px; }
+.inline-form { display: inline; margin: 0; }
+
+/* ---- Footer ---- */
+.site-footer .footer-links { display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+
+/* ---- Small screens ---- */
+@media (max-width: 760px) {
+  .app-shell { grid-template-columns: 1fr; }
+  .app-sidebar { border-right: 0; border-bottom: 1px solid #d7dde8; }
+  .app-content { padding: 20px 14px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
+
+/* ---- Gmail sign-in ---- */
+.divider { display: flex; align-items: center; gap: 12px; margin: 18px 0; color: #5d6779; font-size: 13px; font-weight: 700; }
+.divider::before,
+.divider::after { content: ""; flex: 1; height: 1px; background: #d7dde8; }
+.btn-google {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  padding: 12px;
+  border: 1.5px solid #d7dde8;
+  border-radius: 12px;
+  background: #fff;
+  color: #1d2433;
+  font-weight: 800;
+  text-decoration: none;
+}
+.btn-google:hover { border-color: #0ac6f0; background: #f4fbfe; }
+.btn-google:focus-visible { outline: 3px solid rgba(10, 198, 240, .5); outline-offset: 2px; }
+.g-mark {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  color: #4285f4;
+  font-weight: 900;
+  font-size: 15px;
+  box-shadow: inset 0 0 0 1.5px #d7dde8;
+}
+
+/* ---- Email one-time code ---- */
+.auth-alt { text-align: center; margin: 14px 0 0; }
+.auth-alt a { color: #0a8fb3; font-weight: 700; }
+.code-input { letter-spacing: 8px; font-size: 22px; font-weight: 800; text-align: center; }
+
+/* ---- Password show/hide toggle ---- */
+.pw-wrap { position: relative; }
+.pw-wrap input { padding-right: 48px; }
+.pw-toggle {
+  position: absolute;
+  right: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  border: 0;
+  border-radius: 10px;
+  background: transparent;
+  color: #5d6779;
+  cursor: pointer;
+}
+.pw-toggle:hover { color: #0a8fb3; background: #e3f7fd; }
+.pw-toggle:focus-visible { outline: 3px solid rgba(10, 198, 240, .5); outline-offset: 2px; }
+.pw-toggle svg { width: 20px; height: 20px; display: block; }
+.pw-toggle .icon-hide { display: none; }
+.pw-toggle[aria-pressed="true"] .icon-show { display: none; }
+
+/* ---- Dashboard header: Search, Theme and Log out sit on the right ---- */
+.dashboard-body .tools { margin-left: auto; }
+
+/* ---- Dark theme for the dashboard shell (the public pages use body.dark rules in style.css) ---- */
+body.dark .app-sidebar,
+body.dark .welcome-card,
+body.dark .stat-card { background: #10244d; border-color: #2b416a; color: #eaf2ff; }
+body.dark .welcome-card p,
+body.dark .stat-card p { color: #b9c9e6; }
+body.dark .welcome-card h1,
+body.dark .stat-card h2 { color: #eaf2ff; }
+body.dark .sidebar-link { color: #eaf2ff; }
+body.dark .sidebar-link:hover,
+body.dark .sidebar-link.active { background: #15345f; color: #7fe6fb; }
+
+/* ---- Header search box: sits to the left of the search icon; the icon shows and hides it ---- */
+.site-search {
+  width: min(260px, 36vw);
+  padding: 9px 12px;
+  border: 2px solid #0ac6f0;
+  border-radius: 12px;
+  font: inherit;
+  background: #fff;
+  color: #1d2433;
+}
+.site-search[hidden] { display: none; }
+.pw-toggle[aria-pressed="true"] .icon-hide { display: block; }
+
+/* ---- Dark theme on the public pages (toggled by the moon/sun button) ---- */
+body.dark .auth-card { background: #10244d; border-color: #2b416a; color: #eaf2ff; }
+body.dark .auth-card .sub,
+body.dark .auth-switch,
+body.dark .divider { color: #b9c9e6; }
+body.dark .field input { background: #0b1b3d; border-color: #2b416a; color: #eaf2ff; }
+body.dark .btn-google { background: #0b1b3d; border-color: #2b416a; color: #eaf2ff; }
+body.dark .pw-toggle { color: #b9c9e6; }
+body.dark .page-main { background: transparent; }
+
+/* ---- Footer (shared by public and dashboard layouts): size the logo and keep the links tidy ---- */
+footer .footer-brand { display: inline-block; text-decoration: none; margin-bottom: 6px; }
+footer .footer-logo {
+    display: block;
+    width: auto;
+    height: 64px;
+    max-width: 180px;
+    margin: 0 auto;
+    object-fit: contain;
+}
+footer > p { max-width: 520px; margin: 8px auto 14px; font-size: 14px; }
+footer > div { flex-wrap: wrap; }
+footer > div a {
+    padding: 6px 10px;
+    border-radius: 999px;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+}
+footer > div a:hover, footer > div a:focus-visible { background: rgba(18, 217, 243, 0.14); color: #ffffff; }
+footer > small { display: block; margin-top: 18px; opacity: 0.85; }
+@media (max-width: 760px) {
+    footer .footer-logo { height: 52px; }
+    footer > div { gap: 6px; }
+}
+
+/* ---- Sign in: "Don't have an account? Register for free" above an outlined "Sign-In with Google" button ---- */
+.auth-register { margin: 0 0 10px; color: #4a5160; font-size: 15px; text-align: center; }
+.auth-register a { color: #0b6eb4; font-weight: 700; text-decoration: none; }
+.auth-register a:hover { text-decoration: underline; }
+.btn-google {
+  gap: 12px;
+  padding: 13px 16px;
+  border: 1.5px solid #5f6368;
+  border-radius: 12px;
+  color: #3c4043;
+  font-size: 18px;
+  font-weight: 500;
+}
+.btn-google:hover { border-color: #3c4043; background: #f8fafd; }
+.btn-google .g-logo { flex: none; width: 24px; height: 24px; }
+body.dark .auth-register { color: #b9c9e6; }
+body.dark .auth-register a { color: #5cc8ff; }
+body.dark .btn-google { border-color: #8a9bb8; }
+body.dark .btn-google:hover { border-color: #c7d4ea; background: #10244d; }
+
+/* ---- Sign in: "Download the App!" QR card, bottom-left (hidden on phones) ---- */
+.app-promo {
+  position: fixed;
+  left: 24px;
+  bottom: 24px;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 236px;
+  padding: 20px 18px 20px;
+  border-radius: 24px;
+  background: #ffffff;
+  box-shadow: 0 16px 40px rgba(8, 24, 65, 0.22);
+}
+.app-promo[hidden] { display: none; }
+.app-promo-close {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  width: 28px;
+  height: 28px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #9aa3b2;
+  font-size: 24px;
+  line-height: 1;
+  cursor: pointer;
+}
+.app-promo-close:hover { background: #f1f4f9; color: #4a5160; }
+.app-promo-close:focus-visible { outline: 3px solid rgba(255, 45, 111, .45); outline-offset: 2px; }
+.app-promo-badge {
+  margin-right: 14px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ff4f8b, #ff2d6f);
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 800;
+  white-space: nowrap;
+  box-shadow: 0 4px 12px rgba(255, 45, 111, .3);
+}
+.app-promo-qr {
+  display: grid;
+  place-items: center;
+  padding: 10px;
+  border: 1px solid #e3e7ef;
+  border-radius: 18px;
+  background: #ffffff;
+}
+.app-promo-qr:focus-visible { outline: 3px solid rgba(255, 45, 111, .45); outline-offset: 2px; }
+.app-promo-qr > span { display: block; padding: 8px; border-radius: 10px; background: #f6f7fa; }
+.app-promo-qr img,
+.app-promo-qr canvas { display: block; width: 132px; height: 132px; background: #ffffff; padding: 6px; border-radius: 6px; }
+body.dark .app-promo { box-shadow: 0 16px 40px rgba(0, 0, 0, 0.5); }
+
+/* Only where it fits beside the centred 440px sign-in card (and never on phones). */
+@media (max-width: 999px) {
+  .app-promo { display: none !important; }
+}

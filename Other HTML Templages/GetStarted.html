@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="common.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ExamPro - Welcome</title>
+
+
+</head>
+
+
+<body class="getstarted-page">
+
+
+<!-- ================================
+     TOP BANNER
+================================ -->
+
+<div class="top-banner">
+
+    🎉 Welcome to ExamPro!
+
+    <span>
+        FIRST TIME LOGIN
+    </span>
+
+</div>
+
+
+<!-- ================================
+     HEADER
+================================ -->
+
+<header class="header">
+
+    <div class="logo">
+
+        <div class="logo-icon">
+            🎓
+        </div>
+
+        ExamPro
+
+    </div>
+
+
+    <button
+        class="help-btn"
+        onclick="contactSupport()">
+
+        💬 Need Help?
+
+    </button>
+
+</header>
+
+
+<!-- ================================
+     MAIN
+================================ -->
+
+<main class="container">
+
+
+<section class="welcome-card">
+
+
+    <!-- HERO -->
+
+    <div class="hero">
+
+        <div class="welcome-icon">
+            👋
+        </div>
+
+
+        <h1>
+            Welcome to
+            <span>ExamPro!</span>
+        </h1>
+
+
+        <p>
+
+            Your exam preparation journey starts here.
+            We're excited to have you with us.
+            Everything you need to learn, practice and
+            track your progress is now available.
+
+        </p>
+
+
+        <!-- STUDENT -->
+
+        <div class="student">
+
+            <div class="avatar">
+                👨‍🎓
+            </div>
+
+
+            <div class="student-info">
+
+                <strong>
+                    Welcome, Armaan Khan
+                </strong>
+
+                <span>
+                    Student ID: EXM20260025
+                    &nbsp; • &nbsp;
+                    New Student
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- CONTENT -->
+
+    <div class="content">
+
+
+        <div class="section-title">
+
+            <h2>
+                Your Learning Journey Starts Now
+            </h2>
+
+            <p>
+                Here's what you have access to
+            </p>
+
+        </div>
+
+
+        <!-- COURSE -->
+
+        <div class="course">
+
+            <div class="course-icon">
+                🎓
+            </div>
+
+
+            <div class="course-info">
+
+                <strong>
+                    NEET Complete Preparation
+                </strong>
+
+                <span>
+                    Physics • Chemistry • Biology • Zoology
+                    &nbsp; • &nbsp; 12 Months Access
+                </span>
+
+            </div>
+
+
+            <div class="course-status">
+                ACTIVE
+            </div>
+
+        </div>
+
+
+        <!-- FEATURES -->
+
+        <div class="features">
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    📚
+                </div>
+
+                <strong>
+                    Courses
+                </strong>
+
+                <span>
+                    Learn from structured lessons
+                </span>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    📝
+                </div>
+
+                <strong>
+                    Mock Tests
+                </strong>
+
+                <span>
+                    Practice real exam questions
+                </span>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    📊
+                </div>
+
+                <strong>
+                    Progress
+                </strong>
+
+                <span>
+                    Track your performance
+                </span>
+
+            </div>
+
+
+            <div class="feature">
+
+                <div class="feature-icon">
+                    🎤
+                </div>
+
+                <strong>
+                    Voice Study
+                </strong>
+
+                <span>
+                    Listen to questions & answers
+                </span>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- START -->
+
+        <div class="start-section">
+
+            <button
+                class="start-btn"
+                onclick="getStarted()">
+
+                🚀 Get Started
+
+            </button>
+
+
+            <div class="note">
+
+                You can update your profile and preferences
+                anytime from Settings.
+
+            </div>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- SUCCESS STATE -->
+
+    <div
+        class="success"
+        id="success">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+        <h2>
+            You're Ready to Learn!
+        </h2>
+
+        <p>
+
+            Your ExamPro learning dashboard is ready.
+            Let's start preparing for your exam.
+
+        </p>
+
+        <button onclick="openDashboard()" class="start-btn getstarted-page-inline-1">
+
+            🎓 Open My Dashboard
+
+        </button>
+
+    </div>
+
+
+    <div class="footer">
+
+        🔒 Your account and learning data are secure.
+
+    </div>
+
+
+</section>
+
+</main>
+
+
+<script>
+
+
+/* =====================================
+   GET STARTED
+===================================== */
+
+function getStarted(){
+
+    /*
+        Production flow:
+
+        1. Save first-login completion
+        2. Redirect to dashboard
+
+        Example:
+
+        localStorage.setItem(
+            "firstLoginCompleted",
+            "true"
+        );
+
+        window.location.href =
+            "dashboard.html";
+    */
+
+    document.querySelector(
+        ".hero"
+    ).style.display = "none";
+
+    document.querySelector(
+        ".content"
+    ).style.display = "none";
+
+    document.querySelector(
+        ".footer"
+    ).style.display = "none";
+
+    document.getElementById(
+        "success"
+    ).style.display = "block";
+
+}
+
+
+/* =====================================
+   DASHBOARD
+===================================== */
+
+function openDashboard(){
+
+    window.location.href =
+        "dashboard.html";
+
+}
+
+
+/* =====================================
+   SUPPORT
+===================================== */
+
+function contactSupport(){
+
+    alert(
+        "ExamPro Support is available to help you."
+    );
+
+}
+
+</script>
+
+</body>
+</html>

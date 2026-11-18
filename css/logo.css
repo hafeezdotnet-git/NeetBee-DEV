@@ -1,0 +1,113 @@
+/* NEET BEE logo sizing for headers and footer. */
+.brand-logo {
+  display: block;
+  height: 72px;
+  width: auto;
+  max-width: 280px;
+}
+
+.footer-logo {
+  display: block;
+  height: 96px;
+  width: auto;
+  margin: 0 auto 8px;
+}
+
+/* Flying mascot: the logo's bee replaces the emoji. The existing animation on .bee-mascot still moves it. */
+.bee-mascot .bee-body {
+  display: block;
+  line-height: 0;
+  font-size: 0;
+}
+
+.bee-mascot .bee-img {
+  display: block;
+  width: 84px;
+  height: auto;
+  filter: drop-shadow(0 6px 10px rgba(29, 36, 51, .25));
+}
+
+@media (max-width: 600px) {
+  .brand-logo { height: 52px; max-width: 200px; }
+  .footer-logo { height: 72px; }
+  .bee-mascot .bee-img { width: 64px; }
+}
+
+/* Bee mascot sits on the left edge; it flies on the left and its trail points right. */
+.bee-mascot { left: 18px; right: auto; }
+.bee-trail { left: auto; right: -28px; transform: rotate(20deg); }
+@media (max-width: 640px) {
+  .bee-mascot { left: 10px; right: auto; }
+  .bee-trail { left: auto; right: -20px; }
+}
+
+/* "Ask NEET Bee" floating button on the right edge. */
+.chat-fab {
+  position: fixed;
+  right: 14px;
+  bottom: 14px;
+  z-index: 70;
+  padding: 0;
+  border: 0;
+  background: none;
+  line-height: 0;
+  transition: transform .2s, filter .2s;
+  filter: drop-shadow(0 8px 14px #7a1b6a40);
+}
+.chat-fab img { width: 150px; height: auto; display: block; }
+.chat-fab:hover { transform: translateY(-3px) scale(1.03); }
+.chat-fab:focus-visible { outline: 3px solid #12e1f3; outline-offset: 4px; border-radius: 16px; }
+@media (max-width: 640px) {
+  .chat-fab { right: 6px; bottom: 6px; }
+  .chat-fab img { width: 96px; }
+}
+
+/* Gentle bobbing and a soft glow pulse on the "Ask NEET Bee" button. */
+.chat-fab { animation: chat-bob 3.2s ease-in-out infinite; }
+.chat-fab img { animation: chat-glow 2.4s ease-in-out infinite; transform-origin: 50% 60%; }
+.chat-fab:hover img { animation-play-state: paused; transform: scale(1.04); }
+@keyframes chat-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+@keyframes chat-glow {
+  0%, 100% { filter: drop-shadow(0 0 0 #ff2fa000); }
+  50% { filter: drop-shadow(0 0 12px #ff2fa0aa); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .chat-fab, .chat-fab img { animation: none !important; }
+}
+
+/* Ripple rings expand out from the button, and it waves once every few seconds. */
+.chat-fab { position: fixed; }
+.chat-fab::before,
+.chat-fab::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 3px solid #ff2fa0;
+  transform: translate(-50%, -50%) scale(.6);
+  opacity: 0;
+  pointer-events: none;
+  animation: chat-ripple 2.8s ease-out infinite;
+}
+.chat-fab::after { animation-delay: 1.4s; }
+.chat-fab img { animation: chat-glow 2.4s ease-in-out infinite, chat-wave 4.5s ease-in-out infinite; }
+@keyframes chat-ripple {
+  0% { transform: translate(-50%, -50%) scale(.6); opacity: .7; }
+  100% { transform: translate(-50%, -50%) scale(1.5); opacity: 0; }
+}
+@keyframes chat-wave {
+  0%, 80%, 100% { transform: rotate(0); }
+  84% { transform: rotate(-6deg); }
+  88% { transform: rotate(6deg); }
+  92% { transform: rotate(-4deg); }
+  96% { transform: rotate(3deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .chat-fab::before, .chat-fab::after { animation: none !important; }
+}

@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<link rel="stylesheet" href="common.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ExamPro - Payment Failed</title>
+
+
+</head>
+
+
+<body class="paymentfailedscreen-page">
+
+
+<!-- ==========================================
+     OFFER
+========================================== -->
+
+<div class="offer-banner">
+
+    🎓 <strong>EXAMPRO</strong>
+
+    Complete your enrollment and start learning
+
+    <button onclick="retryPayment()">
+        Try Again
+    </button>
+
+</div>
+
+
+<!-- ==========================================
+     HEADER
+========================================== -->
+
+<header class="header">
+
+    <div class="header-left">
+
+        <div
+            class="hamburger"
+            onclick="openDrawer()">
+
+            ☰
+
+        </div>
+
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            ExamPro
+
+        </div>
+
+    </div>
+
+
+    <button
+        class="dashboard-btn"
+        onclick="goDashboard()">
+
+        Dashboard
+
+    </button>
+
+</header>
+
+
+<!-- ==========================================
+     DRAWER
+========================================== -->
+
+<div
+    class="overlay"
+    id="overlay"
+    onclick="closeDrawer()">
+</div>
+
+
+<div
+    class="drawer"
+    id="drawer">
+
+    <div class="drawer-header">
+
+        <div class="logo">
+
+            <div class="logo-icon">
+                🎓
+            </div>
+
+            ExamPro
+
+        </div>
+
+
+        <div
+            class="close"
+            onclick="closeDrawer()">
+
+            ×
+
+        </div>
+
+    </div>
+
+
+    <div class="drawer-menu">
+
+        <button>🏠 Dashboard</button>
+
+        <button>📚 Courses</button>
+
+        <button>📝 Mock Tests</button>
+
+        <button>📊 Progress</button>
+
+        <button>📖 Questions & Answers</button>
+
+        <button>🎤 Voice Study</button>
+
+        <button>💬 Messages</button>
+
+        <button>🎁 Refer & Earn</button>
+
+        <button>💳 Payments</button>
+
+        <button>⚙️ Settings</button>
+
+    </div>
+
+</div>
+
+
+<!-- ==========================================
+     MAIN
+========================================== -->
+
+<main class="container">
+
+
+    <section
+        class="failed-card"
+        id="failedCard">
+
+
+        <!-- ERROR -->
+
+        <div class="error-icon">
+            ×
+        </div>
+
+
+        <h1>
+            Payment Failed
+        </h1>
+
+
+        <p class="subtitle">
+
+            We couldn't complete your payment.
+
+            <br>
+
+            Don't worry — no amount has been charged
+            if the transaction was unsuccessful.
+
+        </p>
+
+
+        <!-- PAYMENT INFORMATION -->
+
+        <div class="payment-info">
+
+
+            <div class="info-row">
+
+                <span>
+                    Course
+                </span>
+
+                <strong>
+                    NEET Complete Preparation
+                </strong>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span>
+                    Amount
+                </span>
+
+                <strong>
+                    ₹4,999
+                </strong>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span>
+                    Payment Method
+                </span>
+
+                <strong>
+                    UPI
+                </strong>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span>
+                    Transaction ID
+                </span>
+
+                <strong>
+                    TXN8A92F71
+                </strong>
+
+            </div>
+
+
+            <div class="info-row">
+
+                <span>
+                    Status
+                </span>
+
+                <strong class="failed-status">
+                    ● Failed
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- REASON -->
+
+        <div class="reason-box">
+
+            <div class="reason-icon">
+                ⚠️
+            </div>
+
+
+            <div>
+
+                <strong>
+                    What happened?
+                </strong>
+
+                <p>
+                    Your bank or payment provider
+                    declined the transaction. Please
+                    check your payment details and try again.
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- ACTIONS -->
+
+        <button
+            class="retry-btn"
+            onclick="retryPayment()">
+
+            🔄 Retry Payment
+
+        </button>
+
+
+        <button
+            class="secondary-btn"
+            onclick="choosePaymentMethod()">
+
+            💳 Choose Another Payment Method
+
+        </button>
+
+
+        <div class="help">
+
+            Still having trouble?
+
+            <br>
+
+            <strong>
+                Contact ExamPro Support
+            </strong>
+            and share your transaction ID for assistance.
+
+        </div>
+
+    </section>
+
+
+    <!-- ==========================================
+         SUCCESS
+    =========================================== -->
+
+    <section
+        class="failed-card success"
+        id="successCard">
+
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+
+        <h2>
+            Payment Successful!
+        </h2>
+
+
+        <p>
+
+            Your payment has been completed successfully.
+
+            <br>
+
+            Your course access will be activated shortly.
+
+        </p>
+
+
+        <button onclick="goDashboard()" class="retry-btn paymentfailedscreen-page-inline-1">
+
+            🎓 Go to Course
+
+        </button>
+
+    </section>
+
+
+</main>
+
+
+<!-- ==========================================
+     BOTTOM NAV
+========================================== -->
+
+<nav class="bottom-nav">
+
+    <button onclick="goDashboard()">
+
+        <span class="bottom-icon">
+            🏠
+        </span>
+
+        Home
+
+    </button>
+
+
+    <button>
+
+        <span class="bottom-icon">
+            📚
+        </span>
+
+        Courses
+
+    </button>
+
+
+    <button class="active">
+
+        <span class="bottom-icon">
+            💳
+        </span>
+
+        Payment
+
+    </button>
+
+
+    <button>
+
+        <span class="bottom-icon">
+            📊
+        </span>
+
+        Progress
+
+    </button>
+
+
+    <button onclick="openDrawer()">
+
+        <span class="bottom-icon">
+            ☰
+        </span>
+
+        Menu
+
+    </button>
+
+</nav>
+
+
+<script>
+
+/* ==========================================
+   RETRY PAYMENT
+========================================== */
+
+function retryPayment(){
+
+    /*
+       In production:
+
+       Redirect to your payment gateway,
+       for example Razorpay / Stripe / PayU.
+
+       Example:
+
+       window.location.href =
+           "/payment?retry=TXN8A92F71";
+    */
+
+    alert(
+        "Opening payment screen..."
+    );
+
+}
+
+
+/* ==========================================
+   ANOTHER PAYMENT METHOD
+========================================== */
+
+function choosePaymentMethod(){
+
+    alert(
+        "Opening payment methods..."
+    );
+
+}
+
+
+/* ==========================================
+   DASHBOARD
+========================================== */
+
+function goDashboard(){
+
+    alert(
+        "Opening Dashboard..."
+    );
+
+}
+
+
+/* ==========================================
+   DRAWER
+========================================== */
+
+function openDrawer(){
+
+    document
+        .getElementById(
+            "drawer"
+        )
+        .classList.add(
+            "open"
+        );
+
+    document
+        .getElementById(
+            "overlay"
+        )
+        .classList.add(
+            "show"
+        );
+
+}
+
+
+function closeDrawer(){
+
+    document
+        .getElementById(
+            "drawer"
+        )
+        .classList.remove(
+            "open"
+        );
+
+    document
+        .getElementById(
+            "overlay"
+        )
+        .classList.remove(
+            "show"
+        );
+
+}
+
+</script>
+
+</body>
+</html>

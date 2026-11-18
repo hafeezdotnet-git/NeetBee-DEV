@@ -1,0 +1,23 @@
+@model EmailCodeViewModel
+@{
+    ViewData["Title"] = "Email code";
+}
+
+<section class="auth-card" aria-labelledby="code-title">
+    <h1 id="code-title">Continue with email</h1>
+    <p class="sub">Enter your email address and we will send you a 6-digit code. The same code signs you in, or creates your account the first time.</p>
+
+    <div asp-validation-summary="ModelOnly" class="alert alert-error" role="alert"></div>
+
+    <form asp-action="EmailCode" method="post" novalidate>
+        <div class="field">
+            <label asp-for="Email"></label>
+            <input asp-for="Email" type="email" autocomplete="email" autofocus />
+            <span asp-validation-for="Email" class="field-error"></span>
+        </div>
+
+        <button type="submit" class="btn-primary">Send code</button>
+    </form>
+
+    <p class="auth-switch"><a asp-action="Login">Back to sign in</a></p>
+</section>

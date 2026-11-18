@@ -1,0 +1,137 @@
+@model DashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard";
+    Layout = "_DashboardLayout";
+    var p = Model.Progress;
+}
+
+<section class="nb-welcome" aria-labelledby="welcome-title">
+    <div>
+        <h1 id="welcome-title">Welcome back, @Model.UserName!</h1>
+        <p class="nb-muted">Your NEET journey continues. Let's achieve your goal!</p>
+    </div>
+    <img class="nb-welcome-bee" src="/img/neetbee-bee.png" alt="" width="120" height="120">
+</section>
+
+<section class="nb-stats" aria-label="Learning statistics">
+    <div class="nb-card nb-stat">
+        <span class="nb-icon" style="--nb-icon:url('/assets/neetbee/flame.svg')" aria-hidden="true"></span>
+        <div><strong>@p.StreakDays Days</strong><span>Learning Streak</span></div>
+    </div>
+    <div class="nb-card nb-stat">
+        <span class="nb-icon" style="--nb-icon:url('/assets/neetbee/target.svg')" aria-hidden="true"></span>
+        <div><strong>@(p.DailyGoalPercent)%</strong><span>Daily Goal Completed</span></div>
+    </div>
+    <div class="nb-card nb-stat">
+        <span class="nb-icon" style="--nb-icon:url('/assets/neetbee/book.svg')" aria-hidden="true"></span>
+        <div><strong>@p.CoursesEnrolled</strong><span>Courses Enrolled</span></div>
+    </div>
+    <div class="nb-card nb-stat">
+        <span class="nb-icon" style="--nb-icon:url('/assets/neetbee/check.svg')" aria-hidden="true"></span>
+        <div><strong>@p.QuestionsPracticed</strong><span>Questions Practiced</span></div>
+    </div>
+</section>
+
+<section class="nb-section" aria-labelledby="continue-title">
+    <div class="nb-card nb-continue">
+        <span class="nb-icon" style="--nb-icon:url('/assets/neetbee/play.svg')" aria-hidden="true"></span>
+        @if (p.ContinueLearning is { } lesson)
+        {
+            <div>
+                <h2 id="continue-title">Continue Learning</h2>
+                <strong>@lesson.Subject – @lesson.Lesson</strong>
+            </div>
+            <div>
+                <span class="nb-muted">@(lesson.Percent)% completed</span>
+                <div class="nb-progress"><span style="width:@(lesson.Percent)%"></span></div>
+            </div>
+            <a class="nb-btn" asp-controller="Study" asp-action="McqPractice">Continue</a>
+        }
+        else
+        {
+            <div>
+                <h2 id="continue-title">Continue Learning</h2>
+                <span class="nb-muted">No lesson in progress yet. Start with a course.</span>
+            </div>
+            <div></div>
+            <a class="nb-btn" asp-controller="Study" asp-action="Courses">Browse Courses</a>
+        }
+    </div>
+</section>
+
+<section class="nb-section" aria-labelledby="subjects-title">
+    <div class="nb-section-title">
+        <h2 id="subjects-title">Explore Subjects</h2>
+        <a class="nb-muted" asp-controller="Study" asp-action="Courses">View All Subjects →</a>
+    </div>
+    <div class="nb-subjects">
+        <article class="nb-card nb-subject">
+            <img class="nb-subject-banner" src="/assets/neetbee/biology-banner.svg" alt="Biology">
+            <div class="nb-subject-body">
+                <h3>Biology Masterclass</h3>
+                <p class="nb-muted">Botany + Zoology</p>
+                <div class="nb-progress"><span style="width:@(p.BiologyPercent)%"></span></div>
+                <p>@(p.BiologyPercent)% complete</p>
+                <a class="nb-btn" asp-controller="Study" asp-action="Courses" asp-fragment="biology">Continue Biology →</a>
+            </div>
+        </article>
+        <article class="nb-card nb-subject">
+            <img class="nb-subject-banner" src="/assets/neetbee/chemistry-banner.svg" alt="Chemistry">
+            <div class="nb-subject-body">
+                <h3>Chemistry Essentials</h3>
+                <p class="nb-muted">Physical + Organic + Inorganic Chemistry</p>
+                <div class="nb-progress"><span style="width:@(p.ChemistryPercent)%"></span></div>
+                <p>@(p.ChemistryPercent)% complete</p>
+                <a class="nb-btn" asp-controller="Study" asp-action="Courses" asp-fragment="chemistry">Continue Chemistry →</a>
+            </div>
+        </article>
+        <article class="nb-card nb-subject">
+            <img class="nb-subject-banner" src="/assets/neetbee/physics-banner.svg" alt="Physics">
+            <div class="nb-subject-body">
+                <h3>Physics Accelerator</h3>
+                <p class="nb-muted">Concepts + Numericals</p>
+                <div class="nb-progress"><span style="width:@(p.PhysicsPercent)%"></span></div>
+                <p>@(p.PhysicsPercent)% complete</p>
+                <a class="nb-btn" asp-controller="Study" asp-action="Courses" asp-fragment="physics">Continue Physics →</a>
+            </div>
+        </article>
+    </div>
+</section>
+
+<section class="nb-lower-grid">
+    <div class="nb-card nb-panel">
+        <div class="nb-section-title">
+            <h2>Quick Practice</h2>
+            <a class="nb-btn" asp-controller="Study" asp-action="McqPractice">Practice Now →</a>
+        </div>
+        <p class="nb-muted">Strengthen your concepts with daily MCQs.</p>
+        <div class="nb-quick-grid">
+            <a class="nb-quick" asp-controller="Study" asp-action="McqPractice"><span class="nb-icon" style="--nb-icon:url('/assets/neetbee/target.svg')" aria-hidden="true"></span>Daily MCQ</a>
+            <a class="nb-quick" asp-controller="Study" asp-action="Courses"><span class="nb-icon" style="--nb-icon:url('/assets/neetbee/book.svg')" aria-hidden="true"></span>Topic Wise</a>
+            <a class="nb-quick" asp-controller="Study" asp-action="MockTests"><span class="nb-icon" style="--nb-icon:url('/assets/neetbee/clipboard.svg')" aria-hidden="true"></span>Mixed Quiz</a>
+            <a class="nb-quick" asp-controller="Study" asp-action="Performance"><span class="nb-icon" style="--nb-icon:url('/assets/neetbee/flame.svg')" aria-hidden="true"></span>Weak Areas</a>
+        </div>
+    </div>
+
+    <div class="nb-card nb-panel">
+        <div class="nb-section-title">
+            <h2>Upcoming Mock Tests</h2>
+            <a class="nb-btn" asp-controller="Study" asp-action="MockTests">View All →</a>
+        </div>
+        <p class="nb-muted">Practice with NEET pattern full-length tests.</p>
+        @if (p.UpcomingMockTests.Count == 0)
+        {
+            <p class="nb-muted">No mock tests are scheduled yet.</p>
+        }
+        else
+        {
+            foreach (var test in p.UpcomingMockTests)
+            {
+                <div class="nb-mock">
+                    <strong>@test.Title</strong>
+                    <span class="nb-muted">@test.StartsAtUtc.ToString("ddd, dd MMM yyyy") | @test.DurationMinutes min</span>
+                </div>
+            }
+        }
+    </div>
+</section>
