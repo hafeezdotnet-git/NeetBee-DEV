@@ -1,0 +1,107 @@
+services:
+ # SQL SERVER
+  neetbee-sqlserver:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: neetbee-sqlserver
+    environment:
+      ACCEPT_EULA: "Y"
+      MSSQL_PID: Developer
+      MSSQL_SA_PASSWORD: ${SA_PASSWORD:?Set SA_PASSWORD in .env}
+    ports:
+      - "1433:1433"
+    volumes:
+      - neetbee-sql-data:/var/opt/mssql
+      - "D:/NEETBEE/SqlBackups:/var/opt/mssql/backup"
+    networks:
+      - neetbee-network
+    restart: unless-stopped
+    
+  notification:
+    image: neetbee/notification-service:latest
+    build:
+      context: .
+      dockerfile: Services/NotificationService/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      NotificationApi__ApiKey: ${NOTIFICATION_API_KEY:?Set NOTIFICATION_API_KEY in .env}
+    networks:
+      - neetbee-network
+
+  authentication:
+    image: neetbee/authentication-service:latest
+    build:
+      context: .
+      dockerfile: Services/AuthenticationService/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      Authentication__Jwt__SigningKey: ${AUTHENTICATION_JWT_SIGNING_KEY:?Set AUTHENTICATION_JWT_SIGNING_KEY in .env}
+      ConnectionStrings__NeetBee: "Server=neetbee-sqlserver,1433;Database=NEET_BEE;User ID=sa;Password=${SA_PASSWORD:?Set SA_PASSWORD in .env};TrustServerCertificate=True;Encrypt=True"
+      NotificationService__BaseUrl: http://notification:5002/
+      NotificationService__ApiKey: ${NOTIFICATION_API_KEY:?Set NOTIFICATION_API_KEY in .env}
+    depends_on:
+      - notification
+      - neetbee-sqlserver
+    networks:
+      - neetbee-network
+
+  payment:
+    image: neetbee/payment-service:latest
+    build:
+      context: .
+      dockerfile: Services/PaymentService/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      Authentication__Jwt__SigningKey: ${AUTHENTICATION_JWT_SIGNING_KEY:?Set AUTHENTICATION_JWT_SIGNING_KEY in .env}
+      ConnectionStrings__NeetBee: "Server=neetbee-sqlserver,1433;Database=NEET_BEE;User ID=sa;Password=${SA_PASSWORD:?Set SA_PASSWORD in .env};TrustServerCertificate=True;Encrypt=True"
+      NotificationService__BaseUrl: http://notification:5002/
+      NotificationService__ApiKey: ${NOTIFICATION_API_KEY:?Set NOTIFICATION_API_KEY in .env}
+    depends_on:
+      - notification
+      - neetbee-sqlserver
+    networks:
+      - neetbee-network
+
+  gateway:
+    image: neetbee/api-gateway:latest
+    build:
+      context: ./Services/ApiGateway
+      dockerfile: Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      Authentication__Jwt__SigningKey: ${AUTHENTICATION_JWT_SIGNING_KEY:?Set AUTHENTICATION_JWT_SIGNING_KEY in .env}
+      ReverseProxy__Clusters__authentication__Destinations__primary__Address: http://authentication:5001/
+      ReverseProxy__Clusters__notification__Destinations__primary__Address: http://notification:5002/
+      ReverseProxy__Clusters__payment__Destinations__primary__Address: http://payment:5003/
+    ports:
+      - "5000:5000"
+    depends_on:
+      - authentication
+      - notification
+      - payment
+    networks:
+      - neetbee-network
+
+  web:
+    image: neetbee/web-application:latest
+    build:
+      context: .
+      dockerfile: Web/WebApplication/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      Kestrel__Endpoints__Http__Url: http://0.0.0.0:5100
+      ConnectionStrings__NeetBee: "Server=neetbee-sqlserver,1433;Database=NEET_BEE;User ID=sa;Password=${SA_PASSWORD:?Set SA_PASSWORD in .env};TrustServerCertificate=True;Encrypt=True"
+      Gateway__BaseUrl: http://gateway:5000
+    ports:
+      - "5100:5100"
+    depends_on:
+      - gateway
+      - neetbee-sqlserver
+    networks:
+      - neetbee-network
+
+volumes:
+  neetbee-sql-data:
+
+networks:
+  neetbee-network:
+    driver: bridge

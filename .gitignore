@@ -37,6 +37,9 @@ ScaffoldingReadMe.txt
 *.snupkg
 
 # Others
+.env
+.env.*
+!.env.example
 ~$*
 *~
 CodeCoverage/

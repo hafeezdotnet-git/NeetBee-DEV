@@ -1,0 +1,7 @@
+# Replace these placeholders before starting the containers.
+AUTHENTICATION_JWT_SIGNING_KEY=tZi/R/XYQ52QNLM3krdjWUEMYV/CFlP8b3g/Xt2ZjEw=
+NOTIFICATION_API_KEY=20380a36-8777-43f7-a79e-65bdb53f4621
+
+# SQL Server must be reachable from Docker and use SQL authentication.
+# For a SQL Server running on the Windows host, use host.docker.internal and a SQL login.
+NEETBEE_CONNECTION_STRING="Server=host.docker.internal,1433;Database=NEET_BEE;User ID=sa;Password=replace-with-your-sql-password;TrustServerCertificate=True;Encrypt=True"
