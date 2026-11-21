@@ -467,6 +467,20 @@ body.dark .loading-subtext { color: #b9c9e6; }
 
 /* Public and dashboard theme controls use one clear, state-aware sun/moon icon. */
 .theme-toggle .theme-icon { display: none; width: 23px; height: 23px; flex: none; }
+.install-app-button svg { width: 22px; height: 22px; }
+.install-app-button[hidden] { display: none !important; }
+.topbar .install-app-button {
+  display: inline-grid;
+  place-items: center;
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  border: 1px solid #8398bb;
+  border-radius: 50%;
+  background: #14294f;
+  color: white;
+}
+.topbar .install-app-button:hover { border-color: #d4e5ff; }
 body:not(.dark) .theme-toggle .theme-icon-moon,
 body.dark .theme-toggle .theme-icon-sun { display: block; }
 .topbar .theme-toggle {
@@ -484,4 +498,5 @@ body.dark .theme-toggle .theme-icon-sun { display: block; }
 .nb-topbar .theme-toggle { width: 42px; height: 42px; }
 @media (max-width: 640px) {
   .topbar .theme-toggle { width: 40px; height: 40px; flex-basis: 40px; }
+  .topbar .install-app-button { width: 40px; height: 40px; }
 }

@@ -1,0 +1,14 @@
+{
+  "id": "/",
+  "name": "NEET BEE",
+  "short_name": "NEET BEE",
+  "description": "Your NEET preparation companion",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#f4faff",
+  "theme_color": "#071944",
+  "icons": [
+    { "src": "/img/pwa-icon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

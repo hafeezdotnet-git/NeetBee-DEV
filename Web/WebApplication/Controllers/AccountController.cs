@@ -83,6 +83,11 @@ public sealed class AccountController(GatewayClient gateway, IConfiguration conf
         {
             model.CaptchaId = result.Value.Id;
             model.CaptchaImage = result.Value.ImageData;
+            model.CaptchaAnswer = string.Empty;
+            // Tag Helpers prefer attempted ModelState values over the updated model values.
+            // Remove the consumed challenge values so the refreshed image and hidden ID stay paired.
+            ModelState.Remove(nameof(LoginViewModel.CaptchaId));
+            ModelState.Remove(nameof(LoginViewModel.CaptchaAnswer));
         }
         else
         {

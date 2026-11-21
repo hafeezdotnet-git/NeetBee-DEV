@@ -59,7 +59,7 @@
                 </div>
             }
             <input asp-for="CaptchaId" type="hidden" />
-            <input asp-for="CaptchaAnswer" autocomplete="off" autocapitalize="characters" />
+            <input asp-for="CaptchaAnswer" autocomplete="off" autocapitalize="characters" maxlength="6" />
             <span asp-validation-for="CaptchaAnswer" class="field-error"></span>
             <span id="captcha-status" class="captcha-status" role="status" aria-live="polite"></span>
         </div>
