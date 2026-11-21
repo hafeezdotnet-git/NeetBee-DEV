@@ -8,6 +8,7 @@ namespace NeetBee.Web.Services;
 public sealed record TokenResponse(string AccessToken, string RefreshToken, string TokenType, int ExpiresIn);
 
 public sealed record CurrentUser(string Id, string UserName);
+public sealed record CaptchaChallenge(string Id, string ImageData);
 
 public sealed record GatewayResult<T>(bool Ok, T? Value, string? Error);
 
@@ -19,11 +20,24 @@ public sealed class GatewayClient(HttpClient http)
 
     private static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web);
 
-    public async Task<GatewayResult<TokenResponse>> LoginAsync(string username, string password, CancellationToken ct)
+    public async Task<GatewayResult<CaptchaChallenge>> GetCaptchaAsync(CancellationToken ct)
     {
         try
         {
-            using var response = await http.PostAsJsonAsync("api/auth/login", new { username, password }, JsonOptions, ct);
+            using var response = await http.GetAsync("api/auth/captcha", ct);
+            if (!response.IsSuccessStatusCode)
+                return new GatewayResult<CaptchaChallenge>(false, default, await ReadErrorAsync(response, ct));
+            var captcha = await response.Content.ReadFromJsonAsync<CaptchaChallenge>(JsonOptions, ct);
+            return captcha is null ? new(false, default, Unexpected) : new(true, captcha, null);
+        }
+        catch (HttpRequestException) { return new(false, default, Unreachable); }
+    }
+
+    public async Task<GatewayResult<TokenResponse>> LoginAsync(string username, string password, string captchaId, string captchaAnswer, CancellationToken ct)
+    {
+        try
+        {
+            using var response = await http.PostAsJsonAsync("api/auth/login", new { username, password, captchaId, captchaAnswer }, JsonOptions, ct);
             if (!response.IsSuccessStatusCode)
                 return new GatewayResult<TokenResponse>(false, default, await ReadErrorAsync(response, ct));
 

@@ -516,12 +516,22 @@
     }
 
     // ---------- Loading another page in place (keeps speech running) ----------
+    // Shared "Please wait..." overlay (js/loading.js); a no-op if that script is not on the page.
+    const showLoading = (message) => { if (typeof window.showLoading === "function") window.showLoading(message); };
+    const hideLoading = () => { if (typeof window.hideLoading === "function") window.hideLoading(); };
+
     async function loadPage(page) {
         const url = new URL(window.location.href);
         url.searchParams.set("page", String(page));
-        const res = await fetch(url, { headers: { "X-Requested-With": "fetch" }, credentials: "same-origin" });
-        if (!res.ok) throw new Error(`HTTP ${res.status}`);
-        const doc = new DOMParser().parseFromString(await res.text(), "text/html");
+        let doc;
+        showLoading("Loading questions");
+        try {
+            const res = await fetch(url, { headers: { "X-Requested-With": "fetch" }, credentials: "same-origin" });
+            if (!res.ok) throw new Error(`HTTP ${res.status}`);
+            doc = new DOMParser().parseFromString(await res.text(), "text/html");
+        } finally {
+            hideLoading();
+        }
         for (const id of ["vqa-list", "vqa-progress", "vqa-pager-top", "vqa-pager-wrap"]) {
             const fresh = doc.getElementById(id);
             const current = $(id);
@@ -713,6 +723,7 @@
         url.searchParams.set("size", String(size));
         url.searchParams.set("page", String(Math.floor((first - 1) / size) + 1));
         stop();
+        if (typeof window.showLoading === "function") window.showLoading("Loading questions");
         window.location.assign(url);
     });
 

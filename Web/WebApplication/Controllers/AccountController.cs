@@ -21,7 +21,7 @@ public sealed class AccountController(GatewayClient gateway, IConfiguration conf
 
     [HttpGet]
     [AllowAnonymous]
-    public IActionResult Login(string? returnUrl = null)
+    public async Task<IActionResult> Login(string? returnUrl = null, CancellationToken ct = default)
     {
         logger.LogInformation("GET Account/Login requested");
 
@@ -31,7 +31,9 @@ public sealed class AccountController(GatewayClient gateway, IConfiguration conf
             return RedirectToAction("Index", "Dashboard");
         }
 
-        return View(new LoginViewModel { ReturnUrl = returnUrl });
+        var model = new LoginViewModel { ReturnUrl = returnUrl };
+        await RefreshCaptchaAsync(model, ct);
+        return View(model);
     }
 
     [HttpPost]
@@ -44,14 +46,16 @@ public sealed class AccountController(GatewayClient gateway, IConfiguration conf
         if (!ModelState.IsValid)
         {
             logger.LogWarning("Login form is invalid for user {Username}", model.Username);
+            await RefreshCaptchaAsync(model, ct);
             return View(model);
         }
 
-        var signIn = await gateway.LoginAsync(model.Username.Trim(), model.Password, ct);
+        var signIn = await gateway.LoginAsync(model.Username.Trim(), model.Password, model.CaptchaId, model.CaptchaAnswer, ct);
         if (!signIn.Ok || signIn.Value is null)
         {
             logger.LogWarning("Login failed at gateway for user {Username}: {Error}", model.Username, signIn.Error);
             ModelState.AddModelError(string.Empty, signIn.Error ?? "Sign-in failed. Please try again.");
+            await RefreshCaptchaAsync(model, ct);
             return View(model);
         }
 
@@ -70,6 +74,31 @@ public sealed class AccountController(GatewayClient gateway, IConfiguration conf
             return Redirect(model.ReturnUrl);
 
         return RedirectToAction("Index", "Dashboard");
+    }
+
+    private async Task RefreshCaptchaAsync(LoginViewModel model, CancellationToken ct)
+    {
+        var result = await gateway.GetCaptchaAsync(ct);
+        if (result.Ok && result.Value is not null)
+        {
+            model.CaptchaId = result.Value.Id;
+            model.CaptchaImage = result.Value.ImageData;
+        }
+        else
+        {
+            ModelState.AddModelError(string.Empty, result.Error ?? "CAPTCHA could not be loaded. Refresh the page to try again.");
+        }
+    }
+
+    [HttpGet]
+    [AllowAnonymous]
+    public async Task<IActionResult> NewCaptcha(CancellationToken ct)
+    {
+        var result = await gateway.GetCaptchaAsync(ct);
+        if (!result.Ok || result.Value is null)
+            return StatusCode(StatusCodes.Status503ServiceUnavailable, new { error = result.Error ?? "CAPTCHA could not be loaded. Please try again." });
+
+        return Json(new { id = result.Value.Id, image = result.Value.ImageData });
     }
 
     [HttpGet]
@@ -111,8 +140,32 @@ public sealed class AccountController(GatewayClient gateway, IConfiguration conf
         }
 
         logger.LogInformation("Account created for user {UserName}", model.UserName);
-        TempData["Message"] = "Your account has been created. Please sign in.";
-        return RedirectToAction(nameof(Login));
+        TempData["RegisteredUserName"] = model.UserName.Trim();
+        return RedirectToAction(nameof(Registered));
+    }
+
+    /// <summary>Shown after a successful registration, with a button that goes to the sign-in page.</summary>
+    [HttpGet]
+    [AllowAnonymous]
+    public IActionResult Registered()
+    {
+        logger.LogInformation("GET Account/Registered requested");
+
+        if (User.Identity?.IsAuthenticated == true)
+        {
+            logger.LogDebug("Registered page skipped: user is already signed in");
+            return RedirectToAction("Index", "Dashboard");
+        }
+
+        // Only reachable straight after a registration; opening it directly goes to the sign-in page.
+        if (TempData["RegisteredUserName"] is not string userName || string.IsNullOrEmpty(userName))
+        {
+            logger.LogDebug("Registered page has no pending registration; redirecting to Login");
+            return RedirectToAction(nameof(Login));
+        }
+
+        ViewData["UserName"] = userName;
+        return View();
     }
 
     /// <summary>Step 1 of email-code sign-in: asks for an email address.</summary>

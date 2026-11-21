@@ -12,6 +12,12 @@ public sealed class LoginViewModel
     [DataType(DataType.Password)]
     public string Password { get; set; } = string.Empty;
 
+    [Required(ErrorMessage = "Enter the characters shown.")]
+    public string CaptchaAnswer { get; set; } = string.Empty;
+
+    public string CaptchaId { get; set; } = string.Empty;
+    public string CaptchaImage { get; set; } = string.Empty;
+
     public string? ReturnUrl { get; set; }
 }
 

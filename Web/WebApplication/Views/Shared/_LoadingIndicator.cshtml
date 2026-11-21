@@ -1,0 +1,16 @@
+@* Shared "Please wait..." overlay, rendered once by every layout.
+   wwwroot/js/loading.js shows it when a form is submitted and exposes showLoading(message) / hideLoading()
+   for script-driven (fetch) work. Add data-loading="Signing in" to a submit button, link or form for a custom
+   message, or data-no-loading to opt out. *@
+<div class="loading-overlay" id="loadingIndicator" hidden>
+    <div class="loading-container" role="status" aria-live="polite">
+        <div class="loading-spinner" aria-hidden="true"></div>
+        <div class="loading-content">
+            <div class="loading-text">
+                <span id="loadingMessage">Please wait</span><span class="loading-dots" aria-hidden="true"><span>.</span><span>.</span><span>.</span></span>
+            </div>
+            <div class="loading-subtext">Processing your request.</div>
+        </div>
+    </div>
+</div>
+<script src="/js/loading.js?v=1"></script>

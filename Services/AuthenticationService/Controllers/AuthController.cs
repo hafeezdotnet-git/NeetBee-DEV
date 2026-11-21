@@ -1,6 +1,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using AuthenticationService.Configuration;
+using AuthenticationService.CaptchaService;
 using AuthenticationService.Models;
 using AuthenticationService.Services;
 using Microsoft.AspNetCore.Authorization;
@@ -11,7 +12,7 @@ namespace AuthenticationService.Controllers;
 
 [ApiController]
 [Route("api/auth")]
-public sealed class AuthController(IAuthService auth, IOptions<AuthOptions> options, ILogger<AuthController> logger) : ControllerBase
+public sealed class AuthController(IAuthService auth, CaptchaValidator captcha, IOptions<AuthOptions> options, ILogger<AuthController> logger) : ControllerBase
 {
     private string? ClientIp => HttpContext.Connection.RemoteIpAddress?.ToString();
 
@@ -50,6 +51,9 @@ public sealed class AuthController(IAuthService auth, IOptions<AuthOptions> opti
 
         if (!options.Value.IsTokenBased)
             return LegacyModeUnavailable();
+
+        if (!captcha.ValidateAndConsume(request.CaptchaId, request.CaptchaAnswer))
+            return Problem(detail: "The CAPTCHA is incorrect or expired. Please try again.", statusCode: StatusCodes.Status400BadRequest, title: "CAPTCHA verification failed");
 
         var outcome = await auth.LoginAsync(request, ClientIp, cancellationToken);
         logger.LogInformation("POST api/auth/login finished with status {Status}", outcome.Status);

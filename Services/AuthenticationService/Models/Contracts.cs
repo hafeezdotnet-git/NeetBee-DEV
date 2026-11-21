@@ -10,7 +10,9 @@ public sealed record RegisterRequest(
 /// <summary>Username or email plus password.</summary>
 public sealed record LoginRequest(
     [Required, StringLength(256, MinimumLength = 3)] string Username,
-    [Required, StringLength(128, MinimumLength = 1)] string Password);
+    [Required, StringLength(128, MinimumLength = 1)] string Password,
+    [Required, StringLength(64, MinimumLength = 32)] string CaptchaId,
+    [Required, StringLength(12, MinimumLength = 4)] string CaptchaAnswer);
 
 public sealed record RefreshRequest(
     [Required, StringLength(512, MinimumLength = 40)] string RefreshToken);

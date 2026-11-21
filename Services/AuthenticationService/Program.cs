@@ -1,5 +1,6 @@
 using System.Text;
 using AuthenticationService.Configuration;
+using AuthenticationService.CaptchaService;
 using AuthenticationService.Data;
 using AuthenticationService.Entities;
 using NeetBee.Common.Logging;
@@ -35,6 +36,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddSingleton<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddSingleton<ITokenService, TokenService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddSingleton<CaptchaGenerator>();
+builder.Services.AddSingleton<CaptchaValidator>();
 
 // Sign-in code emails go through NotificationService over HTTP ("NotificationService" section).
 builder.Services.AddNeetBeeNotificationClient(builder.Configuration);

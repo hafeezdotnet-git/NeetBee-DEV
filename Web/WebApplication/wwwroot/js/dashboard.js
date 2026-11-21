@@ -33,11 +33,20 @@
     applyTheme(savedTheme === "light" ? "light" : "dark");
 
     var themeBtn = document.querySelector(".theme-toggle");
+    function syncThemeButton() {
+        if (!themeBtn) return;
+        var action = currentTheme() === "dark" ? "Switch to light mode" : "Switch to dark mode";
+        themeBtn.setAttribute("aria-label", action);
+        themeBtn.setAttribute("title", action);
+        themeBtn.setAttribute("aria-pressed", currentTheme() === "dark" ? "true" : "false");
+    }
+    syncThemeButton();
     if (themeBtn) {
         themeBtn.addEventListener("click", function () {
             var next = currentTheme() === "dark" ? "light" : "dark";
             applyTheme(next);
             try { localStorage.setItem(THEME_KEY, next); } catch (e) { /* storage blocked */ }
+            syncThemeButton();
             toast(next === "dark" ? "Dark mode on" : "Light mode on");
         });
     }
